@@ -14,6 +14,7 @@ import {
 	Strong,
 	Text,
 } from "../components";
+import { AvailabilityLabel } from "../components/AvailabilityLabel";
 import { POSTERS, SOCIALS } from "../data";
 
 const Home: NextPage = () => {
@@ -56,6 +57,7 @@ const Home: NextPage = () => {
 					<Text component="p">
 						<Trans
 							components={{
+								availability: <AvailabilityLabel />,
 								strong: <Strong />,
 							}}
 							i18nKey="home.hero.p3"
@@ -87,7 +89,7 @@ const Home: NextPage = () => {
 						{t("home.playbook.description")}
 					</Text>
 
-					<div className="flex justify-between mb-4">
+					<div className="flex items-center justify-between mb-4">
 						<Heading id="posters" level={3}>
 							{t("home.playbook.posters.title")}
 						</Heading>
@@ -125,11 +127,11 @@ const Home: NextPage = () => {
 					/>
 				</Text>
 
-				<div className="flex justify-between mb-4">
+				<div className="flex items-center justify-between mb-4">
 					<Heading id="coffee" level={3}>
 						{t("home.personal.coffee.title")}
 					</Heading>
-					<Anchor href="/">{t("home.personal.coffee.showMore")}</Anchor>
+					<Anchor href="/coffee">{t("home.personal.coffee.showMore")}</Anchor>
 				</div>
 				<Text className="mb-8" component="p">
 					{t("home.personal.coffee.description")}
