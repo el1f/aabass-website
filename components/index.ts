@@ -9,3 +9,4 @@ export * from "./PosterThumbnail";
 export * from "./SocialLink";
 export * from "./Strong";
 export * from "./Text";
+export * from "./OpenGraph";

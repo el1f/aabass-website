@@ -15,6 +15,15 @@ const About: NextPage = () => {
 		<>
 			<Head>
 				<title>{t("about.pageTitle")}</title>
+				{/* TODO: replace with the OpenGraph component when fixed */}
+				<meta content="website" property="og:type" />
+				<meta content={t(`meta.og.title`)} property="og:title" />
+				<meta content={process.env.NEXT_PUBLIC_HOSTNAME} property="og:url" />
+				<meta
+					content={`${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`}
+					property="og:image"
+				/>
+				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
 			<Navbar isExtended={false} socials={SOCIALS} />
