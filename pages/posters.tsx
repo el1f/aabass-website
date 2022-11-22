@@ -1,24 +1,25 @@
 import { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
-import Footer from "../components/Footer";
-import Heading from "../components/Heading";
-import { Navbar } from "../components/Navbar";
-import { PosterThumbnail } from "../components/PosterThumbnail";
-import { Text } from "../components/Text";
-import { POSTERS } from "../data/posters";
-import { SOCIALS } from "../data/socials";
+
+import { Footer, Heading, Navbar, PosterThumbnail, Text } from "../components";
+import { POSTERS, SOCIALS } from "../data";
 
 const Posters: NextPage = () => {
 	const { t } = useTranslation("common");
 
 	return (
 		<>
+			<Head>
+				<title>{t("posters.pageTitle")}</title>
+			</Head>
+
 			<Navbar isExtended={false} socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-16 mx-auto">
-				<Heading level={1} className="mb-4">
+				<Heading className="mb-4" level={1}>
 					{t("posters.header.title")}
 				</Heading>
 				<Text>
@@ -33,11 +34,11 @@ const Posters: NextPage = () => {
 			<section className="container grid max-w-5xl grid-cols-3 gap-8 mx-auto mb-48">
 				{POSTERS.filter(({ format }) => format === "poster").map((poster) => (
 					<PosterThumbnail
-						key={poster.title}
-						title={poster.title}
-						src={`/posters/${poster.thumbnail}`}
-						description={poster.description}
 						className="flex-shrink-0 w-full"
+						description={poster.description}
+						key={poster.title}
+						src={`/posters/${poster.thumbnail}`}
+						title={poster.title}
 					/>
 				))}
 			</section>
@@ -49,12 +50,12 @@ const Posters: NextPage = () => {
 			<section className="container grid max-w-5xl grid-cols-3 gap-8 mx-auto mb-48">
 				{POSTERS.filter(({ format }) => format === "disc").map((poster) => (
 					<PosterThumbnail
-						key={poster.title}
-						title={poster.title}
-						src={`/posters/${poster.thumbnail}`}
+						className="flex-shrink-0 w-full"
 						description={poster.description}
 						format="disc"
-						className="flex-shrink-0 w-full"
+						key={poster.title}
+						src={`/posters/${poster.thumbnail}`}
+						title={poster.title}
 					/>
 				))}
 			</section>

@@ -1,40 +1,39 @@
-import { Html, Head, Main, NextScript } from "next/document";
-import i18nextConfig from "../next-i18next.config";
+import { Head, Html, Main, NextScript } from "next/document";
 
 const MyDocument = () => {
 	return (
 		<Html>
 			<Head>
 				<link
+					href="/favicons/apple-touch-icon.png"
 					rel="apple-touch-icon"
 					sizes="180x180"
-					href="/favicons/apple-touch-icon.png"
 				/>
 				<link
-					rel="icon"
-					type="image/png"
-					sizes="32x32"
 					href="/favicons/favicon-32x32.png"
-				/>
-				<link
 					rel="icon"
+					sizes="32x32"
 					type="image/png"
-					sizes="16x16"
-					href="/favicons/favicon-16x16.png"
 				/>
-				<link rel="manifest" href="/favicons/site.webmanifest" />
 				<link
-					rel="mask-icon"
-					href="/favicons/safari-pinned-tab.svg"
+					href="/favicons/favicon-16x16.png"
+					rel="icon"
+					sizes="16x16"
+					type="image/png"
+				/>
+				<link href="/favicons/site.webmanifest" rel="manifest" />
+				<link
 					color="#000000"
+					href="/favicons/safari-pinned-tab.svg"
+					rel="mask-icon"
 				/>
-				<link rel="shortcut icon" href="/favicons/favicon.ico" />
-				<meta name="msapplication-TileColor" content="#000000" />
+				<link href="/favicons/favicon.ico" rel="shortcut icon" />
+				<meta content="#000000" name="msapplication-TileColor" />
 				<meta
-					name="msapplication-config"
 					content="/favicons/browserconfig.xml"
+					name="msapplication-config"
 				/>
-				<meta name="theme-color" content="#ffffff" />
+				<meta content="#ffffff" name="theme-color" />
 				<link
 					href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap"
 					rel="stylesheet"

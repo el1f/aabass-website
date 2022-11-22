@@ -1,7 +1,6 @@
-// Button component using tailwind
 import React from "react";
 
-interface ButtonProps {
+export interface ButtonProps {
 	children: React.ReactNode;
 	className?: string;
 	isOutlined?: boolean;

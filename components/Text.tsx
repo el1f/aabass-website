@@ -1,23 +1,23 @@
 import React from "react";
 
 const TEXT_CLASSES = {
-	sm: "textSM",
-	md: "textMD",
 	lg: "textLG",
+	md: "textMD",
+	sm: "textSM",
 } as const;
 
 export interface TextProps {
-	component?: "span" | "p" | "a" | "div";
-	size?: "sm" | "md" | "lg";
 	children?: React.ReactNode;
 	className?: string;
+	component?: "span" | "p" | "a" | "div";
+	size?: "sm" | "md" | "lg";
 }
 
 export const Text: React.FC<TextProps> = ({
-	component = "span",
-	size = "md",
 	children,
 	className,
+	component = "span",
+	size = "md",
 }) => {
 	const Tag = component;
 

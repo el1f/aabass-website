@@ -1,18 +1,12 @@
 import { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
-import Footer from "../components/Footer";
-import Heading from "../components/Heading";
-import { Navbar } from "../components/Navbar";
-import { PosterThumbnail } from "../components/PosterThumbnail";
-import { Text } from "../components/Text";
-import { SOCIALS } from "../data/socials";
-import Image from "next/image";
-import { Strong } from "../components/Strong";
-import Head from "next/head";
-import { Button } from "../components/Button";
-import Link from "next/link";
+
+import { Button, Footer, Heading, Navbar, Strong, Text } from "../components";
+import { SOCIALS } from "../data";
 
 const NotFound: NextPage = () => {
 	const { t } = useTranslation("common");
@@ -26,17 +20,17 @@ const NotFound: NextPage = () => {
 			<Navbar isExtended={false} socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
-				<Heading level={1} className="mb-4">
+				<Heading className="mb-4" level={1}>
 					{t("404.title")}
 				</Heading>
 				{/* TODO: figure out why using a p causes a hydration issue */}
-				<Text component="div" className="mb-6">
+				<Text className="mb-6" component="div">
 					<Trans
-						i18nKey="404.body"
 						components={{
-							strong: <Strong />,
 							hr: <hr className="my-1 opacity-0" />,
+							strong: <Strong />,
 						}}
+						i18nKey="404.body"
 					/>
 				</Text>
 				<div className="flex gap-6">
@@ -47,7 +41,7 @@ const NotFound: NextPage = () => {
 					</Link>
 					<Link href="/about">
 						<a>
-							<Button isText isOutlined>
+							<Button isOutlined isText>
 								{t("common.about")}
 							</Button>
 						</a>

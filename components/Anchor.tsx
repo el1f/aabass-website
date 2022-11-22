@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { PropsWithChildren } from "react";
-import { Text, TextProps } from "./Text";
+
+import { Text, TextProps } from "./";
 
 export const Anchor: React.FC<
 	PropsWithChildren<{ href: string } & TextProps>

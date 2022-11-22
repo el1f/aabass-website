@@ -4,49 +4,49 @@ import React from "react";
 const EXTENDED_RATIO = 5.84;
 
 interface LogoProps {
-	isExtended?: boolean;
-	isDark?: boolean;
 	height?: number;
+	isDark?: boolean;
+	isExtended?: boolean;
 }
 
 export const Logo: React.FC<LogoProps> = ({
+	height = 40,
 	isDark = true,
 	isExtended = false,
-	height = 40,
 }) => {
 	if (isDark && isExtended)
 		return (
 			<Image
-				src="/brand/logo.svg"
-				height={height}
-				width={height * EXTENDED_RATIO}
 				alt="Extended logo"
+				height={height}
+				src="/brand/logo.svg"
+				width={height * EXTENDED_RATIO}
 			/>
 		);
 	if (!isDark && !isExtended)
 		return (
 			<Image
-				src="/brand/logo_mark.svg"
-				height={height}
-				width={height}
 				alt="Extended logo"
+				height={height}
+				src="/brand/logo_mark.svg"
+				width={height}
 			/>
 		);
 	if (isExtended)
 		return (
 			<Image
-				src="/brand/logo_light.svg"
-				height={height}
-				width={height * EXTENDED_RATIO}
 				alt="Extended logo"
+				height={height}
+				src="/brand/logo_light.svg"
+				width={height * EXTENDED_RATIO}
 			/>
 		);
 	return (
 		<Image
-			src="/brand/logo_light_mark.svg"
-			height={height}
-			width={height}
 			alt="Extended logo"
+			height={height}
+			src="/brand/logo_light_mark.svg"
+			width={height}
 		/>
 	);
 };

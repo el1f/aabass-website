@@ -1,19 +1,19 @@
 import React from "react";
 
-interface HeadingProps {
-	id?: string;
-	level: 1 | 2 | 3 | 4 | 5 | 6;
+export interface HeadingProps {
 	children: React.ReactNode;
 	className?: string;
+	id?: string;
 	isDimmed?: boolean;
+	level: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-const Heading: React.FC<HeadingProps> = ({
-	id,
-	level,
+export const Heading: React.FC<HeadingProps> = ({
 	children,
-	isDimmed = false,
 	className,
+	id,
+	isDimmed = false,
+	level,
 }) => {
 	const Tag = `h${level}` as const;
 	const headingClass = [
@@ -42,12 +42,10 @@ const Heading: React.FC<HeadingProps> = ({
 
 	if (id)
 		return (
-			<a id={id} href={`#${id}`} className="relative scroll-mt-16">
+			<a className="relative scroll-mt-16" href={`#${id}`} id={id}>
 				{headingContent}
 			</a>
 		);
 
 	return headingContent;
 };
-
-export default Heading;

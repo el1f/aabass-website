@@ -1,11 +1,9 @@
-import React from "react";
-import { Text } from "./Text";
-import { Logo } from "./Logo";
-import Heading from "./Heading";
-import { Anchor } from "./Anchor";
 import { useTranslation } from "next-i18next";
+import React from "react";
 
-const Footer = () => {
+import { Anchor, Heading, Logo, Text } from ".";
+
+export const Footer = () => {
 	const { t } = useTranslation("common");
 
 	return (
@@ -38,5 +36,3 @@ const Footer = () => {
 		</footer>
 	);
 };
-
-export default Footer;

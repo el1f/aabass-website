@@ -1,14 +1,15 @@
 import Link from "next/link";
 import React from "react";
-import { SocialPlatform } from "../types/socials";
-import { Icon } from "./Icon";
+
+import { SocialPlatform } from "../types";
+import { Icon } from ".";
 
 interface SocialLinkProps {
-	platform: SocialPlatform;
 	href: string;
+	platform: SocialPlatform;
 }
 
-export const SocialLink: React.FC<SocialLinkProps> = ({ platform, href }) => {
+export const SocialLink: React.FC<SocialLinkProps> = ({ href, platform }) => {
 	return (
 		<Link href={href}>
 			<a

@@ -1,10 +1,10 @@
 import React from "react";
 
 import Dribbble from "../public/icons/dribbble.svg";
-import Linkedin from "../public/icons/linkedin.svg";
-import Instagram from "../public/icons/instagram.svg";
 import Github from "../public/icons/github.svg";
-import { SocialPlatform } from "../types/socials";
+import Instagram from "../public/icons/instagram.svg";
+import Linkedin from "../public/icons/linkedin.svg";
+import { SocialPlatform } from "../types";
 
 type IconName = SocialPlatform;
 

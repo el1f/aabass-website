@@ -1,60 +1,64 @@
-import type { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
-import Image from "next/image";
+import type { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
-import { PropsWithChildren } from "react";
-import { Button } from "../components/Button";
-import Heading from "../components/Heading";
-import { Logo } from "../components/Logo";
-import { Navbar } from "../components/Navbar";
-import { PosterThumbnail } from "../components/PosterThumbnail";
-import { Text, TextProps } from "../components/Text";
-import { SOCIALS } from "../data/socials";
-import { POSTERS } from "../data/posters";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Trans, useTranslation } from "next-i18next";
-import Footer from "../components/Footer";
-import { Anchor } from "../components/Anchor";
-import { Strong } from "../components/Strong";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+import {
+	Anchor,
+	Button,
+	Footer,
+	Heading,
+	Navbar,
+	PosterThumbnail,
+	Strong,
+	Text,
+} from "../components";
+import { POSTERS, SOCIALS } from "../data";
 
 const Home: NextPage = () => {
-	const { t, i18n } = useTranslation("common");
+	const { t } = useTranslation("common");
 
 	return (
 		<>
+			<Head>
+				<title>{t("home.pageTitle")}</title>
+			</Head>
+
 			<Navbar isExtended={false} socials={SOCIALS} />
 
 			<section className="container max-w-2xl px-4 py-32 mx-auto">
 				<hgroup className="max-w-xl mb-6">
-					<Heading level={1} className="mb-6 leading-none" isDimmed>
+					<Heading className="mb-6 leading-none" isDimmed level={1}>
 						<Trans
-							i18nKey="home.hero.title"
 							components={{
 								strong: <Strong />,
 							}}
+							i18nKey="home.hero.title"
 						/>
 					</Heading>
-					<Text component="p" className="mb-4">
+					<Text className="mb-4" component="p">
 						<Trans
-							i18nKey="home.hero.p1"
 							components={{
 								strong: <Strong />,
 							}}
+							i18nKey="home.hero.p1"
 						/>
 					</Text>
-					<Text component="p" className="mb-4">
+					<Text className="mb-4" component="p">
 						<Trans
-							i18nKey="home.hero.p2"
 							components={{
 								strong: <Strong />,
 							}}
+							i18nKey="home.hero.p2"
 						/>
 					</Text>
 					<Text component="p">
 						<Trans
-							i18nKey="home.hero.p3"
 							components={{
 								strong: <Strong />,
 							}}
+							i18nKey="home.hero.p3"
 						/>
 					</Text>
 				</hgroup>
@@ -66,7 +70,7 @@ const Home: NextPage = () => {
 					</Link>
 					<Link href="/about">
 						<a>
-							<Button isText isOutlined>
+							<Button isOutlined isText>
 								{t("home.hero.about")}
 							</Button>
 						</a>
@@ -76,10 +80,10 @@ const Home: NextPage = () => {
 
 			<section className="px-4 py-32">
 				<div className="container max-w-2xl mx-auto">
-					<Heading id="playbook" level={2} className="mb-4">
+					<Heading className="mb-4" id="playbook" level={2}>
 						{t("home.playbook.title")}
 					</Heading>
-					<Text component="p" className="mb-12">
+					<Text className="mb-12" component="p">
 						{t("home.playbook.description")}
 					</Text>
 
@@ -91,33 +95,33 @@ const Home: NextPage = () => {
 							{t("home.playbook.posters.showMore")}
 						</Anchor>
 					</div>
-					<Text component="p" className="mb-8">
+					<Text className="mb-8" component="p">
 						{t("home.playbook.posters.description")}
 					</Text>
 				</div>
 				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] md:-mx-4 pb-8">
 					{POSTERS.filter(({ format }) => format === "poster").map((poster) => (
 						<PosterThumbnail
-							key={poster.title}
-							title={poster.title}
-							src={`/posters/${poster.thumbnail}`}
-							description={poster.description}
 							className="flex-shrink-0 w-64"
+							description={poster.description}
+							key={poster.title}
+							src={`/posters/${poster.thumbnail}`}
+							title={poster.title}
 						/>
 					))}
 				</div>
 			</section>
 
 			<section className="container max-w-2xl px-4 py-32 mx-auto">
-				<Heading id="personal" level={2} className="mb-4">
+				<Heading className="mb-4" id="personal" level={2}>
 					{t("home.personal.title")}
 				</Heading>
-				<Text component="p" className="mb-12">
+				<Text className="mb-12" component="p">
 					<Trans
-						i18nKey="home.personal.description"
 						components={{
 							strong: <Strong />,
 						}}
+						i18nKey="home.personal.description"
 					/>
 				</Text>
 
@@ -127,21 +131,21 @@ const Home: NextPage = () => {
 					</Heading>
 					<Anchor href="/">{t("home.personal.coffee.showMore")}</Anchor>
 				</div>
-				<Text component="p" className="mb-8">
+				<Text className="mb-8" component="p">
 					{t("home.personal.coffee.description")}
 				</Text>
 			</section>
 
 			<section className="container max-w-2xl px-4 mx-auto">
-				<Heading level={2} className="mb-4">
+				<Heading className="mb-4" level={2}>
 					{t("home.footer.title")}
 				</Heading>
-				<Text component="p" className="mb-24">
+				<Text className="mb-24" component="p">
 					<Trans
-						i18nKey="home.footer.description"
 						components={{
 							strong: <Strong />,
 						}}
+						i18nKey="home.footer.description"
 					/>
 				</Text>
 			</section>

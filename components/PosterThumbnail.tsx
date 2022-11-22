@@ -1,26 +1,25 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 interface PosterThumbnailProps {
-	src: string;
-	title: string;
-	description: string;
 	className?: string;
+	description: string;
 	format?: "poster" | "disc";
 	onClick?: () => void;
+	src: string;
+	title: string;
 }
 
 export const PosterThumbnail: React.FC<PosterThumbnailProps> = ({
-	src,
-	title,
-	description,
 	className,
 	format = "poster",
 	onClick,
+	src,
+	title,
 }) => {
 	const selectedFormat = {
-		poster: "aspect-poster",
 		disc: "aspect-square",
+		poster: "aspect-poster",
 	}[format];
 
 	return (
@@ -28,7 +27,7 @@ export const PosterThumbnail: React.FC<PosterThumbnailProps> = ({
 			className={`${selectedFormat} relative bg-primary-400 ${className}`}
 			onClick={onClick}
 		>
-			<Image src={src} alt={title} layout="fill" />
+			<Image alt={title} layout="fill" src={src} />
 		</div>
 	);
 };
