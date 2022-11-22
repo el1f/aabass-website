@@ -7,8 +7,8 @@ export const Footer = () => {
 	const { t } = useTranslation("common");
 
 	return (
-		<footer className="container max-w-2xl px-4 pt-8 pb-32 mx-auto">
-			<div className="flex justify-between">
+		<footer className="container max-w-2xl px-6 pt-8 pb-32 mx-auto">
+			<div className="flex flex-col justify-between gap-12 md:flex-row">
 				<div>
 					<div className="mb-2">
 						<Logo isDark={false} isExtended />

@@ -14,7 +14,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ isExtended, socials }) => {
 	return (
-		<div className="flex justify-between h-16 max-w-2xl px-6 mx-auto mt-16">
+		<div className="flex items-center justify-between h-16 max-w-2xl px-6 mx-auto mt-16">
 			<Link href="/">
 				<a>
 					<Logo isExtended={isExtended} />

@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 
 			<Navbar isExtended={false} socials={SOCIALS} />
 
-			<section className="container max-w-2xl px-4 py-32 mx-auto">
+			<section className="container max-w-2xl px-6 py-32 mx-auto md:mb-32">
 				<hgroup className="max-w-xl mb-6">
 					<Heading className="mb-6 leading-none" isDimmed level={1}>
 						<Trans
@@ -80,7 +80,7 @@ const Home: NextPage = () => {
 				</div>
 			</section>
 
-			<section className="px-4 py-32">
+			<section className="px-6 mb-32 md:mb-64">
 				<div className="container max-w-2xl mx-auto">
 					<Heading className="mb-4" id="playbook" level={2}>
 						{t("home.playbook.title")}
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
 						{t("home.playbook.posters.description")}
 					</Text>
 				</div>
-				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] md:-mx-4 pb-8">
+				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
 					{POSTERS.filter(({ format }) => format === "poster").map((poster) => (
 						<PosterThumbnail
 							className="flex-shrink-0 w-64"
@@ -114,7 +114,7 @@ const Home: NextPage = () => {
 				</div>
 			</section>
 
-			<section className="container max-w-2xl px-4 py-32 mx-auto">
+			<section className="container max-w-2xl px-6 mx-auto mb-32 md:mb-64">
 				<Heading className="mb-4" id="personal" level={2}>
 					{t("home.personal.title")}
 				</Heading>
@@ -138,7 +138,7 @@ const Home: NextPage = () => {
 				</Text>
 			</section>
 
-			<section className="container max-w-2xl px-4 mx-auto">
+			<section className="container max-w-2xl px-6 mx-auto">
 				<Heading className="mb-4" level={2}>
 					{t("home.footer.title")}
 				</Heading>

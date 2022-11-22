@@ -27,7 +27,7 @@ const About: NextPage = () => {
 			</header>
 
 			<section className="container max-w-5xl px-4 mx-auto mb-48">
-				<div className="flex items-start gap-12">
+				<div className="flex flex-col items-start gap-12 md:flex-row">
 					<div className="relative flex-shrink-0 w-80 aspect-poster">
 						<Image
 							alt="A picture of myself"
