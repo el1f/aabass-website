@@ -1,4 +1,6 @@
 import { Switch } from "@headlessui/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useTheme } from "next-themes";
 import React from "react";
@@ -7,10 +9,8 @@ import { CHANGELOG } from "../data";
 import { Anchor, ChangelogSummary, Heading, Icon, Logo, Text } from ".";
 
 export const Footer = () => {
-	const {
-		i18n: { language },
-		t,
-	} = useTranslation("common");
+	const router = useRouter();
+	const { i18n, t } = useTranslation("common");
 	const { setTheme, theme } = useTheme();
 	const isDark = theme !== "light";
 
@@ -39,20 +39,24 @@ export const Footer = () => {
 									className="mt-auto text-xs leading-none text-left"
 									size="sm"
 								>
-									Switch theme
+									{t("footer.changeTheme")}
 								</Text>
 							</Switch>
-							<button
-								className={`aspect-sweet rounded-2xl border border-textDimmedDark/40 w-full max-w-4xs p-3 flex-col flex items-start dark:hover:bg-bgRaisedDark hover:bg-bgRaisedLight hover:border-textDimmedDark/20 transition-all flex-shrink-0`}
-								onChange={() => setTheme(isDark ? "light" : "dark")}
+							<Link
+								href={router.route}
+								locale={i18n.language === "it" ? "en" : "it"}
 							>
-								<span className="text-2xl leading-none">
-									{language ? "🇮🇹" : "🌎"}
-								</span>
-								<Text className="mt-auto text-xs leading-none text-left">
-									Switch lang
-								</Text>
-							</button>
+								<a
+									className={`aspect-sweet rounded-2xl border border-textDimmedDark/40 w-full max-w-4xs p-3 flex-col flex items-start dark:hover:bg-bgRaisedDark hover:bg-bgRaisedLight hover:border-textDimmedDark/20 transition-all flex-shrink-0`}
+								>
+									<span className="text-2xl leading-none">
+										{i18n.language === "it" ? "🇮🇹" : "🌎"}
+									</span>
+									<Text className="mt-auto text-xs leading-none text-left">
+										{t("footer.changeLang")}
+									</Text>
+								</a>
+							</Link>
 						</div>
 					</div>
 

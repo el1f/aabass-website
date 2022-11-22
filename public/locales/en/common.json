@@ -44,7 +44,9 @@
 		},
 		"fun": {
 			"title": "Fun things"
-		}
+		},
+		"changeTheme": "Switch theme",
+		"changeLang": "Switch lang"
 	},
 	"posters": {
 		"header": {
