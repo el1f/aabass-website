@@ -103,7 +103,7 @@ const Home: NextPage = () => {
 						<Heading id="posters" level={3}>
 							{t("home.playbook.posters.title")}
 						</Heading>
-						<Anchor href="/posters">
+						<Anchor href="/posters" size="sm">
 							{t("home.playbook.posters.showMore")}
 						</Anchor>
 					</div>
@@ -141,7 +141,9 @@ const Home: NextPage = () => {
 					<Heading id="coffee" level={3}>
 						{t("home.personal.coffee.title")}
 					</Heading>
-					<Anchor href="/coffee">{t("home.personal.coffee.showMore")}</Anchor>
+					<Anchor href="/coffee" size="sm">
+						{t("home.personal.coffee.showMore")}{" "}
+					</Anchor>
 				</div>
 				<Text className="mb-8" component="p">
 					{t("home.personal.coffee.description")}
