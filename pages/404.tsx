@@ -1,15 +1,18 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
 import { Button, Footer, Heading, Navbar, Strong, Text } from "../components";
 import { SOCIALS } from "../data";
+import * as ga from "../lib/ga";
 
 const NotFound: NextPage = () => {
 	const { t } = useTranslation("common");
+	const router = useRouter();
 
 	return (
 		<>
@@ -45,7 +48,13 @@ const NotFound: NextPage = () => {
 				<div className="flex gap-6">
 					<Link href="mailto:ayoub@aabass.net">
 						<a>
-							<Button>Ask about this page</Button>
+							<Button
+								onClick={() => {
+									ga.contactPress(router.route);
+								}}
+							>
+								Ask about this page
+							</Button>
 						</a>
 					</Link>
 					<Link href="/about">
@@ -67,7 +76,7 @@ const NotFound: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common"])),
+		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
 	},
 });
 

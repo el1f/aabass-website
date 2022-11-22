@@ -10,3 +10,4 @@ export * from "./SocialLink";
 export * from "./Strong";
 export * from "./Text";
 export * from "./OpenGraph";
+export * from "./ChangelogSummary";

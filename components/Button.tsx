@@ -1,6 +1,6 @@
-import React from "react";
+import React, { HTMLProps } from "react";
 
-export interface ButtonProps {
+export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
 	children: React.ReactNode;
 	className?: string;
 	isOutlined?: boolean;

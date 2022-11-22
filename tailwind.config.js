@@ -7,27 +7,33 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [],
   theme: {
     extend: {
-      fontFamily: {
-        'sans': ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+      aspectRatio: {
+        poster: "297/420"
       },
       colors: {
         ...defaultTheme.colors,
+        bgBaseDark: colors.slate[900],
+        bgBaseLight: colors.slate[200],
+        bgRaisedDark: colors.slate[800],
+        bgRaisedLight: colors.slate[50],
         primary: colors.amber,
         textDark: colors.slate[900],
-        textLight: colors.slate[50],
         textDimmedDark: colors.slate[700],
         textDimmedLight: colors.slate[300],
-        bgBaseLight: colors.slate[200],
-        bgRaisedLight: colors.slate[50],
-        bgBaseDark: colors.slate[900],
-        bgRaisedDark: colors.slate[800],
+        textLight: colors.slate[50],
       },
-      aspectRatio: {
-        poster: "297/420"
+      fontFamily: {
+        'sans': ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+      },
+      maxWidth: {
+        "2xs": "16rem",
+        "3xs": "12rem",
+        "4xs": "8rem",
+        "5xs": "4rem",
       }
     }
   },
-  plugins: [],
 }

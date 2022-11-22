@@ -1,0 +1,18 @@
+{
+    "1.1.0": {
+        "summary": "Sharing is caring",
+        "description": "Let's share something more about the process with this one!",
+        "features": [
+            "Changelog page and indicator",
+            "Analytics so that I can spy on y'all and use your usage stats of my site to conquer the worl... I mean make my site better."
+        ]
+    },
+    "1.0.0": {
+        "summary": "Genesis",
+        "description": "All great things start small and grow over time. Or at least this is what I am telling myself in order to actually ship something after so many iterations of this website.",
+        "features": [
+            "Landing page with some basic information about me",
+            "Posters page with some of the posters I have designed"
+        ]
+    }
+}

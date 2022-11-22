@@ -16,6 +16,7 @@ import {
 } from "../components";
 import { AvailabilityLabel } from "../components/AvailabilityLabel";
 import { POSTERS, SOCIALS } from "../data";
+import * as ga from "../lib/ga";
 
 const Home: NextPage = () => {
 	const { t } = useTranslation("common");
@@ -77,7 +78,13 @@ const Home: NextPage = () => {
 				<div className="flex gap-6">
 					<Link href="mailto:ayoub@aabass.net">
 						<a>
-							<Button>{t("home.hero.cta1")}</Button>
+							<Button
+								onClick={() => {
+									ga.contactPress("/");
+								}}
+							>
+								{t("home.hero.cta1")}
+							</Button>
 						</a>
 					</Link>
 					<Link href="/about">
@@ -117,6 +124,9 @@ const Home: NextPage = () => {
 							className="flex-shrink-0 w-64"
 							description={poster.description}
 							key={poster.title}
+							onClick={() => {
+								ga.posterPress(poster.title);
+							}}
 							src={`/posters/${poster.thumbnail}`}
 							title={poster.title}
 						/>
@@ -171,7 +181,7 @@ const Home: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common"])),
+		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
 	},
 });
 
