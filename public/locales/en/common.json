@@ -1,0 +1,75 @@
+{
+	"404": {
+		"body": "So, either you're here too early to actually see the contents of this page or you've stranded yourself on a good old <strong>404 page</strong>.<br /><hr />Come over later to check whether it's done or better yet ask me about it!",
+		"title": "Nothing to be found over here chief!",
+		"pageTitle": "Ayoub not found"
+	},
+	"home": {
+		"hero": {
+			"title": "Hello, I'm <strong>Ayoub</strong>",
+			"p1": "I've been dabbling in software development and design for the past <strong>8 years</strong> and I've been working on this website for the <strong>past 9</strong>. Guess it's time to launch something to show for it.",
+			"p2": "I mostly work in <strong>full-stack web product development</strong> with a focus on the <strong>frontend</strong> side of things. I have a deep love for building great looking, intuitive interfaces that enable people to achieve their goals in a simple and efficient way.",
+			"p3": "My current availability right now is <strong>fairly limited</strong> , don't hesitate about contacting me if you have a project in mind.",
+			"cta1": "Reach out",
+			"about": "About me"
+		},
+		"playbook": {
+			"title": "Playbook",
+			"description": "A little collection of some nice things I'm doing right now that I kinda like. These are updated every now and then so come back later, there could be something new you didn't see last time.",
+			"posters": {
+				"title": "Posters",
+				"showMore": "See all",
+				"description": "I've been playing around with a lot of new design styles as of lately and I've been enjoying printing them way more than I ever expected. Here's a selection of my latest ones."
+			}
+		},
+		"personal": {
+			"title": "Personal corner",
+			"description": "So, you landed on my website right? <strong>My website</strong>.This is where I take control of the narrative and dump a bunch of completely work-unrelated things that I care way too much about and that I for some reason crave to lay down in a strict code and grid-based layout for the sheer love of it. Enjoy the ride!",
+			"coffee": {
+				"title": "Coffee",
+				"showMore": "Learn more",
+				"description": "Ever since being in Rotterdam I've been obsessed about coffee. Like, really obsessed. At this point I think I went over the whole videography of James Hoffman at least thrice and I've collected enough gear to open my own small cafe. Here you can see what I'm currently playing around and some writing on the latest coffee experiences I had, both at home and in cafes"
+			}
+		},
+		"footer": {
+			"title": "Well, that's it",
+			"description": "Congrats on getting all the way down here. <br /> Here, press here to get your reward"
+		}
+	},
+	"footer": {
+		"copyright": "© 2022",
+		"work": {
+			"title": "Work things"
+		},
+		"fun": {
+			"title": "Fun things"
+		}
+	},
+	"posters": {
+		"header": {
+			"title": "My posters collection",
+			"description": "Print is not dead. I love to design posters and other printed media in my free time to experiment with the latest design trends and try out compositions and techniques that I wouldn't be able to use in my day-to-day work.</br>This is a collection of my favorite posters that I have designed over the past months, including some of my first experiments with print design. I hope you enjoy them as much as I do!"
+		},
+		"standard": {
+			"title": "Standard Print"
+		},
+		"square": {
+			"title": "Vinyl covers"
+		}
+	},
+	"common": {
+		"about": "About me",
+		"cases": "Case studies",
+		"curriculum": "Curriculum",
+		"posters": "Posters",
+		"shop": "Shop",
+		"coffee": "Coffee",
+		"gaming": "Gaming",
+		"longboard": "Longboard"
+	},
+	"about": {
+		"bio": "So, as you've probably guessed, my name is <strong>Ayoub</strong>. I was born in <strong>Morocco</strong> but I've lived most of my Life in <strong>Italy</strong> after moving there with my family when I was around 3. Still can't get over that first snowy december day, it was magical!<br /><hr />I'm now 25 years old and I'm currently living in <strong>Padua</strong> where I'm working as a <strong>Freelance</strong> developer and designer. I've mostly worked in startups and small companies, dabbling with the occasional bigger reality when the opportunity arose but I definitely think I thrive in smaller environments where I can be more hands-on with all aspects of the products I'm working on.<br /><hr />I'm a fairly adventurous person, I love <strong>traveling</strong>, <strong>extreme sports</strong> and anything that allows me to live life to the fullest. I'm also a huge <strong>foodie</strong> and I love trying out new restaurants and cuisines.<br /><hr />I've also been getting deeper and deeper into the weird Coffee rabbit hole and I've spent the past year honing my home barista game. I've been dedicating a lot of my free time to Longboard dancing and freeride ever since the start of the pandemic and I'm involved with several projects in that field as well.",
+		"title": "A little about me",
+		"lead": "Fancy meeting you!"
+	}
+}

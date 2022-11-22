@@ -1,0 +1,26 @@
+import React from "react";
+
+import Dribbble from "../public/icons/dribbble.svg";
+import Linkedin from "../public/icons/linkedin.svg";
+import Instagram from "../public/icons/instagram.svg";
+import Github from "../public/icons/github.svg";
+import { SocialPlatform } from "../types/socials";
+
+type IconName = SocialPlatform;
+
+interface IconProps {
+	name: IconName;
+}
+
+export const Icon: React.FC<IconProps> = ({ name }) => {
+	switch (name) {
+		case "dribbble":
+			return <Dribbble className="h-6" />;
+		case "linkedin":
+			return <Linkedin className="h-6" />;
+		case "instagram":
+			return <Instagram className="h-6" />;
+		case "github":
+			return <Github className="h-6" />;
+	}
+};
