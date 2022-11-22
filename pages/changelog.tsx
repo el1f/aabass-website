@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
-import { Footer, Heading, Navbar, Text } from "../components";
+import { CodeChip, Footer, Heading, Navbar, Text } from "../components";
 import { CHANGELOG, SOCIALS } from "../data";
 
 const Changelog = () => {
@@ -41,19 +41,19 @@ const Changelog = () => {
 							<Heading id={version.replaceAll(".", "_")} level={2}>
 								{t(`changelog:${version}.summary`)}
 							</Heading>
-							<code className="flex-shrink-0 inline-block w-16 py-1 ml-2 -mb-[3px] text-xs leading-none font-mono tracking-wider text-center -translate-y-1 border rounded-md bg-bgRaisedDark border-white/5">
+							<CodeChip className="-translate-y-[1px] ml-2 px-2">
 								v{version}
-							</code>
+							</CodeChip>
 						</div>
 						<Text>{t(`changelog:${version}.description`)}</Text>
 						<div className="flex flex-col gap-4 py-8">
 							{features.map((feature, i) => (
 								<div className="flex items-start gap-4" key={i}>
-									<code className="flex-shrink-0 inline-block w-16 py-1 text-sm leading-none tracking-wider text-center border rounded-md bg-bgRaisedDark border-white/5">
+									<CodeChip className="flex-shrink-0 w-16 text-sm tracking-wide text-center">
 										{feature.type.toUpperCase()}
-									</code>
+									</CodeChip>
 									<div className="flex flex-col">
-										<Text className="mt-[1px]" size="sm">
+										<Text size="sm">
 											{t(`changelog:${version}.features.${i}`)}
 										</Text>
 										<Text className="font-mono text-xs font-bold opacity-50">

@@ -23,7 +23,7 @@ export const Text: React.FC<TextProps> = ({
 
 	return (
 		<Tag
-			className={`${TEXT_CLASSES[size]} font-sans leading-relaxed tracking-wider text-textDimmedDark/75 dark:text-textDimmedLight/75 ${className}`}
+			className={`${TEXT_CLASSES[size]} font-sans leading-relaxed dark:tracking-wide tracking-tight text-textDimmedDark dark:text-textDimmedLight/75 ${className}`}
 		>
 			{children}
 		</Tag>

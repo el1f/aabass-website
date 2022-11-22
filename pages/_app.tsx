@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
+import { ThemeProvider } from "next-themes";
 import { useEffect } from "react";
 
 import "../styles/globals.css";
@@ -38,7 +39,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     			`}
 			</Script>
 
-			<Component {...pageProps} />
+			<ThemeProvider attribute="class">
+				<Component {...pageProps} />
+			</ThemeProvider>
 		</>
 	);
 }

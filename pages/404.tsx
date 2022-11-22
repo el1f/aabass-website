@@ -32,7 +32,7 @@ const NotFound: NextPage = () => {
 			<Navbar isExtended={false} socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
-				<Heading className="mb-4" level={1}>
+				<Heading className="mb-4 leading-snug" level={1}>
 					{t("404.title")}
 				</Heading>
 				{/* TODO: figure out why using a p causes a hydration issue */}
@@ -45,7 +45,7 @@ const NotFound: NextPage = () => {
 						i18nKey="404.body"
 					/>
 				</Text>
-				<div className="flex gap-6">
+				<div className="flex gap-4 dark:gap-6">
 					<Link href="mailto:ayoub@aabass.net">
 						<a>
 							<Button

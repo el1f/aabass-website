@@ -5,7 +5,9 @@ export const Strong: React.FC<
 		className?: string;
 	}>
 > = ({ children, className }) => (
-	<strong className={`tracking-wide text-textLight ${className}`}>
+	<strong
+		className={`dark:tracking-wide dark:text-textLight text-textDark ${className}`}
+	>
 		{children}
 	</strong>
 );

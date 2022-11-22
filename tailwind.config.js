@@ -7,21 +7,23 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   plugins: [],
   theme: {
     extend: {
       aspectRatio: {
-        poster: "297/420"
+        poster: "297/420",
+        sweet: "4/3",
       },
       colors: {
         ...defaultTheme.colors,
         bgBaseDark: colors.slate[900],
-        bgBaseLight: colors.slate[200],
+        bgBaseLight: colors.stone[200],
         bgRaisedDark: colors.slate[800],
         bgRaisedLight: colors.slate[50],
         primary: colors.amber,
-        textDark: colors.slate[900],
-        textDimmedDark: colors.slate[700],
+        textDark: colors.zinc[900],
+        textDimmedDark: colors.zinc[600],
         textDimmedLight: colors.slate[300],
         textLight: colors.slate[50],
       },

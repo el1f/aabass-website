@@ -26,13 +26,13 @@ export const Heading: React.FC<HeadingProps> = ({
 	] as const;
 
 	const anchorClass =
-		"before:content-['#'] before:absolute before:-left-6 before:font-normal before:font-mono before:text-textDimmedLight/25";
+		"before:content-['#'] before:absolute before:-left-6 before:font-normal before:font-mono dark:before:text-textDimmedLight/25 before:text-textDimmedDark/50";
 
 	const headingContent = (
 		<Tag
 			className={`${headingClass[level - 1]} font-sans font-bold ${
 				isDimmed
-					? "text-textDimmedDark/75 dark:text-textDimmedLight/75"
+					? "text-textDimmedDark dark:text-textDimmedLight/75"
 					: "text-textDark dark:text-textLight"
 			} ${id ? anchorClass : ""} ${className}`}
 		>

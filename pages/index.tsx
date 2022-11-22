@@ -75,7 +75,7 @@ const Home: NextPage = () => {
 						/>
 					</Text>
 				</hgroup>
-				<div className="flex gap-6">
+				<div className="flex gap-4 dark:gap-6">
 					<Link href="mailto:ayoub@aabass.net">
 						<a>
 							<Button
@@ -98,7 +98,8 @@ const Home: NextPage = () => {
 			</section>
 
 			<section className="px-6 mb-32 md:mb-64">
-				<div className="container max-w-2xl mx-auto">
+				{/* TODO: find a better way to calculate the max width */}
+				<div className="container max-w-[39rem] mx-auto">
 					<Heading className="mb-4" id="playbook" level={2}>
 						{t("home.playbook.title")}
 					</Heading>
