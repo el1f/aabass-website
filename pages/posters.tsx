@@ -6,6 +6,7 @@ import React from "react";
 
 import { Footer, Heading, Navbar, PosterThumbnail, Text } from "../components";
 import { POSTERS, SOCIALS } from "../data";
+import * as ga from "../lib/ga";
 
 const Posters: NextPage = () => {
 	const { t } = useTranslation("common");
@@ -46,6 +47,7 @@ const Posters: NextPage = () => {
 						className="flex-shrink-0 w-full"
 						description={poster.description}
 						key={poster.title}
+						onClick={() => ga.posterPress(poster.title)}
 						src={`/posters/${poster.thumbnail}`}
 						title={poster.title}
 					/>
@@ -63,6 +65,7 @@ const Posters: NextPage = () => {
 						description={poster.description}
 						format="disc"
 						key={poster.title}
+						onClick={() => ga.posterPress(poster.title)}
 						src={`/posters/${poster.thumbnail}`}
 						title={poster.title}
 					/>
@@ -76,7 +79,7 @@ const Posters: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common"])),
+		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
 	},
 });
 

@@ -13,7 +13,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({ href, platform }) => {
 	return (
 		<Link href={href}>
 			<a
-				className="block p-3 transition-all border border-transparent text-textDimmedDark/75 dark:text-textDimmedLight/75 hover:text-textDark hover:dark:text-textLight rounded-2xl hover:bg-bgRaisedDark/50 hover:border-slate-700/25"
+				className="block p-3 transition-all border border-transparent text-textDimmedDark/75 dark:text-textDimmedLight/75 hover:text-textDark hover:dark:text-textLight rounded-2xl dark:hover:bg-bgRaisedDark/50 dark:hover:border-textDimmedDark/25 hover:bg-bgRaisedLight"
 				target="_blank"
 			>
 				<Icon name={platform} />

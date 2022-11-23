@@ -24,7 +24,7 @@ export const PosterThumbnail: React.FC<PosterThumbnailProps> = ({
 
 	return (
 		<div
-			className={`${selectedFormat} relative bg-primary-400 ${className}`}
+			className={`${selectedFormat} relative bg-primary-400 cursor-pointer ${className}`}
 			onClick={onClick}
 		>
 			<Image alt={title} layout="fill" src={src} />

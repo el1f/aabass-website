@@ -59,10 +59,8 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html, 
-  body {
-    color-scheme: dark;
-    @apply bg-bgBaseDark text-textDimmedLight;
-  }
+html.dark, html.dark body {
+  color-scheme: dark;
+  @apply bg-bgBaseDark text-textDimmedLight;
 }
+

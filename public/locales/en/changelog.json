@@ -1,0 +1,21 @@
+{
+    "1.1.0": {
+        "summary": "Stylish update!",
+        "description": "The website basics are all there, I got updates in the oven, guess it makes sense to track what I'm going to add here as I do it :D",
+        "features": [
+            "Changelog page and indicator",
+            "Analytics so that I can spy on y'all and use your usage stats of my site to conquer the worl... I mean make my site better.",
+            "Added language switching support, not the actual translations though. I will at some point go ahead and add italian translations but it's not like anyone needs them anyway. English mofo do you speak it?",
+            "Light theme because some of y'all like to see the world (and your eyes) burn.",
+            "Small tweaks to the theme. This is not going to be the last time :)"
+        ]
+    },
+    "1.0.0": {
+        "summary": "Genesis",
+        "description": "All great things start small and grow over time. Or at least this is what I am telling myself in order to actually ship something after so many iterations of this website.",
+        "features": [
+            "Landing page with some basic information about me",
+            "Posters page with some of the posters I have designed"
+        ]
+    }
+}

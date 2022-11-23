@@ -16,6 +16,7 @@ import {
 } from "../components";
 import { AvailabilityLabel } from "../components/AvailabilityLabel";
 import { POSTERS, SOCIALS } from "../data";
+import * as ga from "../lib/ga";
 
 const Home: NextPage = () => {
 	const { t } = useTranslation("common");
@@ -74,10 +75,16 @@ const Home: NextPage = () => {
 						/>
 					</Text>
 				</hgroup>
-				<div className="flex gap-6">
+				<div className="flex gap-4 dark:gap-6">
 					<Link href="mailto:ayoub@aabass.net">
 						<a>
-							<Button>{t("home.hero.cta1")}</Button>
+							<Button
+								onClick={() => {
+									ga.contactPress("/");
+								}}
+							>
+								{t("home.hero.cta1")}
+							</Button>
 						</a>
 					</Link>
 					<Link href="/about">
@@ -91,7 +98,8 @@ const Home: NextPage = () => {
 			</section>
 
 			<section className="px-6 mb-32 md:mb-64">
-				<div className="container max-w-2xl mx-auto">
+				{/* TODO: find a better way to calculate the max width */}
+				<div className="container max-w-[39rem] mx-auto">
 					<Heading className="mb-4" id="playbook" level={2}>
 						{t("home.playbook.title")}
 					</Heading>
@@ -117,6 +125,9 @@ const Home: NextPage = () => {
 							className="flex-shrink-0 w-64"
 							description={poster.description}
 							key={poster.title}
+							onClick={() => {
+								ga.posterPress(poster.title);
+							}}
 							src={`/posters/${poster.thumbnail}`}
 							title={poster.title}
 						/>
@@ -171,7 +182,7 @@ const Home: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common"])),
+		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
 	},
 });
 

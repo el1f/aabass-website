@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import React from "react";
 
 import { SocialPlatform } from "../types";
@@ -13,11 +14,14 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ isExtended, socials }) => {
+	const { theme } = useTheme();
+	const isDark = theme !== "light";
+
 	return (
 		<div className="flex items-center justify-between h-16 max-w-2xl px-6 mx-auto mt-16">
 			<Link href="/">
 				<a>
-					<Logo isExtended={isExtended} />
+					<Logo isDark={isDark} isExtended={isExtended} />
 				</a>
 			</Link>
 			<div className="flex items-center justify-center">

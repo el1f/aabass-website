@@ -1,15 +1,18 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
 import { Button, Footer, Heading, Navbar, Strong, Text } from "../components";
 import { SOCIALS } from "../data";
+import * as ga from "../lib/ga";
 
 const NotFound: NextPage = () => {
 	const { t } = useTranslation("common");
+	const router = useRouter();
 
 	return (
 		<>
@@ -29,7 +32,7 @@ const NotFound: NextPage = () => {
 			<Navbar isExtended={false} socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
-				<Heading className="mb-4" level={1}>
+				<Heading className="mb-4 leading-snug" level={1}>
 					{t("404.title")}
 				</Heading>
 				{/* TODO: figure out why using a p causes a hydration issue */}
@@ -42,10 +45,16 @@ const NotFound: NextPage = () => {
 						i18nKey="404.body"
 					/>
 				</Text>
-				<div className="flex gap-6">
+				<div className="flex gap-4 dark:gap-6">
 					<Link href="mailto:ayoub@aabass.net">
 						<a>
-							<Button>Ask about this page</Button>
+							<Button
+								onClick={() => {
+									ga.contactPress(router.route);
+								}}
+							>
+								Ask about this page
+							</Button>
 						</a>
 					</Link>
 					<Link href="/about">
@@ -67,7 +76,7 @@ const NotFound: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common"])),
+		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
 	},
 });
 
