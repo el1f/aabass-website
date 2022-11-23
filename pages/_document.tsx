@@ -35,7 +35,7 @@ const MyDocument = () => {
 				/>
 				<meta content="#ffffff" name="theme-color" />
 				<link
-					href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap"
+					href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&Space+Grotesk:wght@400;700&display=swap"
 					rel="stylesheet"
 				/>
 			</Head>

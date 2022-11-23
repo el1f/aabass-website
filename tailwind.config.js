@@ -17,10 +17,10 @@ module.exports = {
       },
       colors: {
         ...defaultTheme.colors,
-        bgBaseDark: colors.slate[900],
+        bgBaseDark: colors.zinc[900],
         bgBaseLight: colors.stone[200],
-        bgRaisedDark: colors.slate[800],
-        bgRaisedLight: colors.slate[50],
+        bgRaisedDark: colors.zinc[800],
+        bgRaisedLight: colors.stone[50],
         primary: colors.amber,
         textDark: colors.zinc[900],
         textDimmedDark: colors.zinc[600],
@@ -28,6 +28,7 @@ module.exports = {
         textLight: colors.slate[50],
       },
       fontFamily: {
+        'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
         'sans': ['Space Grotesk', ...defaultTheme.fontFamily.sans],
       },
       maxWidth: {

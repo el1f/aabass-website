@@ -14,6 +14,15 @@ export const CHANGELOG: {
 			{
 				type: "add",
 			},
+			{
+				type: "add",
+			},
+			{
+				type: "add",
+			},
+			{
+				type: "edit",
+			},
 		],
 		version: "1.1.0",
 	},

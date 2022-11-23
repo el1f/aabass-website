@@ -1,14 +1,36 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React from "react";
+import React, { useState } from "react";
 
 import { CodeChip, Footer, Heading, Navbar, Text } from "../components";
 import { CHANGELOG, SOCIALS } from "../data";
 
+const CHANGELOG_EASTER_EGGS: Record<
+	string,
+	{ content: React.ReactElement; type: "append" }
+> = {
+	"1.1.0_2": {
+		content: (
+			<Image
+				alt="Pulp fiction scene easter egg"
+				className="w-full"
+				height={180}
+				layout="responsive"
+				src="/easter-eggs/english.gif"
+				width={320}
+			/>
+		),
+		type: "append",
+	},
+};
+
 const Changelog = () => {
 	const { t } = useTranslation(["common", "changelog"]);
+	const [activeEasterEgg, setActiveEasterEgg] = useState<string | undefined>();
+	const selectedEasterEgg = CHANGELOG_EASTER_EGGS[activeEasterEgg ?? ""];
 
 	return (
 		<>
@@ -47,21 +69,40 @@ const Changelog = () => {
 						</div>
 						<Text>{t(`changelog:${version}.description`)}</Text>
 						<div className="flex flex-col gap-4 py-8">
-							{features.map((feature, i) => (
-								<div className="flex items-start gap-4" key={i}>
-									<CodeChip className="flex-shrink-0 w-16 text-sm tracking-wide text-center">
-										{feature.type.toUpperCase()}
-									</CodeChip>
-									<div className="flex flex-col">
-										<Text size="sm">
-											{t(`changelog:${version}.features.${i}`)}
-										</Text>
-										<Text className="font-mono text-xs font-bold opacity-50">
-											{new Date(date).toLocaleDateString()}
-										</Text>
-									</div>
-								</div>
-							))}
+							{features.map((feature, i) => {
+								const featureIndex = `${version}_${i}`;
+								const changelog = selectedEasterEgg &&
+									activeEasterEgg === featureIndex && (
+										<div className="py-4">{selectedEasterEgg.content}</div>
+									);
+
+								return (
+									<>
+										<div
+											className={`flex items-start gap-4 ${
+												CHANGELOG_EASTER_EGGS[featureIndex]
+													? "cursor-pointer"
+													: ""
+											}`}
+											key={featureIndex}
+											onClick={() => setActiveEasterEgg(featureIndex)}
+										>
+											<CodeChip className="flex-shrink-0 w-16 text-sm tracking-wide text-center">
+												{feature.type.toUpperCase()}
+											</CodeChip>
+											<div className="flex flex-col">
+												<Text size="sm">
+													{t(`changelog:${version}.features.${i}`)}
+												</Text>
+												<Text className="font-mono text-xs font-bold opacity-50">
+													{new Date(date).toLocaleDateString()}
+												</Text>
+												{changelog}
+											</div>
+										</div>
+									</>
+								);
+							})}
 						</div>
 					</article>
 				))}
