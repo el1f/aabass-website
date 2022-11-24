@@ -13,3 +13,4 @@ export * from "./OpenGraph";
 export * from "./ChangelogSummary";
 export * from "./CodeChip";
 export * from "./IdeaCard";
+export * from "./IdeaDialog";

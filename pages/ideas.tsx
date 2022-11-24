@@ -1,9 +1,10 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { initUrqlClient, withUrqlClient } from "next-urql";
-import React from "react";
+import React, { Fragment, useEffect } from "react";
 import {
 	cacheExchange,
 	dedupExchange,
@@ -12,7 +13,14 @@ import {
 	useQuery,
 } from "urql";
 
-import { Footer, Heading, IdeaCard, Navbar, Text } from "../components";
+import {
+	Footer,
+	Heading,
+	IdeaCard,
+	IdeaDialog,
+	Navbar,
+	Text,
+} from "../components";
 import { SOCIALS } from "../data";
 import { allIdeas, clientSetup } from "../graphql";
 
@@ -27,7 +35,7 @@ const IdeasBoardColumn: React.FC<{
 			</div>
 			{cards.length === 0 && (
 				<div className="max-w-xs p-8 text-center rounded-lg bg-textDimmedDark/20">
-					<Text>No ideas have reached this stage yet.</Text>
+					<Text size="sm">No ideas have reached this stage yet.</Text>
 				</div>
 			)}
 			<div className="flex flex-col gap-4">{cards}</div>
@@ -37,14 +45,22 @@ const IdeasBoardColumn: React.FC<{
 
 const Ideas = () => {
 	const { t } = useTranslation(["common", "changelog"]);
+	const router = useRouter();
 
 	// TODO: this seems to cause hydration issues every now and then but
 	// according to this issue it isn't a problem that should happen
 	// in production.
 	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
-	const [{ data }] = useQuery({
+	const [{ data }, getActiveIdea] = useQuery({
 		query: allIdeas,
+		variables: {
+			activeIdeaId: (router.query.activeIdea as string) ?? "",
+		},
 	});
+
+	useEffect(() => {
+		getActiveIdea({ requestPolicy: "network-only" });
+	}, [getActiveIdea, router.query.activeIdea]);
 
 	return (
 		<>
@@ -115,6 +131,13 @@ const Ideas = () => {
 			</main>
 
 			<Footer />
+
+			{/* Active Idea */}
+			<IdeaDialog
+				idea={data?.activeIdea ?? undefined}
+				onClose={() => router.replace("/ideas")}
+				open={Boolean(data?.activeIdea)}
+			/>
 		</>
 	);
 };
@@ -135,7 +158,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 	if (!client) return { props: defaultProps };
 
-	await client.query(allIdeas, {}).toPromise();
+	await client
+		.query(allIdeas, {
+			activeIdeaId: "",
+		})
+		.toPromise();
 
 	return {
 		props: {
