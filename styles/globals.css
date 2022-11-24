@@ -40,6 +40,10 @@
   }
 }
 
+html {
+  @apply scroll-smooth;
+}
+
 html,
 body {
   padding: 0;

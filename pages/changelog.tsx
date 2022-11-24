@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useState } from "react";
 
-import { CodeChip, Footer, Heading, Navbar, Text } from "../components";
+import { Anchor, CodeChip, Footer, Heading, Navbar, Text } from "../components";
 import { CHANGELOG, SOCIALS } from "../data";
 
 const CHANGELOG_EASTER_EGGS: Record<
@@ -93,10 +93,23 @@ const Changelog = () => {
 											<div className="flex flex-col">
 												<Text size="sm">
 													{t(`changelog:${version}.features.${i}`)}
+													{feature.ideaId && (
+														<span className="mx-2">
+															<Anchor href={`/ideas#${feature.ideaId}`}>
+																💡
+															</Anchor>
+														</span>
+													)}
 												</Text>
-												<Text className="font-mono text-xs font-bold opacity-50">
-													{new Date(date).toLocaleDateString()}
-												</Text>
+												<div className="flex gap-4">
+													<Text className="font-mono text-xs font-bold opacity-50">
+														{date || feature.date
+															? new Date(
+																	date || feature.date || "",
+															  ).toLocaleDateString()
+															: "INDEV"}
+													</Text>
+												</div>
 												{changelog}
 											</div>
 										</div>

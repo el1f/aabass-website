@@ -1,4 +1,5 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 import {
 	FragmentType,
@@ -10,11 +11,34 @@ import { Anchor, CodeChip, Heading, Text } from ".";
 export const IdeaCard: React.FC<{
 	idea: FragmentType<typeof IdeaCardFragment>;
 }> = ({ idea: ideaRef }) => {
+	const router = useRouter();
+	const focusedIdea = router.asPath.split("#")[1];
 	const idea = useFragment(IdeaCardFragment, ideaRef);
+
+	// TODO: I'd like this to be at the page level but for now I don't
+	// want to propagate the content of the fragment there as well so
+	// let's manage it like this for now.
+	const [highlightIdea, setHighlightIdea] = useState(true);
+	router.events?.on("hashChangeComplete", () => {
+		setHighlightIdea(true);
+		setTimeout(() => setHighlightIdea(false), 3000);
+	});
+
+	useEffect(() => {
+		const fade = setTimeout(() => setHighlightIdea(false), 3000);
+
+		return () => {
+			clearTimeout(fade);
+		};
+	}, []);
 
 	return (
 		<div
-			className="max-w-xs p-3 border rounded-lg border-textDimmedDark"
+			className={`max-w-xs p-3 border rounded-lg border-textDimmedDark scroll-mt-8 transition-all outline outline-1 outline-offset-0 outline-primary-500/0 overflow-hidden ${
+				focusedIdea === idea.id && highlightIdea
+					? "scroll-mt-8 outline-offset-8 outline-primary-500/50"
+					: ""
+			}`}
 			id={idea.id}
 			key={idea.id}
 		>
