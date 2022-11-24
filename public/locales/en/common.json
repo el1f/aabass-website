@@ -117,5 +117,9 @@
 			"updatesTitle": "Updates",
 			"updatesPlaceholder": "Nothing to see here yet. Check back later!"
 		}
+	},
+	"cv": {
+		"title": "Curriculum Vitae",
+		"pageTitle": "Ayoub's CV"
 	}
 }

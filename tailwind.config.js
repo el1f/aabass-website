@@ -33,6 +33,9 @@ module.exports = {
         'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
         'sans': ['Space Grotesk', ...defaultTheme.fontFamily.sans],
       },
+      gridTemplateColumns: {
+        "cv": "minmax(64px, 192px) 2fr"
+      },
       maxWidth: {
         "2xs": "16rem",
         "3xs": "12rem",
