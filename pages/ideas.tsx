@@ -28,6 +28,8 @@ const IdeasBoardColumn: React.FC<{
 	cards: React.ReactNode[];
 	title: string;
 }> = ({ cards, title }) => {
+	const { t } = useTranslation(["common"]);
+
 	return (
 		<section className="flex-shrink-0 w-full max-w-xs">
 			<div className="p-2 mb-4">
@@ -35,7 +37,7 @@ const IdeasBoardColumn: React.FC<{
 			</div>
 			{cards.length === 0 && (
 				<div className="max-w-xs p-8 text-center rounded-lg bg-textDimmedDark/20">
-					<Text size="sm">No ideas have reached this stage yet.</Text>
+					<Text size="sm">{t("ideas.board.columnPlaceholder")}</Text>
 				</div>
 			)}
 			<div className="flex flex-col gap-4">{cards}</div>
@@ -80,9 +82,9 @@ const Ideas = () => {
 			<Navbar isExtended={false} socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
-				<Text size="md">What's going on in the backstage?</Text>
+				<Text size="md">{t("ideas.header.lead")}</Text>
 				<Heading className="mb-4" level={1}>
-					Ideas for the future
+					{t("ideas.header.title")}
 				</Heading>
 			</header>
 
@@ -94,7 +96,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title="Backlog"
+					title={t("ideas.board.backlogTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -102,7 +104,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title="Planned"
+					title={t("ideas.board.plannedTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -110,7 +112,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title="In progress"
+					title={t("ideas.board.ongoingTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -118,7 +120,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title="Testing"
+					title={t("ideas.board.testingTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -126,7 +128,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title="Done"
+					title={t("ideas.board.doneTitle")}
 				/>
 			</main>
 
