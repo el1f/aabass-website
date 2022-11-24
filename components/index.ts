@@ -12,3 +12,4 @@ export * from "./Text";
 export * from "./OpenGraph";
 export * from "./ChangelogSummary";
 export * from "./CodeChip";
+export * from "./IdeaCard";

@@ -1,4 +1,15 @@
 {
+    "1.2.0": {
+        "summary": "Down to business",
+        "description": "Guess that my work site needs a little more work related information right? Booooring but guess it won't take too long to fill out. Right?",
+        "features": [
+            "Ideas page powered by Hygraph CMS",
+            "Curriculum page. So bland. So boring. So effective.",
+            "Case studies page. Just the page. No content. What, thought you could see some of my work? Haha, nope. Gotta first figure out whether I can show them or not with my business daddies. Swear the next contracts will have a \"I can show this to the world at my conditions\" clause. Maybe followed by a little \"Pretty please daddy?\"",
+            "Kitty particles. Because nothing says \"I'm a professional\" like a bunch of cute little kitties floating around your site.",
+            "Some smaller visual tweaks"
+        ]
+    },
     "1.1.0": {
         "summary": "Stylish update!",
         "description": "The website basics are all there, I got updates in the oven, guess it makes sense to track what I'm going to add here as I do it :D",

@@ -1,27 +1,35 @@
 {
   "name": "aabass-website",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "codegen": "dotenv -e .env.production -- cross-var graphql-codegen"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
+    "graphql": "^16.6.0",
     "i18next": "^22.0.6",
     "next": "12.3.1",
     "next-i18next": "^12.1.0",
     "next-themes": "^0.2.1",
+    "next-urql": "^4.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.0.0",
-    "sharp": "^0.31.2"
+    "react-is": "^18.2.0",
+    "sharp": "^0.31.2",
+    "urql": "^3.0.3"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.13.12",
+    "@graphql-codegen/client-preset": "^1.1.5",
     "@svgr/webpack": "^6.5.1",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@types/gtag.js": "^0.0.12",
     "@types/node": "18.11.0",
     "@types/react": "18.0.21",
@@ -29,6 +37,9 @@
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
     "autoprefixer": "^10.4.12",
+    "cross-var": "^1.1.0",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^6.0.0",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "^8.5.0",

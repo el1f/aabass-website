@@ -68,6 +68,7 @@ export const Footer = () => {
 							<Anchor href="/cv">{t("common.curriculum")}</Anchor>
 							<Anchor href="/posters">{t("common.posters")}</Anchor>
 							<Anchor href="/shop">{t("common.shop")}</Anchor>
+							<Anchor href="/ideas">{t("common.ideas")}</Anchor>
 						</div>
 						<div className="flex flex-col items-start gap-2">
 							<Heading level={5}>{t("footer.fun.title")}</Heading>
