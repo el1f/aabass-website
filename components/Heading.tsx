@@ -34,7 +34,7 @@ export const Heading: React.FC<HeadingProps> = ({
 				isDimmed
 					? "text-textDimmedDark dark:text-textDimmedLight/75"
 					: "text-textDark dark:text-textLight"
-			} ${id ? anchorClass : ""} ${className}`}
+			} ${id ? anchorClass : ""} dark:print:text-textDark ${className}`}
 		>
 			{children}
 		</Tag>

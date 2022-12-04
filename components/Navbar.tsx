@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isExtended, socials }) => {
 	const isDark = theme !== "light";
 
 	return (
-		<div className="flex items-center justify-between h-16 max-w-2xl px-6 mx-auto mt-16">
+		<div className="flex items-center justify-between h-16 max-w-2xl px-6 mx-auto mt-16 print:hidden">
 			<Link href="/">
 				<a>
 					<Logo isDark={isDark} isExtended={isExtended} />
