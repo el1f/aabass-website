@@ -7,6 +7,23 @@ import React from "react";
 import { Footer, Heading, Navbar, Text } from "../components";
 import { SOCIALS } from "../data";
 
+const ContactLink: React.FC<{
+	href: string;
+	label: string;
+	value: string;
+}> = ({ href, label, value }) => (
+	<a href={href}>
+		<div className="flex flex-col px-3 py-2 -mx-3 -my-2 transition-all border border-transparent border-solid rounded-lg cursor-pointer group hover:border-textDimmedLight/10 hover:bg-bgRaisedDark">
+			<Text className="transition-all group-hover:translate-x-1" size="sm">
+				<strong className="dark:text-textLight text-textDark group-hover:text-primary-500">
+					{label}
+				</strong>
+			</Text>
+			<Text className="transition-all group-hover:translate-x-2">{value}</Text>
+		</div>
+	</a>
+);
+
 const Curriculum: NextPage = () => {
 	const { t } = useTranslation("common");
 
@@ -94,55 +111,37 @@ const Curriculum: NextPage = () => {
 				<Heading className="mt-0 xs:mt-12" level={5}>
 					{t("cv.document.contacts.title")}
 				</Heading>
-				<div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-x-2 gap-y-4">
-					<div className="flex flex-col">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								{t("cv.document.contacts.email.title")}
-							</strong>
-						</Text>
-						<Text>{t("cv.document.contacts.email.value")}</Text>
-					</div>
-					<div className="flex flex-col">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								{t("cv.document.contacts.phone.title")}
-							</strong>
-						</Text>
-						<Text>{t("cv.document.contacts.phone.value")}</Text>
-					</div>
-					<div className="flex flex-col">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								{t("cv.document.contacts.web.title")}
-							</strong>
-						</Text>
-						<Text>{t("cv.document.contacts.web.value")}</Text>
-					</div>
-					<div className="flex flex-col">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								{t("cv.document.contacts.github.title")}
-							</strong>
-						</Text>
-						<Text>{t("cv.document.contacts.github.value")}</Text>
-					</div>
-					<div className="flex flex-col">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								{t("cv.document.contacts.dribbble.title")}
-							</strong>
-						</Text>
-						<Text>{t("cv.document.contacts.dribbble.value")}</Text>
-					</div>
-					<div className="flex flex-col">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								{t("cv.document.contacts.instagram.title")}
-							</strong>
-						</Text>
-						<Text>{t("cv.document.contacts.instagram.value")}</Text>
-					</div>
+				<div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-x-8 gap-y-4">
+					<ContactLink
+						href="mailto:ayoub@aabass.net"
+						label={t("cv.document.contacts.email.title")}
+						value={t("cv.document.contacts.email.value")}
+					/>
+					<ContactLink
+						href={`tel:${t("cv.document.contacts.phone.value")}`}
+						label={t("cv.document.contacts.phone.title")}
+						value={t("cv.document.contacts.phone.value")}
+					/>
+					<ContactLink
+						href={`https://${t("cv.document.contacts.web.value")}`}
+						label={t("cv.document.contacts.web.title")}
+						value={t("cv.document.contacts.web.value")}
+					/>
+					<ContactLink
+						href={`https://${t("cv.document.contacts.github.value")}`}
+						label={t("cv.document.contacts.github.title")}
+						value={t("cv.document.contacts.github.value")}
+					/>
+					<ContactLink
+						href={`https://${t("cv.document.contacts.dribbble.value")}`}
+						label={t("cv.document.contacts.dribbble.title")}
+						value={t("cv.document.contacts.dribbble.value")}
+					/>
+					<ContactLink
+						href={`https://${t("cv.document.contacts.instagram.value")}`}
+						label={t("cv.document.contacts.instagram.title")}
+						value={t("cv.document.contacts.instagram.value")}
+					/>
 				</div>
 			</div>
 
