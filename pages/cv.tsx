@@ -7,7 +7,7 @@ import React from "react";
 import { Footer, Heading, Navbar, Text } from "../components";
 import { SOCIALS } from "../data";
 
-const NotFound: NextPage = () => {
+const Curriculum: NextPage = () => {
 	const { t } = useTranslation("common");
 
 	return (
@@ -27,182 +27,124 @@ const NotFound: NextPage = () => {
 
 			<Navbar isExtended={false} socials={SOCIALS} />
 
-			<header className="container max-w-2xl px-4 pt-32 pb-16 mx-auto">
+			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto print:hidden">
 				<Heading className="mb-4 leading-snug" level={1}>
 					{t("cv.title")}
 				</Heading>
 			</header>
 
-			<div className="container grid max-w-4xl px-4 mx-auto gap-x-32 gap-y-16 grid-cols-cv">
-				<div className="flex flex-col gap-2">
-					<Heading level={2}>Ayoub Aabass</Heading>
-					<Text>Full-stack developer and designer</Text>
+			<div className="container grid max-w-4xl px-6 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-4 xs:grid-cols-1 sm:grid-cols-cv print:grid-cols-cv print:pt-16">
+				<div className="flex flex-col gap-2 print:pb-12">
+					<Heading level={2}>{t("common.fullName")}</Heading>
+					<Text>{t("common.professionalRole")}</Text>
 				</div>
-				<Text>
-					Hey there! My name is Ayoub and I am a full-stack software developer
-					and designer. I focus on conceptualizing and creating powerful and
-					intuitive user interfaces to enable organizations and individuals to
-					solve complex problems through digital tools.
-				</Text>
+				<Text>{t("cv.document.introduction")}</Text>
 
-				<Heading level={5}>Current dev knowledge</Heading>
-				<div className="grid grid-cols-3 gap-2">
-					<Text>HTML</Text>
-					<Text>CSS</Text>
-					<Text>Typescript</Text>
-					<Text>React</Text>
-					<Text>Next.JS</Text>
-					<Text>Vue</Text>
-					<Text>Redux</Text>
-					<Text>REST</Text>
-					<Text>GraphQL</Text>
-					<Text>Relay </Text>
-					<Text>Apollo</Text>
-					<Text>Node.JS</Text>
-					<Text>Java</Text>
-					<Text>Android</Text>
-					<Text>MySQL</Text>
-					<Text>MongoDB</Text>
-					<Text>Firebase</Text>
-					<Text>Google GCP</Text>
-					<Text>Amazon AWS</Text>
-					<Text>Git</Text>
-					<Text>GitHub Actions</Text>
+				<Heading className="mt-0 xs:mt-12" level={5}>
+					{t("cv.document.dev.title")}
+				</Heading>
+				<div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3">
+					{(
+						t("cv.document.dev.skills", { returnObjects: true }) as string[]
+					).map((skill) => (
+						<Text key={skill}>{skill}</Text>
+					))}
 				</div>
 
-				<Heading level={5}>Current design knowledge</Heading>
-				<div className="grid grid-cols-3 gap-2">
-					<Text>Adobe Photoshop</Text>
-					<Text>Adobe Illustrator</Text>
-					<Text>Adobe InDesign</Text>
-					<Text>Affinity Designer</Text>
-					<Text>Affinity Photo</Text>
-					<Text>Affinity Publisher</Text>
-					<Text>Sketch</Text>
-					<Text>Figma</Text>
-					<Text>Framer</Text>
+				<Heading className="mt-0 xs:mt-12" level={5}>
+					{t("cv.document.des.title")}
+				</Heading>
+				<div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3">
+					{(
+						t("cv.document.des.skills", { returnObjects: true }) as string[]
+					).map((skill) => (
+						<Text key={skill}>{skill}</Text>
+					))}
 				</div>
 
-				<Heading level={5}>Work experience</Heading>
+				<Heading className="mt-0 xs:mt-12" level={5}>
+					Work experience
+				</Heading>
 				<div className="flex flex-col gap-4">
-					<div className="flex flex-col gap-1">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								2015 - Now / Padova - IT
-							</strong>
-						</Text>
-						<Text>Freelance full-stack developer and designer</Text>
-					</div>
-					<div className="flex flex-col gap-1">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								2020 - Now / Padova - IT
-							</strong>
-						</Text>
-						<Text>Full-stack developer and designer @E-Fashion Software</Text>
-					</div>
-					<div className="flex flex-col gap-1">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								2018 - 2019 / London - UK
-							</strong>
-						</Text>
-						<Text>
-							Full-stack developer and design consultant @Hackpartners
-						</Text>
-					</div>
-					<div className="flex flex-col gap-1">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								2016 - 2018 / Padova - IT
-							</strong>
-						</Text>
-						<Text>Full-stack developer and designer @Aterrae</Text>
-					</div>
-					<div className="flex flex-col gap-1">
-						<Text size="sm">
-							<strong className="dark:text-textLight">
-								2015 text-textDark/ Treviso - IT
-							</strong>
-						</Text>
-						<Text>Full-stack developer and designer @H-Farm</Text>
-					</div>
-					<div className="flex flex-col gap-1">
-						<Text size="sm">
-							<strong className="dark:text-textLight">
-								2014 text-textDark/ Treviso - IT
-							</strong>
-						</Text>
-						<Text>Front-end developer @Antlos</Text>
-					</div>
+					{t<
+						string,
+						{
+							company: string;
+							location: string;
+							period: string;
+							role: string;
+							tasks: string[];
+						}[]
+					>("cv.document.experience.items", { returnObjects: true }).map(
+						(job) => (
+							<div className="flex flex-col gap-1" key={job.company}>
+								<Text className="leading-none" size="sm">
+									<strong className="dark:text-textLight text-textDark">
+										{job.period} / {job.location}
+									</strong>
+								</Text>
+								<Text>{`${job.role}${
+									job.company ? ` @${job.company}` : ""
+								}`}</Text>
+							</div>
+						),
+					)}
 				</div>
 
-				<Heading level={5}>Education</Heading>
-				<div className="flex flex-col gap-4">
-					<div className="flex flex-col gap-1">
-						<Text size="sm">
-							<strong className="dark:text-textLight text-textDark">
-								2020 - Now
-							</strong>
-						</Text>
-						<Text>Computer Engineering @UNIPD</Text>
-					</div>
-				</div>
-
-				<Heading level={5}>Contacts</Heading>
-				<div className="grid grid-cols-2 gap-x-2 gap-y-4">
+				<Heading className="mt-0 xs:mt-12" level={5}>
+					{t("cv.document.contacts.title")}
+				</Heading>
+				<div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-x-2 gap-y-4">
 					<div className="flex flex-col">
 						<Text size="sm">
 							<strong className="dark:text-textLight text-textDark">
-								Email
+								{t("cv.document.contacts.email.title")}
 							</strong>
 						</Text>
-						<Text>ayoub@aabass.net</Text>
+						<Text>{t("cv.document.contacts.email.value")}</Text>
 					</div>
 					<div className="flex flex-col">
 						<Text size="sm">
 							<strong className="dark:text-textLight text-textDark">
-								Phone
+								{t("cv.document.contacts.phone.title")}
 							</strong>
 						</Text>
-						<Text>+39 3479283096</Text>
+						<Text>{t("cv.document.contacts.phone.value")}</Text>
 					</div>
 					<div className="flex flex-col">
 						<Text size="sm">
 							<strong className="dark:text-textLight text-textDark">
-								Website
+								{t("cv.document.contacts.web.title")}
 							</strong>
 						</Text>
-						<Text>ayoub.aabass.net</Text>
+						<Text>{t("cv.document.contacts.web.value")}</Text>
 					</div>
 					<div className="flex flex-col">
 						<Text size="sm">
 							<strong className="dark:text-textLight text-textDark">
-								GitHub
+								{t("cv.document.contacts.github.title")}
 							</strong>
 						</Text>
-						<Text>github.com/el1f</Text>
+						<Text>{t("cv.document.contacts.github.value")}</Text>
 					</div>
 					<div className="flex flex-col">
 						<Text size="sm">
 							<strong className="dark:text-textLight text-textDark">
-								Dribbble
+								{t("cv.document.contacts.dribbble.title")}
 							</strong>
 						</Text>
-						<Text>dribbble.com/el1flem</Text>
+						<Text>{t("cv.document.contacts.dribbble.value")}</Text>
 					</div>
 					<div className="flex flex-col">
 						<Text size="sm">
 							<strong className="dark:text-textLight text-textDark">
-								Instagram
+								{t("cv.document.contacts.instagram.title")}
 							</strong>
 						</Text>
-						<Text>instagram.com/aabassayoub</Text>
+						<Text>{t("cv.document.contacts.instagram.value")}</Text>
 					</div>
 				</div>
 			</div>
-
-			<section className="container max-w-5xl px-4 mx-auto mb-48"></section>
 
 			<Footer />
 		</>
@@ -215,4 +157,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	},
 });
 
-export default NotFound;
+export default Curriculum;

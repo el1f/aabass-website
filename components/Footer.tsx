@@ -15,7 +15,7 @@ export const Footer = () => {
 	const isDark = theme !== "light";
 
 	return (
-		<div className="overflow-hidden">
+		<div className="overflow-hidden print:hidden">
 			<footer className="container relative max-w-2xl px-6 pt-8 pb-32 mx-auto">
 				<div className="flex flex-col justify-between gap-12 md:flex-row">
 					<div className="flex flex-col">
