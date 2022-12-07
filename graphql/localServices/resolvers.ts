@@ -1,7 +1,7 @@
-import { Poll, PollVote } from "../../../types/firebase/polls";
-import { createPoll } from "../functions/poll/create";
-import { getAllPolls, getPoll } from "../functions/poll/get";
-import { voteOnPoll } from "../functions/poll/update";
+import { createPoll } from "../../lib/firebase/poll/create";
+import { getAllPolls, getPoll } from "../../lib/firebase/poll/get";
+import { voteOnPoll } from "../../lib/firebase/poll/update";
+import { Poll, PollVote } from "../../types/firebase/polls";
 
 export const resolvers = {
 	// TODO: there is definitely a better way to type these.

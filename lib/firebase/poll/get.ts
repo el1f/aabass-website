@@ -1,5 +1,5 @@
-import admin from "../../../../lib/firebase";
-import { Poll } from "../../../../types/firebase/polls";
+import { Poll } from "../../../types/firebase/polls";
+import admin from "..";
 
 export async function getPoll(id: string) {
 	const db = admin.firestore();

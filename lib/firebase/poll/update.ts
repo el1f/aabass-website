@@ -1,5 +1,5 @@
-import admin from "../../../../lib/firebase";
-import { Poll, PollVote } from "../../../../types/firebase/polls";
+import { Poll, PollVote } from "../../../types/firebase/polls";
+import admin from "..";
 
 export async function updatePoll(id: string, poll: Partial<Poll>) {
 	const db = admin.firestore();

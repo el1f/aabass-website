@@ -3,8 +3,8 @@ import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import Cors from "cors";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { resolvers } from "./resolvers";
-import { typeDefs } from "./schema";
+import { resolvers } from "../../graphql/localServices/resolvers";
+import { typeDefs } from "../../graphql/localServices/schema";
 
 const cors = Cors({
 	methods: ["POST", "GET", "HEAD"],
