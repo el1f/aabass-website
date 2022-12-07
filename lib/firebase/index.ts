@@ -1,18 +1,13 @@
 /* eslint-disable no-console */
 import admin from "firebase-admin";
 
-import serviceAccount from "./serviceAccountKey.json";
-
-// Remember to download the serviceAccountKey.json file from your
-// firebase console or dashboard and place it in the lib/firebase folder.
-
 if (!admin.apps.length) {
 	try {
 		admin.initializeApp({
 			credential: admin.credential.cert({
-				clientEmail: serviceAccount.client_email,
-				privateKey: serviceAccount.private_key,
-				projectId: serviceAccount.project_id,
+				clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+				privateKey: process.env.FIREBASE_PRIVATE_KEY,
+				projectId: process.env.FIREBASE_PROJECT_ID,
 			}),
 		});
 
