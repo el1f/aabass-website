@@ -11,7 +11,10 @@
     "codegen": "dotenv -e .env.production -- cross-var graphql-codegen"
   },
   "dependencies": {
+    "@apollo/server": "^4.2.2",
+    "@as-integrations/next": "^1.2.0",
     "@headlessui/react": "^1.7.4",
+    "firebase-admin": "^11.3.0",
     "graphql": "^16.6.0",
     "i18next": "^22.0.6",
     "next": "12.3.1",
