@@ -3,6 +3,7 @@ export const clientSetup = {
 };
 
 export * from "./ideas";
+export * from "./polls";
 export * from "./fragments";
 export * from "./__generated__";
 export { graphql as gql } from "./__generated__";

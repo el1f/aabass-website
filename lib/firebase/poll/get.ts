@@ -1,4 +1,4 @@
-import { Poll } from "../../../types/firebase/polls";
+import { Poll } from "../../../graphql/__generated__/graphql";
 import admin from "..";
 
 export async function getPoll(id: string) {

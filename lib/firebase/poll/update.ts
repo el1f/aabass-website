@@ -1,4 +1,4 @@
-import { Poll, PollVote } from "../../../types/firebase/polls";
+import { Poll, PollVote } from "../../../graphql/__generated__/graphql";
 import admin from "..";
 
 export async function updatePoll(id: string, poll: Partial<Poll>) {
@@ -34,9 +34,26 @@ export async function voteOnPoll(key: string, vote: PollVote) {
 
 		const pollDocument = pollDocuments.docs[0];
 
-		pollDocument.ref
+		const pollData = (await pollDocument.data()) as Poll;
+		const optionIndex = pollData.options.findIndex(
+			(option) => option.value === vote.value,
+		);
+
+		await pollDocument.ref
 			.collection("votes")
 			.add({ ...vote, votedAt: new Date(vote.votedAt) });
+
+		pollDocument.ref.update({
+			options: [
+				...pollData.options.slice(0, optionIndex),
+				{
+					...pollData.options[optionIndex],
+					votes: pollData.options[optionIndex].votes + 1,
+				},
+				...pollData.options.slice(optionIndex + 1),
+			],
+			totalVotes: pollData.totalVotes + 1,
+		});
 
 		return key;
 	} catch (error) {

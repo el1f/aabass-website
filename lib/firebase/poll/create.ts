@@ -1,4 +1,4 @@
-import { Poll } from "../../../types/firebase/polls";
+import { Poll } from "../../../graphql/__generated__/graphql";
 import admin from "..";
 
 export async function createPoll(poll: Poll) {
@@ -9,7 +9,14 @@ export async function createPoll(poll: Poll) {
 		if (poll.options && poll.options.length < 2)
 			throw Error("Polls require at least 2 options");
 
-		await db.collection("polls").add(poll);
+		await db.collection("polls").add({
+			...poll,
+			options: {
+				...poll.options,
+				votes: 0,
+			},
+			totalVotes: 0,
+		});
 
 		return poll.key;
 	} catch (error) {

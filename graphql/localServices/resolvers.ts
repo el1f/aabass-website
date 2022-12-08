@@ -1,7 +1,7 @@
 import { createPoll } from "../../lib/firebase/poll/create";
 import { getAllPolls, getPoll } from "../../lib/firebase/poll/get";
 import { voteOnPoll } from "../../lib/firebase/poll/update";
-import { Poll, PollVote } from "../../types/firebase/polls";
+import { Poll, PollVote } from "../__generated__/graphql";
 
 export const resolvers = {
 	// TODO: there is definitely a better way to type these.
@@ -12,6 +12,6 @@ export const resolvers = {
 	},
 	Query: {
 		allPolls: () => getAllPolls(),
-		poll: (parent: any, { id }: { id: string }) => getPoll(id),
+		poll: (parent: any, { key }: { key: string }) => getPoll(key),
 	},
 };

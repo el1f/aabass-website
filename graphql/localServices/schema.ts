@@ -32,11 +32,13 @@ export const typeDefs = `#graphql
         options: [PollOption!]!
         isFreeText: Boolean!
         votes: [PollVote!]!
+        totalVotes: Int!
     }
 
     type PollOption {
         value: String!
         label: LocalizedString!
+        votes: Int!
     }
 
     type PollVote {
