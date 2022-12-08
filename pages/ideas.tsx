@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { initUrqlClient, withUrqlClient } from "next-urql";
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
 	cacheExchange,
 	dedupExchange,

@@ -15,6 +15,7 @@ export const CHANGELOG: {
 				type: "add",
 			},
 			{
+				date: "2022-12-04",
 				ideaId: "clav8sh0x4lj40bl7yhxpomfs",
 				type: "add",
 			},
