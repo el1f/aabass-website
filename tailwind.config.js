@@ -8,7 +8,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: 'class',
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ],
   theme: {
     extend: {
       aspectRatio: {
@@ -30,6 +32,9 @@ module.exports = {
       fontFamily: {
         'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
         'sans': ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+      },
+      gridTemplateColumns: {
+        "cv": "minmax(64px, 192px) 2fr"
       },
       maxWidth: {
         "2xs": "16rem",

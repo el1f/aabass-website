@@ -69,7 +69,29 @@
 		"shop": "Shop",
 		"coffee": "Coffee",
 		"gaming": "Gaming",
-		"longboard": "Longboard"
+		"longboard": "Longboard",
+		"ideas": "Ideas",
+		"pages": {
+			"ABOUT": "About",
+			"BLOG": "Blog",
+			"CASE_STUDIES": "Case Studies",
+			"CHANGELOG": "Changelog",
+			"COFFEE": "Coffee",
+			"HOME": "Home Page",
+			"IDEAS": "Ideas",
+			"LONGBOARD": "Longboard",
+			"MUSIC": "Music",
+			"NOT_FOUND": "404",
+			"POSTERS": "Posters",
+			"SHOP": "Shop",
+			"THREE_PLAYGROUND": "ThreeJS Playground",
+			"TRAVEL": "Travel"
+		},
+		"components": {
+			"PAGE_LAYOUT": "Page Layout"
+		},
+		"fullName": "Ayoub Aabass",
+		"professionalRole": "Senior Full-stack developer and designer"
 	},
 	"about": {
 		"bio": "So, as you've probably guessed, my name is <strong>Ayoub</strong>. I was born in <strong>Morocco</strong> but I've lived most of my Life in <strong>Italy</strong> after moving there with my family when I was around 3. Still can't get over that first snowy december day, it was magical!<br /><hr />I'm now 25 years old and I'm currently living in <strong>Padua</strong> where I'm working as a <strong>Freelance</strong> developer and designer. I've mostly worked in startups and small companies, dabbling with the occasional bigger reality when the opportunity arose but I definitely think I thrive in smaller environments where I can be more hands-on with all aspects of the products I'm working on.<br /><hr />I'm a fairly adventurous person, I love <strong>traveling</strong>, <strong>extreme sports</strong> and anything that allows me to live life to the fullest. I'm also a huge <strong>foodie</strong> and I love trying out new restaurants and cuisines.<br /><hr />I've also been getting deeper and deeper into the weird Coffee rabbit hole and I've spent the past year honing my home barista game. I've been dedicating a lot of my free time to Longboard dancing and freeride ever since the start of the pandemic and I'm involved with several projects in that field as well.",
@@ -87,5 +109,159 @@
 		"pageTitle": "What's new",
 		"lead": "What have I been working on",
 		"title": "Changelog"
+	},
+	"ideas": {
+		"pageTitle": "Ideas",
+		"dialog": {
+			"dependenciesLabel": "DEPENDS ON",
+			"targetPagesLabel": "TARGETED PAGES",
+			"targetComponentsLabel": "TARGETED COMPONENTS",
+			"updatesTitle": "Updates",
+			"updatesPlaceholder": "Nothing to see here yet. Check back later!"
+		},
+		"board": {
+			"columnPlaceholder": "No ideas have reached this stage yet.",
+			"backlogTitle": "Backlog",
+			"plannedTitle": "Planned",
+			"ongoingTitle": "In progress",
+			"testingTitle": "Testing",
+			"doneTitle": "Done"
+		},
+		"header": {
+			"lead": "What's going on in the backstage?",
+			"title": "Ideas for the future"
+		}
+	},
+	"cv": {
+		"title": "Curriculum Vitae",
+		"pageTitle": "Ayoub's CV",
+		"document": {
+			"introduction": "Hey there! My name is Ayoub and I am a full-stack software developer and designer. I focus on conceptualizing and creating powerful and intuitive user interfaces to enable organizations and individuals to solve complex problems through digital tools.",
+			"dev": {
+				"title": "Current dev knowledge",
+				"skills": [
+					"HTML",
+					"CSS",
+					"Typescript",
+					"React",
+					"Next.JS",
+					"Vue",
+					"Redux",
+					"REST",
+					"GraphQL",
+					"Relay",
+					"Apollo",
+					"Node.JS",
+					"Java",
+					"Android",
+					"MySQL",
+					"MongoDB",
+					"Firebase",
+					"Google GCP",
+					"Amazon AWS",
+					"Git",
+					"GitHub Actions"
+				]
+			},
+			"des": {
+				"title": "Current design knowledge",
+				"skills": [
+					"Adobe Photoshop",
+					"Adobe Illustrator",
+					"Adobe InDesign",
+					"Affinity Designer",
+					"Affinity Photo",
+					"Affinity Publisher",
+					"Sketch",
+					"Figma",
+					"Framer"
+				]
+			},
+			"experience": {
+				"title": "Work experience",
+				"items": [
+					{
+						"company": "",
+						"role": "Freelance Full-stack dev & UI/UX Designer",
+						"period": "2015 - Now",
+						"location": "Padua, Italy",
+						"tasks": []
+					},
+					{
+						"company": "E-Fashion Software",
+						"role": "Senior Full-stack developer & UI/UX Designer",
+						"period": "2020 - Now",
+						"location": "Padua, Italy",
+						"tasks": []
+					},
+					{
+						"company": "HackPartners",
+						"role": "Full-stack Dev & UI/UX Design Consultant",
+						"period": "2018 - 2019",
+						"location": "Padua, Italy",
+						"tasks": []
+					},
+					{
+						"company": "Aterrae",
+						"role": "Full-stack Dev, UI/UX Designer & Graphic designer",
+						"period": "2016 - 2018",
+						"location": "Padua, Italy",
+						"tasks": []
+					},
+					{
+						"company": "H-FARM",
+						"role": "Full-stack Developer",
+						"period": "2015",
+						"location": "Treviso, Italy",
+						"tasks": []
+					},
+					{
+						"company": "Treviso",
+						"role": "Frontend Web Developer",
+						"period": "2014",
+						"location": "Padua, Italy",
+						"tasks": []
+					}
+				]
+			},
+			"contacts": {
+				"title": "Contacts",
+				"email": {
+					"title": "Email",
+					"value": "ayoub@aabass.net"
+				},
+				"phone": {
+					"title": "Phone",
+					"value": "+39 3479283096"
+				},
+				"web": {
+					"title": "Website",
+					"value": "ayoub.aabass.net"
+				},
+				"github": {
+					"title": "GitHub",
+					"value": "github.com/el1f"
+				},
+				"dribbble": {
+					"title": "Dribbble",
+					"value": "dribbble.com/el1flem"
+				},
+				"instagram": {
+					"title": "Instagram",
+					"value": "instagram.com/eliflem_design"
+				}
+			}
+		}
+	},
+	"cases": {
+		"pageTitle": "Ayoub's previous works",
+		"header": {
+			"title": "Can't hurt to have a sample first right?",
+			"description": "These are some of the projects I've worked on for the past years. They are but a little sample since most of the things I've worked on are either confidential or have been lost to me to the sands of time at this point. I definitely will need to keep this updated moving forward though :)"
+		},
+		"wip": {
+			"body": "I'm currently in the process of filling up this section. I'm planning to launch it with at least <strong>2-3 case studies</strong> split between client work and personal projects. I also am still considering whether to make it a set of custom pages that I manually craft, just a bunch of more structured and repeatable <em>Thoughts</em> fed from the CMS or something in-between (MDX? 👀).",
+			"title": "Currently structuring my thoughts!"
+		}
 	}
 }

@@ -64,3 +64,10 @@ html.dark, html.dark body {
   @apply bg-bgBaseDark text-textDimmedLight;
 }
 
+@media print {
+  html.dark, html.dark body {
+    font-size: 14px;
+    @apply bg-bgBaseLight text-textDark;
+  }
+}
+
