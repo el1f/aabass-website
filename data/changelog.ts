@@ -15,18 +15,21 @@ export const CHANGELOG: {
 				type: "add",
 			},
 			{
+				date: "2022-12-04",
 				ideaId: "clav8sh0x4lj40bl7yhxpomfs",
 				type: "add",
 			},
 			{
+				date: "2022-12-08",
 				ideaId: "clav8v2ba55rd0cl1s4v5gf0h",
 				type: "add",
 			},
 			{
-				ideaId: "clauynivx2qda0amhp9bvpauz",
+				date: "2022-12-08",
 				type: "add",
 			},
 			{
+				date: "2022-12-08",
 				type: "edit",
 			},
 		],
