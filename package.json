@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "codegen": "dotenv -e .env.production -- cross-var graphql-codegen"
+    "codegen": "dotenv -e .env.development cross-var graphql-codegen"
   },
   "dependencies": {
     "@apollo/server": "^4.2.2",

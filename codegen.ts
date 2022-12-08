@@ -1,7 +1,13 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-	documents: ["**/*.tsx", "**/*.ts"],
+	documents: [
+		"pages/**/*.tsx",
+		"components/**/*.tsx",
+		"graphql/**/*.ts",
+		"lib/**/*.ts",
+		"lib/**/*.tsx",
+	],
 	// for better experience with the watcher
 	generates: {
 		"./graphql/__generated__/": {
@@ -10,7 +16,7 @@ const config: CodegenConfig = {
 		},
 	},
 	ignoreNoDocuments: true,
-	schema: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+	schema: "./graphql/supergraph.graphql",
 };
 
 export default config;
