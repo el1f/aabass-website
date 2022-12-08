@@ -253,7 +253,15 @@
 			}
 		}
 	},
-	"header": {
-		"lead": "What's going on in the backstage?"
+	"cases": {
+		"pageTitle": "Ayoub's previous works",
+		"header": {
+			"title": "Can't hurt to have a sample first right?",
+			"description": "These are some of the projects I've worked on for the past years. They are but a little sample since most of the things I've worked on are either confidential or have been lost to me to the sands of time at this point. I definitely will need to keep this updated moving forward though :)"
+		},
+		"wip": {
+			"body": "I'm currently in the process of filling up this section. I'm planning to launch it with at least <strong>2-3 case studies</strong> split between client work and personal projects. I also am still considering whether to make it a set of custom pages that I manually craft, just a bunch of more structured and repeatable <em>Thoughts</em> fed from the CMS or something in-between (MDX? 👀).",
+			"title": "Currently structuring my thoughts!"
+		}
 	}
 }

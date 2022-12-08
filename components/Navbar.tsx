@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isExtended, socials }) => {
 	return (
 		<div className="flex items-center justify-between h-16 max-w-2xl px-6 mx-auto mt-16 print:hidden">
 			<Link href="/">
-				<a>
+				<a className="block h-10">
 					<Logo isDark={isDark} isExtended={isExtended} />
 				</a>
 			</Link>
