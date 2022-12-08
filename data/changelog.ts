@@ -8,6 +8,10 @@ export const CHANGELOG: {
 	version: string;
 }[] = [
 	{
+		features: [],
+		version: "1.3.0",
+	},
+	{
 		features: [
 			{
 				date: "2022-11-24",
