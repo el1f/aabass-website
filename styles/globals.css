@@ -27,6 +27,10 @@
     @apply text-sm font-bold leading-tight;
   }
 
+  .textXS {
+    @apply text-xs;
+  }
+
   .textSM {
     @apply text-xs md:text-sm;
   }

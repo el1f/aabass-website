@@ -4,13 +4,14 @@ const TEXT_CLASSES = {
 	lg: "textLG",
 	md: "textMD",
 	sm: "textSM",
+	xs: "textXS",
 } as const;
 
 export interface TextProps {
 	children?: React.ReactNode;
 	className?: string;
 	component?: "span" | "p" | "a" | "div";
-	size?: "sm" | "md" | "lg";
+	size?: "xs" | "sm" | "md" | "lg";
 }
 
 export const Text: React.FC<TextProps> = ({
