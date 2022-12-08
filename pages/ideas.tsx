@@ -145,10 +145,6 @@ const Ideas = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const defaultProps = {
-		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
-	};
-
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
@@ -158,7 +154,15 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 		false,
 	);
 
-	if (!client) return { props: defaultProps };
+	if (!client)
+		return {
+			props: {
+				...(await serverSideTranslations(locale ?? "en", [
+					"common",
+					"changelog",
+				])),
+			},
+		};
 
 	await client
 		.query(allIdeas, {
@@ -168,7 +172,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 	return {
 		props: {
-			...defaultProps,
+			...(await serverSideTranslations(locale ?? "en", [
+				"common",
+				"changelog",
+			])),
 			urqlState: ssrCache.extractData(),
 		},
 		revalidate: 3600,
