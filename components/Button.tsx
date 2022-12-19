@@ -15,8 +15,8 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
 	const outlinedText = "dark:border-textDimmedLight border-textDimmedDark";
 	const filledText = "bg-textDimmedLight";
-	const outlinedPrimary = "border-primary-500";
-	const filledPrimary = "bg-primary-500 dark:bg-primary-500 text-textDark";
+	const outlinedPrimary = "border-primaryShade";
+	const filledPrimary = "bg-primaryShade dark:bg-primaryShade text-textDark";
 	const outlined = `border border-2 ${isText ? outlinedText : outlinedPrimary}`;
 	const filled = `${isText ? filledText : filledPrimary}`;
 

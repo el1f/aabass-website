@@ -1,10 +1,10 @@
 import React from "react";
 
 const TEXT_CLASSES = {
-	lg: "textLG",
-	md: "textMD",
-	sm: "textSM",
-	xs: "textXS",
+	lg: "text-base md:text-lg",
+	md: "text-sm md:text-base",
+	sm: "text-xs md:text-sm",
+	xs: "text-xs",
 } as const;
 
 export interface TextProps {

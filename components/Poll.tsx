@@ -81,7 +81,7 @@ export const Poll: React.FC<PollProps> = ({
 				{options.map((option) => {
 					const percentage = (option.votes / votes) * 100;
 					const isVoted = value === option.value;
-					const votedClass = "bg-primary-500/10";
+					const votedClass = "bg-primaryShade/10";
 
 					return (
 						<div
