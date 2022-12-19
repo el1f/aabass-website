@@ -37,9 +37,9 @@ export const IdeaCard: React.FC<{
 		<Link href={`/ideas?activeIdea=${idea.id}`}>
 			<a>
 				<div
-					className={`max-w-xs p-3 border rounded-lg border-textDimmedDark scroll-mt-8 transition-all outline outline-1 outline-offset-0 outline-primary-500/0 overflow-hidden ${
+					className={`max-w-xs p-3 border rounded-lg border-textDimmedDark scroll-mt-8 transition-all outline outline-1 outline-offset-0 outline-primaryShade/0 overflow-hidden ${
 						focusedIdea === idea.id && highlightIdea
-							? "scroll-mt-8 outline-offset-8 outline-primary-500/50"
+							? "scroll-mt-8 outline-offset-8 outline-primaryShade/50"
 							: ""
 					}`}
 					id={idea.id}

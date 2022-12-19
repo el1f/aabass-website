@@ -17,12 +17,12 @@ export const Heading: React.FC<HeadingProps> = ({
 }) => {
 	const Tag = `h${level}` as const;
 	const headingClass = [
-		"heading1",
-		"heading2",
-		"heading3",
-		"heading4",
-		"heading5",
-		"heading6",
+		"text-4xl font-bold leading-tight md:text-5xl",
+		"text-2xl font-bold leading-tight md:text-xl",
+		"text-xl font-bold leading-tight",
+		"text-lg font-bold leading-tight",
+		"text-base font-bold leading-tight",
+		"text-sm font-bold leading-tight",
 	] as const;
 
 	const anchorClass =

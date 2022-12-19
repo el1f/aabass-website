@@ -15,7 +15,7 @@ const ContactLink: React.FC<{
 	<a href={href}>
 		<div className="flex flex-col px-3 py-2 -mx-3 -my-2 transition-all border border-transparent border-solid rounded-lg cursor-pointer group hover:border-textDimmedLight/10 hover:bg-bgRaisedDark">
 			<Text className="transition-all group-hover:translate-x-1" size="sm">
-				<strong className="dark:text-textLight text-textDark group-hover:text-primary-500">
+				<strong className="dark:text-textLight text-textDark group-hover:text-primaryShade">
 					{label}
 				</strong>
 			</Text>
