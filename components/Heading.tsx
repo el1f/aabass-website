@@ -1,4 +1,6 @@
+import classnames from "classnames";
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface HeadingProps {
 	children: React.ReactNode;
@@ -30,11 +32,19 @@ export const Heading: React.FC<HeadingProps> = ({
 
 	const headingContent = (
 		<Tag
-			className={`${headingClass[level - 1]} font-sans font-bold ${
-				isDimmed
-					? "text-textDimmedDark dark:text-textDimmedLight/75"
-					: "text-textDark dark:text-textLight"
-			} ${id ? anchorClass : ""} dark:print:text-textDark ${className}`}
+			className={twMerge(
+				classnames(
+					headingClass[level - 1],
+					"font-sans font-bold",
+					{
+						[`${anchorClass}`]: id,
+						"text-textDark dark:text-textLight": !isDimmed,
+						"text-textDimmedDark dark:text-textDimmedLight/75": isDimmed,
+					},
+					"dark:print:text-textDark",
+					{ [`${className}`]: className },
+				),
+			)}
 		>
 			{children}
 		</Tag>

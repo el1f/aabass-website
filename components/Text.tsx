@@ -1,8 +1,10 @@
+import classnames from "classnames";
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 const TEXT_CLASSES = {
 	lg: "text-base md:text-lg",
-	md: "text-sm md:text-base",
+	md: "text-sm md:text-base md:leading-relaxed",
 	sm: "text-xs md:text-sm",
 	xs: "text-xs",
 } as const;
@@ -24,11 +26,13 @@ export const Text: React.FC<TextProps> = ({
 
 	return (
 		<Tag
-			className={`${
-				TEXT_CLASSES[size]
-			} font-sans leading-relaxed dark:tracking-wide tracking-tight text-textDimmedDark dark:text-textDimmedLight/75 dark:print:text-textDimmedDark print:text-textDark${
-				className ? ` ${className}` : ""
-			}`}
+			className={twMerge(
+				classnames(
+					{ [`${TEXT_CLASSES[size]}`]: size },
+					"font-sans leading-relaxed dark:tracking-wide tracking-tight text-textDimmedDark dark:text-textDimmedLight/75 dark:print:text-textDimmedDark print:text-textDark",
+					{ [className ?? ""]: className },
+				),
+			)}
 		>
 			{children}
 		</Tag>
