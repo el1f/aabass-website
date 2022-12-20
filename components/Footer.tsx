@@ -35,10 +35,7 @@ export const Footer = () => {
 										<Icon name={isDark ? "dark" : "light"} />
 									</div>
 								</div>
-								<Text
-									className="mt-auto text-xs leading-none text-left"
-									size="sm"
-								>
+								<Text className="mt-auto leading-none text-left" size="xs">
 									{t("footer.changeTheme")}
 								</Text>
 							</Switch>
@@ -52,7 +49,7 @@ export const Footer = () => {
 									<span className="text-2xl leading-none">
 										{i18n.language === "it" ? "🇮🇹" : "🌎"}
 									</span>
-									<Text className="mt-auto text-xs leading-none text-left">
+									<Text className="mt-auto leading-none text-left" size="xs">
 										{t("footer.changeLang")}
 									</Text>
 								</a>

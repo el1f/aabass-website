@@ -1,4 +1,6 @@
+import classnames from "classnames";
 import React, { HTMLProps } from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
 	children: React.ReactNode;
@@ -22,9 +24,16 @@ export const Button: React.FC<ButtonProps> = ({
 
 	return (
 		<button
-			className={`px-6 h-14 font-sans font-bold tracking-wide text-sm rounded-xl ${
-				isOutlined ? outlined : filled
-			} ${className}`}
+			className={twMerge(
+				classnames(
+					"px-6 h-14 font-sans font-bold tracking-wide text-sm rounded-xl",
+					{
+						[`${className}`]: className,
+						[`${filled}`]: !isOutlined,
+						[`${outlined}`]: isOutlined,
+					},
+				),
+			)}
 		>
 			{children}
 		</button>
