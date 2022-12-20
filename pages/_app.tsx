@@ -1,3 +1,4 @@
+import { MDXProvider } from "@mdx-js/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -7,6 +8,7 @@ import { useEffect } from "react";
 
 import "../styles/globals.css";
 
+import { Heading, Strong, Text } from "../components";
 import * as ga from "../lib/ga";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -39,9 +41,50 @@ function MyApp({ Component, pageProps }: AppProps) {
     			`}
 			</Script>
 
-			<ThemeProvider attribute="class">
-				<Component {...pageProps} />
-			</ThemeProvider>
+			<MDXProvider
+				components={{
+					h1: ({ children }) => (
+						<Heading className="mb-12" level={1}>
+							{children}
+						</Heading>
+					),
+					h2: ({ children }) => (
+						<Heading className="mt-12 mb-4" level={2}>
+							{children}
+						</Heading>
+					),
+					h3: ({ children }) => (
+						<Heading className="mt-12 mb-4" level={3}>
+							{children}
+						</Heading>
+					),
+					h4: ({ children }) => (
+						<Heading className="mt-12 mb-4" level={4}>
+							{children}
+						</Heading>
+					),
+					h5: ({ children }) => (
+						<Heading className="mb-6" level={5}>
+							{children}
+						</Heading>
+					),
+					h6: ({ children }) => (
+						<Heading className="mb-6" level={6}>
+							{children}
+						</Heading>
+					),
+					p: ({ children }) => (
+						<Text className="mb-6" component="p">
+							{children}
+						</Text>
+					),
+					strong: Strong,
+				}}
+			>
+				<ThemeProvider attribute="class">
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</MDXProvider>
 		</>
 	);
 }

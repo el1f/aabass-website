@@ -1,8 +1,19 @@
 const { i18n } = require('./next-i18next.config');
 
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {   
+    providerImportSource: "@mdx-js/react",
+    rehypePlugins: [],
+    remarkPlugins: [],
+  },
+})
+
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   i18n,
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   swcMinify: true,
   webpack(config) {
@@ -31,4 +42,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig)
