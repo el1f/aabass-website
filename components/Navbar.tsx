@@ -1,26 +1,22 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
 import { useWindowScroll } from "../lib/hooks";
 import { SocialPlatform } from "../types";
-import { Logo, SocialLink } from ".";
+import { DynamicLogo, SocialLink } from ".";
 
 const SCROLL_HIDE_THRESHOLD = 512;
 
 interface NavbarProps {
-	isExtended?: boolean;
 	socials: {
 		href: string;
 		platform: SocialPlatform;
 	}[];
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ isExtended, socials }) => {
-	const { theme } = useTheme();
-	const isDark = theme !== "light";
+export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
 	const [scroll, direction] = useWindowScroll();
 
 	return (
@@ -35,9 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({ isExtended, socials }) => {
 				<div
 					className={twMerge(
 						classNames(
-							"flex items-center justify-between h-20 w-[calc(100%-32px)] max-w-2xl pl-6 pr-4 mx-auto print:hidden rounded-3xl",
+							"flex items-center justify-between h-20 w-full max-w-2xl pl-6 pr-4 mx-auto print:hidden rounded-3xl",
 							{
-								"backdrop-blur-md -top-40 relative border dark:border-textLight/10 border-textDark/10 shadow-xl transition-transform bg-bgRaisedLight/25 dark:bg-bgRaisedDark/25":
+								"backdrop-blur-md -top-40 relative w-[calc(100%-32px)] md:full border dark:border-textLight/10 border-textDark/10 shadow-xl transition-transform bg-bgRaisedLight/25 dark:bg-bgRaisedDark/25":
 									scroll.y > SCROLL_HIDE_THRESHOLD / 2,
 								"md:translate-y-[128px] translate-y-[112px]":
 									scroll.y > SCROLL_HIDE_THRESHOLD && direction === "UP",
@@ -46,8 +42,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isExtended, socials }) => {
 					)}
 				>
 					<Link href="/">
-						<a className="block h-10">
-							<Logo isDark={isDark} isExtended={isExtended} />
+						<a className="block h-12">
+							{/* <Logo isDark={isDark} isExtended={isExtended} /> */}
+							<DynamicLogo
+								isActive={
+									scroll.y > SCROLL_HIDE_THRESHOLD && direction === "UP"
+								}
+							/>
 						</a>
 					</Link>
 					<div className="flex items-center justify-center">

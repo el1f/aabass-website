@@ -16,3 +16,4 @@ export * from "./IdeaCard";
 export * from "./IdeaDialog";
 export * from "./Poll";
 export * from "./Trans";
+export * from "./DynamicLogo";

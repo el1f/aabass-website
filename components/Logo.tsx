@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const EXTENDED_RATIO = 5.84;
+const EXTENDED_RATIO = 4;
 
 interface LogoProps {
 	height?: number;
@@ -19,7 +19,7 @@ export const Logo: React.FC<LogoProps> = ({
 			<Image
 				alt="Extended logo"
 				height={height}
-				src="/brand/logo.svg"
+				src="/brand/logo_extended_dark.svg"
 				width={height * EXTENDED_RATIO}
 			/>
 		);
@@ -37,7 +37,7 @@ export const Logo: React.FC<LogoProps> = ({
 			<Image
 				alt="Extended logo"
 				height={height}
-				src="/brand/logo_light.svg"
+				src="/brand/logo_extended_light.svg"
 				width={height * EXTENDED_RATIO}
 			/>
 		);
