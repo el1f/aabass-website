@@ -27,6 +27,29 @@ html.dark {
   --textDimmed: var(--textDimmedLight);
 }
 
+.logo #firstname, .logo #lastname {
+  opacity: 0;
+  transform: translateX(-10%);
+  transition: 200ms;
+}
+
+.logo--active #firstname, .logo--active #lastname {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: 300ms;
+  transition-delay: 100ms;
+}
+
+.logo--active #lastname {
+  transition-delay: 200ms;
+}
+
+@media (max-width: 640px) {
+  .logo #firstname, .logo #lastname {
+    display: none;
+  }
+}
+
 html,
 body {
   padding: 0;

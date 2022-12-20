@@ -38,7 +38,7 @@ const Home: NextPage = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar isExtended={false} socials={SOCIALS} />
+			<Navbar socials={SOCIALS} />
 
 			<section className="container max-w-2xl px-6 py-32 mx-auto md:mb-32">
 				<hgroup className="max-w-xl mb-6">

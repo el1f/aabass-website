@@ -20,7 +20,7 @@ export const Footer = () => {
 				<div className="flex flex-col justify-between gap-12 md:flex-row">
 					<div className="flex flex-col">
 						<div className="mb-2">
-							<Logo isDark={!isDark} isExtended />
+							<Logo height={56} isDark={!isDark} isExtended />
 						</div>
 						<Text size="sm">{t("footer.copyright")}</Text>
 

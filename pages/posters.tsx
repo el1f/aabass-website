@@ -26,7 +26,7 @@ const Posters: NextPage = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar isExtended={false} socials={SOCIALS} />
+			<Navbar socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
 				<Heading className="mb-4" level={1}>

@@ -2,7 +2,10 @@
     "1.3.0": {
         "summary": "Thinking of Coffee",
         "description": "I want to become a better writer in general, I also love coffee as you might have noticed. This next stage is all about giving me a place write about things I like and hopefully get better at it. Also, I'm going to write about coffee. A lot.",
-        "features": []
+        "features": [
+            "Updated the branding on the website to reflect the new palette, logos and fonts.",
+            "The navbar now has a nice sleek animation when back-scrolling that animates the logo."
+        ]
     },
     "1.2.0": {
         "summary": "Down to business",

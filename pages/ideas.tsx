@@ -79,7 +79,7 @@ const Ideas = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar isExtended={false} socials={SOCIALS} />
+			<Navbar socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
 				<Text size="md">{t("ideas.header.lead")}</Text>

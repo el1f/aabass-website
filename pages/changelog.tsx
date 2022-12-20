@@ -47,7 +47,7 @@ const Changelog = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar isExtended={false} socials={SOCIALS} />
+			<Navbar socials={SOCIALS} />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
 				<Text size="md">{t("changelog.lead")}</Text>
@@ -102,7 +102,10 @@ const Changelog = () => {
 													)}
 												</Text>
 												<div className="flex gap-4">
-													<Text className="font-mono text-xs font-bold opacity-50">
+													<Text
+														className="font-mono font-bold opacity-50"
+														size="xs"
+													>
 														{date || feature.date
 															? new Date(
 																	date || feature.date || "",
