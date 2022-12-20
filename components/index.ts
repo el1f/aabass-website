@@ -17,3 +17,5 @@ export * from "./IdeaDialog";
 export * from "./Poll";
 export * from "./Trans";
 export * from "./DynamicLogo";
+export * from "./Seo";
+export * from "./ThoughtsLayout";
