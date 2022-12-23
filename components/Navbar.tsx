@@ -20,7 +20,14 @@ export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
 	const [scroll, direction] = useWindowScroll();
 
 	return (
-		<nav className="block w-full h-16 mt-16">
+		<nav
+			className={twMerge(
+				classNames("block w-full h-16 mt-16 pointer-events-none", {
+					"pointer-events-auto":
+						scroll.y > SCROLL_HIDE_THRESHOLD && direction === "UP",
+				}),
+			)}
+		>
 			<div
 				className={twMerge(
 					classNames("w-full", {

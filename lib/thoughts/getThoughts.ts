@@ -2,7 +2,57 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-import { Thought } from "../../types";
+import { Thought, ThoughtMeta, ThoughtTOC } from "../../types";
+
+function matterDataToMeta(matterData: Record<string, any>): ThoughtMeta {
+	return {
+		category: matterData.categories[0],
+		date: new Date(matterData.date).toLocaleDateString(),
+		description: matterData.description,
+		hasToc: matterData.toc,
+		isDraft: matterData.draft,
+		keywords: matterData.keywords,
+		tags: matterData.tags,
+		title: matterData.title,
+	};
+}
+
+export function getThoughtMeta(slug: string): {
+	meta: ThoughtMeta;
+	toc: ThoughtTOC;
+} {
+	const fileContent = fs.readFileSync(
+		path.join(process.cwd(), "pages", "thoughts", `${slug}.mdx`),
+		"utf-8",
+	);
+
+	const { content, data } = matter(fileContent);
+
+	const headers = content.match(/#{2,3}.+(?=\n)/g) ?? [];
+
+	// TODO: do this in a WAY better way you ignorant fool please
+	const toc = `,${headers.join()}`
+		.split(",## ")
+		.map((headerCluster) => headerCluster.split(",### "))
+		.filter((header) => header[0] !== "")
+		.map((headerGroup) => {
+			return {
+				nodes: headerGroup.slice(1).map((header) => {
+					return {
+						target: `#${header}`,
+						title: header,
+					};
+				}),
+				target: `#${headerGroup[0]}`,
+				title: headerGroup[0],
+			};
+		});
+
+	return {
+		meta: matterDataToMeta(data),
+		toc,
+	};
+}
 
 export function getThoughts(): Thought[] {
 	const dirFiles = fs.readdirSync(
@@ -25,15 +75,7 @@ export function getThoughts(): Thought[] {
 		return [
 			{
 				content,
-				data: {
-					category: data.categories[0],
-					date: new Date(data.date).toLocaleDateString(),
-					description: data.description,
-					isDraft: data.draft,
-					keywords: data.keywords,
-					tags: data.tags,
-					title: data.title,
-				},
+				data: matterDataToMeta(data),
 				slug,
 			},
 		];

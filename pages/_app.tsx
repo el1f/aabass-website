@@ -44,32 +44,32 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<MDXProvider
 				components={{
 					h1: ({ children }) => (
-						<Heading className="mb-12" level={1}>
+						<Heading className="mb-12" id={children as string} level={1}>
 							{children}
 						</Heading>
 					),
 					h2: ({ children }) => (
-						<Heading className="mt-12 mb-4" level={2}>
+						<Heading className="mt-12 mb-4" id={children as string} level={2}>
 							{children}
 						</Heading>
 					),
 					h3: ({ children }) => (
-						<Heading className="mt-12 mb-4" level={3}>
+						<Heading className="mt-12 mb-4" id={children as string} level={3}>
 							{children}
 						</Heading>
 					),
 					h4: ({ children }) => (
-						<Heading className="mt-12 mb-4" level={4}>
+						<Heading className="mt-12 mb-4" id={children as string} level={4}>
 							{children}
 						</Heading>
 					),
 					h5: ({ children }) => (
-						<Heading className="mb-6" level={5}>
+						<Heading className="mb-6" id={children as string} level={5}>
 							{children}
 						</Heading>
 					),
 					h6: ({ children }) => (
-						<Heading className="mb-6" level={6}>
+						<Heading className="mb-6" id={children as string} level={6}>
 							{children}
 						</Heading>
 					),
