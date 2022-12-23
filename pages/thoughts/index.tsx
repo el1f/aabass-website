@@ -1,7 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
@@ -14,7 +13,6 @@ const Thoughts: NextPage<{
 	thoughts: any[];
 }> = ({ thoughts }) => {
 	const { t } = useTranslation("common");
-	const router = useRouter();
 
 	return (
 		<>
