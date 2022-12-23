@@ -2,7 +2,9 @@ import Link from "next/link";
 import React from "react";
 
 import { SOCIALS } from "../data";
+import { ThoughtTOC } from "../types";
 import { Anchor, Footer, Heading, Icon, Navbar, Seo, SeoProps, Text } from ".";
+import { Toc } from "./Toc";
 
 interface ThoughtsLayoutProps {
 	header: {
@@ -16,11 +18,12 @@ interface ThoughtsLayoutProps {
 	};
 	isWrapped?: boolean;
 	seo: SeoProps;
+	toc?: ThoughtTOC;
 }
 
 export const ThoughtsLayout: React.FC<
 	React.PropsWithChildren<ThoughtsLayoutProps>
-> = ({ children, header, isWrapped, seo }) => {
+> = ({ children, header, isWrapped, seo, toc }) => {
 	const content = isWrapped ? (
 		<main className="container max-w-2xl px-6 pt-16 mx-auto mb-64">
 			{children}
@@ -29,32 +32,16 @@ export const ThoughtsLayout: React.FC<
 		children
 	);
 
-	const anchors = React.Children.toArray(children)
-		.filter(
-			(child: any) =>
-				child.props?.mdxType && ["h2", "h3"].includes(child.props.mdxType),
-		)
-		.map((child: any) => ({
-			depth:
-				(child.props?.mdxType &&
-					parseInt(child.props.mdxType.replace("h", ""), 0)) ??
-				0,
-			text: child.props.children,
-			url: "#" + child.props.id,
-		}));
-
-	console.log(children, anchors);
-
 	return (
 		<>
 			<Seo {...seo} title={`Ayoub's thoughts • ${seo.title}`} />
 
 			<Navbar socials={SOCIALS} />
 
-			<div className="grid items-start justify-center gap-8 grid-cols-thought">
-				<aside className="flex justify-end max-w-xs pt-2 mt-16">
+			<div className="grid items-start justify-center gap-16 grid-cols-thought">
+				<aside className="sticky flex flex-col items-start justify-start max-w-xs min-h-[50vh] pt-2 mt-16 transition-all top-8 opacity-20 hover:opacity-100">
 					<Link href="/thoughts">
-						<a className="inline-flex items-center gap-2 p-3 pr-4 hover:bg-bgRaised text-textDimmed rounded-xl">
+						<a className="inline-flex items-center self-end gap-2 p-3 pr-4 hover:bg-bgRaised text-textDimmed rounded-xl">
 							<Icon name="arrowLeft" />
 							<Text className="text-textDimmed dark:text-textDimmed">Back</Text>
 						</a>
@@ -85,6 +72,10 @@ export const ThoughtsLayout: React.FC<
 
 					{content}
 				</div>
+
+				<aside className="sticky min-h-[50vh] flex flex-col items-start opacity-20 hover:opacity-100 transition-all max-w-xs pt-2 mt-16 top-8">
+					{toc && <Toc contents={toc} />}
+				</aside>
 			</div>
 
 			<Footer />

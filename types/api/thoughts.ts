@@ -1,13 +1,22 @@
 export interface Thought {
 	content: string;
-	data: ThoughtData;
+	data: ThoughtMeta;
 	slug: string;
 }
 
-export interface ThoughtData {
+export type ThoughtTOC = TOCNode[];
+
+export interface TOCNode {
+	nodes?: TOCNode[];
+	target: string;
+	title: string;
+}
+
+export interface ThoughtMeta {
 	category: string;
 	date: string;
 	description?: string;
+	hasToc: boolean;
 	isDraft: boolean;
 	keywords?: string[];
 	tags: string[];
