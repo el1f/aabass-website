@@ -38,12 +38,15 @@ export const ThoughtsLayout: React.FC<
 
 			<Navbar socials={SOCIALS} />
 
-			<div className="grid items-start justify-center gap-16 grid-cols-thought">
-				<aside className="sticky flex flex-col items-start justify-start max-w-xs min-h-[50vh] pt-2 mt-16 transition-all top-8 opacity-20 hover:opacity-100">
+			<div className="grid items-start justify-center grid-cols-1 md:gap-4 lg:gap-8 xl:gap-16 md:grid-cols-thought">
+				<aside className="hidden sticky md:flex flex-col items-start justify-start max-w-xs md:min-h-[50vh] pt-2 mt-16 transition-all top-8 opacity-20 hover:opacity-100">
 					<Link href="/thoughts">
-						<a className="inline-flex items-center self-end gap-2 p-3 pr-4 hover:bg-bgRaised text-textDimmed rounded-xl">
+						<a className="inline-flex items-center self-end gap-2 p-3 lg:pr-4 hover:bg-bgRaised text-textDimmed rounded-xl">
 							<Icon name="arrowLeft" />
-							<Text className="text-textDimmed dark:text-textDimmed">Back</Text>
+
+							<Text className="hidden text-textDimmed dark:text-textDimmed lg:inline">
+								Back
+							</Text>
 						</a>
 					</Link>
 				</aside>
@@ -73,7 +76,7 @@ export const ThoughtsLayout: React.FC<
 					{content}
 				</div>
 
-				<aside className="sticky min-h-[50vh] flex flex-col items-start opacity-20 hover:opacity-100 transition-all max-w-xs pt-2 mt-16 top-8">
+				<aside className="sticky min-h-[50vh] flex-col items-start opacity-20 hover:opacity-100 transition-all max-w-xs pt-2 mt-16 top-8 hidden lg:flex">
 					{toc && <Toc contents={toc} />}
 				</aside>
 			</div>

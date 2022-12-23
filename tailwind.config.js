@@ -52,7 +52,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         cv: "minmax(64px, 192px) 2fr",
-        thought: "20rem 42rem 20rem"
+        thought: "minmax(8rem, 20rem) 42rem minmax(8rem, 20rem)",
       },
       maxWidth: {
         "2xs": "16rem",
