@@ -54,7 +54,7 @@ const Thoughts: NextPage<{
 					({ data: { category, date, description, title }, slug }) => (
 						<Link href={`/thoughts/${slug}`} key={slug}>
 							<a>
-								<article className="group">
+								<article className="p-4 -m-4 transition-all rounded-xl group hover:bg-bgRaised">
 									<Text size="xs">{`${category} • ${date}`}</Text>
 									<Heading
 										className="mb-2 bg-no-repeat group-hover:text-primaryShade group-hover:underline"

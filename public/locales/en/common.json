@@ -264,5 +264,10 @@
 			"body": "I'm currently in the process of filling up this section. I'm planning to launch it with at least <strong>2-3 case studies</strong> split between client work and personal projects. I also am still considering whether to make it a set of custom pages that I manually craft, just a bunch of more structured and repeatable <em>Thoughts</em> fed from the CMS or something in-between (MDX? 👀).",
 			"title": "Currently structuring my thoughts!"
 		}
+	},
+	"thoughts": {
+		"title": "Some Thoughts",
+		"body": "Welcome to the little space I'm using to practice giving some phisical form to what's going on in my noggin'. Hopefully the longer  I keep filling it the less cringe-worthy it's going to start looking.",
+		"pageTitle": "My thoughts"
 	}
 }
