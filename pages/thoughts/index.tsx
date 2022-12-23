@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,8 +8,11 @@ import React from "react";
 
 import { Footer, Heading, Navbar, Strong, Text } from "../../components";
 import { SOCIALS } from "../../data";
+import { getThoughts } from "../../lib/thoughts";
 
-const Thoughts: NextPage = () => {
+const Thoughts: NextPage<{
+	thoughts: any[];
+}> = ({ thoughts }) => {
 	const { t } = useTranslation("common");
 	const router = useRouter();
 
@@ -45,17 +49,44 @@ const Thoughts: NextPage = () => {
 				</Text>
 			</header>
 
-			<section className="container max-w-5xl px-4 mx-auto mb-48"></section>
+			<section className="container max-w-2xl px-4 mx-auto mb-48">
+				{thoughts.map(
+					({ data: { category, date, description, title }, slug }) => (
+						<Link href={`/thoughts/${slug}`} key={slug}>
+							<a>
+								<article className="group">
+									<Text size="xs">{`${category} • ${date}`}</Text>
+									<Heading
+										className="mb-2 bg-no-repeat group-hover:text-primaryShade group-hover:underline"
+										level={3}
+									>
+										{title}
+									</Heading>
+									<Text component="p">{description}</Text>
+								</article>
+							</a>
+						</Link>
+					),
+				)}
+			</section>
 
 			<Footer />
 		</>
 	);
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
-	},
-});
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	const thoughts = getThoughts();
+
+	return {
+		props: {
+			...(await serverSideTranslations(locale ?? "en", [
+				"common",
+				"changelog",
+			])),
+			thoughts,
+		},
+	};
+};
 
 export default Thoughts;
