@@ -1,18 +1,25 @@
-const { i18n } = require('./next-i18next.config');
+import nextMDX from '@next/mdx'
+import remarkFrontmatter from 'remark-frontmatter';
 
-const withMDX = require('@next/mdx')({
+const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {   
     providerImportSource: "@mdx-js/react",
     rehypePlugins: [],
-    remarkPlugins: [],
+    remarkPlugins: [remarkFrontmatter],
   },
 })
 
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  i18n,
+  fallbackLng: {
+    default: ['en']
+  },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'it'],
+  },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   swcMinify: true,
@@ -42,4 +49,4 @@ const nextConfig = {
   }
 }
 
-module.exports = withMDX(nextConfig)
+export default withMDX(nextConfig)
