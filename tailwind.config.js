@@ -47,11 +47,12 @@ module.exports = {
         textLight: colors.slate[50],
       },
       fontFamily: {
-        'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
-        'sans': ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+        sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
-        "cv": "minmax(64px, 192px) 2fr"
+        cv: "minmax(64px, 192px) 2fr",
+        thought: "20rem 42rem 20rem"
       },
       maxWidth: {
         "2xs": "16rem",
