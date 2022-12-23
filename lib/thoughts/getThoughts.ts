@@ -12,6 +12,7 @@ function matterDataToMeta(matterData: Record<string, any>): ThoughtMeta {
 		hasToc: matterData.toc,
 		isDraft: matterData.draft,
 		keywords: matterData.keywords,
+		readingTime: matterData.duration,
 		tags: matterData.tags,
 		title: matterData.title,
 	};

@@ -19,6 +19,7 @@ export interface ThoughtMeta {
 	hasToc: boolean;
 	isDraft: boolean;
 	keywords?: string[];
+	readingTime: number;
 	tags: string[];
 	title: string;
 }
