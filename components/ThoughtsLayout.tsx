@@ -1,9 +1,21 @@
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import React from "react";
 
 import { SOCIALS } from "../data";
+import { usePoll } from "../lib/hooks/polls/usePoll";
 import { ThoughtTOC } from "../types";
-import { Anchor, Footer, Heading, Icon, Navbar, Seo, SeoProps, Text } from ".";
+import {
+	Anchor,
+	Footer,
+	Heading,
+	Icon,
+	Navbar,
+	Poll,
+	Seo,
+	SeoProps,
+	Text,
+} from ".";
 import { Toc } from "./Toc";
 
 interface ThoughtsLayoutProps {
@@ -24,6 +36,8 @@ interface ThoughtsLayoutProps {
 export const ThoughtsLayout: React.FC<
 	React.PropsWithChildren<ThoughtsLayoutProps>
 > = ({ children, header, isWrapped, seo, toc }) => {
+	const { i18n } = useTranslation();
+
 	const content = isWrapped ? (
 		<main className="container max-w-2xl px-6 pt-16 mx-auto mb-64">
 			{children}
@@ -31,6 +45,9 @@ export const ThoughtsLayout: React.FC<
 	) : (
 		children
 	);
+
+	// TODO: remove when decision is made
+	const [pollData, pollVote, onVote] = usePoll("POLL_THOUGHT_NEWSLETTER");
 
 	return (
 		<>
@@ -74,6 +91,23 @@ export const ThoughtsLayout: React.FC<
 					</header>
 
 					{content}
+
+					<Poll
+						// TODO: add the isActive flag to the API
+						isActive={true}
+						isLoading={!pollData}
+						onVote={onVote}
+						options={
+							pollData?.options.map((option) => ({
+								label: option.label[i18n.language as "en" | "it"] ?? "",
+								value: option.value,
+								votes: option.totalVotes,
+							})) ?? []
+						}
+						question={pollData?.question[i18n.language as "en" | "it"] ?? ""}
+						value={pollVote}
+						votes={pollData?.totalVotes ?? 0}
+					/>
 				</div>
 
 				<aside className="sticky min-h-[50vh] flex-col items-start opacity-20 hover:opacity-100 transition-all max-w-xs pt-2 top-8 hidden lg:flex">

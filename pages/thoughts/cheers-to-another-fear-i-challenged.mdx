@@ -74,9 +74,6 @@ export default ({
 
 export const getStaticProps = async ({ locale }) => {
 	const thought = getThoughtMeta("cheers-to-another-fear-i-challenged");
-
-    console.log(thought);
-
     return {
     	props: {
     		...(await serverSideTranslations(locale ?? "en", [
