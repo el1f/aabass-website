@@ -6,7 +6,7 @@ import {
 	PolymorphicRef,
 } from "../types/polymorphicComponent";
 
-type OutlinedCardProps<C extends React.ElementType> =
+export type OutlinedCardProps<C extends React.ElementType> =
 	PolymorphicComponentPropWithRef<
 		C,
 		{ className?: string; hasHover?: boolean }

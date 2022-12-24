@@ -72,7 +72,7 @@ const CaseStudies: NextPage = () => {
 				<Heading className="pb-4" level={2}>
 					{t("cases.wip.title")}
 				</Heading>
-				<Text className="mb-2" component="p">
+				<Text className="mb-2" as="p">
 					<Trans i18nKey="cases.wip.body" />
 				</Text>
 

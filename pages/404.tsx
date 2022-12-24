@@ -36,7 +36,7 @@ const NotFound: NextPage = () => {
 					{t("404.title")}
 				</Heading>
 				{/* TODO: figure out why using a p causes a hydration issue */}
-				<Text className="mb-6" component="div">
+				<Text as="div" className="mb-6">
 					<Trans
 						components={{
 							hr: <hr className="my-1 opacity-0" />,

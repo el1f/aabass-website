@@ -47,7 +47,7 @@ const About: NextPage = () => {
 						/>
 					</div>
 					{/* TODO: figure out why using a p causes a hydration issue */}
-					<Text className="leading-loose" component="div">
+					<Text as="div" className="leading-loose">
 						<Trans
 							components={{
 								hr: <hr className="my-1 opacity-0" />,
