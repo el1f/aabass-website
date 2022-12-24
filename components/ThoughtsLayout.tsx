@@ -1,8 +1,10 @@
+import classnames from "classnames";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import React from "react";
 
 import { SOCIALS } from "../data";
+import { useWindowScroll } from "../lib/hooks";
 import { usePoll } from "../lib/hooks/polls/usePoll";
 import { ThoughtTOC } from "../types";
 import {
@@ -33,10 +35,14 @@ interface ThoughtsLayoutProps {
 	toc?: ThoughtTOC;
 }
 
+const SCROLL_THRESHOLD = 512;
+
 export const ThoughtsLayout: React.FC<
 	React.PropsWithChildren<ThoughtsLayoutProps>
 > = ({ children, header, isWrapped, seo, toc }) => {
 	const { i18n } = useTranslation();
+	const [scroll, direction] = useWindowScroll();
+	const isScrollingUp = scroll.y > SCROLL_THRESHOLD && direction === "UP";
 
 	const content = isWrapped ? (
 		<article className="container max-w-2xl px-6 pt-16 mx-auto mb-16">
@@ -56,7 +62,14 @@ export const ThoughtsLayout: React.FC<
 			<Navbar socials={SOCIALS} />
 
 			<div className="grid items-start justify-center grid-cols-1 pt-32 md:gap-4 lg:gap-8 xl:gap-16 md:grid-cols-thought">
-				<aside className="hidden sticky md:flex flex-col items-start justify-start max-w-xs md:min-h-[50vh] pt-2 transition-all top-8 opacity-20 hover:opacity-100">
+				<aside
+					className={classnames(
+						"hidden sticky md:flex flex-col items-start justify-start max-w-xs md:min-h-[50vh] pt-2 transition-all top-8 opacity-20 hover:opacity-100",
+						{
+							"translate-y-32": isScrollingUp,
+						},
+					)}
+				>
 					<Link href="/thoughts">
 						<a className="inline-flex items-center self-end gap-2 p-3 lg:pr-4 hover:bg-bgRaised text-textDimmed rounded-xl">
 							<Icon name="arrowLeft" />
@@ -114,7 +127,14 @@ export const ThoughtsLayout: React.FC<
 					</main>
 				</div>
 
-				<aside className="sticky min-h-[50vh] flex-col items-start opacity-20 hover:opacity-100 transition-all max-w-xs pt-2 top-8 hidden lg:flex">
+				<aside
+					className={classnames(
+						"sticky min-h-[50vh] flex-col items-start opacity-20 hover:opacity-100 transition-all max-w-xs pt-2 top-8 hidden lg:flex",
+						{
+							"translate-y-32": isScrollingUp,
+						},
+					)}
+				>
 					{toc && <Toc contents={toc} />}
 				</aside>
 			</div>
