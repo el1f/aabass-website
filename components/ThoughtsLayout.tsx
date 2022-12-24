@@ -39,9 +39,9 @@ export const ThoughtsLayout: React.FC<
 	const { i18n } = useTranslation();
 
 	const content = isWrapped ? (
-		<main className="container max-w-2xl px-6 pt-16 mx-auto mb-64">
+		<article className="container max-w-2xl px-6 pt-16 mx-auto mb-16">
 			{children}
-		</main>
+		</article>
 	) : (
 		children
 	);
@@ -68,46 +68,50 @@ export const ThoughtsLayout: React.FC<
 					</Link>
 				</aside>
 				<div>
-					<header className="container max-w-2xl px-6 mx-auto">
-						<Heading className="leading-tight md:leading-tight" level={1}>
-							{header.title}
-						</Heading>
-						<div className="flex items-center gap-4 mt-2">
-							<Anchor
-								className="font-mono leading-none"
-								href={`/thoughts?category=${header.category}`}
-								size="sm"
-							>
-								{header.category}
-							</Anchor>
-							<Text className="font-mono" component="span" size="sm">
-								{`${
-									header.publishedAt
-										? new Date(header.publishedAt).toLocaleDateString()
-										: "DRAFT"
-								} • ${header.readingTime}m read`}
-							</Text>
+					<main className="mb-32 md:mb-64">
+						<header className="container max-w-2xl px-6 mx-auto">
+							<Heading className="leading-tight md:leading-tight" level={1}>
+								{header.title}
+							</Heading>
+							<div className="flex items-center gap-4 mt-2">
+								<Anchor
+									className="font-mono leading-none"
+									href={`/thoughts?category=${header.category}`}
+									size="sm"
+								>
+									{header.category}
+								</Anchor>
+								<Text as="span" className="font-mono" size="sm">
+									{`${header.publishedAt ?? "DRAFT"} • ${
+										header.readingTime
+									}m read`}
+								</Text>
+							</div>
+						</header>
+
+						{content}
+
+						<div className="px-6">
+							<Poll
+								// TODO: add the isActive flag to the API
+								isActive={true}
+								isLoading={!pollData}
+								onVote={onVote}
+								options={
+									pollData?.options.map((option) => ({
+										label: option.label[i18n.language as "en" | "it"] ?? "",
+										value: option.value,
+										votes: option.totalVotes,
+									})) ?? []
+								}
+								question={
+									pollData?.question[i18n.language as "en" | "it"] ?? ""
+								}
+								value={pollVote}
+								votes={pollData?.totalVotes ?? 0}
+							/>
 						</div>
-					</header>
-
-					{content}
-
-					<Poll
-						// TODO: add the isActive flag to the API
-						isActive={true}
-						isLoading={!pollData}
-						onVote={onVote}
-						options={
-							pollData?.options.map((option) => ({
-								label: option.label[i18n.language as "en" | "it"] ?? "",
-								value: option.value,
-								votes: option.totalVotes,
-							})) ?? []
-						}
-						question={pollData?.question[i18n.language as "en" | "it"] ?? ""}
-						value={pollVote}
-						votes={pollData?.totalVotes ?? 0}
-					/>
+					</main>
 				</div>
 
 				<aside className="sticky min-h-[50vh] flex-col items-start opacity-20 hover:opacity-100 transition-all max-w-xs pt-2 top-8 hidden lg:flex">

@@ -63,7 +63,7 @@ export const IdeaCard: React.FC<{
 					</Heading>
 					<CodeChip>{idea.targetVersion}</CodeChip>
 				</div>
-				<Text className="mb-4 line-clamp-5" component="div" size="sm">
+				<Text as="div" className="mb-4 line-clamp-5" size="sm">
 					{idea.description}
 				</Text>
 				<div className="flex flex-wrap items-center gap-2">

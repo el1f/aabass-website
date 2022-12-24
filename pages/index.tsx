@@ -50,7 +50,7 @@ const Home: NextPage = () => {
 							i18nKey="home.hero.title"
 						/>
 					</Heading>
-					<Text className="mb-4" component="p">
+					<Text className="mb-4" as="p">
 						<Trans
 							components={{
 								strong: <Strong />,
@@ -58,7 +58,7 @@ const Home: NextPage = () => {
 							i18nKey="home.hero.p1"
 						/>
 					</Text>
-					<Text className="mb-4" component="p">
+					<Text className="mb-4" as="p">
 						<Trans
 							components={{
 								strong: <Strong />,
@@ -66,7 +66,7 @@ const Home: NextPage = () => {
 							i18nKey="home.hero.p2"
 						/>
 					</Text>
-					<Text component="p">
+					<Text as="p">
 						<Trans
 							components={{
 								availability: <AvailabilityLabel />,
@@ -104,7 +104,7 @@ const Home: NextPage = () => {
 					<Heading className="mb-4" id="playbook" level={2}>
 						{t("home.playbook.title")}
 					</Heading>
-					<Text className="mb-12" component="p">
+					<Text className="mb-12" as="p">
 						{t("home.playbook.description")}
 					</Text>
 
@@ -116,7 +116,7 @@ const Home: NextPage = () => {
 							{t("home.playbook.posters.showMore")}
 						</Anchor>
 					</div>
-					<Text className="mb-8" component="p">
+					<Text className="mb-8" as="p">
 						{t("home.playbook.posters.description")}
 					</Text>
 				</div>
@@ -140,7 +140,7 @@ const Home: NextPage = () => {
 				<Heading className="mb-4" id="personal" level={2}>
 					{t("home.personal.title")}
 				</Heading>
-				<Text className="mb-12" component="p">
+				<Text className="mb-12" as="p">
 					<Trans
 						components={{
 							strong: <Strong />,
@@ -157,7 +157,7 @@ const Home: NextPage = () => {
 						{t("home.personal.coffee.showMore")}{" "}
 					</Anchor>
 				</div>
-				<Text className="mb-8" component="p">
+				<Text className="mb-8" as="p">
 					{t("home.personal.coffee.description")}
 				</Text>
 
@@ -172,7 +172,7 @@ const Home: NextPage = () => {
 				<Heading className="mb-4" level={2}>
 					{t("home.footer.title")}
 				</Heading>
-				<Text className="mb-24" component="p">
+				<Text className="mb-24" as="p">
 					<Trans
 						components={{
 							strong: <Strong />,

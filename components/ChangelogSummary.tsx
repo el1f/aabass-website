@@ -33,8 +33,8 @@ export const ChangelogSummary: React.FC<ChangelogSummaryProps> = ({
 						/>
 						<CodeChip>{version}</CodeChip>
 						<Text
+							as="div"
 							className="w-full overflow-hidden transition-all translate-x-2 opacity-0 max-w-4xs group-hover:translate-x-0 text-ellipsis whitespace-nowrap group-hover:opacity-100"
-							component="div"
 							size="sm"
 						>
 							{t(`changelog:${version}.summary`)}

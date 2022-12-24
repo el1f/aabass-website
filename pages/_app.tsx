@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 						</Heading>
 					),
 					p: ({ children }) => (
-						<Text className="mb-6" component="p">
+						<Text className="mb-6" as="p">
 							{children}
 						</Text>
 					),

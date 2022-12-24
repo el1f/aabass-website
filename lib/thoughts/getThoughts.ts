@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -7,7 +8,7 @@ import { Thought, ThoughtMeta, ThoughtTOC } from "../../types";
 function matterDataToMeta(matterData: Record<string, any>): ThoughtMeta {
 	return {
 		category: matterData.categories[0],
-		date: new Date(matterData.date).toLocaleDateString(),
+		date: dayjs(matterData.date).format("DD MMM YYYY"),
 		description: matterData.description,
 		hasToc: matterData.toc,
 		isDraft: matterData.draft,

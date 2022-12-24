@@ -31,12 +31,12 @@ const Thoughts: NextPage<{
 
 			<Navbar socials={SOCIALS} />
 
-			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
-				<Heading className="mb-4 leading-snug" level={1}>
+			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto md:px-6">
+				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>
 					{t("thoughts.title")}
 				</Heading>
 				{/* TODO: figure out why using a p causes a hydration issue */}
-				<Text className="mb-6" component="div">
+				<Text as="div" className="mb-6">
 					<Trans
 						components={{
 							hr: <hr className="my-1 opacity-0" />,
@@ -47,7 +47,7 @@ const Thoughts: NextPage<{
 				</Text>
 			</header>
 
-			<section className="container max-w-2xl px-4 mx-auto mb-48">
+			<section className="container max-w-2xl px-4 mx-auto mb-48 md:px-6">
 				{thoughts.map(
 					({ data: { category, date, description, title }, slug }) => (
 						<Link href={`/thoughts/${slug}`} key={slug}>
@@ -60,7 +60,7 @@ const Thoughts: NextPage<{
 									>
 										{title}
 									</Heading>
-									<Text component="p">{description}</Text>
+									<Text as="p">{description}</Text>
 								</article>
 							</a>
 						</Link>
