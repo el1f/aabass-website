@@ -8,9 +8,10 @@ import React from "react";
 import { Footer, Heading, Navbar, Strong, Text } from "../../components";
 import { SOCIALS } from "../../data";
 import { getThoughts } from "../../lib/thoughts";
+import { Thought } from "../../types";
 
 const Thoughts: NextPage<{
-	thoughts: any[];
+	thoughts: Thought[];
 }> = ({ thoughts }) => {
 	const { t } = useTranslation("common");
 

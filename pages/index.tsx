@@ -13,13 +13,18 @@ import {
 	PosterThumbnail,
 	Strong,
 	Text,
+	ThoughtCard,
 } from "../components";
 import { AvailabilityLabel } from "../components/AvailabilityLabel";
 import CoffeeGearGrid from "../components/CoffeeGearGrid";
 import { POSTERS, SOCIALS } from "../data";
 import * as ga from "../lib/ga";
+import { getThoughts } from "../lib/thoughts";
+import { Thought } from "../types";
 
-const Home: NextPage = () => {
+const Home: NextPage<{
+	thoughts: Thought[];
+}> = ({ thoughts }) => {
 	const { t } = useTranslation("common");
 
 	return (
@@ -50,7 +55,7 @@ const Home: NextPage = () => {
 							i18nKey="home.hero.title"
 						/>
 					</Heading>
-					<Text className="mb-4" as="p">
+					<Text as="p" className="mb-4">
 						<Trans
 							components={{
 								strong: <Strong />,
@@ -58,7 +63,7 @@ const Home: NextPage = () => {
 							i18nKey="home.hero.p1"
 						/>
 					</Text>
-					<Text className="mb-4" as="p">
+					<Text as="p" className="mb-4">
 						<Trans
 							components={{
 								strong: <Strong />,
@@ -104,7 +109,7 @@ const Home: NextPage = () => {
 					<Heading className="mb-4" id="playbook" level={2}>
 						{t("home.playbook.title")}
 					</Heading>
-					<Text className="mb-12" as="p">
+					<Text as="p" className="mb-12">
 						{t("home.playbook.description")}
 					</Text>
 
@@ -116,7 +121,7 @@ const Home: NextPage = () => {
 							{t("home.playbook.posters.showMore")}
 						</Anchor>
 					</div>
-					<Text className="mb-8" as="p">
+					<Text as="p" className="mb-8">
 						{t("home.playbook.posters.description")}
 					</Text>
 				</div>
@@ -140,7 +145,7 @@ const Home: NextPage = () => {
 				<Heading className="mb-4" id="personal" level={2}>
 					{t("home.personal.title")}
 				</Heading>
-				<Text className="mb-12" as="p">
+				<Text as="p" className="mb-12">
 					<Trans
 						components={{
 							strong: <Strong />,
@@ -148,6 +153,31 @@ const Home: NextPage = () => {
 						i18nKey="home.personal.description"
 					/>
 				</Text>
+
+				<section className="mb-32">
+					<header className="flex items-center justify-between mb-4">
+						<Heading id="coffee" level={3}>
+							{t("home.personal.thoughts.title")}
+						</Heading>
+						<Anchor href="/coffee" size="sm">
+							{t("home.personal.thoughts.showMore")}
+						</Anchor>
+					</header>
+					<Text as="p" className="mb-8">
+						{t("home.personal.thoughts.description")}
+					</Text>
+
+					<div className="flex flex-col gap-4">
+						<Heading level={5}>{t("home.personal.thoughts.latest")}</Heading>
+						{thoughts.map(({ data, slug }) => (
+							<Link href={`/thoughts/${slug}`} key={slug}>
+								<a>
+									<ThoughtCard data={data} isOutlined />
+								</a>
+							</Link>
+						))}
+					</div>
+				</section>
 
 				<div className="flex items-center justify-between mb-4">
 					<Heading id="coffee" level={3}>
@@ -157,7 +187,7 @@ const Home: NextPage = () => {
 						{t("home.personal.coffee.showMore")}{" "}
 					</Anchor>
 				</div>
-				<Text className="mb-8" as="p">
+				<Text as="p" className="mb-8">
 					{t("home.personal.coffee.description")}
 				</Text>
 
@@ -172,7 +202,7 @@ const Home: NextPage = () => {
 				<Heading className="mb-4" level={2}>
 					{t("home.footer.title")}
 				</Heading>
-				<Text className="mb-24" as="p">
+				<Text as="p" className="mb-24">
 					<Trans
 						components={{
 							strong: <Strong />,
@@ -187,10 +217,18 @@ const Home: NextPage = () => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
-	},
-});
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	const thoughts = getThoughts().slice(0, 3);
+
+	return {
+		props: {
+			...(await serverSideTranslations(locale ?? "en", [
+				"common",
+				"changelog",
+			])),
+			thoughts,
+		},
+	};
+};
 
 export default Home;

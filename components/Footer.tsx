@@ -16,7 +16,7 @@ export const Footer = () => {
 
 	return (
 		<div className="overflow-hidden print:hidden">
-			<footer className="container relative max-w-2xl px-6 pt-8 pb-32 mx-auto">
+			<footer className="container relative max-w-5xl px-6 pt-8 pb-32 mx-auto">
 				<div className="flex flex-col justify-between gap-12 md:flex-row">
 					<div className="flex flex-col">
 						<div className="mb-2">
@@ -61,10 +61,13 @@ export const Footer = () => {
 						<div className="flex flex-col items-start gap-2">
 							<Heading level={5}>{t("footer.work.title")}</Heading>
 							<Anchor href="/about">{t("common.about")}</Anchor>
-							<Anchor href="/cases">{t("common.cases")}</Anchor>
 							<Anchor href="/cv">{t("common.curriculum")}</Anchor>
+							<Anchor href="/cases">{t("common.cases")}</Anchor>
+						</div>
+						<div className="flex flex-col items-start gap-2">
+							<Heading level={5}>{t("footer.personal.title")}</Heading>
 							<Anchor href="/posters">{t("common.posters")}</Anchor>
-							<Anchor href="/shop">{t("common.shop")}</Anchor>
+							<Anchor href="/thoughts">{t("common.thoughts")}</Anchor>
 							<Anchor href="/ideas">{t("common.ideas")}</Anchor>
 						</div>
 						<div className="flex flex-col items-start gap-2">
