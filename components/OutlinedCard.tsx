@@ -12,7 +12,7 @@ export type OutlinedCardProps<C extends React.ElementType> =
 		{ className?: string; hasHover?: boolean }
 	>;
 
-const OutlinedCard = React.forwardRef(
+export const OutlinedCard = React.forwardRef(
 	<C extends React.ElementType = "div">(
 		{ as, children, className, hasHover, ...rest }: OutlinedCardProps<C>,
 		ref?: PolymorphicRef<C>,
@@ -37,5 +37,3 @@ const OutlinedCard = React.forwardRef(
 );
 
 OutlinedCard.displayName = "OutlinedCard";
-
-export default OutlinedCard;

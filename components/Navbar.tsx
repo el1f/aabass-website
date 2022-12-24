@@ -18,20 +18,17 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
 	const [scroll, direction] = useWindowScroll();
+	const isPastSafeThreshold = scroll.y > SCROLL_THRESHOLD / 2;
 	const isScrollingUp = scroll.y > SCROLL_THRESHOLD && direction === "UP";
 
 	return (
-		<nav
-			className={twMerge(
-				classNames("block w-full h-16 mt-16 pointer-events-none", {
-					"pointer-events-auto": isScrollingUp,
-				}),
-			)}
-		>
+		<nav className={twMerge(classNames("block w-full h-16 mt-16"))}>
 			<div
 				className={twMerge(
 					classNames("w-full", {
-						"fixed z-50 transition-all": scroll.y > SCROLL_THRESHOLD / 2,
+						"fixed z-50 transition-all pointer-events-none":
+							isPastSafeThreshold,
+						"pointer-events-auto": isScrollingUp,
 					}),
 				)}
 			>

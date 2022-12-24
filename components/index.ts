@@ -19,3 +19,5 @@ export * from "./Trans";
 export * from "./DynamicLogo";
 export * from "./Seo";
 export * from "./ThoughtsLayout";
+export * from "./ThoughtCard";
+export * from "./OutlinedCard";

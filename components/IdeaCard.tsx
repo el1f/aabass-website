@@ -8,8 +8,7 @@ import {
 	IdeaCard as IdeaCardFragment,
 	useFragment,
 } from "../graphql";
-import { Anchor, CodeChip, Heading, Text } from ".";
-import OutlinedCard from "./OutlinedCard";
+import { Anchor, CodeChip, Heading, OutlinedCard, Text } from ".";
 
 export const IdeaCard: React.FC<{
 	idea: FragmentType<typeof IdeaCardFragment>;

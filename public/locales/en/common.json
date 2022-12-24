@@ -29,11 +29,17 @@
 				"title": "Coffee",
 				"showMore": "Learn more",
 				"description": "Ever since being in Rotterdam I've been obsessed about coffee. Like, really obsessed. At this point I think I went over the whole videography of James Hoffman at least thrice and I've collected enough gear to open my own small cafe. Here you can see what I'm currently playing around and some writing on the latest coffee experiences I had, both at home and in cafes"
+			},
+			"thoughts": {
+				"description": "I've been thinking about working on my writing skills for ages, especially when it comes to non-native language related writing. I thought a little corner to express what I'm thinking about from time to time, both work-related and regarding other spheres of my life could be an interesting way to explore this interest of mine and to see whether pratice can actually make me better .",
+				"showMore": "Read more",
+				"title": "Thoughts",
+				"latest": "Latest thoughts"
 			}
 		},
 		"footer": {
 			"title": "Well, that's it",
-			"description": "Congrats on getting all the way down here. <br /> Here, press here to get your reward"
+			"description": "Congrats on getting all the way down here. <br /> I'm thinking about giving people that reach this point a little reward but it's not ready yet. Come back later to check it out!"
 		},
 		"pageTitle": "Hello, I'm Ayoub"
 	},
@@ -46,7 +52,10 @@
 			"title": "Fun things"
 		},
 		"changeTheme": "Switch theme",
-		"changeLang": "Switch lang"
+		"changeLang": "Switch lang",
+		"personal": {
+			"title": "My corner"
+		}
 	},
 	"posters": {
 		"header": {
@@ -91,7 +100,8 @@
 			"PAGE_LAYOUT": "Page Layout"
 		},
 		"fullName": "Ayoub Aabass",
-		"professionalRole": "Senior Full-stack developer and designer"
+		"professionalRole": "Senior Full-stack developer and designer",
+		"thoughts": "Thoughts"
 	},
 	"about": {
 		"bio": "So, as you've probably guessed, my name is <strong>Ayoub</strong>. I was born in <strong>Morocco</strong> but I've lived most of my Life in <strong>Italy</strong> after moving there with my family when I was around 3. Still can't get over that first snowy december day, it was magical!<br /><hr />I'm now 25 years old and I'm currently living in <strong>Padua</strong> where I'm working as a <strong>Freelance</strong> developer and designer. I've mostly worked in startups and small companies, dabbling with the occasional bigger reality when the opportunity arose but I definitely think I thrive in smaller environments where I can be more hands-on with all aspects of the products I'm working on.<br /><hr />I'm a fairly adventurous person, I love <strong>traveling</strong>, <strong>extreme sports</strong> and anything that allows me to live life to the fullest. I'm also a huge <strong>foodie</strong> and I love trying out new restaurants and cuisines.<br /><hr />I've also been getting deeper and deeper into the weird Coffee rabbit hole and I've spent the past year honing my home barista game. I've been dedicating a lot of my free time to Longboard dancing and freeride ever since the start of the pandemic and I'm involved with several projects in that field as well.",
