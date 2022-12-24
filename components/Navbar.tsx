@@ -7,7 +7,7 @@ import { useWindowScroll } from "../lib/hooks";
 import { SocialPlatform } from "../types";
 import { DynamicLogo, SocialLink } from ".";
 
-const SCROLL_HIDE_THRESHOLD = 512;
+const SCROLL_THRESHOLD = 512;
 
 interface NavbarProps {
 	socials: {
@@ -18,20 +18,20 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
 	const [scroll, direction] = useWindowScroll();
+	const isScrollingUp = scroll.y > SCROLL_THRESHOLD && direction === "UP";
 
 	return (
 		<nav
 			className={twMerge(
 				classNames("block w-full h-16 mt-16 pointer-events-none", {
-					"pointer-events-auto":
-						scroll.y > SCROLL_HIDE_THRESHOLD && direction === "UP",
+					"pointer-events-auto": isScrollingUp,
 				}),
 			)}
 		>
 			<div
 				className={twMerge(
 					classNames("w-full", {
-						"fixed z-50 transition-all": scroll.y > SCROLL_HIDE_THRESHOLD / 2,
+						"fixed z-50 transition-all": scroll.y > SCROLL_THRESHOLD / 2,
 					}),
 				)}
 			>
@@ -41,9 +41,8 @@ export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
 							"flex items-center justify-between h-20 w-full max-w-2xl pl-6 pr-4 mx-auto print:hidden rounded-3xl",
 							{
 								"backdrop-blur-md -top-40 relative w-[calc(100%-32px)] md:full border dark:border-textLight/10 border-textDark/10 shadow-xl transition-transform bg-bgRaisedLight/25 dark:bg-bgRaisedDark/25":
-									scroll.y > SCROLL_HIDE_THRESHOLD / 2,
-								"md:translate-y-[128px] translate-y-[112px]":
-									scroll.y > SCROLL_HIDE_THRESHOLD && direction === "UP",
+									scroll.y > SCROLL_THRESHOLD / 2,
+								"md:translate-y-[128px] translate-y-[112px]": isScrollingUp,
 							},
 						),
 					)}
@@ -51,11 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
 					<Link href="/">
 						<a className="block h-12">
 							{/* <Logo isDark={isDark} isExtended={isExtended} /> */}
-							<DynamicLogo
-								isActive={
-									scroll.y > SCROLL_HIDE_THRESHOLD && direction === "UP"
-								}
-							/>
+							<DynamicLogo isActive={isScrollingUp} />
 						</a>
 					</Link>
 					<div className="flex items-center justify-center">
