@@ -26,7 +26,9 @@ export const ThoughtCard: React.FC<ThoughtCardProps> = ({
 			>
 				{title}
 			</Heading>
-			<Text as="p">{description}</Text>
+			<Text as="p" className="line-clamp-2">
+				{description}
+			</Text>
 		</Wrapper>
 	);
 };

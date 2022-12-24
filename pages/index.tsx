@@ -156,10 +156,10 @@ const Home: NextPage<{
 
 				<section className="mb-32">
 					<header className="flex items-center justify-between mb-4">
-						<Heading id="coffee" level={3}>
+						<Heading id="thoughts" level={3}>
 							{t("home.personal.thoughts.title")}
 						</Heading>
-						<Anchor href="/coffee" size="sm">
+						<Anchor href="/thoughts" size="sm">
 							{t("home.personal.thoughts.showMore")}
 						</Anchor>
 					</header>
