@@ -2,5 +2,59 @@
     "i18n-ally.localesPaths": [
         "public/locales"
     ],
-    "i18n-ally.keystyle": "nested"
+    "i18n-ally.keystyle": "nested",
+    "frontMatter.taxonomy.contentTypes": [
+        {
+            "name": "default",
+            "pageBundle": false,
+            "fields": [
+                {
+                    "title": "date",
+                    "name": "date",
+                    "type": "datetime"
+                },
+                {
+                    "title": "description",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "title": "title",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "title": "tags",
+                    "name": "tags",
+                    "type": "tags"
+                },
+                {
+                    "title": "categories",
+                    "name": "categories",
+                    "type": "categories"
+                },
+                {
+                    "title": "draft",
+                    "name": "draft",
+                    "type": "datetime"
+                },
+                {
+                    "title": "duration",
+                    "name": "duration",
+                    "type": "number"
+                },
+                {
+                    "title": "toc",
+                    "name": "toc",
+                    "type": "boolean"
+                },
+                {
+                    "title": "keywords",
+                    "name": "keywords",
+                    "type": "fields",
+                    "fields": []
+                }
+            ]
+        }
+    ]
 }
