@@ -5,7 +5,14 @@ import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
-import { Footer, Heading, Navbar, Strong, Text } from "../../components";
+import {
+	Footer,
+	Heading,
+	Navbar,
+	Strong,
+	Text,
+	ThoughtCard,
+} from "../../components";
 import { SOCIALS } from "../../data";
 import { getThoughts } from "../../lib/thoughts";
 import { Thought } from "../../types";
@@ -49,24 +56,13 @@ const Thoughts: NextPage<{
 			</header>
 
 			<section className="container max-w-2xl px-4 mx-auto mb-48 md:px-6">
-				{thoughts.map(
-					({ data: { category, date, description, title }, slug }) => (
-						<Link href={`/thoughts/${slug}`} key={slug}>
-							<a>
-								<article className="p-4 -m-4 transition-all rounded-xl group hover:bg-bgRaised">
-									<Text size="xs">{`${category} • ${date}`}</Text>
-									<Heading
-										className="mb-2 bg-no-repeat group-hover:text-primaryShade group-hover:underline"
-										level={3}
-									>
-										{title}
-									</Heading>
-									<Text as="p">{description}</Text>
-								</article>
-							</a>
-						</Link>
-					),
-				)}
+				{thoughts.map(({ data, slug }) => (
+					<Link href={`/thoughts/${slug}`} key={slug}>
+						<a>
+							<ThoughtCard data={data} />
+						</a>
+					</Link>
+				))}
 			</section>
 
 			<Footer />
