@@ -17,6 +17,11 @@ export const CHANGELOG: {
 				date: "2022-12-20",
 				type: "edit",
 			},
+			{
+				date: "2022-12-24",
+				ideaId: "clauytbwf35qz0bla5kgd3blj",
+				type: "add",
+			},
 		],
 		version: "1.3.0",
 	},
