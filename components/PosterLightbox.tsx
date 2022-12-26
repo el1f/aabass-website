@@ -60,22 +60,23 @@ export const PosterLightbox: React.FC<{
 								{poster.name}
 							</Heading>
 						</Dialog.Title>
-						<Dialog.Description
-							as={ReactMarkdown}
-							components={{
-								p({ children }) {
-									return (
-										<Text as="p" className="mb-6">
-											{children}
-										</Text>
-									);
-								},
-								strong({ children }) {
-									return <Strong>{children}</Strong>;
-								},
-							}}
-						>
-							{poster.description}
+						<Dialog.Description>
+							<ReactMarkdown
+								components={{
+									p({ children }) {
+										return (
+											<Text as="p" className="mb-6">
+												{children}
+											</Text>
+										);
+									},
+									strong({ children }) {
+										return <Strong>{children}</Strong>;
+									},
+								}}
+							>
+								{poster.description ?? ""}
+							</ReactMarkdown>
 						</Dialog.Description>
 					</aside>
 				</Dialog.Panel>
