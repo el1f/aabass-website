@@ -3,6 +3,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { initUrqlClient, withUrqlClient } from "next-urql";
+import {
+	cacheExchange,
+	dedupExchange,
+	fetchExchange,
+	ssrExchange,
+	useQuery,
+} from "urql";
 
 import {
 	Anchor,
@@ -17,7 +25,8 @@ import {
 } from "../components";
 import { AvailabilityLabel } from "../components/AvailabilityLabel";
 import CoffeeGearGrid from "../components/CoffeeGearGrid";
-import { POSTERS, SOCIALS } from "../data";
+import { SOCIALS } from "../data";
+import { allPosters, clientSetup } from "../graphql";
 import * as ga from "../lib/ga";
 import { getThoughts } from "../lib/thoughts";
 import { Thought } from "../types";
@@ -26,6 +35,14 @@ const Home: NextPage<{
 	thoughts: Thought[];
 }> = ({ thoughts }) => {
 	const { t } = useTranslation("common");
+
+	// TODO: this seems to cause hydration issues every now and then but
+	// according to this issue it isn't a problem that should happen
+	// in production.
+	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
+	const [{ data }] = useQuery({
+		query: allPosters,
+	});
 
 	return (
 		<>
@@ -126,17 +143,19 @@ const Home: NextPage<{
 					</Text>
 				</div>
 				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
-					{POSTERS.filter(({ format }) => format === "poster").map((poster) => (
-						<PosterThumbnail
-							className="flex-shrink-0 w-64"
-							description={poster.description}
-							key={poster.title}
-							onClick={() => {
-								ga.posterPress(poster.title);
-							}}
-							src={`/posters/${poster.thumbnail}`}
-							title={poster.title}
-						/>
+					{(data?.standard ?? []).map((poster) => (
+						<Link href={`/posters/${poster.slug}`} key={poster.slug}>
+							<a>
+								<PosterThumbnail
+									className="flex-shrink-0 w-64"
+									onClick={() => {
+										ga.posterPress(poster.slug);
+									}}
+									src={`/posters/${poster.poster.url}`}
+									title={poster.name}
+								/>
+							</a>
+						</Link>
 					))}
 				</div>
 			</section>
@@ -218,6 +237,29 @@ const Home: NextPage<{
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	const ssrCache = ssrExchange({ isClient: false });
+	const client = initUrqlClient(
+		{
+			...clientSetup,
+			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
+		},
+		false,
+	);
+
+	if (!client)
+		return {
+			props: {
+				...(await serverSideTranslations(locale ?? "en", [
+					"common",
+					"changelog",
+				])),
+			},
+		};
+
+	// Posters
+	await client.query(allPosters, {}).toPromise();
+
+	// Thoughts
 	const thoughts = getThoughts().slice(0, 3);
 
 	return {
@@ -227,8 +269,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 				"changelog",
 			])),
 			thoughts,
+			urqlState: ssrCache.extractData(),
 		},
+		revalidate: 4 * 60 * 60,
 	};
 };
 
-export default Home;
+export default withUrqlClient((_ssrExchange) => clientSetup)(Home);

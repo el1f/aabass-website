@@ -108,7 +108,6 @@ const Posters: NextPage = () => {
 							<PosterThumbnail
 								className="flex-shrink-0 w-full"
 								format="disc"
-								key={poster.slug}
 								onClick={() => ga.posterPress(poster.slug)}
 								src={poster.poster.url}
 								title={poster.name}
