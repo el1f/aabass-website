@@ -21,3 +21,4 @@ export * from "./Seo";
 export * from "./ThoughtsLayout";
 export * from "./ThoughtCard";
 export * from "./OutlinedCard";
+export * from "./PosterLightbox";

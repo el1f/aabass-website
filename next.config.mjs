@@ -20,6 +20,11 @@ const nextConfig = {
     defaultLocale: 'en',
     locales: ['en', 'it'],
   },
+  images: {
+    domains: [
+      "media.graphassets.com"
+    ]
+  },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   swcMinify: true,
