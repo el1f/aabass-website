@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
@@ -10,13 +11,19 @@ import {
 	Footer,
 	Heading,
 	Navbar,
+	OutlinedCard,
 	Strong,
 	Text,
+	ThoughtCard,
 } from "../../components";
 import CoffeeGearGrid from "../../components/CoffeeGearGrid";
 import { SOCIALS } from "../../data";
+import { getThoughtsByCategory } from "../../lib/thoughts";
+import { Thought } from "../../types";
 
-const Coffee: NextPage = () => {
+const Coffee: NextPage<{
+	thoughts: Thought[];
+}> = ({ thoughts }) => {
 	const { t } = useTranslation("common");
 
 	return (
@@ -194,6 +201,25 @@ const Coffee: NextPage = () => {
 						/>
 					</Text>
 				</header>
+
+				<section className="container max-w-2xl px-4 mx-auto mb-48 md:px-6">
+					{thoughts.map(({ data, slug }) => (
+						<Link href={`/thoughts/${slug}`} key={slug}>
+							<a>
+								<ThoughtCard data={data} />
+							</a>
+						</Link>
+					))}
+
+					{thoughts.length === 0 && (
+						<OutlinedCard className="flex flex-col items-center justify-center min-h-[192px]">
+							<Heading className="mb-2" level={3}>
+								{t("coffee.thoughts.placeholder.title")}
+							</Heading>
+							<Text>{t("coffee.thoughts.placeholder.content")}</Text>
+						</OutlinedCard>
+					)}
+				</section>
 			</section>
 
 			<Footer />
@@ -202,12 +228,15 @@ const Coffee: NextPage = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	const thoughts = getThoughtsByCategory("COFFEE");
+
 	return {
 		props: {
 			...(await serverSideTranslations(locale ?? "en", [
 				"common",
 				"changelog",
 			])),
+			thoughts,
 		},
 	};
 };

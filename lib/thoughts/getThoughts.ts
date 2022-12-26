@@ -85,3 +85,9 @@ export function getThoughts(): Thought[] {
 
 	return thoughts;
 }
+
+export function getThoughtsByCategory(category: string): Thought[] {
+	return getThoughts().filter(({ data }) => {
+		return data.category === category;
+	});
+}
