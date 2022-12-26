@@ -59,7 +59,7 @@ const Coffee: NextPage<{
 				</Text>
 			</header>
 
-			<section className="mb-48">
+			<section className="mb-48 overflow-hidden">
 				<header className="container max-w-2xl px-4 mx-auto md:px-6">
 					<Heading className="mb-4" id="beans" level={2}>
 						{t("coffee.beans.title")}
@@ -76,13 +76,40 @@ const Coffee: NextPage<{
 					</Text>
 				</header>
 
-				<section className="overflow-hidden">
+				<section>
 					<header className="container max-w-2xl px-4 mx-auto md:px-6">
 						<Heading className="mb-4" id="beans" level={5}>
-							{t("coffee.beans.favourites.title")}
+							{t("coffee.beans.favorites.title")}
 						</Heading>
 					</header>
-					<div className="flex pt-8 gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
+					<div className="flex pt-8 gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+						<CoffeeBeansCard
+							espressoScore={5}
+							filterScore={5}
+							image="/coffee/beans/stratoberry.png"
+							name="Strato Berry"
+							origin="Uganda"
+							processing="Natural"
+							roaster="Giraffe Coffee"
+						/>
+						<CoffeeBeansCard
+							espressoScore={5}
+							filterScore={5}
+							image="/coffee/beans/stratoberry.png"
+							name="Strato Berry"
+							origin="Uganda"
+							processing="Natural"
+							roaster="Giraffe Coffee"
+						/>
+						<CoffeeBeansCard
+							espressoScore={5}
+							filterScore={5}
+							image="/coffee/beans/stratoberry.png"
+							name="Strato Berry"
+							origin="Uganda"
+							processing="Natural"
+							roaster="Giraffe Coffee"
+						/>
 						<CoffeeBeansCard
 							espressoScore={5}
 							filterScore={5}
@@ -100,7 +127,7 @@ const Coffee: NextPage<{
 							{t("coffee.beans.latest.title")}
 						</Heading>
 					</header>
-					<div className="flex pt-8 gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
+					<div className="flex pt-8 gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
 						<CoffeeBeansCard
 							espressoScore={5}
 							filterScore={5}
@@ -154,15 +181,29 @@ const Coffee: NextPage<{
 				<section>
 					<header className="container max-w-2xl px-4 mx-auto md:px-6">
 						<Heading className="mb-4" id="places" level={5}>
-							{t("coffee.places.favourites.title")}
+							{t("coffee.places.favorites.title")}
 						</Heading>
 					</header>
-					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
+					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
 						<CoffeePlaceCard
 							country="italy"
 							image="/coffee/places/tcb.webp"
-							lastVisit="2w ago"
+							lastVisit="1d ago"
 							name="The Coffee Box"
+							score={5}
+						/>
+						<CoffeePlaceCard
+							country="Netherlands"
+							image="/coffee/places/giraffe.jpeg"
+							lastVisit="6w ago"
+							name="Giraffe Coffee"
+							score={5}
+						/>
+						<CoffeePlaceCard
+							country="United Kingdom"
+							image="/coffee/places/qima.webp"
+							lastVisit="2w ago"
+							name="Qima Cafe"
 							score={5}
 						/>
 					</div>
@@ -173,7 +214,7 @@ const Coffee: NextPage<{
 							{t("coffee.places.latest.title")}
 						</Heading>
 					</header>
-					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
+					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
 						<CoffeePlaceCard
 							country="italy"
 							image="/coffee/places/tcb.webp"
@@ -212,7 +253,7 @@ const Coffee: NextPage<{
 					))}
 
 					{thoughts.length === 0 && (
-						<OutlinedCard className="flex flex-col items-center justify-center min-h-[192px]">
+						<OutlinedCard className="flex flex-col items-center justify-center min-h-[192px] text-center px-8">
 							<Heading className="mb-2" level={3}>
 								{t("coffee.thoughts.placeholder.title")}
 							</Heading>
