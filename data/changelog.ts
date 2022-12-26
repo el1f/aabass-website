@@ -22,6 +22,11 @@ export const CHANGELOG: {
 				ideaId: "clauytbwf35qz0bla5kgd3blj",
 				type: "add",
 			},
+			{
+				date: "2022-12-26",
+				ideaId: "clauyo96i35cp0blanls3nqth",
+				type: "add",
+			},
 		],
 		version: "1.3.0",
 	},
