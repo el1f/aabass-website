@@ -22,3 +22,4 @@ export * from "./ThoughtsLayout";
 export * from "./ThoughtCard";
 export * from "./OutlinedCard";
 export * from "./PosterLightbox";
+export * from "./CoffeeGearGrid";
