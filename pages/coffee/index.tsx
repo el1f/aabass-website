@@ -4,7 +4,14 @@ import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
-import { Footer, Heading, Navbar, Strong, Text } from "../../components";
+import {
+	CoffeePlaceCard,
+	Footer,
+	Heading,
+	Navbar,
+	Strong,
+	Text,
+} from "../../components";
 import CoffeeGearGrid from "../../components/CoffeeGearGrid";
 import { SOCIALS } from "../../data";
 
@@ -82,7 +89,7 @@ const Coffee: NextPage = () => {
 				<CoffeeGearGrid />
 			</section>
 
-			<section className="mb-48">
+			<section className="mb-48 overflow-hidden">
 				<header className="container max-w-2xl px-4 mx-auto md:px-6">
 					<Heading className="mb-4" id="places" level={2}>
 						{t("coffee.places.title")}
@@ -98,6 +105,39 @@ const Coffee: NextPage = () => {
 						/>
 					</Text>
 				</header>
+
+				<section>
+					<header className="container max-w-2xl px-4 mx-auto md:px-6">
+						<Heading className="mb-4" id="places" level={5}>
+							{t("coffee.places.favourites.title")}
+						</Heading>
+					</header>
+					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
+						<CoffeePlaceCard
+							country="italy"
+							image="/coffee/places/tcb.webp"
+							lastVisit="2w ago"
+							name="The Coffee Box"
+							score={5}
+						/>
+					</div>
+				</section>
+				<section>
+					<header className="container max-w-2xl px-4 mx-auto md:px-6">
+						<Heading className="mb-4" id="places" level={5}>
+							{t("coffee.places.latest.title")}
+						</Heading>
+					</header>
+					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
+					<CoffeePlaceCard
+							country="italy"
+							image="/coffee/places/tcb.webp"
+							lastVisit="2w ago"
+							name="The Coffee Box"
+							score={5}
+						/>
+					</div>
+				</section>
 			</section>
 
 			<section className="mb-48">
