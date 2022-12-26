@@ -58,6 +58,7 @@ export type Asset = Node & {
   localizations: Array<Asset>;
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>;
+  posterPoster: Array<Poster>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -83,6 +84,7 @@ export type AssetCoverThoughtArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   orderBy?: InputMaybe<ThoughtOrderByInput>;
@@ -99,6 +101,7 @@ export type AssetCreatedAtArgs = {
 
 /** Asset system model */
 export type AssetCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -127,6 +130,20 @@ export type AssetLocalizationsArgs = {
 
 
 /** Asset system model */
+export type AssetPosterPosterArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<PosterOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PosterWhereInput>;
+};
+
+
+/** Asset system model */
 export type AssetPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
@@ -134,6 +151,7 @@ export type AssetPublishedAtArgs = {
 
 /** Asset system model */
 export type AssetPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -143,6 +161,7 @@ export type AssetScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -158,6 +177,7 @@ export type AssetUpdatedAtArgs = {
 
 /** Asset system model */
 export type AssetUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -196,6 +216,7 @@ export type AssetCreateInput = {
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
   mimeType?: InputMaybe<Scalars['String']>;
+  posterPoster?: InputMaybe<PosterCreateManyInlineInput>;
   size?: InputMaybe<Scalars['Float']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   width?: InputMaybe<Scalars['Float']>;
@@ -297,6 +318,9 @@ export type AssetManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
+  posterPoster_every?: InputMaybe<PosterWhereInput>;
+  posterPoster_none?: InputMaybe<PosterWhereInput>;
+  posterPoster_some?: InputMaybe<PosterWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -376,6 +400,7 @@ export type AssetUpdateInput = {
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
   mimeType?: InputMaybe<Scalars['String']>;
+  posterPoster?: InputMaybe<PosterUpdateManyInlineInput>;
   size?: InputMaybe<Scalars['Float']>;
   width?: InputMaybe<Scalars['Float']>;
 };
@@ -627,6 +652,9 @@ export type AssetWhereInput = {
   mimeType_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   mimeType_starts_with?: InputMaybe<Scalars['String']>;
+  posterPoster_every?: InputMaybe<PosterWhereInput>;
+  posterPoster_none?: InputMaybe<PosterWhereInput>;
+  posterPoster_some?: InputMaybe<PosterWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -746,16 +774,19 @@ export type Coffee = {
 
 
 export type CoffeeBagArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 export type CoffeeCafeArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 export type CoffeeDrinkArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1502,6 +1533,7 @@ export type IdeaCreatedAtArgs = {
 
 /** The concepts that I want to develop further in the website. */
 export type IdeaCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1511,6 +1543,7 @@ export type IdeaDependenciesArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   orderBy?: InputMaybe<IdeaOrderByInput>;
@@ -1550,6 +1583,7 @@ export type IdeaPublishedAtArgs = {
 
 /** The concepts that I want to develop further in the website. */
 export type IdeaPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1559,6 +1593,7 @@ export type IdeaScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -1574,6 +1609,7 @@ export type IdeaUpdatedAtArgs = {
 
 /** The concepts that I want to develop further in the website. */
 export type IdeaUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -2193,6 +2229,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one idea */
   createIdea?: Maybe<Idea>;
+  /** Create one poster */
+  createPoster?: Maybe<Poster>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Create one thought */
@@ -2216,12 +2254,21 @@ export type Mutation = {
   /** Delete many Idea documents, return deleted documents */
   deleteManyIdeasConnection: IdeaConnection;
   /**
+   * Delete many Poster documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPostersConnection)
+   */
+  deleteManyPosters: BatchPayload;
+  /** Delete many Poster documents, return deleted documents */
+  deleteManyPostersConnection: PosterConnection;
+  /**
    * Delete many Thought documents
    * @deprecated Please use the new paginated many mutation (deleteManyThoughtsConnection)
    */
   deleteManyThoughts: BatchPayload;
   /** Delete many Thought documents, return deleted documents */
   deleteManyThoughtsConnection: ThoughtConnection;
+  /** Delete one poster from _all_ existing stages. Returns deleted document. */
+  deletePoster?: Maybe<Poster>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -2247,24 +2294,37 @@ export type Mutation = {
   /** Publish many Idea documents */
   publishManyIdeasConnection: IdeaConnection;
   /**
+   * Publish many Poster documents
+   * @deprecated Please use the new paginated many mutation (publishManyPostersConnection)
+   */
+  publishManyPosters: BatchPayload;
+  /** Publish many Poster documents */
+  publishManyPostersConnection: PosterConnection;
+  /**
    * Publish many Thought documents
    * @deprecated Please use the new paginated many mutation (publishManyThoughtsConnection)
    */
   publishManyThoughts: BatchPayload;
   /** Publish many Thought documents */
   publishManyThoughtsConnection: ThoughtConnection;
+  /** Publish one poster */
+  publishPoster?: Maybe<Poster>;
   /** Publish one thought */
   publishThought?: Maybe<Thought>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one idea */
   schedulePublishIdea?: Maybe<Idea>;
+  /** Schedule to publish one poster */
+  schedulePublishPoster?: Maybe<Poster>;
   /** Schedule to publish one thought */
   schedulePublishThought?: Maybe<Thought>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one idea from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishIdea?: Maybe<Idea>;
+  /** Unpublish one poster from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishPoster?: Maybe<Poster>;
   /** Unpublish one thought from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishThought?: Maybe<Thought>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2286,12 +2346,21 @@ export type Mutation = {
   /** Find many Idea documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyIdeasConnection: IdeaConnection;
   /**
+   * Unpublish many Poster documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPostersConnection)
+   */
+  unpublishManyPosters: BatchPayload;
+  /** Find many Poster documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPostersConnection: PosterConnection;
+  /**
    * Unpublish many Thought documents
    * @deprecated Please use the new paginated many mutation (unpublishManyThoughtsConnection)
    */
   unpublishManyThoughts: BatchPayload;
   /** Find many Thought documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyThoughtsConnection: ThoughtConnection;
+  /** Unpublish one poster from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPoster?: Maybe<Poster>;
   /** Unpublish one thought from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishThought?: Maybe<Thought>;
   /** Update one asset */
@@ -2313,12 +2382,21 @@ export type Mutation = {
   /** Update many Idea documents */
   updateManyIdeasConnection: IdeaConnection;
   /**
+   * Update many posters
+   * @deprecated Please use the new paginated many mutation (updateManyPostersConnection)
+   */
+  updateManyPosters: BatchPayload;
+  /** Update many Poster documents */
+  updateManyPostersConnection: PosterConnection;
+  /**
    * Update many thoughts
    * @deprecated Please use the new paginated many mutation (updateManyThoughtsConnection)
    */
   updateManyThoughts: BatchPayload;
   /** Update many Thought documents */
   updateManyThoughtsConnection: ThoughtConnection;
+  /** Update one poster */
+  updatePoster?: Maybe<Poster>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Update one thought */
@@ -2327,6 +2405,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one idea */
   upsertIdea?: Maybe<Idea>;
+  /** Upsert one poster */
+  upsertPoster?: Maybe<Poster>;
   /** Upsert one thought */
   upsertThought?: Maybe<Thought>;
 };
@@ -2339,6 +2419,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateIdeaArgs = {
   data: IdeaCreateInput;
+};
+
+
+export type MutationCreatePosterArgs = {
+  data: PosterCreateInput;
 };
 
 
@@ -2392,6 +2477,21 @@ export type MutationDeleteManyIdeasConnectionArgs = {
 };
 
 
+export type MutationDeleteManyPostersArgs = {
+  where?: InputMaybe<PosterManyWhereInput>;
+};
+
+
+export type MutationDeleteManyPostersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PosterManyWhereInput>;
+};
+
+
 export type MutationDeleteManyThoughtsArgs = {
   where?: InputMaybe<ThoughtManyWhereInput>;
 };
@@ -2404,6 +2504,11 @@ export type MutationDeleteManyThoughtsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ThoughtManyWhereInput>;
+};
+
+
+export type MutationDeletePosterArgs = {
+  where: PosterWhereUniqueInput;
 };
 
 
@@ -2488,6 +2593,30 @@ export type MutationPublishManyIdeasConnectionArgs = {
 };
 
 
+export type MutationPublishManyPostersArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<PosterManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishManyPostersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<PosterManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
 export type MutationPublishManyThoughtsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -2508,6 +2637,15 @@ export type MutationPublishManyThoughtsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<ThoughtManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishPosterArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+  where: PosterWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -2543,6 +2681,17 @@ export type MutationSchedulePublishIdeaArgs = {
 };
 
 
+export type MutationSchedulePublishPosterArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: PosterWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
 export type MutationSchedulePublishThoughtArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -2571,6 +2720,16 @@ export type MutationScheduleUnpublishIdeaArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: IdeaWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishPosterArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
+  where: PosterWhereUniqueInput;
 };
 
 
@@ -2644,6 +2803,28 @@ export type MutationUnpublishManyIdeasConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyPostersArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
+  where?: InputMaybe<PosterManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyPostersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
+  where?: InputMaybe<PosterManyWhereInput>;
+};
+
+
 export type MutationUnpublishManyThoughtsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2663,6 +2844,14 @@ export type MutationUnpublishManyThoughtsConnectionArgs = {
   stage?: InputMaybe<Stage>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ThoughtManyWhereInput>;
+};
+
+
+export type MutationUnpublishPosterArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
+  where: PosterWhereUniqueInput;
 };
 
 
@@ -2720,6 +2909,23 @@ export type MutationUpdateManyIdeasConnectionArgs = {
 };
 
 
+export type MutationUpdateManyPostersArgs = {
+  data: PosterUpdateManyInput;
+  where?: InputMaybe<PosterManyWhereInput>;
+};
+
+
+export type MutationUpdateManyPostersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: PosterUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PosterManyWhereInput>;
+};
+
+
 export type MutationUpdateManyThoughtsArgs = {
   data: ThoughtUpdateManyInput;
   where?: InputMaybe<ThoughtManyWhereInput>;
@@ -2734,6 +2940,12 @@ export type MutationUpdateManyThoughtsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ThoughtManyWhereInput>;
+};
+
+
+export type MutationUpdatePosterArgs = {
+  data: PosterUpdateInput;
+  where: PosterWhereUniqueInput;
 };
 
 
@@ -2758,6 +2970,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertIdeaArgs = {
   upsert: IdeaUpsertInput;
   where: IdeaWhereUniqueInput;
+};
+
+
+export type MutationUpsertPosterArgs = {
+  upsert: PosterUpsertInput;
+  where: PosterWhereUniqueInput;
 };
 
 
@@ -2806,6 +3024,627 @@ export type PageInfo = {
   startCursor?: Maybe<Scalars['String']>;
 };
 
+/** Posters designed by myself for fun or for work */
+export type Poster = Node & {
+  __typename?: 'Poster';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  description?: Maybe<Scalars['String']>;
+  /** Get the document in other stages */
+  documentInStages: Array<Poster>;
+  format?: Maybe<PosterFormat>;
+  /** List of Poster versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Poster>;
+  name: Scalars['String'];
+  poster: Asset;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  slug: Scalars['String'];
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterPosterArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+/** Posters designed by myself for fun or for work */
+export type PosterUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type PosterConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PosterWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PosterConnection = {
+  __typename?: 'PosterConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PosterEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PosterCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  format?: InputMaybe<PosterFormat>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<PosterCreateLocalizationsInput>;
+  /** name input for default locale (en) */
+  name: Scalars['String'];
+  poster: AssetCreateOneInlineInput;
+  slug: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type PosterCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type PosterCreateLocalizationInput = {
+  /** Localization input */
+  data: PosterCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PosterCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<PosterCreateLocalizationInput>>;
+};
+
+export type PosterCreateManyInlineInput = {
+  /** Connect multiple existing Poster documents */
+  connect?: InputMaybe<Array<PosterWhereUniqueInput>>;
+  /** Create and connect multiple existing Poster documents */
+  create?: InputMaybe<Array<PosterCreateInput>>;
+};
+
+export type PosterCreateOneInlineInput = {
+  /** Connect one existing Poster document */
+  connect?: InputMaybe<PosterWhereUniqueInput>;
+  /** Create and connect one Poster document */
+  create?: InputMaybe<PosterCreateInput>;
+};
+
+/** An edge in a connection. */
+export type PosterEdge = {
+  __typename?: 'PosterEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Poster;
+};
+
+export enum PosterFormat {
+  A3 = 'A3',
+  Vinyl = 'VINYL'
+}
+
+/** Identifies documents */
+export type PosterManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PosterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PosterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PosterWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<PosterWhereStageInput>;
+  documentInStages_none?: InputMaybe<PosterWhereStageInput>;
+  documentInStages_some?: InputMaybe<PosterWhereStageInput>;
+  format?: InputMaybe<PosterFormat>;
+  /** All values that are contained in given list. */
+  format_in?: InputMaybe<Array<InputMaybe<PosterFormat>>>;
+  /** All values that are not equal to given value. */
+  format_not?: InputMaybe<PosterFormat>;
+  /** All values that are not contained in given list. */
+  format_not_in?: InputMaybe<Array<InputMaybe<PosterFormat>>>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  poster?: InputMaybe<AssetWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  slug_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum PosterOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  FormatAsc = 'format_ASC',
+  FormatDesc = 'format_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type PosterUpdateInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  format?: InputMaybe<PosterFormat>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<PosterUpdateLocalizationsInput>;
+  /** name input for default locale (en) */
+  name?: InputMaybe<Scalars['String']>;
+  poster?: InputMaybe<AssetUpdateOneInlineInput>;
+  slug?: InputMaybe<Scalars['String']>;
+};
+
+export type PosterUpdateLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type PosterUpdateLocalizationInput = {
+  data: PosterUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PosterUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<PosterCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<PosterUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<PosterUpsertLocalizationInput>>;
+};
+
+export type PosterUpdateManyInlineInput = {
+  /** Connect multiple existing Poster documents */
+  connect?: InputMaybe<Array<PosterConnectInput>>;
+  /** Create and connect multiple Poster documents */
+  create?: InputMaybe<Array<PosterCreateInput>>;
+  /** Delete multiple Poster documents */
+  delete?: InputMaybe<Array<PosterWhereUniqueInput>>;
+  /** Disconnect multiple Poster documents */
+  disconnect?: InputMaybe<Array<PosterWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Poster documents */
+  set?: InputMaybe<Array<PosterWhereUniqueInput>>;
+  /** Update multiple Poster documents */
+  update?: InputMaybe<Array<PosterUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Poster documents */
+  upsert?: InputMaybe<Array<PosterUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PosterUpdateManyInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  format?: InputMaybe<PosterFormat>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<PosterUpdateManyLocalizationsInput>;
+};
+
+export type PosterUpdateManyLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']>;
+};
+
+export type PosterUpdateManyLocalizationInput = {
+  data: PosterUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PosterUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<PosterUpdateManyLocalizationInput>>;
+};
+
+export type PosterUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PosterUpdateManyInput;
+  /** Document search */
+  where: PosterWhereInput;
+};
+
+export type PosterUpdateOneInlineInput = {
+  /** Connect existing Poster document */
+  connect?: InputMaybe<PosterWhereUniqueInput>;
+  /** Create and connect one Poster document */
+  create?: InputMaybe<PosterCreateInput>;
+  /** Delete currently connected Poster document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Poster document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Poster document */
+  update?: InputMaybe<PosterUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Poster document */
+  upsert?: InputMaybe<PosterUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PosterUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PosterUpdateInput;
+  /** Unique document search */
+  where: PosterWhereUniqueInput;
+};
+
+export type PosterUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PosterCreateInput;
+  /** Update document if it exists */
+  update: PosterUpdateInput;
+};
+
+export type PosterUpsertLocalizationInput = {
+  create: PosterCreateLocalizationDataInput;
+  locale: Locale;
+  update: PosterUpdateLocalizationDataInput;
+};
+
+export type PosterUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PosterUpsertInput;
+  /** Unique document search */
+  where: PosterWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type PosterWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Identifies documents */
+export type PosterWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PosterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PosterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PosterWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  documentInStages_every?: InputMaybe<PosterWhereStageInput>;
+  documentInStages_none?: InputMaybe<PosterWhereStageInput>;
+  documentInStages_some?: InputMaybe<PosterWhereStageInput>;
+  format?: InputMaybe<PosterFormat>;
+  /** All values that are contained in given list. */
+  format_in?: InputMaybe<Array<InputMaybe<PosterFormat>>>;
+  /** All values that are not equal to given value. */
+  format_not?: InputMaybe<PosterFormat>;
+  /** All values that are not contained in given list. */
+  format_not_in?: InputMaybe<Array<InputMaybe<PosterFormat>>>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+  poster?: InputMaybe<AssetWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  slug_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type PosterWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PosterWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PosterWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PosterWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<PosterWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Poster record uniquely */
+export type PosterWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  slug?: InputMaybe<Scalars['String']>;
+};
+
 export type PublishLocaleInput = {
   /** Locales to publish */
   locale: Locale;
@@ -2833,6 +3672,14 @@ export type Query = {
   ideasConnection: IdeaConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
+  /** Retrieve a single poster */
+  poster?: Maybe<Poster>;
+  /** Retrieve document version */
+  posterVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple posters */
+  posters: Array<Poster>;
+  /** Retrieve multiple posters using the Relay connection interface */
+  postersConnection: PosterConnection;
   /** Retrieve a single scheduledOperation */
   scheduledOperation?: Maybe<ScheduledOperation>;
   /** Retrieve multiple scheduledOperations */
@@ -2942,6 +3789,44 @@ export type QueryNodeArgs = {
   id: Scalars['ID'];
   locales?: Array<Locale>;
   stage?: Stage;
+};
+
+
+export type QueryPosterArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: PosterWhereUniqueInput;
+};
+
+
+export type QueryPosterVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryPostersArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<PosterOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<PosterWhereInput>;
+};
+
+
+export type QueryPostersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<PosterOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<PosterWhereInput>;
 };
 
 
@@ -3151,6 +4036,7 @@ export type ScheduledOperationAffectedDocumentsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -3159,6 +4045,7 @@ export type ScheduledOperationAffectedDocumentsArgs = {
 
 /** Scheduled Operation system model */
 export type ScheduledOperationCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -3173,22 +4060,25 @@ export type ScheduledOperationDocumentInStagesArgs = {
 
 /** Scheduled Operation system model */
 export type ScheduledOperationPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** Scheduled Operation system model */
 export type ScheduledOperationReleaseArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** Scheduled Operation system model */
 export type ScheduledOperationUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Idea | Thought;
+export type ScheduledOperationAffectedDocument = Asset | Idea | Poster | Thought;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -3565,6 +4455,7 @@ export type ScheduledRelease = Node & {
 
 /** Scheduled Release system model */
 export type ScheduledReleaseCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -3582,6 +4473,7 @@ export type ScheduledReleaseOperationsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   orderBy?: InputMaybe<ScheduledOperationOrderByInput>;
@@ -3592,12 +4484,14 @@ export type ScheduledReleaseOperationsArgs = {
 
 /** Scheduled Release system model */
 export type ScheduledReleasePublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** Scheduled Release system model */
 export type ScheduledReleaseUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -4150,6 +5044,7 @@ export type Thought = Node & {
 
 
 export type ThoughtCoverArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -4160,6 +5055,7 @@ export type ThoughtCreatedAtArgs = {
 
 
 export type ThoughtCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -4190,6 +5086,7 @@ export type ThoughtPublishedAtArgs = {
 
 
 export type ThoughtPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -4198,6 +5095,7 @@ export type ThoughtScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -4211,6 +5109,7 @@ export type ThoughtUpdatedAtArgs = {
 
 
 export type ThoughtUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -5224,6 +6123,10 @@ export enum _SystemDateTimeFieldVariation {
 
 export type IdeaCardFragment = { __typename?: 'Idea', id: string, summary: string, description: string, targetPages: Array<Page>, targetComponents: Array<Component>, targetVersion: string, ideaStatus: Idea_Status, dependencies: Array<{ __typename?: 'Idea', id: string, summary: string }> } & { ' $fragmentName'?: 'IdeaCardFragment' };
 
+export type PosterThumbnailFragment = { __typename?: 'Poster', slug: string, name: string, poster: { __typename?: 'Asset', url: string } } & { ' $fragmentName'?: 'PosterThumbnailFragment' };
+
+export type PosterFullFragment = { __typename?: 'Poster', id: string, slug: string, name: string, description?: string | null, format?: PosterFormat | null, poster: { __typename?: 'Asset', url: string, width?: number | null, height?: number | null } } & { ' $fragmentName'?: 'PosterFullFragment' };
+
 export type IdeasQueryVariables = Exact<{
   activeIdeaId: Scalars['ID'];
 }>;
@@ -5249,5 +6152,24 @@ export type IdeasQuery = { __typename?: 'Query', backlog: Array<(
     & { ' $fragmentRefs'?: { 'IdeaCardFragment': IdeaCardFragment } }
   ) | null };
 
+export type PostersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PostersQuery = { __typename?: 'Query', standard: Array<{ __typename?: 'Poster', slug: string, name: string, poster: { __typename?: 'Asset', url: string } }>, vinyl: Array<{ __typename?: 'Poster', slug: string, name: string, poster: { __typename?: 'Asset', url: string } }> };
+
+export type PosterQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type PosterQuery = { __typename?: 'Query', poster?: (
+    { __typename?: 'Poster' }
+    & { ' $fragmentRefs'?: { 'PosterFullFragment': PosterFullFragment } }
+  ) | null };
+
 export const IdeaCardFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IdeaCard"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Idea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"dependencies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}}]}},{"kind":"Field","name":{"kind":"Name","value":"targetPages"}},{"kind":"Field","name":{"kind":"Name","value":"targetComponents"}},{"kind":"Field","name":{"kind":"Name","value":"targetVersion"}},{"kind":"Field","name":{"kind":"Name","value":"ideaStatus"}}]}}]} as unknown as DocumentNode<IdeaCardFragment, unknown>;
+export const PosterThumbnailFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PosterThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Poster"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"poster"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"transformation"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"image"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"resize"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"640"}}]}}]}}]}}]}]}}]}}]} as unknown as DocumentNode<PosterThumbnailFragment, unknown>;
+export const PosterFullFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PosterFull"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Poster"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"format"}},{"kind":"Field","name":{"kind":"Name","value":"poster"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]} as unknown as DocumentNode<PosterFullFragment, unknown>;
 export const IdeasDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Ideas"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"activeIdeaId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"backlog"},"name":{"kind":"Name","value":"ideas"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"ideaStatus"},"value":{"kind":"EnumValue","value":"PENDING"}},{"kind":"ObjectField","name":{"kind":"Name","value":"targetVersion"},"value":{"kind":"StringValue","value":"TBD","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IdeaCard"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"planned"},"name":{"kind":"Name","value":"ideas"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"ideaStatus"},"value":{"kind":"EnumValue","value":"PENDING"}},{"kind":"ObjectField","name":{"kind":"Name","value":"targetVersion_not"},"value":{"kind":"StringValue","value":"TBD","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IdeaCard"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"ongoing"},"name":{"kind":"Name","value":"ideas"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"ideaStatus"},"value":{"kind":"EnumValue","value":"IN_PROGRESS"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IdeaCard"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"testing"},"name":{"kind":"Name","value":"ideas"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"ideaStatus"},"value":{"kind":"EnumValue","value":"TESTING"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IdeaCard"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"done"},"name":{"kind":"Name","value":"ideas"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"ideaStatus"},"value":{"kind":"EnumValue","value":"DONE"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IdeaCard"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"activeIdea"},"name":{"kind":"Name","value":"idea"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"activeIdeaId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IdeaCard"}}]}}]}},...IdeaCardFragmentDoc.definitions]} as unknown as DocumentNode<IdeasQuery, IdeasQueryVariables>;
+export const PostersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Posters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"standard"},"name":{"kind":"Name","value":"posters"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"format"},"value":{"kind":"EnumValue","value":"A3"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"poster"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"vinyl"},"name":{"kind":"Name","value":"posters"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"format"},"value":{"kind":"EnumValue","value":"VINYL"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"50"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"poster"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]} as unknown as DocumentNode<PostersQuery, PostersQueryVariables>;
+export const PosterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Poster"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"poster"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PosterFull"}}]}}]}},...PosterFullFragmentDoc.definitions]} as unknown as DocumentNode<PosterQuery, PosterQueryVariables>;

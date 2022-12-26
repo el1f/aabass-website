@@ -1,6 +1,7 @@
 import React from "react";
 
 import ArrowLeft from "../public/icons/arrow-left.svg";
+import Close from "../public/icons/cross.svg";
 import Dribbble from "../public/icons/dribbble.svg";
 import Github from "../public/icons/github.svg";
 import Instagram from "../public/icons/instagram.svg";
@@ -9,7 +10,7 @@ import DarkTheme from "../public/icons/moon-stars.svg";
 import LightTheme from "../public/icons/sun.svg";
 import { SocialPlatform } from "../types";
 
-type IconName = SocialPlatform | "dark" | "light" | "arrowLeft";
+type IconName = SocialPlatform | "dark" | "light" | "arrowLeft" | "close";
 
 interface IconProps {
 	name: IconName;
@@ -31,5 +32,7 @@ export const Icon: React.FC<IconProps> = ({ name }) => {
 			return <DarkTheme className="h-6" />;
 		case "arrowLeft":
 			return <ArrowLeft className="h-6" />;
+		case "close":
+			return <Close className="h-6" />;
 	}
 };
