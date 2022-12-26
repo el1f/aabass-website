@@ -10,7 +10,7 @@ const CoffeeGearGrid = () => {
 				<div className="transition-all duration-100 group-hover:translate-x-1">
 					<Text size="sm">MACHINE</Text>
 					<Heading
-						className="transition-all duration-100 opacity-25 group-hover:opacity-100 text-8xl"
+						className="transition-all duration-100 opacity-25 group-hover:opacity-100 text-8xl md:text-8xl"
 						level={5}
 					>
 						Sage Barista Express
