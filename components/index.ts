@@ -24,3 +24,4 @@ export * from "./OutlinedCard";
 export * from "./PosterLightbox";
 export * from "./CoffeeGearGrid";
 export * from "./CoffeePlaceCard";
+export * from "./CoffeeBeansCard";
