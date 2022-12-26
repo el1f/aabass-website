@@ -5,7 +5,8 @@
         "features": [
             "Updated the branding on the website to reflect the new palette, logos and fonts.",
             "The navbar now has a nice sleek animation when back-scrolling that animates the logo.",
-            "A new little page for all of my thoughts have been added! Now I can finally bother all of the internet with what's currently running through my little noggin'!"
+            "A new little page for all of my thoughts have been added! Now I can finally bother all of the internet with what's currently running through my little noggin'!",
+            "The posters have been moved to the CMS. Now I can update them without having to push a whole new version of the website. How cool is that? Also, there is now a lightBox to check them out in their full-sized glory!"
         ]
     },
     "1.2.0": {
