@@ -1,6 +1,12 @@
+import dayjs from "dayjs";
 import Image from "next/image";
 import React from "react";
 
+import {
+	CoffeePlaceCard as CoffeePlaceCardFragment,
+	FragmentType,
+	useFragment,
+} from "../graphql";
 import { Heading, OutlinedCard, Text } from ".";
 
 interface CoffeePlaceCardProps {
@@ -24,10 +30,15 @@ export const CoffeePlaceCard: React.FC<CoffeePlaceCardProps> = ({
 				<Image alt="" height={288} objectFit="cover" src={image} width={224} />
 			</figure>
 			<div className="flex flex-col py-3">
-				<Text className="font-mono font-bold leading-none uppercase" size="xs">
+				<Text
+					className="mb-1 font-mono font-bold leading-none uppercase"
+					size="xs"
+				>
 					{country}
 				</Text>
-				<Heading level={5}>{name}</Heading>
+				<Heading className="leading-tight md:leading-tight" level={5}>
+					{name}
+				</Heading>
 
 				<div className="flex gap-2 mt-auto">
 					<Text size="sm">⭐️ {score.toFixed(1)}</Text>
@@ -35,5 +46,21 @@ export const CoffeePlaceCard: React.FC<CoffeePlaceCardProps> = ({
 				</div>
 			</div>
 		</OutlinedCard>
+	);
+};
+
+export const FragCoffeePlaceCard: React.FC<{
+	placeRef: FragmentType<typeof CoffeePlaceCardFragment>;
+}> = ({ placeRef }) => {
+	const place = useFragment(CoffeePlaceCardFragment, placeRef);
+
+	return (
+		<CoffeePlaceCard
+			country={place.country}
+			image={place.picture?.url ?? ""}
+			lastVisit={dayjs(place.visits[0]).format("DD MMM")}
+			name={place.name}
+			score={place.score ?? 0}
+		/>
 	);
 };
