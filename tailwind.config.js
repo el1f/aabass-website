@@ -54,6 +54,14 @@ module.exports = {
         cv: "minmax(64px, 192px) 2fr",
         thought: "minmax(8rem, 20rem) 42rem minmax(8rem, 20rem)",
       },
+      margin: {
+        "heading-1": "6rem",
+        "heading-2": "3rem",
+        "heading-3": "1rem",
+        "section-1": "16rem",
+        "section-2": "8rem",
+        "section-3": "4rem",
+      },
       maxWidth: {
         "2xs": "16rem",
         "3xs": "12rem",

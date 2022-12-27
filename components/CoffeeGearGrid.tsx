@@ -5,7 +5,7 @@ import { Heading, Text } from ".";
 
 const CoffeeGearGrid = () => {
 	return (
-		<div className="container grid max-w-5xl grid-cols-6 gap-5 px-6 mx-auto mb-64 sm:grid-cols-3 lg:gap-8 lg:grid-cols-11 lg:grid-rows-6">
+		<div className="container grid max-w-5xl grid-cols-6 gap-5 px-6 mx-auto sm:grid-cols-3 lg:gap-8 lg:grid-cols-11 lg:grid-rows-6">
 			<div className="relative col-span-6 p-4 overflow-hidden transition-all duration-100 border hover:border-textDimmedLight/40 lg:row-span-6 lg:col-span-6 sm:row-span-2 sm:col-span-2 rounded-2xl border-textDimmedLight/20 aspect-square group">
 				<div className="transition-all duration-100 group-hover:translate-x-1">
 					<Text size="sm">MACHINE</Text>
