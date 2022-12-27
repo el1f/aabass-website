@@ -1,5 +1,5 @@
+import classnames from "classnames";
 import type { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -16,20 +16,25 @@ import {
 	Anchor,
 	Button,
 	Footer,
+	FragCoffeeBeansCard,
+	FragCoffeePlaceCard,
 	Heading,
 	Navbar,
 	PosterThumbnail,
+	Seo,
 	Strong,
 	Text,
 	ThoughtCard,
 } from "../components";
 import { AvailabilityLabel } from "../components/AvailabilityLabel";
-import CoffeeGearGrid from "../components/CoffeeGearGrid";
 import { SOCIALS } from "../data";
-import { allPosters, clientSetup } from "../graphql";
+import { clientSetup, homePage } from "../graphql";
 import * as ga from "../lib/ga";
 import { getThoughts } from "../lib/thoughts";
 import { Thought } from "../types";
+
+const CARD_CAROUSEL =
+	"flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8 -mb-8";
 
 const Home: NextPage<{
 	thoughts: Thought[];
@@ -41,24 +46,12 @@ const Home: NextPage<{
 	// in production.
 	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
 	const [{ data }] = useQuery({
-		query: allPosters,
+		query: homePage,
 	});
 
 	return (
 		<>
-			<Head>
-				<title>{t("home.pageTitle")}</title>
-
-				{/* TODO: replace with the OpenGraph component when fixed */}
-				<meta content="website" property="og:type" />
-				<meta content={t(`meta.og.title`)} property="og:title" />
-				<meta content={process.env.NEXT_PUBLIC_HOSTNAME} property="og:url" />
-				<meta
-					content={`${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`}
-					property="og:image"
-				/>
-				<meta content={t(`meta.og.description`)} property="og:description" />
-			</Head>
+			<Seo title={t("home.pageTitle")} />
 
 			<Navbar socials={SOCIALS} />
 
@@ -143,7 +136,7 @@ const Home: NextPage<{
 					</Text>
 				</div>
 				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
-					{(data?.standard ?? []).map((poster) => (
+					{(data?.posters ?? []).map((poster) => (
 						<Link href={`/posters/${poster.slug}`} key={poster.slug}>
 							<a>
 								<PosterThumbnail
@@ -197,25 +190,49 @@ const Home: NextPage<{
 						))}
 					</div>
 				</section>
-
-				<div className="flex items-center justify-between mb-4">
-					<Heading id="coffee" level={3}>
-						{t("home.personal.coffee.title")}
-					</Heading>
-					<Anchor href="/coffee" size="sm">
-						{t("home.personal.coffee.showMore")}{" "}
-					</Anchor>
-				</div>
-				<Text as="p" className="mb-8">
-					{t("home.personal.coffee.description")}
-				</Text>
-
-				<Heading className="mt-16" level={5}>
-					My current setup
-				</Heading>
 			</section>
 
-			<CoffeeGearGrid />
+			<section className="overflow-hidden mb-section-2">
+				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
+					<div className="flex items-center justify-between mb-4">
+						<Heading id="coffee" level={3}>
+							{t("home.personal.coffee.title")}
+						</Heading>
+						<Anchor href="/coffee" size="sm">
+							{t("home.personal.coffee.showMore")}{" "}
+						</Anchor>
+					</div>
+					<Text as="p" className="mb-8">
+						{t("home.personal.coffee.description")}
+					</Text>
+				</header>
+
+				<section className="mb-section-3">
+					<header className="container max-w-2xl px-6 mx-auto mb-1">
+						<Heading id="beans" level={5}>
+							{t("home.personal.coffee.beansTitle")}
+						</Heading>
+					</header>
+					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
+						{(data?.beans ?? []).map((bean) => (
+							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
+						))}
+					</div>
+				</section>
+
+				<section className="mb-section-3">
+					<header className="container max-w-2xl px-6 mx-auto mb-1">
+						<Heading id="beans" level={5}>
+							{t("home.personal.coffee.placesTitle")}
+						</Heading>
+					</header>
+					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
+						{(data?.coffeePlaces ?? []).map((place) => (
+							<FragCoffeePlaceCard key={place.id} placeRef={place} />
+						))}
+					</div>
+				</section>
+			</section>
 
 			<section className="container max-w-2xl px-6 mx-auto">
 				<Heading className="mb-4" level={2}>
@@ -256,10 +273,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 			},
 		};
 
-	// Posters
-	await client.query(allPosters, {}).toPromise();
-
-	// Thoughts
+	await client.query(homePage, {}).toPromise();
 	const thoughts = getThoughts().slice(0, 3);
 
 	return {

@@ -55,7 +55,7 @@ const Coffee: NextPage<{
 
 			<Navbar socials={SOCIALS} />
 
-			<header className="container max-w-2xl px-4 px-6 pt-32 pb-8 mx-auto mb-heading-1">
+			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-heading-1">
 				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>
 					{t("coffee.title")}
 				</Heading>
@@ -66,7 +66,7 @@ const Coffee: NextPage<{
 
 			{/* BEANS */}
 			<section className="overflow-hidden mb-section-2">
-				<header className="container max-w-2xl px-4 px-6 mx-auto mb-heading-2">
+				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
 						{t("coffee.beans.title")}
 					</Heading>
@@ -77,7 +77,7 @@ const Coffee: NextPage<{
 				</header>
 
 				<section className="mb-section-3">
-					<header className="container max-w-2xl px-4 px-6 mx-auto mb-1">
+					<header className="container max-w-2xl px-6 mx-auto mb-1">
 						<Heading id="beans" level={5}>
 							{t("coffee.beans.favorites.title")}
 						</Heading>
@@ -89,7 +89,7 @@ const Coffee: NextPage<{
 					</div>
 				</section>
 				<section>
-					<header className="container max-w-2xl px-4 px-6 mx-auto mb-1">
+					<header className="container max-w-2xl px-6 mx-auto mb-1">
 						<Heading id="beans" level={5}>
 							{t("coffee.beans.latest.title")}
 						</Heading>
@@ -104,7 +104,7 @@ const Coffee: NextPage<{
 
 			{/* GEAR */}
 			<section className="mb-section-2">
-				<header className="container max-w-2xl px-4 px-6 mx-auto mb-8">
+				<header className="container max-w-2xl px-6 mx-auto mb-8">
 					<Heading className="mb-heading-3" id="gear" level={2}>
 						{t("coffee.gear.title")}
 					</Heading>
@@ -125,7 +125,7 @@ const Coffee: NextPage<{
 
 			{/* PLACES */}
 			<section className="overflow-hidden mb-section-2">
-				<header className="container max-w-2xl px-4 px-6 mx-auto mb-8">
+				<header className="container max-w-2xl px-6 mx-auto mb-8">
 					<Heading className="mb-heading-3" id="places" level={2}>
 						{t("coffee.places.title")}
 					</Heading>
@@ -136,7 +136,7 @@ const Coffee: NextPage<{
 				</header>
 
 				<section className="mb-section-3">
-					<header className="container max-w-2xl px-4 px-6 mx-auto mb-heading-3">
+					<header className="container max-w-2xl px-6 mx-auto mb-heading-3">
 						<Heading id="places" level={5}>
 							{t("coffee.places.favorites.title")}
 						</Heading>
@@ -148,7 +148,7 @@ const Coffee: NextPage<{
 					</div>
 				</section>
 				<section className="mb-section-3">
-					<header className="container max-w-2xl px-4 px-6 mx-auto mb-heading-3">
+					<header className="container max-w-2xl px-6 mx-auto mb-heading-3">
 						<Heading id="places" level={5}>
 							{t("coffee.places.latest.title")}
 						</Heading>
@@ -163,7 +163,7 @@ const Coffee: NextPage<{
 
 			{/* THOUGHTS */}
 			<section className="mb-section-2">
-				<header className="container max-w-2xl px-4 px-6 mx-auto mb-8">
+				<header className="container max-w-2xl px-6 mx-auto mb-8">
 					<Heading className="mb-heading-3" id="thoughts" level={2}>
 						{t("coffee.thoughts.title")}
 					</Heading>
@@ -173,7 +173,7 @@ const Coffee: NextPage<{
 					</Text>
 				</header>
 
-				<section className="container max-w-2xl px-4 px-6 mx-auto mb-48">
+				<section className="container max-w-2xl px-6 mx-auto mb-48">
 					{thoughts.map(({ data, slug }) => (
 						<Link href={`/thoughts/${slug}`} key={slug}>
 							<a>
