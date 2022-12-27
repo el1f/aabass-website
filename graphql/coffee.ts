@@ -16,7 +16,7 @@ export const coffeePage = graphql(`
 			id
 			...CoffeePlaceCard
 		}
-		latestPlaces: coffeePlaces(orderBy: visits_ASC) {
+		latestPlaces: coffeePlaces(orderBy: visits_DESC) {
 			id
 			...CoffeePlaceCard
 		}
