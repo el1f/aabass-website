@@ -44,6 +44,7 @@ export const PosterThumbnail: React.FC<PosterThumbnailProps> = ({
 				alt={title}
 				className="block"
 				height={320 * ratioMultipliers[format]}
+				layout="responsive"
 				loader={hygraphImageLoader}
 				src={src}
 				width={320}
