@@ -1,7 +1,7 @@
+import classnames from "classnames";
 import { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
 import Link from "next/link";
-import { Trans, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { initUrqlClient, withUrqlClient } from "next-urql";
 import React from "react";
@@ -20,9 +20,11 @@ import {
 	Heading,
 	Navbar,
 	OutlinedCard,
+	Seo,
 	Strong,
 	Text,
 	ThoughtCard,
+	Trans,
 } from "../../components";
 import CoffeeGearGrid from "../../components/CoffeeGearGrid";
 import { SOCIALS } from "../../data";
@@ -30,6 +32,9 @@ import { clientSetup } from "../../graphql";
 import { coffeePage } from "../../graphql/coffee";
 import { getThoughtsByCategory } from "../../lib/thoughts";
 import { Thought } from "../../types";
+
+const CARD_CAROUSEL =
+	"flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8 -mb-8";
 
 const Coffee: NextPage<{
 	thoughts: Thought[];
@@ -46,73 +51,50 @@ const Coffee: NextPage<{
 
 	return (
 		<>
-			<Head>
-				<title>{t("coffee.pageTitle")}</title>
-				{/* TODO: replace with the OpenGraph component when fixed */}
-				<meta content="website" property="og:type" />
-				<meta content={t(`meta.og.title`)} property="og:title" />
-				<meta content={process.env.NEXT_PUBLIC_HOSTNAME} property="og:url" />
-				<meta
-					content={`${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`}
-					property="og:image"
-				/>
-				<meta content={t(`meta.og.description`)} property="og:description" />
-			</Head>
+			<Seo title={t("coffee.pageTitle")} />
 
 			<Navbar socials={SOCIALS} />
 
-			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto md:px-6">
+			<header className="container max-w-2xl px-4 px-6 pt-32 pb-8 mx-auto mb-heading-1">
 				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>
 					{t("coffee.title")}
 				</Heading>
-				{/* TODO: figure out why using a p causes a hydration issue */}
 				<Text as="div" className="mb-6">
-					<Trans
-						components={{
-							hr: <hr className="my-1 opacity-0" />,
-							strong: <Strong />,
-						}}
-						i18nKey="coffee.body"
-					/>
+					<Trans i18nKey="coffee.body" />
 				</Text>
 			</header>
 
-			<section className="mb-48 overflow-hidden">
-				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-					<Heading className="mb-4" id="beans" level={2}>
+			{/* BEANS */}
+			<section className="overflow-hidden mb-section-2">
+				<header className="container max-w-2xl px-4 px-6 mx-auto mb-heading-2">
+					<Heading className="mb-heading-3" id="beans" level={2}>
 						{t("coffee.beans.title")}
 					</Heading>
-					{/* TODO: figure out why using a p causes a hydration issue */}
+
 					<Text as="div" className="mb-6">
-						<Trans
-							components={{
-								hr: <hr className="my-1 opacity-0" />,
-								strong: <Strong />,
-							}}
-							i18nKey="coffee.beans.description"
-						/>
+						<Trans i18nKey="coffee.beans.description" />
 					</Text>
 				</header>
 
-				<section className="mb-8">
-					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-						<Heading className="mb-4" id="beans" level={5}>
+				<section className="mb-section-3">
+					<header className="container max-w-2xl px-4 px-6 mx-auto mb-1">
+						<Heading id="beans" level={5}>
 							{t("coffee.beans.favorites.title")}
 						</Heading>
 					</header>
-					<div className="flex pt-8 gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
 						{(pageData?.favoriteBeans ?? []).map((bean) => (
 							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
 						))}
 					</div>
 				</section>
-				<section className="mb-8">
-					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-						<Heading className="mb-4" id="beans" level={5}>
+				<section>
+					<header className="container max-w-2xl px-4 px-6 mx-auto mb-1">
+						<Heading id="beans" level={5}>
 							{t("coffee.beans.latest.title")}
 						</Heading>
 					</header>
-					<div className="flex pt-8 gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
 						{(pageData?.latestBeans ?? []).map((bean) => (
 							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
 						))}
@@ -120,12 +102,13 @@ const Coffee: NextPage<{
 				</section>
 			</section>
 
-			<section className="mb-48">
-				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-					<Heading className="mb-4" id="gear" level={2}>
+			{/* GEAR */}
+			<section className="mb-section-2">
+				<header className="container max-w-2xl px-4 px-6 mx-auto mb-8">
+					<Heading className="mb-heading-3" id="gear" level={2}>
 						{t("coffee.gear.title")}
 					</Heading>
-					{/* TODO: figure out why using a p causes a hydration issue */}
+
 					<Text as="div" className="mb-6">
 						<Trans
 							components={{
@@ -140,42 +123,37 @@ const Coffee: NextPage<{
 				<CoffeeGearGrid />
 			</section>
 
-			<section className="mb-48 overflow-hidden">
-				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-					<Heading className="mb-4" id="places" level={2}>
+			{/* PLACES */}
+			<section className="overflow-hidden mb-section-2">
+				<header className="container max-w-2xl px-4 px-6 mx-auto mb-8">
+					<Heading className="mb-heading-3" id="places" level={2}>
 						{t("coffee.places.title")}
 					</Heading>
-					{/* TODO: figure out why using a p causes a hydration issue */}
+
 					<Text as="div" className="mb-6">
-						<Trans
-							components={{
-								hr: <hr className="my-1 opacity-0" />,
-								strong: <Strong />,
-							}}
-							i18nKey="coffee.places.description"
-						/>
+						<Trans i18nKey="coffee.places.description" />
 					</Text>
 				</header>
 
-				<section className="mb-8">
-					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-						<Heading className="mb-4" id="places" level={5}>
+				<section className="mb-section-3">
+					<header className="container max-w-2xl px-4 px-6 mx-auto mb-heading-3">
+						<Heading id="places" level={5}>
 							{t("coffee.places.favorites.title")}
 						</Heading>
 					</header>
-					<div className="flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className={classnames(CARD_CAROUSEL)}>
 						{(pageData?.favoritePlaces ?? []).map((place) => (
 							<FragCoffeePlaceCard key={place.id} placeRef={place} />
 						))}
 					</div>
 				</section>
-				<section className="mb-8">
-					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-						<Heading className="mb-4" id="places" level={5}>
+				<section className="mb-section-3">
+					<header className="container max-w-2xl px-4 px-6 mx-auto mb-heading-3">
+						<Heading id="places" level={5}>
 							{t("coffee.places.latest.title")}
 						</Heading>
 					</header>
-					<div className="flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className={classnames(CARD_CAROUSEL)}>
 						{(pageData?.latestPlaces ?? []).map((place) => (
 							<FragCoffeePlaceCard key={place.id} placeRef={place} />
 						))}
@@ -183,24 +161,19 @@ const Coffee: NextPage<{
 				</section>
 			</section>
 
-			<section className="mb-48">
-				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
-					<Heading className="mb-4" id="thoughts" level={2}>
+			{/* THOUGHTS */}
+			<section className="mb-section-2">
+				<header className="container max-w-2xl px-4 px-6 mx-auto mb-8">
+					<Heading className="mb-heading-3" id="thoughts" level={2}>
 						{t("coffee.thoughts.title")}
 					</Heading>
-					{/* TODO: figure out why using a p causes a hydration issue */}
+
 					<Text as="div" className="mb-6">
-						<Trans
-							components={{
-								hr: <hr className="my-1 opacity-0" />,
-								strong: <Strong />,
-							}}
-							i18nKey="coffee.thoughts.description"
-						/>
+						<Trans i18nKey="coffee.thoughts.description" />
 					</Text>
 				</header>
 
-				<section className="container max-w-2xl px-4 mx-auto mb-48 md:px-6">
+				<section className="container max-w-2xl px-4 px-6 mx-auto mb-48">
 					{thoughts.map(({ data, slug }) => (
 						<Link href={`/thoughts/${slug}`} key={slug}>
 							<a>
