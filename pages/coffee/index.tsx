@@ -60,7 +60,7 @@ const Coffee: NextPage<{
 			</header>
 
 			<section className="mb-48 overflow-hidden">
-				<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 					<Heading className="mb-4" id="beans" level={2}>
 						{t("coffee.beans.title")}
 					</Heading>
@@ -76,13 +76,13 @@ const Coffee: NextPage<{
 					</Text>
 				</header>
 
-				<section>
-					<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<section className="mb-8">
+					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 						<Heading className="mb-4" id="beans" level={5}>
 							{t("coffee.beans.favorites.title")}
 						</Heading>
 					</header>
-					<div className="flex pt-8 gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className="flex pt-8 gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
 						<CoffeeBeansCard
 							espressoScore={5}
 							filterScore={5}
@@ -121,13 +121,13 @@ const Coffee: NextPage<{
 						/>
 					</div>
 				</section>
-				<section>
-					<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<section className="mb-8">
+					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 						<Heading className="mb-4" id="beans" level={5}>
 							{t("coffee.beans.latest.title")}
 						</Heading>
 					</header>
-					<div className="flex pt-8 gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className="flex pt-8 gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
 						<CoffeeBeansCard
 							espressoScore={5}
 							filterScore={5}
@@ -142,7 +142,7 @@ const Coffee: NextPage<{
 			</section>
 
 			<section className="mb-48">
-				<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 					<Heading className="mb-4" id="gear" level={2}>
 						{t("coffee.gear.title")}
 					</Heading>
@@ -162,7 +162,7 @@ const Coffee: NextPage<{
 			</section>
 
 			<section className="mb-48 overflow-hidden">
-				<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 					<Heading className="mb-4" id="places" level={2}>
 						{t("coffee.places.title")}
 					</Heading>
@@ -178,13 +178,13 @@ const Coffee: NextPage<{
 					</Text>
 				</header>
 
-				<section>
-					<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<section className="mb-8">
+					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 						<Heading className="mb-4" id="places" level={5}>
 							{t("coffee.places.favorites.title")}
 						</Heading>
 					</header>
-					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className="flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
 						<CoffeePlaceCard
 							country="italy"
 							image="/coffee/places/tcb.webp"
@@ -208,13 +208,13 @@ const Coffee: NextPage<{
 						/>
 					</div>
 				</section>
-				<section>
-					<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<section className="mb-8">
+					<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 						<Heading className="mb-4" id="places" level={5}>
 							{t("coffee.places.latest.title")}
 						</Heading>
 					</header>
-					<div className="flex gap-8 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
+					<div className="flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
 						<CoffeePlaceCard
 							country="italy"
 							image="/coffee/places/tcb.webp"
@@ -227,7 +227,7 @@ const Coffee: NextPage<{
 			</section>
 
 			<section className="mb-48">
-				<header className="container max-w-2xl px-4 mx-auto md:px-6">
+				<header className="container max-w-2xl px-4 mx-auto mb-8 md:px-6">
 					<Heading className="mb-4" id="thoughts" level={2}>
 						{t("coffee.thoughts.title")}
 					</Heading>

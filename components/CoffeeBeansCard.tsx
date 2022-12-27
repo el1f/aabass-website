@@ -23,7 +23,7 @@ export const CoffeeBeansCard: React.FC<CoffeeBeansCardProps> = ({
 	roaster,
 }) => {
 	return (
-		<OutlinedCard className="flex flex-shrink-0 gap-3 p-2 overflow-visible w-96 rounded-xl">
+		<OutlinedCard className="flex flex-shrink-0 gap-3 p-2 overflow-visible w-80 md:w-96 rounded-xl">
 			<figure className="relative flex-shrink-0 h-40 -mt-8 -mb-4 rounded-lg w-28">
 				<Image
 					alt=""
@@ -44,7 +44,7 @@ export const CoffeeBeansCard: React.FC<CoffeeBeansCardProps> = ({
 					{name}
 				</Heading>
 
-				<div className="flex flex-col gap-0 mt-auto">
+				<div className="flex flex-col gap-1 mt-auto md:gap-0">
 					<Text
 						className="font-bold leading-none uppercase line-clamp-1"
 						size="sm"
