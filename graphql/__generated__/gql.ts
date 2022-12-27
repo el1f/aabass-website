@@ -13,6 +13,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
+    "\n\tquery coffeePage {\n\t\t# Beans\n\t\tfavoriteBeans: beans(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\tlatestBeans: beans(first: 10) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\t# Places\n\t\tfavoritePlaces: coffeePlaces(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t\tlatestPlaces: coffeePlaces(orderBy: visits_ASC) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t}\n": types.CoffeePageDocument,
+    "\n\tfragment BeanCard on Bean {\n\t\tbagPicture {\n\t\t\turl\n\t\t}\n\t\tname\n\t\troaster\n\t\torigin\n\t\tprocess\n\t\tespressoScore\n\t\tfilterScore\n\t}\n": types.BeanCardFragmentDoc,
+    "\n\tfragment CoffeePlaceCard on CoffeePlace {\n\t\tpicture {\n\t\t\turl\n\t\t}\n\t\tcountry\n\t\tname\n\t\tscore\n\t\tvisits\n\t}\n": types.CoffeePlaceCardFragmentDoc,
     "\n\tfragment IdeaCard on Idea {\n\t\tid\n\t\tsummary\n\t\tdescription\n\t\tdependencies {\n\t\t\tid\n\t\t\tsummary\n\t\t}\n\t\ttargetPages\n\t\ttargetComponents\n\t\ttargetVersion\n\t\tideaStatus\n\t}\n": types.IdeaCardFragmentDoc,
     "\n\tfragment PosterThumbnail on Poster {\n\t\tslug\n\t\tname\n\t\tposter {\n\t\t\turl(transformation: { image: { resize: { width: 640 } } })\n\t\t}\n\t}\n": types.PosterThumbnailFragmentDoc,
     "\n\tfragment PosterFull on Poster {\n\t\tid\n\t\tslug\n\t\tname\n\t\tdescription\n\t\tformat\n\t\tposter {\n\t\t\turl\n\t\t\twidth\n\t\t\theight\n\t\t}\n\t}\n": types.PosterFullFragmentDoc,
@@ -21,6 +24,18 @@ const documents = {
     "\n\tquery Poster($slug: String!) {\n\t\tposter(where: { slug: $slug }) {\n\t\t\t...PosterFull\n\t\t}\n\t}\n": types.PosterDocument,
 };
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\tquery coffeePage {\n\t\t# Beans\n\t\tfavoriteBeans: beans(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\tlatestBeans: beans(first: 10) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\t# Places\n\t\tfavoritePlaces: coffeePlaces(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t\tlatestPlaces: coffeePlaces(orderBy: visits_ASC) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery coffeePage {\n\t\t# Beans\n\t\tfavoriteBeans: beans(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\tlatestBeans: beans(first: 10) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\t# Places\n\t\tfavoritePlaces: coffeePlaces(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t\tlatestPlaces: coffeePlaces(orderBy: visits_ASC) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\tfragment BeanCard on Bean {\n\t\tbagPicture {\n\t\t\turl\n\t\t}\n\t\tname\n\t\troaster\n\t\torigin\n\t\tprocess\n\t\tespressoScore\n\t\tfilterScore\n\t}\n"): (typeof documents)["\n\tfragment BeanCard on Bean {\n\t\tbagPicture {\n\t\t\turl\n\t\t}\n\t\tname\n\t\troaster\n\t\torigin\n\t\tprocess\n\t\tespressoScore\n\t\tfilterScore\n\t}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\tfragment CoffeePlaceCard on CoffeePlace {\n\t\tpicture {\n\t\t\turl\n\t\t}\n\t\tcountry\n\t\tname\n\t\tscore\n\t\tvisits\n\t}\n"): (typeof documents)["\n\tfragment CoffeePlaceCard on CoffeePlace {\n\t\tpicture {\n\t\t\turl\n\t\t}\n\t\tcountry\n\t\tname\n\t\tscore\n\t\tvisits\n\t}\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

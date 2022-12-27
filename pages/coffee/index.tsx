@@ -3,12 +3,20 @@ import Head from "next/head";
 import Link from "next/link";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { initUrqlClient, withUrqlClient } from "next-urql";
 import React from "react";
+import {
+	cacheExchange,
+	dedupExchange,
+	fetchExchange,
+	ssrExchange,
+	useQuery,
+} from "urql";
 
 import {
-	CoffeeBeansCard,
-	CoffeePlaceCard,
 	Footer,
+	FragCoffeeBeansCard,
+	FragCoffeePlaceCard,
 	Heading,
 	Navbar,
 	OutlinedCard,
@@ -18,6 +26,8 @@ import {
 } from "../../components";
 import CoffeeGearGrid from "../../components/CoffeeGearGrid";
 import { SOCIALS } from "../../data";
+import { clientSetup } from "../../graphql";
+import { coffeePage } from "../../graphql/coffee";
 import { getThoughtsByCategory } from "../../lib/thoughts";
 import { Thought } from "../../types";
 
@@ -25,6 +35,14 @@ const Coffee: NextPage<{
 	thoughts: Thought[];
 }> = ({ thoughts }) => {
 	const { t } = useTranslation("common");
+
+	// TODO: this seems to cause hydration issues every now and then but
+	// according to this issue it isn't a problem that should happen
+	// in production.
+	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
+	const [{ data: pageData }] = useQuery({
+		query: coffeePage,
+	});
 
 	return (
 		<>
@@ -83,42 +101,9 @@ const Coffee: NextPage<{
 						</Heading>
 					</header>
 					<div className="flex pt-8 gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
-						<CoffeeBeansCard
-							espressoScore={5}
-							filterScore={5}
-							image="/coffee/beans/stratoberry.png"
-							name="Strato Berry"
-							origin="Uganda"
-							processing="Natural"
-							roaster="Giraffe Coffee"
-						/>
-						<CoffeeBeansCard
-							espressoScore={5}
-							filterScore={5}
-							image="/coffee/beans/stratoberry.png"
-							name="Strato Berry"
-							origin="Uganda"
-							processing="Natural"
-							roaster="Giraffe Coffee"
-						/>
-						<CoffeeBeansCard
-							espressoScore={5}
-							filterScore={5}
-							image="/coffee/beans/stratoberry.png"
-							name="Strato Berry"
-							origin="Uganda"
-							processing="Natural"
-							roaster="Giraffe Coffee"
-						/>
-						<CoffeeBeansCard
-							espressoScore={5}
-							filterScore={5}
-							image="/coffee/beans/stratoberry.png"
-							name="Strato Berry"
-							origin="Uganda"
-							processing="Natural"
-							roaster="Giraffe Coffee"
-						/>
+						{(pageData?.favoriteBeans ?? []).map((bean) => (
+							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
+						))}
 					</div>
 				</section>
 				<section className="mb-8">
@@ -128,15 +113,9 @@ const Coffee: NextPage<{
 						</Heading>
 					</header>
 					<div className="flex pt-8 gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
-						<CoffeeBeansCard
-							espressoScore={5}
-							filterScore={5}
-							image="/coffee/beans/stratoberry.png"
-							name="Strato Berry"
-							origin="Uganda"
-							processing="Natural"
-							roaster="Giraffe Coffee"
-						/>
+						{(pageData?.latestBeans ?? []).map((bean) => (
+							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
+						))}
 					</div>
 				</section>
 			</section>
@@ -185,27 +164,9 @@ const Coffee: NextPage<{
 						</Heading>
 					</header>
 					<div className="flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
-						<CoffeePlaceCard
-							country="italy"
-							image="/coffee/places/tcb.webp"
-							lastVisit="1d ago"
-							name="The Coffee Box"
-							score={5}
-						/>
-						<CoffeePlaceCard
-							country="Netherlands"
-							image="/coffee/places/giraffe.jpeg"
-							lastVisit="6w ago"
-							name="Giraffe Coffee"
-							score={5}
-						/>
-						<CoffeePlaceCard
-							country="United Kingdom"
-							image="/coffee/places/qima.webp"
-							lastVisit="2w ago"
-							name="Qima Cafe"
-							score={5}
-						/>
+						{(pageData?.favoritePlaces ?? []).map((place) => (
+							<FragCoffeePlaceCard key={place.id} placeRef={place} />
+						))}
 					</div>
 				</section>
 				<section className="mb-8">
@@ -215,13 +176,9 @@ const Coffee: NextPage<{
 						</Heading>
 					</header>
 					<div className="flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8">
-						<CoffeePlaceCard
-							country="italy"
-							image="/coffee/places/tcb.webp"
-							lastVisit="2w ago"
-							name="The Coffee Box"
-							score={5}
-						/>
+						{(pageData?.latestPlaces ?? []).map((place) => (
+							<FragCoffeePlaceCard key={place.id} placeRef={place} />
+						))}
 					</div>
 				</section>
 			</section>
@@ -269,6 +226,26 @@ const Coffee: NextPage<{
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	const ssrCache = ssrExchange({ isClient: false });
+	const client = initUrqlClient(
+		{
+			...clientSetup,
+			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
+		},
+		false,
+	);
+
+	if (!client)
+		return {
+			props: {
+				...(await serverSideTranslations(locale ?? "en", [
+					"common",
+					"changelog",
+				])),
+			},
+		};
+
+	await client.query(coffeePage, {}).toPromise();
 	const thoughts = getThoughtsByCategory("COFFEE");
 
 	return {
@@ -279,7 +256,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 			])),
 			thoughts,
 		},
+		revalidate: 4 * 60 * 60,
 	};
 };
 
-export default Coffee;
+export default withUrqlClient((_ssrExchange) => clientSetup)(Coffee);
