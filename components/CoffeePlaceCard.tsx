@@ -19,7 +19,7 @@ export const CoffeePlaceCard: React.FC<CoffeePlaceCardProps> = ({
 	score,
 }) => {
 	return (
-		<OutlinedCard className="flex flex-shrink-0 gap-3 p-1 w-96 rounded-xl">
+		<OutlinedCard className="flex flex-shrink-0 gap-3 p-1 w-80 md:w-96 rounded-xl">
 			<figure className="relative overflow-hidden rounded-lg w-28 h-36 bg-bgRaised">
 				<Image alt="" height={288} objectFit="cover" src={image} width={224} />
 			</figure>
