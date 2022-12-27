@@ -14,8 +14,8 @@ export const ThoughtCard: React.FC<ThoughtCardProps> = ({
 }) => {
 	const Wrapper = isOutlined ? OutlinedCard : "article";
 	const wrapperClass = isOutlined
-		? "pt-3 pb-4 px-6 -mx-6 group rounded-xl"
-		: "px-4 py-3 -mx-4 transition-all rounded-xl group hover:bg-bgRaised";
+		? "pt-3 pb-4 px-4 md:px-6 -mx-4 md:-mx-6 group rounded-xl"
+		: "px-4 py-3 -mx-2 md:-mx-4 transition-all rounded-xl group hover:bg-bgRaised";
 
 	return (
 		<Wrapper className={wrapperClass}>
