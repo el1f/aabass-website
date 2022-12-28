@@ -53,7 +53,7 @@ const Coffee: NextPage<{
 		<>
 			<Seo title={t("coffee.pageTitle")} />
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-heading-1">
 				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>

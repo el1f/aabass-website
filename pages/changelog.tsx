@@ -6,7 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useState } from "react";
 
 import { Anchor, CodeChip, Footer, Heading, Navbar, Text } from "../components";
-import { CHANGELOG, SOCIALS } from "../data";
+import { CHANGELOG } from "../data";
 
 const CHANGELOG_EASTER_EGGS: Record<
 	string,
@@ -47,7 +47,7 @@ const Changelog = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
 				<Text size="md">{t("changelog.lead")}</Text>

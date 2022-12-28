@@ -59,7 +59,7 @@ export const ThoughtsLayout: React.FC<
 		<>
 			<Seo {...seo} title={`Ayoub's thoughts • ${seo.title}`} />
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<div className="grid items-start justify-center grid-cols-1 pt-32 md:gap-4 lg:gap-8 xl:gap-16 md:grid-cols-thought">
 				<aside

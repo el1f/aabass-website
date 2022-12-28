@@ -6,7 +6,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
 import { Footer, Heading, Navbar, Strong, Text } from "../components";
-import { SOCIALS } from "../data";
 
 const About: NextPage = () => {
 	const { t } = useTranslation("common");
@@ -26,7 +25,7 @@ const About: NextPage = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
 				<Text size="md">{t("about.lead")}</Text>

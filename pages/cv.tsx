@@ -5,7 +5,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
 import { Footer, Heading, Navbar, Text } from "../components";
-import { SOCIALS } from "../data";
 
 const ContactLink: React.FC<{
 	href: string;
@@ -42,7 +41,7 @@ const Curriculum: NextPage = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto print:hidden">
 				<Heading className="mb-4 leading-snug" level={1}>

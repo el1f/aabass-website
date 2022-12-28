@@ -21,7 +21,6 @@ import {
 	Navbar,
 	Text,
 } from "../components";
-import { SOCIALS } from "../data";
 import { allIdeas, clientSetup } from "../graphql";
 
 const IdeasBoardColumn: React.FC<{
@@ -79,7 +78,7 @@ const Ideas = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
 				<Text size="md">{t("ideas.header.lead")}</Text>
