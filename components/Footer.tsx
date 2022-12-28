@@ -60,21 +60,21 @@ export const Footer = () => {
 					<div className="flex gap-12">
 						<div className="flex flex-col items-start gap-2">
 							<Heading level={5}>{t("footer.work.title")}</Heading>
-							<Anchor href="/about">{t("common.about")}</Anchor>
-							<Anchor href="/cv">{t("common.curriculum")}</Anchor>
-							<Anchor href="/cases">{t("common.cases")}</Anchor>
+							<Anchor href="/about">{t("about")}</Anchor>
+							<Anchor href="/cv">{t("curriculum")}</Anchor>
+							<Anchor href="/cases">{t("cases")}</Anchor>
 						</div>
 						<div className="flex flex-col items-start gap-2">
 							<Heading level={5}>{t("footer.personal.title")}</Heading>
-							<Anchor href="/posters">{t("common.posters")}</Anchor>
-							<Anchor href="/thoughts">{t("common.thoughts")}</Anchor>
-							<Anchor href="/ideas">{t("common.ideas")}</Anchor>
+							<Anchor href="/posters">{t("posters")}</Anchor>
+							<Anchor href="/thoughts">{t("thoughts")}</Anchor>
+							<Anchor href="/ideas">{t("ideas")}</Anchor>
 						</div>
 						<div className="flex flex-col items-start gap-2">
 							<Heading level={5}>{t("footer.fun.title")}</Heading>
-							<Anchor href="/coffee">{t("common.coffee")}</Anchor>
-							<Anchor href="/gaming">{t("common.gaming")}</Anchor>
-							<Anchor href="/longboard">{t("common.longboard")}</Anchor>
+							<Anchor href="/coffee">{t("coffee")}</Anchor>
+							<Anchor href="/gaming">{t("gaming")}</Anchor>
+							<Anchor href="/longboard">{t("longboard")}</Anchor>
 						</div>
 					</div>
 

@@ -1,18 +1,10 @@
 import { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Trans, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { initUrqlClient, withUrqlClient } from "next-urql";
-import React from "react";
-import {
-	cacheExchange,
-	dedupExchange,
-	fetchExchange,
-	ssrExchange,
-	useQuery,
-} from "urql";
+import { withUrqlClient } from "next-urql";
+import { useQuery } from "urql";
 
 import {
 	Footer,
@@ -20,13 +12,20 @@ import {
 	Navbar,
 	PosterLightbox,
 	PosterThumbnail,
+	Seo,
 	Text,
+	Trans,
 } from "../../components";
-import { allPosters, clientSetup, poster } from "../../graphql";
+import {
+	clientSetup,
+	initGraphQLClient,
+	poster,
+	postersPage,
+} from "../../graphql";
 import * as ga from "../../lib/ga";
 
 const Posters: NextPage = () => {
-	const { t } = useTranslation("common");
+	const { t } = useTranslation("posters");
 	const router = useRouter();
 
 	// TODO: this seems to cause hydration issues every now and then but
@@ -34,7 +33,7 @@ const Posters: NextPage = () => {
 	// in production.
 	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
 	const [{ data }] = useQuery({
-		query: allPosters,
+		query: postersPage,
 	});
 	const [{ data: selectedPosterData }] = useQuery({
 		query: poster,
@@ -45,32 +44,21 @@ const Posters: NextPage = () => {
 
 	return (
 		<>
-			<Head>
-				<title>{t("posters.pageTitle")}</title>
-				{/* TODO: replace with the OpenGraph component when fixed */}
-				<meta content="website" property="og:type" />
-				<meta content={t(`meta.og.title`)} property="og:title" />
-				<meta content={process.env.NEXT_PUBLIC_HOSTNAME} property="og:url" />
-				<meta
-					content={`${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`}
-					property="og:image"
-				/>
-				<meta content={t(`meta.og.description`)} property="og:description" />
-			</Head>
+			<Seo title={t("pageTitle")} />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
 				<Heading className="mb-4" level={1}>
-					{t("posters.header.title")}
+					{t("header.title")}
 				</Heading>
 				<Text>
-					<Trans i18nKey="posters.header.description" />
+					<Trans i18nKey="posters:header.description" />
 				</Text>
 			</header>
 
 			<div className="container max-w-2xl px-6 mx-auto my-6">
-				<Heading level={2}>{t("posters.standard.title")}</Heading>
+				<Heading level={2}>{t("standard.title")}</Heading>
 			</div>
 
 			<section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
@@ -93,7 +81,7 @@ const Posters: NextPage = () => {
 			</section>
 
 			<div className="container max-w-2xl px-6 mx-auto my-6">
-				<Heading level={2}>{t("posters.square.title")}</Heading>
+				<Heading level={2}>{t("square.title")}</Heading>
 			</div>
 
 			<section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
@@ -128,18 +116,10 @@ const Posters: NextPage = () => {
 };
 
 export const getStaticPaths = async () => {
-	const ssrCache = ssrExchange({ isClient: false });
-	const client = initUrqlClient(
-		{
-			...clientSetup,
-			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-		},
-		false,
-	);
-
+	const [client] = initGraphQLClient();
 	if (!client) return { fallback: "blocking", paths: [] };
 
-	const { data } = await client.query(allPosters, {}).toPromise();
+	const { data } = await client.query(postersPage, {}).toPromise();
 
 	if (!data) return { fallback: "blocking", paths: [] };
 
@@ -170,33 +150,21 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const ssrCache = ssrExchange({ isClient: false });
-	const client = initUrqlClient(
-		{
-			...clientSetup,
-			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-		},
-		false,
-	);
+	const [client, ssrCache] = initGraphQLClient();
 
-	if (!client)
-		return {
-			props: {
-				...(await serverSideTranslations(locale ?? "en", [
-					"common",
-					"changelog",
-				])),
-			},
-		};
+	const i18nSetup = await serverSideTranslations(locale as string, [
+		"common",
+		"posters",
+		"changelog",
+	]);
 
-	await client.query(allPosters, {}).toPromise();
+	if (!client) return { props: { ...i18nSetup } };
+
+	await client.query(postersPage, {}).toPromise();
 
 	return {
 		props: {
-			...(await serverSideTranslations(locale ?? "en", [
-				"common",
-				"changelog",
-			])),
+			...i18nSetup,
 			urqlState: ssrCache.extractData(),
 		},
 		revalidate: 4 * 60 * 60,

@@ -1,11 +1,18 @@
 import { GetStaticProps } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useState } from "react";
 
-import { Anchor, CodeChip, Footer, Heading, Navbar, Text } from "../components";
+import {
+	Anchor,
+	CodeChip,
+	Footer,
+	Heading,
+	Navbar,
+	Seo,
+	Text,
+} from "../components";
 import { CHANGELOG } from "../data";
 
 const CHANGELOG_EASTER_EGGS: Record<
@@ -34,18 +41,7 @@ const Changelog = () => {
 
 	return (
 		<>
-			<Head>
-				<title>{t("changelog.pageTitle")}</title>
-				{/* TODO: replace with the OpenGraph component when fixed */}
-				<meta content="website" property="og:type" />
-				<meta content={t(`meta.og.title`)} property="og:title" />
-				<meta content={process.env.NEXT_PUBLIC_HOSTNAME} property="og:url" />
-				<meta
-					content={`${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`}
-					property="og:image"
-				/>
-				<meta content={t(`meta.og.description`)} property="og:description" />
-			</Head>
+			<Seo title={t("changelog.pageTitle")} />
 
 			<Navbar />
 
@@ -131,7 +127,10 @@ const Changelog = () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
+		...(await serverSideTranslations(locale as string, [
+			"common",
+			"changelog",
+		])),
 	},
 });
 

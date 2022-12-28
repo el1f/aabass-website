@@ -1,7 +1,7 @@
 import { graphql } from "./__generated__";
 
-export const allPosters = graphql(`
-	query Posters {
+export const postersPage = graphql(`
+	query postersPage {
 		standard: posters(where: { format: A3 }, first: 50) {
 			slug
 			name
@@ -20,7 +20,7 @@ export const allPosters = graphql(`
 `);
 
 export const poster = graphql(`
-	query Poster($slug: String!) {
+	query poster($slug: String!) {
 		poster(where: { slug: $slug }) {
 			...PosterFull
 		}

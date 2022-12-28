@@ -3,15 +3,8 @@ import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { initUrqlClient, withUrqlClient } from "next-urql";
-import React from "react";
-import {
-	cacheExchange,
-	dedupExchange,
-	fetchExchange,
-	ssrExchange,
-	useQuery,
-} from "urql";
+import { withUrqlClient } from "next-urql";
+import { useQuery } from "urql";
 
 import {
 	Footer,
@@ -21,14 +14,12 @@ import {
 	Navbar,
 	OutlinedCard,
 	Seo,
-	Strong,
 	Text,
 	ThoughtCard,
 	Trans,
 } from "../../components";
 import CoffeeGearGrid from "../../components/CoffeeGearGrid";
-import { SOCIALS } from "../../data";
-import { clientSetup } from "../../graphql";
+import { clientSetup, initGraphQLClient } from "../../graphql";
 import { coffeePage } from "../../graphql/coffee";
 import { getThoughtsByCategory } from "../../lib/thoughts";
 import { Thought } from "../../types";
@@ -39,7 +30,7 @@ const CARD_CAROUSEL =
 const Coffee: NextPage<{
 	thoughts: Thought[];
 }> = ({ thoughts }) => {
-	const { t } = useTranslation("common");
+	const { t } = useTranslation("coffee");
 
 	// TODO: this seems to cause hydration issues every now and then but
 	// according to this issue it isn't a problem that should happen
@@ -51,16 +42,16 @@ const Coffee: NextPage<{
 
 	return (
 		<>
-			<Seo title={t("coffee.pageTitle")} />
+			<Seo title={t("pageTitle")} />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-heading-1">
 				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>
-					{t("coffee.title")}
+					{t("title")}
 				</Heading>
 				<Text as="div" className="mb-6">
-					<Trans i18nKey="coffee.body" />
+					<Trans i18nKey="coffee:body" />
 				</Text>
 			</header>
 
@@ -68,18 +59,18 @@ const Coffee: NextPage<{
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("coffee.beans.title")}
+						{t("beans.title")}
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="coffee.beans.description" />
+						<Trans i18nKey="coffee:beans.description" />
 					</Text>
 				</header>
 
 				<section className="mb-section-3">
 					<header className="container max-w-2xl px-6 mx-auto mb-1">
 						<Heading id="beans" level={5}>
-							{t("coffee.beans.favorites.title")}
+							{t("beans.favorites.title")}
 						</Heading>
 					</header>
 					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
@@ -91,7 +82,7 @@ const Coffee: NextPage<{
 				<section>
 					<header className="container max-w-2xl px-6 mx-auto mb-1">
 						<Heading id="beans" level={5}>
-							{t("coffee.beans.latest.title")}
+							{t("beans.latest.title")}
 						</Heading>
 					</header>
 					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
@@ -106,17 +97,11 @@ const Coffee: NextPage<{
 			<section className="mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-8">
 					<Heading className="mb-heading-3" id="gear" level={2}>
-						{t("coffee.gear.title")}
+						{t("gear.title")}
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans
-							components={{
-								hr: <hr className="my-1 opacity-0" />,
-								strong: <Strong />,
-							}}
-							i18nKey="coffee.gear.description"
-						/>
+						<Trans i18nKey="coffee:gear.description" />
 					</Text>
 				</header>
 
@@ -127,18 +112,18 @@ const Coffee: NextPage<{
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-8">
 					<Heading className="mb-heading-3" id="places" level={2}>
-						{t("coffee.places.title")}
+						{t("places.title")}
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="coffee.places.description" />
+						<Trans i18nKey="coffee:places.description" />
 					</Text>
 				</header>
 
 				<section className="mb-section-3">
 					<header className="container max-w-2xl px-6 mx-auto mb-heading-3">
 						<Heading id="places" level={5}>
-							{t("coffee.places.favorites.title")}
+							{t("places.favorites.title")}
 						</Heading>
 					</header>
 					<div className={classnames(CARD_CAROUSEL)}>
@@ -150,7 +135,7 @@ const Coffee: NextPage<{
 				<section className="mb-section-3">
 					<header className="container max-w-2xl px-6 mx-auto mb-heading-3">
 						<Heading id="places" level={5}>
-							{t("coffee.places.latest.title")}
+							{t("places.latest.title")}
 						</Heading>
 					</header>
 					<div className={classnames(CARD_CAROUSEL)}>
@@ -165,11 +150,11 @@ const Coffee: NextPage<{
 			<section className="mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-8">
 					<Heading className="mb-heading-3" id="thoughts" level={2}>
-						{t("coffee.thoughts.title")}
+						{t("thoughts.title")}
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="coffee.thoughts.description" />
+						<Trans i18nKey="coffee:thoughts.description" />
 					</Text>
 				</header>
 
@@ -185,9 +170,9 @@ const Coffee: NextPage<{
 					{thoughts.length === 0 && (
 						<OutlinedCard className="flex flex-col items-center justify-center min-h-[192px] text-center px-8">
 							<Heading className="mb-2" level={3}>
-								{t("coffee.thoughts.placeholder.title")}
+								{t("thoughts.placeholder.title")}
 							</Heading>
-							<Text>{t("coffee.thoughts.placeholder.content")}</Text>
+							<Text>{t("thoughts.placeholder.content")}</Text>
 						</OutlinedCard>
 					)}
 				</section>
@@ -199,35 +184,23 @@ const Coffee: NextPage<{
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const ssrCache = ssrExchange({ isClient: false });
-	const client = initUrqlClient(
-		{
-			...clientSetup,
-			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-		},
-		false,
-	);
+	const [client, ssrCache] = initGraphQLClient();
+	const i18nSetup = await serverSideTranslations(locale as string, [
+		"common",
+		"coffee",
+		"changelog",
+	]);
 
-	if (!client)
-		return {
-			props: {
-				...(await serverSideTranslations(locale ?? "en", [
-					"common",
-					"changelog",
-				])),
-			},
-		};
+	if (!client) return { props: { ...i18nSetup } };
 
 	await client.query(coffeePage, {}).toPromise();
 	const thoughts = getThoughtsByCategory("COFFEE");
 
 	return {
 		props: {
-			...(await serverSideTranslations(locale ?? "en", [
-				"common",
-				"changelog",
-			])),
+			...i18nSetup,
 			thoughts,
+			urqlState: ssrCache.extractData(),
 		},
 		revalidate: 4 * 60 * 60,
 	};

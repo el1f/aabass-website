@@ -1,13 +1,13 @@
 {
-    "header": {
-        "title": "My posters collection",
-        "description": "Print is not dead. I love to design posters and other printed media in my free time to experiment with the latest design trends and try out compositions and techniques that I wouldn't be able to use in my day-to-day work.</br>This is a collection of my favorite posters that I have designed over the past months, including some of my first experiments with print design. I hope you enjoy them as much as I do!"
-    },
-    "standard": {
-        "title": "Standard Print"
-    },
-    "square": {
-        "title": "Vinyl covers"
-    },
-    "pageTitle": "My poster collection"
+	"header": {
+		"title": "My posters collection",
+		"description": "Print is not dead. I love to design posters and other printed media in my free time to experiment with the latest design trends and try out compositions and techniques that I wouldn't be able to use in my day-to-day work.</br>This is a collection of my favorite posters that I have designed over the past months, including some of my first experiments with print design. I hope you enjoy them as much as I do!"
+	},
+	"standard": {
+		"title": "Standard Print"
+	},
+	"square": {
+		"title": "Vinyl covers"
+	},
+	"pageTitle": "My poster collection"
 }

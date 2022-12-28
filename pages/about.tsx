@@ -3,9 +3,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React from "react";
 
-import { Footer, Heading, Navbar, Strong, Text } from "../components";
+import { Footer, Heading, Navbar, Text } from "../components";
 
 const About: NextPage = () => {
 	const { t } = useTranslation("common");
@@ -47,13 +46,7 @@ const About: NextPage = () => {
 					</div>
 					{/* TODO: figure out why using a p causes a hydration issue */}
 					<Text as="div" className="leading-loose">
-						<Trans
-							components={{
-								hr: <hr className="my-1 opacity-0" />,
-								strong: <Strong />,
-							}}
-							i18nKey="about.bio"
-						/>
+						<Trans i18nKey="about.bio" />
 					</Text>
 				</div>
 			</section>

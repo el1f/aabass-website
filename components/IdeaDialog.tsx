@@ -14,7 +14,7 @@ export const IdeaDialog: React.FC<{
 	onClose: () => void;
 	open: boolean;
 }> = ({ idea: ideaRef, onClose, open }) => {
-	const { t } = useTranslation("common");
+	const { t } = useTranslation(["ideas", "common"]);
 	const idea = useFragment(IdeaDialogFragment, ideaRef);
 
 	return (
@@ -48,7 +48,7 @@ export const IdeaDialog: React.FC<{
 									<div className="flex flex-col items-start px-3 py-2 mb-8 -mx-3 -mt-3 rounded-lg empty:hidden before:text-xs">
 										<div className="flex flex-col items-start w-full max-w-xl mx-auto">
 											<Text size="sm">
-												<strong>{t("ideas.dialog.dependenciesLabel")}</strong>
+												<strong>{t("dialog.dependenciesLabel")}</strong>
 											</Text>
 											{idea?.dependencies.map((dependency) => (
 												<Anchor
@@ -77,11 +77,11 @@ export const IdeaDialog: React.FC<{
 										{idea?.targetPages.length !== 0 && (
 											<div className="flex flex-col items-start gap-2">
 												<Text size="sm">
-													<strong>{t("ideas.dialog.targetPagesLabel")}</strong>
+													<strong>{t("dialog.targetPagesLabel")}</strong>
 												</Text>
 												<div className="flex flex-col items-start gap-2">
 													{(idea?.targetPages ?? []).map((page) => (
-														<Text key={page}>{t(`common.pages.${page}`)}</Text>
+														<Text key={page}>{t(`common:pages.${page}`)}</Text>
 													))}
 												</div>
 											</div>
@@ -90,14 +90,12 @@ export const IdeaDialog: React.FC<{
 										{idea?.targetComponents.length !== 0 && (
 											<div className="flex flex-col items-start gap-2">
 												<Text size="sm">
-													<strong>
-														{t("ideas.dialog.targetComponentsLabel")}
-													</strong>
+													<strong>{t("dialog.targetComponentsLabel")}</strong>
 												</Text>
 												<div className="flex flex-col items-start gap-2">
 													{(idea?.targetComponents ?? []).map((component) => (
 														<Text key={component}>
-															{t(`common.components.${component}`)}
+															{t(`common:components.${component}`)}
 														</Text>
 													))}
 												</div>
@@ -107,10 +105,10 @@ export const IdeaDialog: React.FC<{
 
 									<section className="mt-16">
 										<Heading className="mb-4" level={4}>
-											{t("ideas.dialog.updatesTitle")}
+											{t("dialog.updatesTitle")}
 										</Heading>
 										<div className="p-4 border rounded-lg border-text border-textDimmedDark">
-											<Text>{t("ideas.dialog.updatesPlaceholder")}</Text>
+											<Text>{t("dialog.updatesPlaceholder")}</Text>
 										</div>
 									</section>
 								</div>
