@@ -11,3 +11,4 @@ export * from "./home";
 export * from "./ideas";
 export * from "./posters";
 export * from "./coffee";
+export * from "./client";

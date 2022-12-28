@@ -25,3 +25,4 @@ export * from "./PosterLightbox";
 export * from "./CoffeeGearGrid";
 export * from "./CoffeePlaceCard";
 export * from "./CoffeeBeansCard";
+export * from "./AvailabilityLabel";

@@ -22,7 +22,6 @@ import {
 	PosterThumbnail,
 	Text,
 } from "../../components";
-import { SOCIALS } from "../../data";
 import { allPosters, clientSetup, poster } from "../../graphql";
 import * as ga from "../../lib/ga";
 
@@ -59,7 +58,7 @@ const Posters: NextPage = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
 				<Heading className="mb-4" level={1}>

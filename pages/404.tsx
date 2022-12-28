@@ -7,7 +7,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
 import { Button, Footer, Heading, Navbar, Strong, Text } from "../components";
-import { SOCIALS } from "../data";
 import * as ga from "../lib/ga";
 
 const NotFound: NextPage = () => {
@@ -29,7 +28,7 @@ const NotFound: NextPage = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
 				<Heading className="mb-4 leading-snug" level={1}>

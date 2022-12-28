@@ -1,0 +1,37 @@
+{
+    "title": "My coffee corner",
+    "body": "Welcome to my little coffee space. Here I plan to share several aspects of my coffee discovery journey, from gear and bean reviews to personal thoughts about the dive into this beautiful, tasty and crazy rabbit hole. Enjoy your stay, possibly while sipping a nice warm cup of java.",
+    "pageTitle": "Ayoub's Coffee life",
+    "beans": {
+        "title": "My Beans",
+        "description": "Every amazing cup of coffee starts from incredible beans. One aspect I'm loving about getting more involved in my coffee consumption is discovering the stories behind these wonderful beans. Be it the different preparation techniques, the cultural implications of the country they are produced in, the biodiversity that's found within this plant's genus and the stories of the people behind them.<hr />Experimenting with different producers and roasters has become a treat I indulge in a lot and these are some of the experiences I've had as of lately and some of those that I've fell in love in the past months.",
+        "favorites": {
+            "title": "My favorites"
+        },
+        "latest": {
+            "title": "Latest experiments"
+        }
+    },
+    "gear": {
+        "title": "My coffee gear",
+        "description": "One incredibly fun (or terrible, depending on the perspective) aspect of getting into home brewing is getting to know all of the various tools that are used in the space to get ever so closer to brewing some incredible coffee drinks. These are the ones I'm currently using in my home barista setup.\nI'm soon going to update this section with more details for each of these and I'm eventually going to add my drinkware and archive as well so stay tuned for that!"
+    },
+    "places": {
+        "title": "Cafes and Coffee places",
+        "description": "Home brewing is great and all but nothing can replace the sheer joy of heading over to your favorite third place to enjoy a nice cup of your usual cozy brew or to experiment something entirely new while being served by people with a lot to teach you both thanks to their different backgrounds in life, and to their vast experience preparing cups of java. This is a collection of the places I love and the latest ones I've been to.",
+        "favorites": {
+            "title": "My third places"
+        },
+        "latest": {
+            "title": "Latest journeys"
+        }
+    },
+    "thoughts": {
+        "title": "Thinking about beans",
+        "description": "So as per what's on the Thoughts page I've been getting quite passionate about writing and wanting to improve my writing abilities, that also projects itself in the coffee space. I've been learning a lot in the past months about these beautiful tasty beans and I'm looking forward to sharing my process and what I learn down the line somewhere a little more \"formal\", slowly but surely maturing my ability to articulate my thoughts about what I drink alongside my ability to actually taste and brew better cups.",
+        "placeholder": {
+            "title": "Nothing to say... yet",
+            "content": "I still have to write any thoughts about coffee though. Just give me a little time and you'll find them here so no worries."
+        }
+    }
+}

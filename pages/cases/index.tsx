@@ -57,7 +57,7 @@ const CaseStudies: NextPage = () => {
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
 				<Heading className="mb-4 leading-tight" level={1}>

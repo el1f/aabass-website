@@ -3,20 +3,15 @@ import Link from "next/link";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
+import { SOCIALS } from "../data";
 import { useWindowScroll } from "../lib/hooks";
-import { SocialPlatform } from "../types";
 import { DynamicLogo, SocialLink } from ".";
 
 const SCROLL_THRESHOLD = 512;
 
-interface NavbarProps {
-	socials: {
-		href: string;
-		platform: SocialPlatform;
-	}[];
-}
+interface NavbarProps {}
 
-export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
 	const [scroll, direction] = useWindowScroll();
 	const isPastSafeThreshold = scroll.y > SCROLL_THRESHOLD / 2;
 	const isScrollingUp = scroll.y > SCROLL_THRESHOLD && direction === "UP";
@@ -51,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({ socials }) => {
 						</a>
 					</Link>
 					<div className="flex items-center justify-center">
-						{socials.map((social) => (
+						{SOCIALS.map((social) => (
 							<SocialLink
 								href={social.href}
 								key={social.platform}

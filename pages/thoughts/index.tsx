@@ -37,7 +37,7 @@ const Thoughts: NextPage<{
 				<meta content={t(`meta.og.description`)} property="og:description" />
 			</Head>
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto md:px-6">
 				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>

@@ -3,17 +3,12 @@ import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { initUrqlClient, withUrqlClient } from "next-urql";
-import {
-	cacheExchange,
-	dedupExchange,
-	fetchExchange,
-	ssrExchange,
-	useQuery,
-} from "urql";
+import { withUrqlClient } from "next-urql";
+import { useQuery } from "urql";
 
 import {
 	Anchor,
+	AvailabilityLabel,
 	Button,
 	Footer,
 	FragCoffeeBeansCard,
@@ -26,9 +21,7 @@ import {
 	Text,
 	ThoughtCard,
 } from "../components";
-import { AvailabilityLabel } from "../components/AvailabilityLabel";
-import { SOCIALS } from "../data";
-import { clientSetup, homePage } from "../graphql";
+import { clientSetup, homePage, initGraphQLClient } from "../graphql";
 import * as ga from "../lib/ga";
 import { getThoughts } from "../lib/thoughts";
 import { Thought } from "../types";
@@ -53,7 +46,7 @@ const Home: NextPage<{
 		<>
 			<Seo title={t("home.pageTitle")} />
 
-			<Navbar socials={SOCIALS} />
+			<Navbar />
 
 			<section className="container max-w-2xl px-6 py-32 mx-auto md:mb-32">
 				<hgroup className="max-w-xl mb-6">
@@ -226,7 +219,7 @@ const Home: NextPage<{
 							{t("home.personal.coffee.placesTitle")}
 						</Heading>
 					</header>
-					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
+					<div className={classnames(CARD_CAROUSEL)}>
 						{(data?.coffeePlaces ?? []).map((place) => (
 							<FragCoffeePlaceCard key={place.id} placeRef={place} />
 						))}
@@ -254,34 +247,21 @@ const Home: NextPage<{
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const ssrCache = ssrExchange({ isClient: false });
-	const client = initUrqlClient(
-		{
-			...clientSetup,
-			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-		},
-		false,
-	);
+	const [client, ssrCache] = initGraphQLClient();
+	const i18nSetup = await serverSideTranslations(locale as string, [
+		"common",
+		"home",
+		"changelog",
+	]);
 
-	if (!client)
-		return {
-			props: {
-				...(await serverSideTranslations(locale ?? "en", [
-					"common",
-					"changelog",
-				])),
-			},
-		};
+	if (!client) return { props: { ...i18nSetup } };
 
 	await client.query(homePage, {}).toPromise();
 	const thoughts = getThoughts().slice(0, 3);
 
 	return {
 		props: {
-			...(await serverSideTranslations(locale ?? "en", [
-				"common",
-				"changelog",
-			])),
+			...i18nSetup,
 			thoughts,
 			urqlState: ssrCache.extractData(),
 		},
