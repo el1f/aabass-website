@@ -1,17 +1,10 @@
 import { GetStaticProps } from "next";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { initUrqlClient, withUrqlClient } from "next-urql";
-import React, { Fragment, useEffect } from "react";
-import {
-	cacheExchange,
-	dedupExchange,
-	fetchExchange,
-	ssrExchange,
-	useQuery,
-} from "urql";
+import { withUrqlClient } from "next-urql";
+import React, { useEffect } from "react";
+import { useQuery } from "urql";
 
 import {
 	Footer,
@@ -19,15 +12,16 @@ import {
 	IdeaCard,
 	IdeaDialog,
 	Navbar,
+	Seo,
 	Text,
 } from "../components";
-import { allIdeas, clientSetup } from "../graphql";
+import { clientSetup, ideasPage, initGraphQLClient } from "../graphql";
 
 const IdeasBoardColumn: React.FC<{
 	cards: React.ReactNode[];
 	title: string;
 }> = ({ cards, title }) => {
-	const { t } = useTranslation(["common"]);
+	const { t } = useTranslation(["common", "ideas"]);
 
 	return (
 		<section className="flex-shrink-0 w-full max-w-xs">
@@ -36,7 +30,7 @@ const IdeasBoardColumn: React.FC<{
 			</div>
 			{cards.length === 0 && (
 				<div className="max-w-xs p-8 text-center rounded-lg bg-textDimmedDark/20">
-					<Text size="sm">{t("ideas.board.columnPlaceholder")}</Text>
+					<Text size="sm">{t("ideas:board.columnPlaceholder")}</Text>
 				</div>
 			)}
 			<div className="flex flex-col gap-4">{cards}</div>
@@ -53,7 +47,7 @@ const Ideas = () => {
 	// in production.
 	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
 	const [{ data }, getActiveIdea] = useQuery({
-		query: allIdeas,
+		query: ideasPage,
 		variables: {
 			activeIdeaId: (router.query.activeIdea as string) ?? "",
 		},
@@ -65,25 +59,14 @@ const Ideas = () => {
 
 	return (
 		<>
-			<Head>
-				<title>{t("ideas.pageTitle")}</title>
-				{/* TODO: replace with the OpenGraph component when fixed */}
-				<meta content="website" property="og:type" />
-				<meta content={t(`meta.og.title`)} property="og:title" />
-				<meta content={process.env.NEXT_PUBLIC_HOSTNAME} property="og:url" />
-				<meta
-					content={`${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`}
-					property="og:image"
-				/>
-				<meta content={t(`meta.og.description`)} property="og:description" />
-			</Head>
+			<Seo title={t("ideas:pageTitle")} />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
-				<Text size="md">{t("ideas.header.lead")}</Text>
+				<Text size="md">{t("ideas:header.lead")}</Text>
 				<Heading className="mb-4" level={1}>
-					{t("ideas.header.title")}
+					{t("ideas:header.title")}
 				</Heading>
 			</header>
 
@@ -95,7 +78,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas.board.backlogTitle")}
+					title={t("ideas:board.backlogTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -103,7 +86,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas.board.plannedTitle")}
+					title={t("ideas:board.plannedTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -111,7 +94,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas.board.ongoingTitle")}
+					title={t("ideas:board.ongoingTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -119,7 +102,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas.board.testingTitle")}
+					title={t("ideas:board.testingTitle")}
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -127,7 +110,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas.board.doneTitle")}
+					title={t("ideas:board.doneTitle")}
 				/>
 			</main>
 
@@ -144,40 +127,27 @@ const Ideas = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const ssrCache = ssrExchange({ isClient: false });
-	const client = initUrqlClient(
-		{
-			...clientSetup,
-			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-		},
-		false,
-	);
+	const [client, ssrCache] = initGraphQLClient();
+	const i18nSetup = await serverSideTranslations(locale as string, [
+		"common",
+		"ideas",
+		"changelog",
+	]);
 
-	if (!client)
-		return {
-			props: {
-				...(await serverSideTranslations(locale ?? "en", [
-					"common",
-					"changelog",
-				])),
-			},
-		};
+	if (!client) return { props: { ...i18nSetup } };
 
 	await client
-		.query(allIdeas, {
+		.query(ideasPage, {
 			activeIdeaId: "",
 		})
 		.toPromise();
 
 	return {
 		props: {
-			...(await serverSideTranslations(locale ?? "en", [
-				"common",
-				"changelog",
-			])),
+			...i18nSetup,
 			urqlState: ssrCache.extractData(),
 		},
-		revalidate: 3600,
+		revalidate: 4 * 60 * 60,
 	};
 };
 

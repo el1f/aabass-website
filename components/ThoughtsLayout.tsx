@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import { SOCIALS } from "../data";
 import { useWindowScroll } from "../lib/hooks";
 import { usePoll } from "../lib/hooks/polls/usePoll";
 import { ThoughtTOC } from "../types";

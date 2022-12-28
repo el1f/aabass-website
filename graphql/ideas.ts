@@ -1,7 +1,7 @@
 import { graphql } from "./__generated__";
 
-export const allIdeas = graphql(`
-	query Ideas($activeIdeaId: ID!) {
+export const ideasPage = graphql(`
+	query ideasPage($activeIdeaId: ID!) {
 		backlog: ideas(where: { ideaStatus: PENDING, targetVersion: "TBD" }) {
 			...IdeaCard
 		}
