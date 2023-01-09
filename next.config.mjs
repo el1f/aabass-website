@@ -13,9 +13,6 @@ const withMDX = nextMDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  fallbackLng: {
-    default: ['en']
-  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'it'],

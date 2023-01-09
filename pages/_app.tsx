@@ -1,4 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
+import { Space_Grotesk } from "@next/font/google";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -10,6 +11,8 @@ import "../styles/globals.css";
 
 import { Heading, Strong, Text } from "../components";
 import * as ga from "../lib/ga";
+
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
@@ -82,7 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				}}
 			>
 				<ThemeProvider attribute="class">
-					<Component {...pageProps} />
+					<Component {...pageProps} className={spaceGrotesk.className} />
 				</ThemeProvider>
 			</MDXProvider>
 		</>
