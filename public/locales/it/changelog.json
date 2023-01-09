@@ -1,0 +1,43 @@
+{
+    "1.3.0": {
+        "summary": "Thinking of Coffee",
+        "description": "I want to become a better writer in general, I also love coffee as you might have noticed. This next stage is all about giving me a place write about things I like and hopefully get better at it. Also, I'm going to write about coffee. A lot.",
+        "features": [
+            "Updated the branding on the website to reflect the new palette, logos and fonts.",
+            "The navbar now has a nice sleek animation when back-scrolling that animates the logo.",
+            "A new little page for all of my thoughts have been added! Now I can finally bother all of the internet with what's currently running through my little noggin'!",
+            "The posters have been moved to the CMS. Now I can update them without having to push a whole new version of the website. How cool is that? Also, there is now a lightBox to check them out in their full-sized glory!",
+            "Coffee up! The coffee page is now up and running, ready to welcome a collection of the beans I consume in the coming months and of the places I go to have those cups at!"
+        ]
+    },
+    "1.2.0": {
+        "summary": "Down to business",
+        "description": "Guess that my work site needs a little more work related information right? Booooring but guess it won't take too long to fill out. Right?",
+        "features": [
+            "Ideas page powered by Hygraph CMS",
+            "Curriculum page. So bland. So boring. So effective.",
+            "Case studies page. Just the page. No content. What, thought you could see some of my work? Haha, nope. Gotta first figure out whether I can show them or not with my business daddies. Swear the next contracts will have a \"I can show this to the world at my conditions\" clause. Maybe followed by a little \"Pretty please daddy?\"",
+            "Polls, absolutely unnecessary, they drove me down a rabbit hole of utmost proportions and I ended up adding them in a way simpler way but yeah. Polls. Was it worth it?",
+            "Some smaller visual tweaks"
+        ]
+    },
+    "1.1.0": {
+        "summary": "Stylish update!",
+        "description": "The website basics are all there, I got updates in the oven, guess it makes sense to track what I'm going to add here as I do it :D",
+        "features": [
+            "Changelog page and indicator",
+            "Analytics so that I can spy on y'all and use your usage stats of my site to conquer the worl... I mean make my site better.",
+            "Added language switching support, not the actual translations though. I will at some point go ahead and add italian translations but it's not like anyone needs them anyway. English mofo do you speak it?",
+            "Light theme because some of y'all like to see the world (and your eyes) burn.",
+            "Small tweaks to the theme. This is not going to be the last time :)"
+        ]
+    },
+    "1.0.0": {
+        "summary": "Genesis",
+        "description": "All great things start small and grow over time. Or at least this is what I am telling myself in order to actually ship something after so many iterations of this website.",
+        "features": [
+            "Landing page with some basic information about me",
+            "Posters page with some of the posters I have designed"
+        ]
+    }
+}

@@ -21,8 +21,8 @@ const Curriculum: NextPage = () => {
 
 			<div className="container grid max-w-4xl px-6 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-4 xs:grid-cols-1 sm:grid-cols-cv print:grid-cols-cv print:pt-16">
 				<div className="flex flex-col gap-2 print:pb-12">
-					<Heading level={2}>{t("common.fullName")}</Heading>
-					<Text>{t("common.professionalRole")}</Text>
+					<Heading level={3}>{t("common:fullName")}</Heading>
+					<Text>{t("common:professionalRole")}</Text>
 				</div>
 				<Text>{t("cv:document.introduction")}</Text>
 
