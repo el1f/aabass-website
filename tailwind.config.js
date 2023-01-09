@@ -47,8 +47,8 @@ module.exports = {
         textLight: colors.slate[50],
       },
       fontFamily: {
-        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
-        sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+        mono: ['var(--font-jb-mono)', ...defaultTheme.fontFamily.mono],
+        sans: ['var(--font-space-grotesk)', ...defaultTheme.fontFamily.sans],
       },
       gridTemplateColumns: {
         cv: "minmax(64px, 192px) 2fr",

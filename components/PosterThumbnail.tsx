@@ -1,4 +1,4 @@
-import Image, { ImageLoader } from "next/image";
+import Image, { ImageLoader } from "next/legacy/image";
 import React from "react";
 
 // TODO: move to lib

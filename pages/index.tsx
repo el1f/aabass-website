@@ -41,177 +41,175 @@ const Home: NextPage<{
 		query: homePage,
 	});
 
-	return (
-		<>
-			<Seo title={t("pageTitle")} />
+	return <>
+        <Seo title={t("pageTitle")} />
 
-			<Navbar />
+        <Navbar />
 
-			<section className="container max-w-2xl px-6 py-32 mx-auto md:mb-32">
-				<hgroup className="max-w-xl mb-6">
-					<Heading className="mb-6 leading-none" isDimmed level={1}>
-						<Trans i18nKey="home:hero.title" />
-					</Heading>
-					<Text as="p" className="mb-4">
-						<Trans i18nKey="home:hero.p1" />
-					</Text>
-					<Text as="p" className="mb-4">
-						<Trans i18nKey="home:hero.p2" />
-					</Text>
-					<Text as="p">
-						<Trans i18nKey="home:hero.p3" />
-					</Text>
-				</hgroup>
-				<div className="flex gap-4 dark:gap-6">
-					<Link href="mailto:ayoub@aabass.net">
-						<a>
-							<Button
-								onClick={() => {
-									ga.contactPress("/");
-								}}
-							>
-								{t("hero.cta1")}
-							</Button>
-						</a>
-					</Link>
-					<Link href="/about">
-						<a>
-							<Button isOutlined isText>
-								{t("hero.about")}
-							</Button>
-						</a>
-					</Link>
-				</div>
-			</section>
+        <section className="container max-w-2xl px-6 py-32 mx-auto md:mb-32">
+            <hgroup className="max-w-xl mb-6">
+                <Heading className="mb-6 leading-none" isDimmed level={1}>
+                    <Trans i18nKey="home:hero.title" />
+                </Heading>
+                <Text as="p" className="mb-4">
+                    <Trans i18nKey="home:hero.p1" />
+                </Text>
+                <Text as="p" className="mb-4">
+                    <Trans i18nKey="home:hero.p2" />
+                </Text>
+                <Text as="p">
+                    <Trans i18nKey="home:hero.p3" />
+                </Text>
+            </hgroup>
+            <div className="flex gap-4 dark:gap-6">
+                <Link href="mailto:ayoub@aabass.net">
 
-			<section className="px-6 mb-32 md:mb-64">
-				{/* TODO: find a better way to calculate the max width */}
-				<div className="container max-w-[39rem] mx-auto">
-					<Heading className="mb-4" id="playbook" level={2}>
-						{t("playbook.title")}
-					</Heading>
-					<Text as="p" className="mb-12">
-						{t("playbook.description")}
-					</Text>
+                    <Button
+                        onClick={() => {
+                            ga.contactPress("/");
+                        }}
+                    >
+                        {t("hero.cta1")}
+                    </Button>
 
-					<div className="flex items-center justify-between mb-4">
-						<Heading id="posters" level={3}>
-							{t("playbook.posters.title")}
-						</Heading>
-						<Anchor href="/posters" size="sm">
-							{t("playbook.posters.showMore")}
-						</Anchor>
-					</div>
-					<Text as="p" className="mb-8">
-						{t("playbook.posters.description")}
-					</Text>
-				</div>
-				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
-					{(data?.posters ?? []).map((poster) => (
-						<Link href={`/posters/${poster.slug}`} key={poster.slug}>
-							<a>
-								<PosterThumbnail
-									className="flex-shrink-0 w-64"
-									onClick={() => {
-										ga.posterPress(poster.slug);
-									}}
-									src={`/posters/${poster.poster.url}`}
-									title={poster.name}
-								/>
-							</a>
-						</Link>
-					))}
-				</div>
-			</section>
+                </Link>
+                <Link href="/about">
 
-			<section className="container max-w-2xl px-6 mx-auto mb-8 md:mb-8">
-				<Heading className="mb-4" id="personal" level={2}>
-					{t("personal.title")}
-				</Heading>
-				<Text as="p" className="mb-12">
-					<Trans i18nKey="home:personal.description" />
-				</Text>
+                    <Button isOutlined isText>
+                        {t("hero.about")}
+                    </Button>
 
-				<section className="mb-32">
-					<header className="flex items-center justify-between mb-4">
-						<Heading id="thoughts" level={3}>
-							{t("personal.thoughts.title")}
-						</Heading>
-						<Anchor href="/thoughts" size="sm">
-							{t("personal.thoughts.showMore")}
-						</Anchor>
-					</header>
-					<Text as="p" className="mb-8">
-						{t("personal.thoughts.description")}
-					</Text>
+                </Link>
+            </div>
+        </section>
 
-					<div className="flex flex-col gap-4">
-						<Heading level={5}>{t("personal.thoughts.latest")}</Heading>
-						{thoughts.map(({ data, slug }) => (
-							<Link href={`/thoughts/${slug}`} key={slug}>
-								<a>
-									<ThoughtCard data={data} isOutlined />
-								</a>
-							</Link>
-						))}
-					</div>
-				</section>
-			</section>
+        <section className="px-6 mb-32 md:mb-64">
+            {/* TODO: find a better way to calculate the max width */}
+            <div className="container max-w-[39rem] mx-auto">
+                <Heading className="mb-4" id="playbook" level={2}>
+                    {t("playbook.title")}
+                </Heading>
+                <Text as="p" className="mb-12">
+                    {t("playbook.description")}
+                </Text>
 
-			<section className="overflow-hidden mb-section-2">
-				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
-					<div className="flex items-center justify-between mb-4">
-						<Heading id="coffee" level={3}>
-							{t("personal.coffee.title")}
-						</Heading>
-						<Anchor href="/coffee" size="sm">
-							{t("personal.coffee.showMore")}{" "}
-						</Anchor>
-					</div>
-					<Text as="p" className="mb-8">
-						{t("personal.coffee.description")}
-					</Text>
-				</header>
+                <div className="flex items-center justify-between mb-4">
+                    <Heading id="posters" level={3}>
+                        {t("playbook.posters.title")}
+                    </Heading>
+                    <Anchor href="/posters" size="sm">
+                        {t("playbook.posters.showMore")}
+                    </Anchor>
+                </div>
+                <Text as="p" className="mb-8">
+                    {t("playbook.posters.description")}
+                </Text>
+            </div>
+            <div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
+                {(data?.posters ?? []).map((poster) => (
+                    (<Link href={`/posters/${poster.slug}`} key={poster.slug}>
 
-				<section className="mb-section-3">
-					<header className="container max-w-2xl px-6 mx-auto mb-1">
-						<Heading id="beans" level={5}>
-							{t("personal.coffee.beansTitle")}
-						</Heading>
-					</header>
-					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
-						{(data?.beans ?? []).map((bean) => (
-							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
-						))}
-					</div>
-				</section>
+                        <PosterThumbnail
+                            className="flex-shrink-0 w-64"
+                            onClick={() => {
+                                ga.posterPress(poster.slug);
+                            }}
+                            src={`/posters/${poster.poster.url}`}
+                            title={poster.name}
+                        />
 
-				<section className="mb-section-3">
-					<header className="container max-w-2xl px-6 mx-auto mb-1">
-						<Heading id="beans" level={5}>
-							{t("personal.coffee.placesTitle")}
-						</Heading>
-					</header>
-					<div className={classnames(CARD_CAROUSEL)}>
-						{(data?.coffeePlaces ?? []).map((place) => (
-							<FragCoffeePlaceCard key={place.id} placeRef={place} />
-						))}
-					</div>
-				</section>
-			</section>
+                    </Link>)
+                ))}
+            </div>
+        </section>
 
-			<section className="container max-w-2xl px-6 mx-auto">
-				<Heading className="mb-4" level={2}>
-					{t("footer.title")}
-				</Heading>
-				<Text as="p" className="mb-24">
-					<Trans i18nKey="home:footer.description" />
-				</Text>
-			</section>
+        <section className="container max-w-2xl px-6 mx-auto mb-8 md:mb-8">
+            <Heading className="mb-4" id="personal" level={2}>
+                {t("personal.title")}
+            </Heading>
+            <Text as="p" className="mb-12">
+                <Trans i18nKey="home:personal.description" />
+            </Text>
 
-			<Footer />
-		</>
-	);
+            <section className="mb-32">
+                <header className="flex items-center justify-between mb-4">
+                    <Heading id="thoughts" level={3}>
+                        {t("personal.thoughts.title")}
+                    </Heading>
+                    <Anchor href="/thoughts" size="sm">
+                        {t("personal.thoughts.showMore")}
+                    </Anchor>
+                </header>
+                <Text as="p" className="mb-8">
+                    {t("personal.thoughts.description")}
+                </Text>
+
+                <div className="flex flex-col gap-4">
+                    <Heading level={5}>{t("personal.thoughts.latest")}</Heading>
+                    {thoughts.map(({ data, slug }) => (
+                        (<Link href={`/thoughts/${slug}`} key={slug}>
+
+                            <ThoughtCard data={data} isOutlined />
+
+                        </Link>)
+                    ))}
+                </div>
+            </section>
+        </section>
+
+        <section className="overflow-hidden mb-section-2">
+            <header className="container max-w-2xl px-6 mx-auto mb-heading-2">
+                <div className="flex items-center justify-between mb-4">
+                    <Heading id="coffee" level={3}>
+                        {t("personal.coffee.title")}
+                    </Heading>
+                    <Anchor href="/coffee" size="sm">
+                        {t("personal.coffee.showMore")}{" "}
+                    </Anchor>
+                </div>
+                <Text as="p" className="mb-8">
+                    {t("personal.coffee.description")}
+                </Text>
+            </header>
+
+            <section className="mb-section-3">
+                <header className="container max-w-2xl px-6 mx-auto mb-1">
+                    <Heading id="beans" level={5}>
+                        {t("personal.coffee.beansTitle")}
+                    </Heading>
+                </header>
+                <div className={classnames(CARD_CAROUSEL, "pt-8")}>
+                    {(data?.beans ?? []).map((bean) => (
+                        <FragCoffeeBeansCard beanRef={bean} key={bean.id} />
+                    ))}
+                </div>
+            </section>
+
+            <section className="mb-section-3">
+                <header className="container max-w-2xl px-6 mx-auto mb-1">
+                    <Heading id="beans" level={5}>
+                        {t("personal.coffee.placesTitle")}
+                    </Heading>
+                </header>
+                <div className={classnames(CARD_CAROUSEL)}>
+                    {(data?.coffeePlaces ?? []).map((place) => (
+                        <FragCoffeePlaceCard key={place.id} placeRef={place} />
+                    ))}
+                </div>
+            </section>
+        </section>
+
+        <section className="container max-w-2xl px-6 mx-auto">
+            <Heading className="mb-4" level={2}>
+                {t("footer.title")}
+            </Heading>
+            <Text as="p" className="mb-24">
+                <Trans i18nKey="home:footer.description" />
+            </Text>
+        </section>
+
+        <Footer />
+    </>;
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

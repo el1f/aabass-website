@@ -40,147 +40,145 @@ const Coffee: NextPage<{
 		query: coffeePage,
 	});
 
-	return (
-		<>
-			<Seo title={t("pageTitle")} />
+	return <>
+        <Seo title={t("pageTitle")} />
 
-			<Navbar />
+        <Navbar />
 
-			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-heading-1">
-				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>
-					{t("title")}
-				</Heading>
-				<Text as="div" className="mb-6">
-					<Trans i18nKey="coffee:body" />
-				</Text>
-			</header>
+        <header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-heading-1">
+            <Heading className="mb-4 leading-snug md:leading-snug" level={1}>
+                {t("title")}
+            </Heading>
+            <Text as="div" className="mb-6">
+                <Trans i18nKey="coffee:body" />
+            </Text>
+        </header>
 
-			{/* BEANS */}
-			<section className="overflow-hidden mb-section-2">
-				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
-					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("beans.title")}
-					</Heading>
+        {/* BEANS */}
+        <section className="overflow-hidden mb-section-2">
+            <header className="container max-w-2xl px-6 mx-auto mb-heading-2">
+                <Heading className="mb-heading-3" id="beans" level={2}>
+                    {t("beans.title")}
+                </Heading>
 
-					<Text as="div" className="mb-6">
-						<Trans i18nKey="coffee:beans.description" />
-					</Text>
-				</header>
+                <Text as="div" className="mb-6">
+                    <Trans i18nKey="coffee:beans.description" />
+                </Text>
+            </header>
 
-				<section className="mb-section-3">
-					<header className="container max-w-2xl px-6 mx-auto mb-1">
-						<Heading id="beans" level={5}>
-							{t("beans.favorites.title")}
-						</Heading>
-					</header>
-					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
-						{(pageData?.favoriteBeans ?? []).map((bean) => (
-							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
-						))}
-					</div>
-				</section>
-				<section>
-					<header className="container max-w-2xl px-6 mx-auto mb-1">
-						<Heading id="beans" level={5}>
-							{t("beans.latest.title")}
-						</Heading>
-					</header>
-					<div className={classnames(CARD_CAROUSEL, "pt-8")}>
-						{(pageData?.latestBeans ?? []).map((bean) => (
-							<FragCoffeeBeansCard beanRef={bean} key={bean.id} />
-						))}
-					</div>
-				</section>
-			</section>
+            <section className="mb-section-3">
+                <header className="container max-w-2xl px-6 mx-auto mb-1">
+                    <Heading id="beans" level={5}>
+                        {t("beans.favorites.title")}
+                    </Heading>
+                </header>
+                <div className={classnames(CARD_CAROUSEL, "pt-8")}>
+                    {(pageData?.favoriteBeans ?? []).map((bean) => (
+                        <FragCoffeeBeansCard beanRef={bean} key={bean.id} />
+                    ))}
+                </div>
+            </section>
+            <section>
+                <header className="container max-w-2xl px-6 mx-auto mb-1">
+                    <Heading id="beans" level={5}>
+                        {t("beans.latest.title")}
+                    </Heading>
+                </header>
+                <div className={classnames(CARD_CAROUSEL, "pt-8")}>
+                    {(pageData?.latestBeans ?? []).map((bean) => (
+                        <FragCoffeeBeansCard beanRef={bean} key={bean.id} />
+                    ))}
+                </div>
+            </section>
+        </section>
 
-			{/* GEAR */}
-			<section className="mb-section-2">
-				<header className="container max-w-2xl px-6 mx-auto mb-8">
-					<Heading className="mb-heading-3" id="gear" level={2}>
-						{t("gear.title")}
-					</Heading>
+        {/* GEAR */}
+        <section className="mb-section-2">
+            <header className="container max-w-2xl px-6 mx-auto mb-8">
+                <Heading className="mb-heading-3" id="gear" level={2}>
+                    {t("gear.title")}
+                </Heading>
 
-					<Text as="div" className="mb-6">
-						<Trans i18nKey="coffee:gear.description" />
-					</Text>
-				</header>
+                <Text as="div" className="mb-6">
+                    <Trans i18nKey="coffee:gear.description" />
+                </Text>
+            </header>
 
-				<CoffeeGearGrid />
-			</section>
+            <CoffeeGearGrid />
+        </section>
 
-			{/* PLACES */}
-			<section className="overflow-hidden mb-section-2">
-				<header className="container max-w-2xl px-6 mx-auto mb-8">
-					<Heading className="mb-heading-3" id="places" level={2}>
-						{t("places.title")}
-					</Heading>
+        {/* PLACES */}
+        <section className="overflow-hidden mb-section-2">
+            <header className="container max-w-2xl px-6 mx-auto mb-8">
+                <Heading className="mb-heading-3" id="places" level={2}>
+                    {t("places.title")}
+                </Heading>
 
-					<Text as="div" className="mb-6">
-						<Trans i18nKey="coffee:places.description" />
-					</Text>
-				</header>
+                <Text as="div" className="mb-6">
+                    <Trans i18nKey="coffee:places.description" />
+                </Text>
+            </header>
 
-				<section className="mb-section-3">
-					<header className="container max-w-2xl px-6 mx-auto mb-heading-3">
-						<Heading id="places" level={5}>
-							{t("places.favorites.title")}
-						</Heading>
-					</header>
-					<div className={classnames(CARD_CAROUSEL)}>
-						{(pageData?.favoritePlaces ?? []).map((place) => (
-							<FragCoffeePlaceCard key={place.id} placeRef={place} />
-						))}
-					</div>
-				</section>
-				<section className="mb-section-3">
-					<header className="container max-w-2xl px-6 mx-auto mb-heading-3">
-						<Heading id="places" level={5}>
-							{t("places.latest.title")}
-						</Heading>
-					</header>
-					<div className={classnames(CARD_CAROUSEL)}>
-						{(pageData?.latestPlaces ?? []).map((place) => (
-							<FragCoffeePlaceCard key={place.id} placeRef={place} />
-						))}
-					</div>
-				</section>
-			</section>
+            <section className="mb-section-3">
+                <header className="container max-w-2xl px-6 mx-auto mb-heading-3">
+                    <Heading id="places" level={5}>
+                        {t("places.favorites.title")}
+                    </Heading>
+                </header>
+                <div className={classnames(CARD_CAROUSEL)}>
+                    {(pageData?.favoritePlaces ?? []).map((place) => (
+                        <FragCoffeePlaceCard key={place.id} placeRef={place} />
+                    ))}
+                </div>
+            </section>
+            <section className="mb-section-3">
+                <header className="container max-w-2xl px-6 mx-auto mb-heading-3">
+                    <Heading id="places" level={5}>
+                        {t("places.latest.title")}
+                    </Heading>
+                </header>
+                <div className={classnames(CARD_CAROUSEL)}>
+                    {(pageData?.latestPlaces ?? []).map((place) => (
+                        <FragCoffeePlaceCard key={place.id} placeRef={place} />
+                    ))}
+                </div>
+            </section>
+        </section>
 
-			{/* THOUGHTS */}
-			<section className="mb-section-2">
-				<header className="container max-w-2xl px-6 mx-auto mb-8">
-					<Heading className="mb-heading-3" id="thoughts" level={2}>
-						{t("thoughts.title")}
-					</Heading>
+        {/* THOUGHTS */}
+        <section className="mb-section-2">
+            <header className="container max-w-2xl px-6 mx-auto mb-8">
+                <Heading className="mb-heading-3" id="thoughts" level={2}>
+                    {t("thoughts.title")}
+                </Heading>
 
-					<Text as="div" className="mb-6">
-						<Trans i18nKey="coffee:thoughts.description" />
-					</Text>
-				</header>
+                <Text as="div" className="mb-6">
+                    <Trans i18nKey="coffee:thoughts.description" />
+                </Text>
+            </header>
 
-				<section className="container max-w-2xl px-6 mx-auto mb-48">
-					{thoughts.map(({ data, slug }) => (
-						<Link href={`/thoughts/${slug}`} key={slug}>
-							<a>
-								<ThoughtCard data={data} />
-							</a>
-						</Link>
-					))}
+            <section className="container max-w-2xl px-6 mx-auto mb-48">
+                {thoughts.map(({ data, slug }) => (
+                    (<Link href={`/thoughts/${slug}`} key={slug}>
 
-					{thoughts.length === 0 && (
-						<OutlinedCard className="flex flex-col items-center justify-center min-h-[192px] text-center px-8">
-							<Heading className="mb-2" level={3}>
-								{t("thoughts.placeholder.title")}
-							</Heading>
-							<Text>{t("thoughts.placeholder.content")}</Text>
-						</OutlinedCard>
-					)}
-				</section>
-			</section>
+                        <ThoughtCard data={data} />
 
-			<Footer />
-		</>
-	);
+                    </Link>)
+                ))}
+
+                {thoughts.length === 0 && (
+                    <OutlinedCard className="flex flex-col items-center justify-center min-h-[192px] text-center px-8">
+                        <Heading className="mb-2" level={3}>
+                            {t("thoughts.placeholder.title")}
+                        </Heading>
+                        <Text>{t("thoughts.placeholder.content")}</Text>
+                    </OutlinedCard>
+                )}
+            </section>
+        </section>
+
+        <Footer />
+    </>;
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

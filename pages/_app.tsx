@@ -1,5 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
-import { Space_Grotesk } from "@next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "@next/font/google";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -12,7 +12,14 @@ import "../styles/globals.css";
 import { Heading, Strong, Text } from "../components";
 import * as ga from "../lib/ga";
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+	subsets: ["latin"],
+	variable: "--font-space-grotesk",
+});
+const jbMono = JetBrains_Mono({
+	subsets: ["latin"],
+	variable: "--font-jb-mobo",
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
@@ -85,7 +92,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 				}}
 			>
 				<ThemeProvider attribute="class">
-					<Component {...pageProps} className={spaceGrotesk.className} />
+					<div className={`${spaceGrotesk.variable} ${jbMono.variable}`}>
+						<Component {...pageProps} />
+					</div>
 				</ThemeProvider>
 			</MDXProvider>
 		</>

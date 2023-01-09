@@ -20,34 +20,32 @@ const Thoughts: NextPage<{
 }> = ({ thoughts }) => {
 	const { t } = useTranslation("thoughts");
 
-	return (
-		<>
-			<Seo title={t("pageTitle")} />
+	return <>
+        <Seo title={t("pageTitle")} />
 
-			<Navbar />
+        <Navbar />
 
-			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto md:px-6">
-				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>
-					{t("title")}
-				</Heading>
-				<Text as="div" className="mb-6">
-					<Trans i18nKey="thoughts:body" />
-				</Text>
-			</header>
+        <header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto md:px-6">
+            <Heading className="mb-4 leading-snug md:leading-snug" level={1}>
+                {t("title")}
+            </Heading>
+            <Text as="div" className="mb-6">
+                <Trans i18nKey="thoughts:body" />
+            </Text>
+        </header>
 
-			<section className="container max-w-2xl px-4 mx-auto mb-48 md:px-6">
-				{thoughts.map(({ data, slug }) => (
-					<Link href={`/thoughts/${slug}`} key={slug}>
-						<a>
-							<ThoughtCard data={data} />
-						</a>
-					</Link>
-				))}
-			</section>
+        <section className="container max-w-2xl px-4 mx-auto mb-48 md:px-6">
+            {thoughts.map(({ data, slug }) => (
+                (<Link href={`/thoughts/${slug}`} key={slug}>
 
-			<Footer />
-		</>
-	);
+                    <ThoughtCard data={data} />
+
+                </Link>)
+            ))}
+        </section>
+
+        <Footer />
+    </>;
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

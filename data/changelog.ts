@@ -36,6 +36,10 @@ export const CHANGELOG: {
 				date: "2023-01-09",
 				type: "fix",
 			},
+			{
+				date: "2023-01-09",
+				type: "edit",
+			},
 		],
 		version: "1.3.0",
 	},
