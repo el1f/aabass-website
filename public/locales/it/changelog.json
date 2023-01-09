@@ -8,7 +8,8 @@
 			"A new little page for all of my thoughts have been added! Now I can finally bother all of the internet with what's currently running through my little noggin'!",
 			"The posters have been moved to the CMS. Now I can update them without having to push a whole new version of the website. How cool is that? Also, there is now a lightBox to check them out in their full-sized glory!",
 			"Coffee up! The coffee page is now up and running, ready to welcome a collection of the beans I consume in the coming months and of the places I go to have those cups at!",
-			"The website now actually uses the desired font instead of whatever your browser wants to load. Kinda handy huh? One would think this would be something that would have been worked out 3 months ago or smth."
+			"The website now actually uses the desired font instead of whatever your browser wants to load. Kinda handy huh? One would think this would be something that would have been worked out 3 months ago or smth.",
+			"This site is now powered by NextJS 13 because why the heck not."
 		]
 	},
 	"1.2.0": {

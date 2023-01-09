@@ -1,5 +1,5 @@
 import { Dialog } from "@headlessui/react";
-import Image, { ImageLoader } from "next/image";
+import Image, { ImageLoader } from "next/legacy/image";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 

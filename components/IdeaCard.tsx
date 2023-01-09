@@ -35,7 +35,7 @@ export const IdeaCard: React.FC<{
 	}, []);
 
 	return (
-		<Link href={`/ideas?activeIdea=${idea.id}`} passHref>
+        <Link href={`/ideas?activeIdea=${idea.id}`} legacyBehavior passHref>
 			<OutlinedCard
 				as={"a"}
 				className={classNames(
@@ -75,5 +75,5 @@ export const IdeaCard: React.FC<{
 				</div>
 			</OutlinedCard>
 		</Link>
-	);
+    );
 };

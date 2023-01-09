@@ -19,47 +19,45 @@ const NotFound: NextPage = () => {
 	const { t } = useTranslation(["common", "404"]);
 	const router = useRouter();
 
-	return (
-		<>
-			<Seo title={t("404:pageTitle")} />
+	return <>
+        <Seo title={t("404:pageTitle")} />
 
-			<Navbar />
+        <Navbar />
 
-			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
-				<Heading className="mb-4 leading-snug" level={1}>
-					{t("404:title")}
-				</Heading>
-				{/* TODO: figure out why using a p causes a hydration issue */}
-				<Text as="div" className="mb-6">
-					<Trans i18nKey="404:body" />
-				</Text>
-				<div className="flex gap-4 dark:gap-6">
-					<Link href="mailto:ayoub@aabass.net">
-						<a>
-							<Button
-								onClick={() => {
-									ga.contactPress(router.route);
-								}}
-							>
-								{t("404:cta")}
-							</Button>
-						</a>
-					</Link>
-					<Link href="/about">
-						<a>
-							<Button isOutlined isText>
-								{t("common:about")}
-							</Button>
-						</a>
-					</Link>
-				</div>
-			</header>
+        <header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
+            <Heading className="mb-4 leading-snug" level={1}>
+                {t("404:title")}
+            </Heading>
+            {/* TODO: figure out why using a p causes a hydration issue */}
+            <Text as="div" className="mb-6">
+                <Trans i18nKey="404:body" />
+            </Text>
+            <div className="flex gap-4 dark:gap-6">
+                <Link href="mailto:ayoub@aabass.net">
 
-			<section className="container max-w-5xl px-4 mx-auto mb-48"></section>
+                    <Button
+                        onClick={() => {
+                            ga.contactPress(router.route);
+                        }}
+                    >
+                        {t("404:cta")}
+                    </Button>
 
-			<Footer />
-		</>
-	);
+                </Link>
+                <Link href="/about">
+
+                    <Button isOutlined isText>
+                        {t("common:about")}
+                    </Button>
+
+                </Link>
+            </div>
+        </header>
+
+        <section className="container max-w-5xl px-4 mx-auto mb-48"></section>
+
+        <Footer />
+    </>;
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({

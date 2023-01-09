@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 	const isScrollingUp = scroll.y > SCROLL_THRESHOLD && direction === "UP";
 
 	return (
-		<nav className={twMerge(classNames("block w-full h-16 mt-16"))}>
+        <nav className={twMerge(classNames("block w-full h-16 mt-16"))}>
 			<div
 				className={twMerge(
 					classNames("w-full", {
@@ -39,12 +39,12 @@ export const Navbar: React.FC<NavbarProps> = () => {
 						),
 					)}
 				>
-					<Link href="/">
-						<a className="block h-12">
-							{/* <Logo isDark={isDark} isExtended={isExtended} /> */}
-							<DynamicLogo isActive={isScrollingUp} />
-						</a>
-					</Link>
+					<Link className="block h-12" href="/">
+
+                        {/* <Logo isDark={isDark} isExtended={isExtended} /> */}
+                        <DynamicLogo isActive={isScrollingUp} />
+
+                    </Link>
 					<div className="flex items-center justify-center">
 						{SOCIALS.map((social) => (
 							<SocialLink
@@ -57,5 +57,5 @@ export const Navbar: React.FC<NavbarProps> = () => {
 				</div>
 			</div>
 		</nav>
-	);
+    );
 };

@@ -42,77 +42,75 @@ const Posters: NextPage = () => {
 		},
 	});
 
-	return (
-		<>
-			<Seo title={t("pageTitle")} />
+	return <>
+        <Seo title={t("pageTitle")} />
 
-			<Navbar />
+        <Navbar />
 
-			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
-				<Heading className="mb-4" level={1}>
-					{t("header.title")}
-				</Heading>
-				<Text>
-					<Trans i18nKey="posters:header.description" />
-				</Text>
-			</header>
+        <header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
+            <Heading className="mb-4" level={1}>
+                {t("header.title")}
+            </Heading>
+            <Text>
+                <Trans i18nKey="posters:header.description" />
+            </Text>
+        </header>
 
-			<div className="container max-w-2xl px-6 mx-auto my-6">
-				<Heading level={2}>{t("standard.title")}</Heading>
-			</div>
+        <div className="container max-w-2xl px-6 mx-auto my-6">
+            <Heading level={2}>{t("standard.title")}</Heading>
+        </div>
 
-			<section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
-				{(data?.standard ?? []).map((poster) => (
-					<Link
-						href={`/posters/${poster.slug}`}
-						key={poster.slug}
-						scroll={false}
-					>
-						<a>
-							<PosterThumbnail
-								className="flex-shrink-0 w-full"
-								onClick={() => ga.posterPress(poster.slug)}
-								src={poster.poster.url}
-								title={poster.name}
-							/>
-						</a>
-					</Link>
-				))}
-			</section>
+        <section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
+            {(data?.standard ?? []).map((poster) => (
+                (<Link
+                    href={`/posters/${poster.slug}`}
+                    key={poster.slug}
+                    scroll={false}
+                >
 
-			<div className="container max-w-2xl px-6 mx-auto my-6">
-				<Heading level={2}>{t("square.title")}</Heading>
-			</div>
+                    <PosterThumbnail
+                        className="flex-shrink-0 w-full"
+                        onClick={() => ga.posterPress(poster.slug)}
+                        src={poster.poster.url}
+                        title={poster.name}
+                    />
 
-			<section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
-				{(data?.vinyl ?? []).map((poster) => (
-					<Link
-						href={`/posters/${poster.slug}`}
-						key={poster.slug}
-						scroll={false}
-					>
-						<a>
-							<PosterThumbnail
-								className="flex-shrink-0 w-full"
-								format="disc"
-								onClick={() => ga.posterPress(poster.slug)}
-								src={poster.poster.url}
-								title={poster.name}
-							/>
-						</a>
-					</Link>
-				))}
-			</section>
+                </Link>)
+            ))}
+        </section>
 
-			<PosterLightbox
-				onClose={() => router.push("/posters", undefined, { scroll: false })}
-				open={Boolean(poster)}
-				poster={selectedPosterData?.poster ?? undefined}
-			/>
+        <div className="container max-w-2xl px-6 mx-auto my-6">
+            <Heading level={2}>{t("square.title")}</Heading>
+        </div>
 
-			<Footer />
-		</>
-	);
+        <section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
+            {(data?.vinyl ?? []).map((poster) => (
+                (<Link
+                    href={`/posters/${poster.slug}`}
+                    key={poster.slug}
+                    scroll={false}
+                >
+
+                    <PosterThumbnail
+                        className="flex-shrink-0 w-full"
+                        format="disc"
+                        onClick={() => ga.posterPress(poster.slug)}
+                        src={poster.poster.url}
+                        title={poster.name}
+                    />
+
+                </Link>)
+            ))}
+        </section>
+
+        <PosterLightbox
+            onClose={() => router.push("/posters", undefined, { scroll: false })}
+            open={Boolean(poster)}
+            poster={selectedPosterData?.poster ?? undefined}
+        />
+
+        <Footer />
+    </>;
 };
 
 export const getStaticPaths = async () => {
