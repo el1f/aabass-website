@@ -3,7 +3,7 @@ export const CHANGELOG: {
 	features: {
 		date?: string;
 		ideaId?: string;
-		type: "add" | "edit" | "remove";
+		type: "add" | "edit" | "remove" | "fix";
 	}[];
 	version: string;
 }[] = [
@@ -31,6 +31,10 @@ export const CHANGELOG: {
 				date: "2022-12-27",
 				ideaId: "clauyx4zo2qsw0amh0cdd47cv",
 				type: "add",
+			},
+			{
+				date: "2023-01-09",
+				type: "fix",
 			},
 		],
 		version: "1.3.0",
