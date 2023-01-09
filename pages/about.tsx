@@ -1,35 +1,23 @@
 import { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
-import { Trans, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { Footer, Heading, Navbar, Text } from "../components";
+import { Footer, Heading, Navbar, Seo, Text, Trans } from "../components";
 
 const About: NextPage = () => {
-	const { t } = useTranslation("common");
+	const { t } = useTranslation("about");
 
 	return (
 		<>
-			<Head>
-				<title>{t("about.pageTitle")}</title>
-				{/* TODO: replace with the OpenGraph component when fixed */}
-				<meta content="website" property="og:type" />
-				<meta content={t(`meta.og.title`)} property="og:title" />
-				<meta content={process.env.NEXT_PUBLIC_HOSTNAME} property="og:url" />
-				<meta
-					content={`${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`}
-					property="og:image"
-				/>
-				<meta content={t(`meta.og.description`)} property="og:description" />
-			</Head>
+			<Seo title={t("pageTitle")} />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
-				<Text size="md">{t("about.lead")}</Text>
+				<Text size="md">{t("lead")}</Text>
 				<Heading className="mb-4" level={1}>
-					{t("about.title")}
+					{t("title")}
 				</Heading>
 			</header>
 
@@ -46,7 +34,7 @@ const About: NextPage = () => {
 					</div>
 					{/* TODO: figure out why using a p causes a hydration issue */}
 					<Text as="div" className="leading-loose">
-						<Trans i18nKey="about.bio" />
+						<Trans i18nKey="about:bio" />
 					</Text>
 				</div>
 			</section>
@@ -58,7 +46,11 @@ const About: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
-		...(await serverSideTranslations(locale ?? "en", ["common", "changelog"])),
+		...(await serverSideTranslations(locale ?? "en", [
+			"common",
+			"about",
+			"changelog",
+		])),
 	},
 });
 

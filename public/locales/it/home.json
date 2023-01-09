@@ -1,0 +1,41 @@
+{
+	"hero": {
+		"title": "Ciao, mi chiamo <strong>Ayoub</strong>",
+		"p1": "Mi destreggio nello sviluppo di software e nel design di interfacce ormai da <strong>8 anni</strong>, 9 dei quali sono stati spesi nello sviluppo di questo sito web. Direi che è il caso di pubblicare qualcosa.",
+		"p2": "Lavoro principalmente nello sviluppo <strong>full-stack</strong> di prodotti web con un focus sul <strong>front-end</strong>. Adoro costruire intrefacce grafiche minimali e intuitive, che permettano ai loro utenti di raggiungere i loro obiettivi in maniera semplice ed efficiente.",
+		"p3": "La mia disponibilità attuale è <availability>fairly limited</availability>, non esitare a contattarmi se hai qualche progetto in mente.",
+		"cta1": "Contattami",
+		"about": "Chi sono"
+	},
+	"playbook": {
+		"title": "Playbook",
+		"description": "Una piccola collezione di cosette vagamente correlate all'ambito lavorativo su cui sto lavorando e che mi piacciono parecchio.",
+		"posters": {
+			"title": "Posters",
+			"showMore": "Mostra tutto",
+			"description": "Ultimamente sto giocando con molti nuovi stili grafici e mi sto divertendo a stamparli molto più di quanto avrei immaginato. Questa è una selezione dei miei ultimi lavori."
+		}
+	},
+	"personal": {
+		"title": "Angolo personale",
+		"description": "Quindi ti ritrovi sul mio sito eh? <strong>Il mio sito</strong>. Questo è il punto in cui assumo il controllo della narrativa e disegno un po' di cose completamente scollegate dalla sfera lavorativa ma di cui mi importa decisamente troppo per non piazzare nel mio piccolo angolino di internet. Benvenuti!",
+		"coffee": {
+			"title": "Caffè",
+			"showMore": "Scopri di più",
+			"description": "Da quando sono stato a Rotterdam la mia passione per il caffè è completamente esplosa. Sono passato dal semplice apprezzamento per la bevanda dietro a molte delle mie nottate di lavoro più dense all'accumulare un quantitativo di informazioni e strumentazione onestamente preoccupante. Qui puoi trovare alcuni scritti su cosa sto scoprendo in questo momento in questo piccolo fragrante mondo.",
+			"beansTitle": "I miei ultimi chicchi",
+			"placesTitle": "Le mie caffetterie piu' recenti"
+		},
+		"thoughts": {
+			"description": "È da parecchio che stavo pensando di lavorare sulle mie capacità di scrittura, soprattutto in lingua inglese. Ho pensato che un piccolo angolino dove sperimentare con l'espressione di alcune delle idee che mi frullano in testa, sia nell'ambito lavorativo che nell'ambito personale fosse un buon modo per lavorare su questa skill. Dopotutto la pratica rende perfetti no?",
+			"showMore": "Leggi di più",
+			"title": "Pensieri",
+			"latest": "Ultimi scritti"
+		}
+	},
+	"footer": {
+		"title": "Beh, questo è tutto",
+		"description": "Congratulazioni per aver raggiunto il fondo! <br /> Sto pensando di aggiungere un piccolo regalino per chi arriva fino a qui ma non è ancora pronto. Torna più avanti per darci un occhio :)"
+	},
+	"pageTitle": "Hello, I'm Ayoub"
+}
