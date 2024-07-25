@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
 	fallbackLng: {
 		default: ["en"],
@@ -6,8 +8,5 @@ module.exports = {
 		defaultLocale: "en",
 		locales: ["en", "it"],
 	},
-	localePath:
-		typeof window === "undefined"
-			? require("path").resolve("/locales")
-			: "/public/locales",
+	localePath: path.resolve("./public/locales"),
 };
