@@ -88,29 +88,26 @@ const About: NextPage = () => {
 						Work experience
 					</Heading>
 					<div className="flex flex-col gap-4">
-						{t<
-							string,
-							{
+						{(
+							t("cv:document.experience.items", { returnObjects: true }) as {
 								company: string;
 								location: string;
 								period: string;
 								role: string;
 								tasks: string[];
 							}[]
-						>("cv:document.experience.items", { returnObjects: true }).map(
-							(job) => (
-								<div className="flex flex-col gap-1" key={job.company}>
-									<Text className="leading-none" size="sm">
-										<strong className="dark:text-textLight text-textDark">
-											{job.period} / {job.location}
-										</strong>
-									</Text>
-									<Text>{`${job.role}${
-										job.company ? ` @${job.company}` : ""
-									}`}</Text>
-								</div>
-							),
-						)}
+						).map((job) => (
+							<div className="flex flex-col gap-1" key={job.company}>
+								<Text className="leading-none" size="sm">
+									<strong className="dark:text-textLight text-textDark">
+										{job.period} / {job.location}
+									</strong>
+								</Text>
+								<Text>{`${job.role}${
+									job.company ? ` @${job.company}` : ""
+								}`}</Text>
+							</div>
+						))}
 					</div>
 
 					<Heading className="mt-0 xs:mt-12" level={5}>
