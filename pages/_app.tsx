@@ -1,6 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import type { AppProps } from "next/app";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
