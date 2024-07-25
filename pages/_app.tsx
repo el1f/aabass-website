@@ -1,4 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
+import { VercelToolbar } from "@vercel/toolbar/next";
 import type { AppProps } from "next/app";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { useRouter } from "next/router";
@@ -22,6 +23,7 @@ const jbMono = JetBrains_Mono({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+	const shouldInjectToolbar = process.env.NODE_ENV === "development";
 	const router = useRouter();
 
 	useEffect(() => {
@@ -97,6 +99,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 					</div>
 				</ThemeProvider>
 			</MDXProvider>
+
+			{shouldInjectToolbar && <VercelToolbar />}
 		</>
 	);
 }
