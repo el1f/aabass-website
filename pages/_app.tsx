@@ -1,4 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
+import { Analytics } from "@vercel/analytics/react";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { AppProps } from "next/app";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
@@ -101,6 +102,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 			</MDXProvider>
 
 			{shouldInjectToolbar && <VercelToolbar />}
+
+			<Analytics />
 		</>
 	);
 }
