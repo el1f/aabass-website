@@ -21,9 +21,6 @@ import { clientSetup, homePage, initGraphQLClient } from "../graphql";
 import { getThoughts } from "../lib/thoughts";
 import { Thought } from "../types";
 
-const CARD_CAROUSEL =
-	"flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8 -mb-8";
-
 const Home: NextPage<{
 	thoughts: Thought[];
 }> = ({ thoughts }) => {
@@ -93,8 +90,6 @@ const Home: NextPage<{
 				</div>
 				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
 					{(data?.posters ?? []).map((poster) => {
-						console.log(`/${i18n.language}/posters/${poster.slug}`);
-
 						return (
 							// <Link
 							// 	href={`/${i18n.language}/posters/${poster.slug}`}
@@ -102,6 +97,7 @@ const Home: NextPage<{
 							// >
 							<PosterThumbnail
 								className="flex-shrink-0 w-64"
+								key={poster.slug}
 								// onClick={() => {
 								// 	ga.posterPress(poster.slug);
 								// }}

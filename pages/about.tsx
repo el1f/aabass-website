@@ -36,9 +36,9 @@ const About: NextPage = () => {
 							alt="A picture of myself"
 							className="w-full"
 							height={2843}
-							width={5512}
 							objectFit="cover"
 							src="/me/me.jpg"
+							width={5512}
 						/>
 					</figure>
 
