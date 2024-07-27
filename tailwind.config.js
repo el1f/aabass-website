@@ -1,73 +1,77 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
-  darkMode: 'class',
-  plugins: [
-    require('@tailwindcss/line-clamp')
-  ],
-  theme: {
-    extend: {
-      aspectRatio: {
-        poster: "297/420",
-        sweet: "4/3",
-      },
-      colors: {
-        ...defaultTheme.colors,
-        bg: "var(--bg)",
-        bgBaseDark: colors.zinc[900],
-        bgBaseLight: colors.stone[200],
-        bgRaised: "var(--bgRaised)",
-        bgRaisedDark: colors.zinc[800],
-        bgRaisedLight: colors.stone[50],
-        // Painful Green
-        primary: { 
-          100: "#F8FEEC",
-          200: "#F0FDD9",
-          300: "#E9FBC5",
-          400: "#E1FAB2",
-          50: "#FBFEF5",
-          500: "#D9F99D",
-          600: "#BCF452",
-          700: "#9BE70E",
-          800: "#679A09",
-          900: "#344D05"
-        },
-        primaryShade: "#D9F99D",
-        text: "var(--text)",
-        textDark: colors.zinc[900],
-        textDimmed: "var(--textDimmed)",
-        textDimmedDark: colors.zinc[600],
-        textDimmedLight: colors.slate[300],
-        textLight: colors.slate[50],
-      },
-      fontFamily: {
-        mono: ['var(--font-jb-mono)', ...defaultTheme.fontFamily.mono],
-        sans: ['var(--font-space-grotesk)', ...defaultTheme.fontFamily.sans],
-      },
-      gridTemplateColumns: {
-        cv: "minmax(64px, 192px) 2fr",
-        thought: "minmax(8rem, 20rem) 42rem minmax(8rem, 20rem)",
-      },
-      margin: {
-        "heading-1": "6rem",
-        "heading-2": "3rem",
-        "heading-3": "1rem",
-        "section-1": "16rem",
-        "section-2": "8rem",
-        "section-3": "4rem",
-      },
-      maxWidth: {
-        "2xs": "16rem",
-        "3xs": "12rem",
-        "4xs": "8rem",
-        "5xs": "4rem",
-      }
-    }
-  },
-}
+	content: [
+		"./pages/**/*.{js,ts,jsx,tsx}",
+		"./components/**/*.{js,ts,jsx,tsx}",
+	],
+	darkMode: "class",
+	plugins: [require("@tailwindcss/line-clamp")],
+	theme: {
+		extend: {
+			aspectRatio: {
+				poster: "297/420",
+				sweet: "4/3",
+			},
+			borderRadius: {
+				md: ".75rem",
+				sm: ".5rem",
+				xs: ".25rem",
+			},
+			colors: {
+				...defaultTheme.colors,
+				bg: "var(--bg)",
+				bgBaseDark: colors.zinc[900],
+				bgBaseLight: colors.stone[200],
+				bgRaised: "var(--bgRaised)",
+				bgRaisedDark: colors.zinc[800],
+				bgRaisedLight: colors.stone[50],
+				// Painful Green
+				primary: {
+					100: "#F8FEEC",
+					200: "#F0FDD9",
+					300: "#E9FBC5",
+					400: "#E1FAB2",
+					50: "#FBFEF5",
+					500: "#D9F99D",
+					600: "#BCF452",
+					700: "#9BE70E",
+					800: "#679A09",
+					900: "#344D05",
+				},
+				primaryShade: "#D9F99D",
+				text: "var(--text)",
+				textDark: colors.zinc[900],
+				textDimmed: "var(--textDimmed)",
+				textDimmedDark: colors.zinc[600],
+				textDimmedLight: colors.slate[300],
+				textLight: colors.slate[50],
+			},
+			fontFamily: {
+				display: ["var(--font-sofia-pro)", ...defaultTheme.fontFamily.sans],
+				mono: ["var(--font-jb-mono)", ...defaultTheme.fontFamily.mono],
+				sans: ["var(--font-space-grotesk)", ...defaultTheme.fontFamily.sans],
+			},
+			gridTemplateColumns: {
+				cv: "minmax(64px, 192px) 2fr",
+				thought: "minmax(8rem, 20rem) 42rem minmax(8rem, 20rem)",
+			},
+			margin: {
+				"heading-1": "6rem",
+				"heading-2": "3rem",
+				"heading-3": "1rem",
+				"section-1": "16rem",
+				"section-2": "8rem",
+				"section-3": "4rem",
+			},
+			maxWidth: {
+				"2xs": "16rem",
+				"3xs": "12rem",
+				"4xs": "8rem",
+				"5xs": "4rem",
+			},
+		},
+	},
+};
