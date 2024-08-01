@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
+import About from "../public/icons/about.svg";
 import ArrowLeft from "../public/icons/arrow-left.svg";
 import Close from "../public/icons/cross.svg";
 import Dribbble from "../public/icons/dribbble.svg";
@@ -9,6 +10,8 @@ import Github from "../public/icons/github.svg";
 import Instagram from "../public/icons/instagram.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import DarkTheme from "../public/icons/moon-stars.svg";
+import Personal from "../public/icons/personal.svg";
+import Projects from "../public/icons/projects.svg";
 import LightTheme from "../public/icons/sun.svg";
 import { SocialPlatform } from "../types";
 
@@ -17,7 +20,10 @@ export type IconName =
 	| "dark"
 	| "light"
 	| "arrowLeft"
-	| "close";
+	| "close"
+	| "projects"
+	| "personal"
+	| "about";
 
 export interface IconProps {
 	className?: string;
@@ -44,5 +50,11 @@ export const Icon: React.FC<IconProps> = ({ className, name }) => {
 			return <ArrowLeft className={clsx} />;
 		case "close":
 			return <Close className={clsx} />;
+		case "projects":
+			return <Projects className={clsx} />;
+		case "personal":
+			return <Personal className={clsx} />;
+		case "about":
+			return <About className={clsx} />;
 	}
 };

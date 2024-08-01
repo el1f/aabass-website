@@ -46,15 +46,21 @@ export const Navbar: React.FC<NavbarProps> = () => {
 					<div className="flex items-center gap-2">
 						{isPastSafeThreshold && (
 							<motion.div className="flex gap-0.5">
-								<Button size="sm" startIcon="dribbble" variant="ghost">
-									About me
-								</Button>
-								<Button size="sm" startIcon="dribbble" variant="ghost">
-									Projects
-								</Button>
-								<Button size="sm" startIcon="dribbble" variant="ghost">
-									Personal
-								</Button>
+								<Link href="/about">
+									<Button size="sm" startIcon="about" variant="ghost">
+										About me
+									</Button>
+								</Link>
+								<Link href="/cases">
+									<Button size="sm" startIcon="projects" variant="ghost">
+										Case Studies
+									</Button>
+								</Link>
+								<Link href="/personal">
+									<Button size="sm" startIcon="personal" variant="ghost">
+										Personal
+									</Button>
+								</Link>
 							</motion.div>
 						)}
 
