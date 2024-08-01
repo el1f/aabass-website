@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -55,12 +56,14 @@ const Home: NextPage<{
 						<Trans i18nKey="home:hero.p3" />
 					</Text>
 				</hgroup>
-				<div className="flex gap-4 dark:gap-6">
+				<div className="flex gap-4 dark:gap-4">
 					<Link href="mailto:ayoub@aabass.net">
-						<Button>{t("hero.cta1")}</Button>
+						<Button asChild size="xl">
+							<motion.button>{t("hero.cta1")}</motion.button>
+						</Button>
 					</Link>
 					<Link href="/about">
-						<Button isOutlined isText>
+						<Button size="xl" variant="outline">
 							{t("hero.about")}
 						</Button>
 					</Link>

@@ -61,7 +61,22 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		const handleRouteChange = (url: string) => {
+			// track page views
 			ga.pageView(url);
+
+			// TODO: move this into a component
+			// set the gradient variables
+			for (const card of document.getElementsByClassName("hover-gradient")) {
+				const safeCard = card as HTMLElement;
+				safeCard.onmousemove = (e) => {
+					const rect = safeCard.getBoundingClientRect(),
+						x = e.clientX - rect.left,
+						y = e.clientY - rect.top;
+
+					safeCard.style.setProperty("--mouse-x", `${x}px`);
+					safeCard.style.setProperty("--mouse-y", `${y}px`);
+				};
+			}
 		};
 
 		router.events.on("routeChangeComplete", handleRouteChange);

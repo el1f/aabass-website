@@ -15,14 +15,14 @@ export const Footer = () => {
 	const isDark = theme !== "light";
 
 	return (
-        <div className="overflow-hidden print:hidden">
+		<div className="overflow-hidden print:hidden">
 			<footer className="container relative max-w-5xl px-6 pt-8 pb-32 mx-auto">
 				<div className="flex flex-col justify-between gap-12 md:flex-row">
 					<div className="flex flex-col">
 						<div className="mb-2">
 							<Logo height={56} isDark={!isDark} isExtended />
 						</div>
-						<Text size="sm">{t("footer.copyright")}</Text>
+						<Text size="sm">©️ {new Date().getFullYear()}</Text>
 
 						<div className="flex gap-2 mt-16">
 							<Switch
@@ -40,18 +40,17 @@ export const Footer = () => {
 								</Text>
 							</Switch>
 							<Link
-                                className={`aspect-sweet rounded-2xl border border-textDimmedDark/40 w-full max-w-4xs p-3 flex-col flex items-start dark:hover:bg-bgRaisedDark hover:bg-bgRaisedLight hover:border-textDimmedDark/20 transition-all flex-shrink-0`}
-                                href={router.route}
-                                locale={i18n.language === "it" ? "en" : "it"}>
-
-                                <span className="text-2xl leading-none">
-                                    {i18n.language === "it" ? "🇮🇹" : "🌎"}
-                                </span>
-                                <Text className="mt-auto leading-none text-left" size="xs">
-                                    {t("footer.changeLang")}
-                                </Text>
-
-                            </Link>
+								className={`aspect-sweet rounded-2xl border border-textDimmedDark/40 w-full max-w-4xs p-3 flex-col flex items-start dark:hover:bg-bgRaisedDark hover:bg-bgRaisedLight hover:border-textDimmedDark/20 transition-all flex-shrink-0`}
+								href={router.route}
+								locale={i18n.language === "it" ? "en" : "it"}
+							>
+								<span className="text-2xl leading-none">
+									{i18n.language === "it" ? "🇮🇹" : "🌎"}
+								</span>
+								<Text className="mt-auto leading-none text-left" size="xs">
+									{t("footer.changeLang")}
+								</Text>
+							</Link>
 						</div>
 					</div>
 
@@ -84,5 +83,5 @@ export const Footer = () => {
 				</div>
 			</footer>
 		</div>
-    );
+	);
 };

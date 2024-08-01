@@ -2,29 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bgBaseDark: #18181b;
-  --bgBaseLight: #e7e5e4;
-  --bgRaisedDark: #27272a;
-  --bgRaisedLight: #fafaf9;
-  --textDark: #18181b;
-  --textLight: #f8fafc;
-  --textDimmedDark: #52525b;
-  --textDimmedLight: #cbd5e1;
-}
+@layer base {
+  :root {
+    --bgBaseDark: #18181b;
+    --bgBaseLight: #e7e5e4;
+    --bgRaisedDark: #27272a;
+    --bgRaisedLight: #fafaf9;
+    --textDark: theme('colors.alloyZinc.950');
+    --textLight: theme('colors.alloyZinc.50');
+    --textDimmedDark: theme('colors.alloyZinc.600');
+    --textDimmedLight: theme('colors.alloyZinc.400');
+  }
 
-html {
-  --bg: var(--bgBaseLight);
-  --bgRaised: var(--bgRaisedLight);
-  --text: var(--textDark);
-  --textDimmed: var(--textDimmedDark);
-}
-
-html.dark {
-  --bg: var(--bgBaseDark);
-  --bgRaised: var(--bgRaisedDark);
-  --text: var(--textLight);
-  --textDimmed: var(--textDimmedLight);
+  html {
+    --bg: var(--bgBaseLight);
+    --bgRaised: var(--bgRaisedLight);
+    --text: var(--textDark);
+    --textDimmed: var(--textDimmedDark);
+  }
+  
+  html.dark {
+    --bg: var(--bgBaseDark);
+    --bgRaised: var(--bgRaisedDark);
+    --text: var(--textLight);
+    --textDimmed: var(--textDimmedLight);
+  }
 }
 
 .logo #firstname, .logo #lastname {
@@ -80,3 +82,44 @@ html.dark, html.dark body {
   }
 }
 
+.hover-gradient {
+  position: relative;
+}
+
+.hover-gradient > :nth-child(1) {
+  /* background-color: var(--card-color); */
+  background-color: inherit;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  inset: 1px;
+  padding: 10px;
+  position: absolute;
+  z-index: 2;
+}
+
+.hover-gradient::before {
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.hover-gradient::before {
+  background: radial-gradient(
+    192px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.1),
+    transparent 50%
+  );
+  z-index: 3;
+}
+
+.hover-gradient:hover::before {
+  opacity: 1;
+}
