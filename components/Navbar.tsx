@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
 					<div className="flex items-center gap-2">
 						{isPastSafeThreshold && (
-							<motion.div className="flex gap-0.5">
+							<motion.div className="md:flex gap-0.5 hidden">
 								<Link href="/about">
 									<Button size="sm" startIcon="about" variant="ghost">
 										About me
@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 							</motion.div>
 						)}
 
-						{isPastSafeThreshold && <span>•</span>}
+						{isPastSafeThreshold && <span className="hidden md:block">•</span>}
 
 						<motion.div className="flex items-center justify-center">
 							{SOCIALS.map((social) => (
