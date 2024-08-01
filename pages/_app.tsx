@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
 import { ThemeProvider } from "next-themes";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import "../styles/globals.css";
 
@@ -59,6 +59,24 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const shouldInjectToolbar = process.env.NODE_ENV === "development";
 	const router = useRouter();
 
+	const setHoverGradients = useCallback(() => {
+		for (const card of document.getElementsByClassName("hover-gradient")) {
+			const safeCard = card as HTMLElement;
+			safeCard.onmousemove = (e) => {
+				const rect = safeCard.getBoundingClientRect(),
+					x = e.clientX - rect.left,
+					y = e.clientY - rect.top;
+
+				safeCard.style.setProperty("--mouse-x", `${x}px`);
+				safeCard.style.setProperty("--mouse-y", `${y}px`);
+			};
+		}
+	}, []);
+
+	useEffect(() => {
+		setHoverGradients();
+	}, []);
+
 	useEffect(() => {
 		const handleRouteChange = (url: string) => {
 			// track page views
@@ -66,17 +84,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 			// TODO: move this into a component
 			// set the gradient variables
-			for (const card of document.getElementsByClassName("hover-gradient")) {
-				const safeCard = card as HTMLElement;
-				safeCard.onmousemove = (e) => {
-					const rect = safeCard.getBoundingClientRect(),
-						x = e.clientX - rect.left,
-						y = e.clientY - rect.top;
-
-					safeCard.style.setProperty("--mouse-x", `${x}px`);
-					safeCard.style.setProperty("--mouse-y", `${y}px`);
-				};
-			}
+			setHoverGradients();
 		};
 
 		router.events.on("routeChangeComplete", handleRouteChange);

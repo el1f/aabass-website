@@ -1,0 +1,33 @@
+{
+	"pageTitle": "Personal Corner",
+	"title": "Personal Corner",
+	"body": "Well, if you're here it seems you actually are interested into getting a fuller picture of who I am and what I care about. Hope this page helps you with that! I'll try and keep it updated with toys and experiments related to the various interests I'll post about here.",
+	"art": {
+		"title": "Artsy Stuff",
+		"description": "Ever since elementary school I made sure to upset my teachers by being more interested in doodling on my notebooks than paying attention to the class. I've been trying to get back into drawing and painting, and I've also started snapping some photos here and there. Have a look at them and lemme know what you think!"
+	},
+	"coffee": {
+		"title": "Coffee",
+		"description": "As a dev I've taken revenge against all the gripes I have with Java  by drinking copious amounts of coffee. I've been a coffee enthusiast for a while now and I've been trying to learn more about it. I've been experimenting with different brewing methods and beans, and I'll try documenting some of my journey here."
+	},
+	"gaming": {
+		"title": "Gaming",
+		"description": "My uncle once brought us a NES from Paris with super mario on it. I was 3, I didn't know how to play that stuff. Afterwards my dad brought me a PS2 when I was 6, and I've been gaming ever since. Adulting got in the way once I hit 16 but I am trying to get back into it. This corner will be about my experiences gaming and serve as an excuse for me to spend more time doing it."
+	},
+	"longboard": {
+		"title": "Longboarding",
+		"description": "I took up longboarding in 2015 but really dove into it during the pandeminc. You could see me wrecking my shins ever since. I've had a bunch of different ideas within the space ever since and I'm trying to document them here. I'll also be posting about my experiences with longboarding and the community around it."
+	},
+	"music": {
+		"title": "Music",
+		"description": "I never claimed to be into music since many people stake a lot of emotions on that claim and I definitely don't wanna upset the music loving crowd. That being said I definitely use it to keep my thoughts at bay quite a lot during my days and I wanna drop some honorable mentions here since it's a big part of my life."
+	},
+	"travel": {
+		"title": "Travel",
+		"description": "I've been lucky enough to have traveled quite a bit in my life. Not nearly as much as I'd like to but it serves as an excellent tying thread for my other experiences so let's drop it here for sure!"
+	},
+	"placeholder": {
+		"title": "Housekeeping in progress",
+		"description": "I'm still working on this section. Check back later!"
+	}
+}

@@ -86,19 +86,6 @@ html.dark, html.dark body {
   position: relative;
 }
 
-.hover-gradient > :nth-child(1) {
-  /* background-color: var(--card-color); */
-  background-color: inherit;
-  border-radius: inherit;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  inset: 1px;
-  padding: 10px;
-  position: absolute;
-  z-index: 2;
-}
-
 .hover-gradient::before {
   border-radius: inherit;
   content: "";
@@ -115,6 +102,15 @@ html.dark, html.dark body {
   background: radial-gradient(
     192px circle at var(--mouse-x) var(--mouse-y), 
     rgba(255, 255, 255, 0.1),
+    transparent 50%
+  );
+  z-index: 3;
+}
+
+.hover-gradient-xl::before {
+  background: radial-gradient(
+    512px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.05),
     transparent 50%
   );
   z-index: 3;
