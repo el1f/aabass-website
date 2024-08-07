@@ -78,6 +78,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		setHoverGradients();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
@@ -95,6 +96,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return () => {
 			router.events.off("routeChangeComplete", handleRouteChange);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.events]);
 
 	return (

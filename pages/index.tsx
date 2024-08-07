@@ -25,7 +25,7 @@ import { Thought } from "../types";
 const Home: NextPage<{
 	thoughts: Thought[];
 }> = ({ thoughts }) => {
-	const { i18n, t } = useTranslation("home");
+	const { t } = useTranslation("home");
 
 	// TODO: this seems to cause hydration issues every now and then but
 	// according to this issue it isn't a problem that should happen
