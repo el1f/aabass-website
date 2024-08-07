@@ -1,3 +1,4 @@
+import { EnvelopeSimple } from "@phosphor-icons/react";
 import classNames from "classnames";
 import React from "react";
 import { twMerge } from "tailwind-merge";
@@ -7,6 +8,7 @@ import ArrowLeft from "../public/icons/arrow-left.svg";
 import Close from "../public/icons/cross.svg";
 import Dribbble from "../public/icons/dribbble.svg";
 import Github from "../public/icons/github.svg";
+import Globe from "../public/icons/globe.svg";
 import Instagram from "../public/icons/instagram.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import DarkTheme from "../public/icons/moon-stars.svg";
@@ -23,7 +25,9 @@ export type IconName =
 	| "close"
 	| "projects"
 	| "personal"
-	| "about";
+	| "about"
+	| "email"
+	| "globe";
 
 export interface IconProps {
 	className?: string;
@@ -56,5 +60,9 @@ export const Icon: React.FC<IconProps> = ({ className, name }) => {
 			return <Personal className={clsx} />;
 		case "about":
 			return <About className={clsx} />;
+		case "globe":
+			return <Globe className={clsx} />;
+		case "email":
+			return <EnvelopeSimple className={clsx} weight="bold" />;
 	}
 };

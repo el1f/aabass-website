@@ -8,11 +8,11 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
 import { ThemeProvider } from "next-themes";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import "../styles/globals.css";
 
-import { Heading, Strong, Text } from "../components";
+import { Button, Heading, Strong, Text } from "../components";
 import * as ga from "../lib/ga";
 
 const sofiaPro = localFont({
@@ -58,6 +58,9 @@ const jbMono = JetBrains_Mono({
 function MyApp({ Component, pageProps }: AppProps) {
 	const shouldInjectToolbar = process.env.NODE_ENV === "development";
 	const router = useRouter();
+
+	// Devtool state
+	const [showGrid, setShowGrid] = useState(false);
 
 	const setHoverGradients = useCallback(() => {
 		for (const card of document.getElementsByClassName("hover-gradient")) {
@@ -161,6 +164,31 @@ function MyApp({ Component, pageProps }: AppProps) {
 			{shouldInjectToolbar && <VercelToolbar />}
 
 			<Analytics />
+
+			{/* Custom Devtools */}
+			{shouldInjectToolbar && (
+				<div className="fixed flex p-1 -translate-x-1/2 rounded-lg bottom-20 left-1/2 bg-bgRaised">
+					<Button
+						onClick={() => setShowGrid(!showGrid)}
+						size="sm"
+						variant="ghost"
+					>
+						{showGrid ? "Disable" : "Enable"} grid
+					</Button>
+				</div>
+			)}
+
+			{/* Grid */}
+			{showGrid && (
+				<div className="fixed top-0 left-0 w-full h-screen px-6 pointer-events-none bg-blue-100/10">
+					<div className="fixed top-0 w-full h-screen max-w-2xl px-6 -translate-x-1/2 left-1/2 bg-red-400/10">
+						<div className="w-full h-full border-dashed border-text opacity-30 border-x" />
+					</div>
+					<div className="fixed top-0 w-full h-screen max-w-5xl px-6 -translate-x-1/2 left-1/2 bg-red-400/10">
+						<div className="w-full h-full border-dashed border-text opacity-30 border-x" />
+					</div>
+				</div>
+			)}
 		</>
 	);
 }

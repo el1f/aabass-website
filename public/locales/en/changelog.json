@@ -1,4 +1,13 @@
 {
+	"1.4.0": {
+		"summary": "Back in business",
+		"description": "Working on websites is so freaking hard, especially when they're yours. I was planning a little bit of a complete overhaul of this site only to then look at myself in the mirror and remember I've been redesigning this thing for ages and I still don't have any shred of actual CONTENT in it. This next update is gonna be fully focused on getting some actual content in here. I swear.",
+		"features": [
+			"Merged About me and Curriculum pages into a single page.",
+			"Tweaks to the CV layout and content + parallax portrait",
+			"New navbar"
+		]
+	},
 	"1.3.0": {
 		"summary": "Thinking of Coffee",
 		"description": "I want to become a better writer in general, I also love coffee as you might have noticed. This next stage is all about giving me a place write about things I like and hopefully get better at it. Also, I'm going to write about coffee. A lot.",
