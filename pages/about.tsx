@@ -108,7 +108,7 @@ const About: NextPage = () => {
 
 	return (
 		<>
-			<Seo title={t("pageTitle")} />
+			<Seo title={t("about:pageTitle")} />
 
 			<Navbar />
 
