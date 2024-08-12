@@ -11,6 +11,9 @@ module.exports = {
 	plugins: [require("@tailwindcss/line-clamp")],
 	theme: {
 		extend: {
+			animation: {
+				"spin-slow": "spin 4s linear infinite",
+			},
 			aspectRatio: {
 				poster: "297/420",
 				sweet: "4/3",
@@ -42,7 +45,6 @@ module.exports = {
 				bgBaseLight: colors.stone[200],
 				bgRaised: "var(--bgRaised)",
 				bgRaisedDark: colors.zinc[800],
-
 				bgRaisedLight: colors.stone[50],
 				// Painful Green
 				primary: {

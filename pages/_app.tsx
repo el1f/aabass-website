@@ -1,4 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { AppProps } from "next/app";
@@ -56,6 +58,17 @@ const jbMono = JetBrains_Mono({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+	const [queryClient] = useState(
+		() =>
+			new QueryClient({
+				defaultOptions: {
+					queries: {
+						staleTime: 60 * 1000,
+					},
+				},
+			}),
+	);
+
 	const shouldInjectToolbar = process.env.NODE_ENV === "development";
 	const router = useRouter();
 
@@ -100,7 +113,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	}, [router.events]);
 
 	return (
-		<>
+		<QueryClientProvider client={queryClient}>
 			<Script
 				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID}`}
 				strategy="afterInteractive"
@@ -180,6 +193,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 				</div>
 			)}
 
+			<ReactQueryDevtools initialIsOpen={false} />
+
 			{/* Grid */}
 			{showGrid && (
 				<div className="fixed top-0 left-0 w-full h-screen px-6 pointer-events-none bg-blue-100/10">
@@ -191,7 +206,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 					</div>
 				</div>
 			)}
-		</>
+		</QueryClientProvider>
 	);
 }
 

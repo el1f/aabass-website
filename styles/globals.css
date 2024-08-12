@@ -29,6 +29,12 @@
   }
 }
 
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+}
+
 .logo #firstname, .logo #lastname {
   opacity: 0;
   transform: translateX(-10%);

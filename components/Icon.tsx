@@ -10,10 +10,12 @@ import Dribbble from "../public/icons/dribbble.svg";
 import Github from "../public/icons/github.svg";
 import Globe from "../public/icons/globe.svg";
 import Instagram from "../public/icons/instagram.svg";
+import LastFm from "../public/icons/lastfm.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import DarkTheme from "../public/icons/moon-stars.svg";
 import Personal from "../public/icons/personal.svg";
 import Projects from "../public/icons/projects.svg";
+import Spotify from "../public/icons/spotify.svg";
 import LightTheme from "../public/icons/sun.svg";
 import { SocialPlatform } from "../types";
 
@@ -46,6 +48,10 @@ export const Icon: React.FC<IconProps> = ({ className, name }) => {
 			return <Instagram className={clsx} />;
 		case "github":
 			return <Github className={clsx} />;
+		case "spotify":
+			return <Spotify className={clsx} />;
+		case "lastfm":
+			return <LastFm className={clsx} />;
 		case "light":
 			return <LightTheme className={clsx} />;
 		case "dark":
