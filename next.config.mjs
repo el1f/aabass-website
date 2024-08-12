@@ -18,7 +18,7 @@ const nextConfig = {
 		locales: ["en", "it"],
 	},
 	images: {
-		domains: ["media.graphassets.com"],
+		domains: ["media.graphassets.com", "i.scdn.co"],
 	},
 	pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
 	reactStrictMode: true,

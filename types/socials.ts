@@ -1,1 +1,7 @@
-export type SocialPlatform = "instagram" | "dribbble" | "linkedin" | "github";
+export type SocialPlatform =
+	| "instagram"
+	| "dribbble"
+	| "linkedin"
+	| "github"
+	| "lastfm"
+	| "spotify";

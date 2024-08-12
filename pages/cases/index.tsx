@@ -35,6 +35,12 @@ const CaseStudies: NextPage = () => {
 				</Text>
 			</header>
 
+			<section className="container max-w-5xl px-6 pt-8 pb-16 mx-auto mb-32">
+				<div className="grid grid-cols-2 gap-8">
+					<article className="w-full h-64 bg-textDimmedLight"></article>
+				</div>
+			</section>
+
 			<section className="container max-w-2xl px-6 pt-8 pb-16 mx-auto mb-32">
 				<Heading className="pb-4" level={2}>
 					{t("wip.title")}
