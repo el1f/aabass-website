@@ -35,6 +35,10 @@
   }
 }
 
+[data-radix-popper-content-wrapper] {
+  @apply z-[100];
+}
+
 .logo #firstname, .logo #lastname {
   opacity: 0;
   transform: translateX(-10%);
