@@ -13,7 +13,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({ href, platform }) => {
 	const icon = <Icon className="w-4 h-4" name={platform} />;
 	return href ? (
 		<Link
-			className="block p-2 transition-all hover:bg-bgRaised text-textDimmedLight hover:text-text rounded-xl"
+			className="block p-2 transition-all hover:bg-bgRaised text-textDimmed hover:text-text rounded-xl"
 			href={href}
 			target="_blank"
 		>
@@ -21,7 +21,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({ href, platform }) => {
 		</Link>
 	) : (
 		<Button
-			className="block h-auto p-2 transition-all hover:bg-bgRaised text-textDimmedLight hover:text-text rounded-xl"
+			className="block h-auto p-2 transition-all hover:bg-bgRaised text-textDimmed hover:text-text rounded-xl"
 			variant="ghost"
 		>
 			{icon}

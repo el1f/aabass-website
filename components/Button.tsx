@@ -21,8 +21,9 @@ const buttonVariants = cva(
 				xl: "h-14 rounded-md px-6 gap-2 [&>svg]:h-5 [&>svg]:w-5",
 			},
 			variant: {
-				default: "bg-primary-300 text-bg hover:bg-primary-400 transition-all",
-				ghost: "hover:bg-bgRaised text-textDimmedLight hover:text-text",
+				default:
+					"bg-primary-300 text-textDimmedDark hover:text-textDark hover:bg-primary-400 transition-all",
+				ghost: "hover:bg-bgRaised text-textDimmed hover:text-text",
 				link: "text-primary underline-offset-4 hover:underline",
 				outline: "border border-textDimmed hover:text-text hover-gradient",
 				secondary:
