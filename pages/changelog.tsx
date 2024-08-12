@@ -105,7 +105,7 @@ const Changelog = () => {
 														{date || feature.date
 															? new Date(
 																	date || feature.date || "",
-															  ).toLocaleDateString()
+															  ).toLocaleDateString("en-GB")
 															: "INDEV"}
 													</Text>
 												</div>
