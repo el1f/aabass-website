@@ -10,23 +10,24 @@ export const CHANGELOG: {
 	{
 		features: [
 			{
-				date: "2023-01-09",
+				date: "2024-08-12",
 				type: "add",
 			},
 			{
-				date: "2023-01-09",
-				type: "add",
+				date: "2024-08-12",
+				type: "fix",
+			},
+		],
+		version: "1.4.1",
+	},
+	{
+		features: [
+			{
+				date: "2024-08-08",
+				type: "edit",
 			},
 			{
-				date: "2023-01-09",
-				type: "add",
-			},
-			{
-				date: "2023-01-09",
-				type: "add",
-			},
-			{
-				date: "2023-01-09",
+				date: "2024-08-08",
 				type: "edit",
 			},
 		],

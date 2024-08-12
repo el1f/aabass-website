@@ -1,4 +1,12 @@
 {
+	"1.4.1": {
+		"summary": "Stalk my ears",
+		"description": "Added a widget to the navbar linking to my music profiles and showing what I'm currently listening to. I eventually have to use it to add some metrics similar to the spotify wrapped stuff.",
+		"features": [
+			"Added a widget to the navbar linking to my music profiles and showing what I'm currently listening to.",
+			"Fixed the buttons color on light theme"
+		]
+	},
 	"1.4.0": {
 		"summary": "Back in business",
 		"description": "Working on websites is so freaking hard, especially when they're yours. I was planning a little bit of a complete overhaul of this site only to then look at myself in the mirror and remember I've been redesigning this thing for ages and I still don't have any shred of actual CONTENT in it. This next update is gonna be fully focused on getting some actual content in here. I swear.",
