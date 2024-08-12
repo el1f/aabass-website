@@ -1,19 +1,28 @@
 import Link from "next/link";
 import React from "react";
 
+import { cn } from "../lib/cn";
 import { SocialPlatform } from "../types";
 import { Button, Icon } from ".";
 
 interface SocialLinkProps {
+	className?: string;
 	href?: string;
 	platform: SocialPlatform;
 }
 
-export const SocialLink: React.FC<SocialLinkProps> = ({ href, platform }) => {
+export const SocialLink: React.FC<SocialLinkProps> = ({
+	className,
+	href,
+	platform,
+}) => {
 	const icon = <Icon className="w-4 h-4" name={platform} />;
 	return href ? (
 		<Link
-			className="block p-2 transition-all hover:bg-bgRaised text-textDimmed hover:text-text rounded-xl"
+			className={cn(
+				"block p-2 transition-all hover:bg-bgRaised text-textDimmed hover:text-text rounded-xl",
+				className,
+			)}
 			href={href}
 			target="_blank"
 		>
@@ -21,7 +30,11 @@ export const SocialLink: React.FC<SocialLinkProps> = ({ href, platform }) => {
 		</Link>
 	) : (
 		<Button
-			className="block h-auto p-2 transition-all hover:bg-bgRaised text-textDimmed hover:text-text rounded-xl"
+			className={cn(
+				"block h-auto p-2 transition-all hover:bg-bgRaised text-textDimmed hover:text-text rounded-xl",
+				className,
+			)}
+			size="icon"
 			variant="ghost"
 		>
 			{icon}

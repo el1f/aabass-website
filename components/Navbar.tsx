@@ -252,14 +252,17 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
 						<motion.div className="flex items-center justify-center">
 							<Popover>
-								<PopoverTrigger asChild className="relative">
-									<>
-										<SocialLink platform="spotify" />
-										{currentlyPlayingSong && (
-											<span className="absolute w-1.5 h-1.5 rounded-full bottom-1 right-1 animate-pulse bg-primary-400" />
-										)}
-									</>
-								</PopoverTrigger>
+								<div className="relative">
+									<PopoverTrigger className="relative">
+										<SocialLink
+											className="inline-block w-8 h-8"
+											platform="spotify"
+										/>
+									</PopoverTrigger>
+									{currentlyPlayingSong && (
+										<span className="absolute w-1.5 h-1.5 rounded-full bottom-1 right-1 animate-pulse bg-primary-400" />
+									)}
+								</div>
 								<AnimatePresence>
 									<PopoverContent asChild>
 										<SpotifyWidget />
