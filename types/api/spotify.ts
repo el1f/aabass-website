@@ -18,6 +18,16 @@ export interface SpotifyArtist {
 	uri: string;
 }
 
+export interface SpotifyExtendedArtist extends SpotifyArtist {
+	followers: {
+		href: string | null;
+		total: number;
+	};
+	genres: string[];
+	images: SpotifyImage[];
+	popularity: number;
+}
+
 export interface SpotifyImage {
 	height: number;
 	url: string;
@@ -85,4 +95,29 @@ export interface SpotifyNowPlayingPayload {
 export interface SpotifyErrorPayload {
 	error: any;
 	message: string;
+}
+
+export interface SpotifyTopTracksPayload {
+	href: string;
+	items: Track[];
+	limit: number;
+	next: string | null;
+	offset: number;
+	previous: string | null;
+	total: number;
+}
+
+export interface SpotifyTopArtistsPayload {
+	href: string;
+	items: SpotifyExtendedArtist[];
+	limit: number;
+	next: string | null;
+	offset: number;
+	previous: string | null;
+	total: number;
+}
+
+export interface SpotifyTopPayload {
+	artists: SpotifyExtendedArtist[];
+	tracks: Track[];
 }
