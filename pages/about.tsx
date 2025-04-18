@@ -114,7 +114,7 @@ const About: NextPage = () => {
 
 			<Navbar />
 
-			<section className="container max-w-5xl px-4 mx-auto">
+			<section className="container max-w-5xl px-4 mx-auto print:hidden">
 				<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
 					<Text size="md">{t("about:lead")}</Text>
 					<Heading className="mb-4" level={1}>
@@ -142,7 +142,7 @@ const About: NextPage = () => {
 			</section>
 
 			<section id="cv">
-				<header className="container max-w-2xl px-6 pt-24 pb-8 mx-auto print:hidden">
+				<header className="container max-w-2xl px-6 pt-24 pb-8 mx-auto print:hidden print:pt-0">
 					<Heading className="mb-4 leading-snug" level={1}>
 						{t("cv:title")}
 					</Heading>

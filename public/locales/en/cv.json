@@ -47,10 +47,24 @@
 			"title": "Work experience",
 			"items": [
 				{
+					"company": "xAI",
+					"role": "Member of Technical Staff",
+					"period": "2024 - ongoing",
+					"location": "London, UK",
+					"tasks": []
+				},
+				{
+					"company": "Noxus",
+					"role": "Senior Front-end Engineer",
+					"period": "2024",
+					"location": "London, UK",
+					"tasks": []
+				},
+				{
 					"company": "Ntropy",
 					"role": "Principal Front-end dev & Product Designer",
 					"period": "2015 - 2023",
-					"location": "Padua, Italy",
+					"location": "London, UK",
 					"tasks": []
 				},
 				{

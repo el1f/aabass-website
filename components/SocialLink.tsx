@@ -15,6 +15,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({
 	className,
 	href,
 	platform,
+	...props
 }) => {
 	const icon = <Icon className="w-4 h-4" name={platform} />;
 	return href ? (
@@ -25,6 +26,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({
 			)}
 			href={href}
 			target="_blank"
+			{...props}
 		>
 			{icon}
 		</Link>
@@ -36,6 +38,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({
 			)}
 			size="icon"
 			variant="ghost"
+			{...props}
 		>
 			{icon}
 		</Button>
