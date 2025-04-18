@@ -17,6 +17,7 @@ import {
 	Text,
 	Trans,
 } from "../components";
+import { useTheme } from "next-themes";
 
 const Portrait = () => {
 	const [mouse, ref] = useMouse<HTMLElement>();
@@ -105,6 +106,7 @@ const Portrait = () => {
 
 const About: NextPage = () => {
 	const { t } = useTranslation(["common", "about", "cv"]);
+	const { resolvedTheme } = useTheme();
 
 	return (
 		<>
@@ -148,7 +150,7 @@ const About: NextPage = () => {
 
 				<div className="container grid max-w-5xl px-6 py-10 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-4 xs:grid-cols-1 sm:grid-cols-cv print:grid-cols-cv print:pt-16 bg-bgRaised">
 					<header className="flex items-start justify-between col-span-2">
-						<Logo height={80} />
+						<Logo isDark={resolvedTheme === "dark"} height={80} />
 
 						<div className="grid grid-flow-col grid-cols-2 grid-rows-3 gap-x-6 gap-y-0.5">
 							<Button

@@ -11,7 +11,7 @@ import { Anchor, ChangelogSummary, Heading, Icon, Logo, Text } from ".";
 export const Footer = () => {
 	const router = useRouter();
 	const { i18n, t } = useTranslation("common");
-	const { setTheme, theme } = useTheme();
+	const { setTheme, resolvedTheme: theme } = useTheme();
 	const isDark = theme !== "light";
 
 	return (
