@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 						classNames(
 							"flex items-center justify-between h-20 w-full max-w-2xl pl-[1.125rem] pr-4 mx-auto print:hidden rounded-3xl",
 							{
-								"backdrop-blur-md -top-40 relative w-[calc(100%-32px)] md:full border dark:border-textLight/10 border-textDark/10 shadow-xl transition-transform bg-bgRaisedLight/25 dark:bg-bgRaisedDark/25":
+								"backdrop-blur-md -top-40 relative w-[calc(100%-32px)] md:full border dark:border-textLight/10 border-textDark/10 shadow-xl transition-transform bg-bgRaisedLight/40 dark:bg-bgRaisedDark/50":
 									scroll.y > SCROLL_THRESHOLD / 2,
 								"md:translate-y-[128px] translate-y-[112px] max-w-5xl":
 									isPastSafeThreshold,

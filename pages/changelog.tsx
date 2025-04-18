@@ -17,7 +17,7 @@ import { CHANGELOG } from "../data";
 
 const CHANGELOG_EASTER_EGGS: Record<
 	string,
-	{ content: React.ReactElement; type: "append" }
+	{ content: React.ReactElement<any>; type: "append" }
 > = {
 	"1.1.0_2": {
 		content: (

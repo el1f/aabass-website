@@ -22,7 +22,7 @@ const buttonVariants = cva(
 			},
 			variant: {
 				default:
-					"bg-primary-300 text-textDimmedDark hover:text-textDark hover:bg-primary-400 transition-all",
+					"dark:bg-primary-300 bg-primary-400 text-textDimmedDark hover:text-textDark dark:hover:bg-primary-400 hover:bg-primary-500 transition-all",
 				ghost: "hover:bg-bgRaised text-textDimmed hover:text-text",
 				link: "text-primary underline-offset-4 hover:underline",
 				outline: "border border-textDimmed hover:text-text hover-gradient",
