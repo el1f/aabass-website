@@ -48,9 +48,9 @@ const FolderFrontSheet = () => (
 			<path d="M13.886 3.872a1 1 0 0 0-1.428-1.4l-8.412 8.582a7 7 0 0 0 9.889 9.911l.009-.009.006-.006.02-.021 7.745-7.93a1 1 0 1 0-1.43-1.398l-7.76 7.946a5 5 0 0 1-7.06-7.083z" />
 		</svg>
 
-		<motion.div className="z-20 w-full border rounded-t-sm rounded-b-lg shadow-2xl border-white/40 bg-white/50 aspect-video backdrop-blur-md">
-			<div className="absolute h-1 rounded-full shadow bg-white/50 bottom-9 right-6 left-1/2 shadow-black/5" />
-			<div className="absolute h-1 rounded-full shadow bg-white/50 bottom-6 right-6 left-6 shadow-black/5" />
+		<motion.div className="z-20 w-full border-t-2 rounded-t-lg rounded-b-lg shadow-2xl border-white/60 bg-white/50 aspect-video backdrop-blur-md">
+			<div className="absolute h-1 rounded-full shadow bg-white/50 bottom-8 right-3 left-3 shadow-black/5" />
+			<div className="absolute h-1 rounded-full shadow bg-white/50 bottom-5 right-3 left-3 shadow-black/5" />
 		</motion.div>
 
 		<div className="absolute top-0 flex items-end justify-start w-1/3 p-3 bg-yellow-400 border-t border-l border-yellow-500 shadow-sm rounded-xs right-4 rotate-6 aspect-square">
@@ -78,7 +78,7 @@ const FolderDocument = () => (
 			rotateZ: 20,
 		}}
 		id="document"
-		className="absolute h-[90%] bg-zinc-100 rounded-xs bottom-5 right-0 aspect-poster shadow-xl grid-cols-5 grid-rows-8 grid p-2 gap-1"
+		className="absolute h-[90%] bg-alloyZinc-100 rounded-xs bottom-5 right-0 aspect-poster shadow-xl grid-cols-5 grid-rows-8 grid p-2 gap-1 border border-alloyZinc-200/50"
 	>
 		<div className="w-full h-full col-span-2 row-span-2 rounded bg-alloyZinc-200"></div>
 		<div className="flex flex-col w-full h-full col-span-3 gap-1 rounded">
@@ -116,7 +116,7 @@ const FolderPalette = () => (
 const FolderSite = () => (
 	<motion.div
 		id="site"
-		className="absolute flex w-2/3 gap-0.5 bg-alloyZinc-800 border border-alloyZinc-900/25 aspect-sweet rounded-sm bottom-6 -left-4"
+		className="absolute flex w-2/3 gap-0.5 bg-alloyZinc-800 border border-alloyZinc-900/25 aspect-sweet rounded-sm bottom-6 -left-3"
 		style={{
 			rotateX: 0,
 			rotateZ: -10,
@@ -144,8 +144,8 @@ const Folder = () => (
 	<motion.figure
 		className="relative w-full mb-8 select-none max-w-80 sm:w-1/2 md:w-2/5 isolate"
 		style={{
-			perspectiveOrigin: "50% -100%",
-			perspective: 1200,
+			perspectiveOrigin: "0% -0%",
+			perspective: 900,
 			transformStyle: "preserve-3d",
 		}}
 	>
