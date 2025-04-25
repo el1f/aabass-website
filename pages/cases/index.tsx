@@ -3,17 +3,9 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { withUrqlClient } from "next-urql";
 
-import {
-	Footer,
-	Heading,
-	Navbar,
-	Poll,
-	Seo,
-	Text,
-	Trans,
-} from "../../components";
+import { Footer, Heading, Navbar, Seo, Text, Trans } from "../../components";
 import { clientSetup } from "../../graphql";
-import { usePoll } from "../../lib/hooks";
+
 import { cn } from "../../lib/cn";
 import { motion } from "framer-motion";
 
@@ -161,8 +153,6 @@ const Folder = () => (
 
 const CaseStudies: NextPage = () => {
 	const { i18n, t } = useTranslation("cases");
-
-	const [pollData, pollVote, onVote] = usePoll("CASE_STUDIES");
 
 	return (
 		<>

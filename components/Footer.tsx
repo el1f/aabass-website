@@ -64,13 +64,8 @@ export const Footer = () => {
 						<div className="flex flex-col items-start gap-2">
 							<Heading level={5}>{t("footer.personal.title")}</Heading>
 							<Anchor href="/posters">{t("posters")}</Anchor>
-							<Anchor href="/ideas">{t("ideas")}</Anchor>
-						</div>
-						<div className="flex flex-col items-start gap-2">
-							<Heading level={5}>{t("footer.fun.title")}</Heading>
 							<Anchor href="/coffee">{t("coffee")}</Anchor>
-							<Anchor href="/gaming">{t("gaming")}</Anchor>
-							<Anchor href="/longboard">{t("longboard")}</Anchor>
+							<Anchor href="/ideas">{t("ideas")}</Anchor>
 						</div>
 					</div>
 

@@ -1,15 +1,4 @@
-import nextMDX from "@next/mdx";
 import withVercelToolbar from "@vercel/toolbar/plugins/next";
-import remarkFrontmatter from "remark-frontmatter";
-
-const withMDX = nextMDX({
-	extension: /\.mdx?$/,
-	options: {
-		providerImportSource: "@mdx-js/react",
-		rehypePlugins: [],
-		remarkPlugins: [remarkFrontmatter],
-	},
-});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,7 +9,7 @@ const nextConfig = {
 	images: {
 		domains: ["media.graphassets.com", "i.scdn.co"],
 	},
-	pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+	pageExtensions: ["ts", "tsx", "js", "jsx"],
 	reactStrictMode: true,
 	swcMinify: true,
 	webpack(config) {
@@ -51,4 +40,4 @@ const nextConfig = {
 	},
 };
 
-export default withVercelToolbar()(withMDX(nextConfig));
+export default withVercelToolbar()(nextConfig);
