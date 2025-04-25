@@ -15,19 +15,15 @@ import {
 	PosterThumbnail,
 	Seo,
 	Text,
-	ThoughtCard,
 	Trans,
 } from "../components";
 import { clientSetup, homePage, initGraphQLClient } from "../graphql";
-import { getThoughts } from "../lib/thoughts";
-import { Thought } from "../types";
+
 import dayjs from "dayjs";
 
 const WORK_START = new Date("2014-05-12T12:00:00.007Z");
 
-const Home: NextPage<{
-	thoughts: Thought[];
-}> = ({ thoughts }) => {
+const Home: NextPage = () => {
 	const { t } = useTranslation("home");
 	const careerYears = dayjs(new Date()).diff(WORK_START, "years");
 
@@ -139,12 +135,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 	if (!client) return { props: { ...i18nSetup } };
 
 	await client.query(homePage, {}).toPromise();
-	const thoughts = getThoughts().slice(0, 3);
 
 	return {
 		props: {
 			...i18nSetup,
-			thoughts,
 			urqlState: ssrCache.extractData(),
 		},
 		revalidate: 4 * 60 * 60,
