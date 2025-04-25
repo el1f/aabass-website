@@ -1,9 +1,8 @@
 {
 	"hero": {
 		"title": "Ciao, mi chiamo <strong>Ayoub</strong>",
-		"p1": "Mi destreggio nello sviluppo di software e nel design di interfacce ormai da <strong>8 anni</strong>, 9 dei quali sono stati spesi nello sviluppo di questo sito web. Direi che è il caso di pubblicare qualcosa.",
-		"p2": "Lavoro principalmente nello sviluppo <strong>full-stack</strong> di prodotti web con un focus sul <strong>front-end</strong>. Adoro costruire intrefacce grafiche minimali e intuitive, che permettano ai loro utenti di raggiungere i loro obiettivi in maniera semplice ed efficiente.",
-		"p3": "La mia disponibilità attuale è <availability>fairly limited</availability>, non esitare a contattarmi se hai qualche progetto in mente.",
+		"p1": "Mi destreggio nello sviluppo di software e nel design di interfacce ormai da <strong>{{careerYears}} anni</strong>, concentrato principalmente nello <strong>sviluppo di prodotti digitali</strong>. Adoro ossessionarmi sull'allineamento degli arrotondamenti e sul rifinire i miei progetti fino all'ultimo pixel.",
+		"p2": "Attualmente lavoro a <strong>Grok</strong> e altro <strong>ad xAI</strong>.<br/>La mia disponibilità al momento è <availability>non-existent</availability>. Sentiti comunque libero di scrivermi per una chiacchierata!",
 		"cta1": "Contattami",
 		"about": "Chi sono"
 	},

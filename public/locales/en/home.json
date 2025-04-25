@@ -1,9 +1,8 @@
 {
 	"hero": {
 		"title": "Hello, I'm <strong>Ayoub</strong>",
-		"p1": "I've been dabbling in software development and design for the past <strong>8 years</strong> and I've been working on this website for the <strong>past 9</strong>. Guess it's time to launch something to show for it.",
-		"p2": "I mostly work in <strong>full-stack web product development</strong> with a focus on the <strong>front-end</strong> side of things. I have a deep love for building great looking, intuitive interfaces that enable people to achieve their goals in a simple and efficient way.",
-		"p3": "My current availability right now is <availability>fairly limited</availability> , don't hesitate about contacting me if you have a project in mind.",
+		"p1": "I've been dabbling in software development and design for the past <strong>{{careerYears}} years</strong>, mostly focusing on <strong>digital product development</strong>. I like to obsess over corner radii and making sure those pixels look exceptionally clean.",
+		"p2": "Currently working on <strong>Grok</strong> and more <strong>@xAI</strong>.<br/>My availability right now is <availability>non-existent</availability>. Still, feel free to reach out for a chat!",
 		"cta1": "Reach out",
 		"about": "About me"
 	},

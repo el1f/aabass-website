@@ -21,11 +21,15 @@ import {
 import { clientSetup, homePage, initGraphQLClient } from "../graphql";
 import { getThoughts } from "../lib/thoughts";
 import { Thought } from "../types";
+import dayjs from "dayjs";
+
+const WORK_START = new Date("2014-05-12T12:00:00.007Z");
 
 const Home: NextPage<{
 	thoughts: Thought[];
 }> = ({ thoughts }) => {
 	const { t } = useTranslation("home");
+	const careerYears = dayjs(new Date()).diff(WORK_START, "years");
 
 	// TODO: this seems to cause hydration issues every now and then but
 	// according to this issue it isn't a problem that should happen
@@ -47,13 +51,10 @@ const Home: NextPage<{
 						<Trans i18nKey="home:hero.title" />
 					</Heading>
 					<Text as="p" className="mb-4">
-						<Trans i18nKey="home:hero.p1" />
+						<Trans i18nKey="home:hero.p1" values={{ careerYears }} />
 					</Text>
 					<Text as="p" className="mb-4">
 						<Trans i18nKey="home:hero.p2" />
-					</Text>
-					<Text as="p">
-						<Trans i18nKey="home:hero.p3" />
 					</Text>
 				</hgroup>
 				<div className="flex gap-4 dark:gap-4">
