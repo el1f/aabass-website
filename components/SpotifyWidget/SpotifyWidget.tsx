@@ -3,7 +3,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
+import { useSessionStorage } from "@uidotdev/usehooks";
 
 import { cn } from "../../lib/cn";
 import {
@@ -18,6 +19,15 @@ import { Skeleton } from "../Skeleton";
 import { Text } from "../Text";
 
 export const SpotifyWidget: React.FC = () => {
+	const [hasInitial, setHasInitial] = useSessionStorage(
+		"animation:spotify-widget",
+		true,
+	);
+
+	useEffect(() => {
+		setHasInitial(false);
+	}, []);
+
 	const {
 		data: currentlyPlayingSong,
 		error,
@@ -77,11 +87,26 @@ export const SpotifyWidget: React.FC = () => {
 
 		if (!currentlyPlayingSong)
 			return (
-				<div className="p-3 mb-4 rounded-md bg-bgRaised">
-					<Text size="sm">
-						Currently listening to my thoughts instead of some sick beats
+				<>
+					<motion.figure
+						className={cn(
+							"w-64 mb-4 overflow-hidden rounded-full bg-textDimmed aspect-square relative",
+							"after:content-[attr(data-icon)] after:w-4 after:h-4 after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:bg-bgRaised after:rounded-full",
+							"before:content-[attr(data-icon)] before:w-20 before:h-20 before:absolute before:top-1/2 before:left-1/2 before:transform before:-translate-x-1/2 before:-translate-y-1/2 before:bg-black/30 before:rounded-full before:z-10",
+						)}
+						transition={{
+							ease: "easeOut",
+						}}
+						variants={{
+							hidden: { opacity: 0, scale: 1.2 },
+							visible: { opacity: 1, scale: 1 },
+						}}
+					></motion.figure>
+					<Text className="mb-2">
+						My streaming is idle right now and I'm probably listening to my
+						thoughts.
 					</Text>
-				</div>
+				</>
 			);
 
 		if (error || "error" in currentlyPlayingSong) return <p>Error</p>;
@@ -129,7 +154,7 @@ export const SpotifyWidget: React.FC = () => {
 						width={256}
 					/>
 				</motion.figure>
-				<Text className="line-clamp-1">
+				<Text className="break-all line-clamp-1">
 					<Link
 						className="hover:underline underline-offset-2"
 						href={currentlyPlayingSong.item.external_urls.spotify}
@@ -138,7 +163,7 @@ export const SpotifyWidget: React.FC = () => {
 						{currentlyPlayingSong.item.name}
 					</Link>
 				</Text>
-				<Text className="mb-2" size="sm">
+				<Text size="sm" className="break-all line-clamp-1">
 					<Link
 						className="hover:underline underline-offset-2"
 						href={currentlyPlayingSong.item.album.external_urls.spotify}
@@ -146,8 +171,15 @@ export const SpotifyWidget: React.FC = () => {
 					>
 						{currentlyPlayingSong.item.album.name}
 					</Link>
-					{" • "}
-					{artists}
+				</Text>
+				<Text className="mb-2 break-all line-clamp-1" size="sm">
+					<Link
+						className="hover:underline underline-offset-2"
+						href={currentlyPlayingSong.item.album.external_urls.spotify}
+						target="_blank"
+					>
+						{artists}
+					</Link>
 				</Text>
 
 				{/* Play progress */}
@@ -205,8 +237,8 @@ export const SpotifyWidget: React.FC = () => {
 					));
 
 					return (
-						<div className="flex gap-2 max-w-[20rem]" key={track.id}>
-							<figure className="h-12 bg-textDimmed aspect-square">
+						<div className="flex gap-2" key={track.id}>
+							<figure className="h-12 overflow-hidden rounded bg-textDimmed aspect-square">
 								<Image
 									alt=""
 									height={128}
@@ -282,7 +314,7 @@ export const SpotifyWidget: React.FC = () => {
 			animate="visible"
 			className="p-4 overflow-hidden border rounded-lg bg-bgRaisedLight/50 dark:bg-bgRaisedDark/50 backdrop-blur-md dark:border-textLight/10 border-textDark/10"
 			exit="hidden"
-			initial="hidden"
+			initial={hasInitial ? "hidden" : false}
 			style={{
 				perspective: 500,
 			}}
@@ -304,7 +336,7 @@ export const SpotifyWidget: React.FC = () => {
 					{musicLinks}
 				</div>
 
-				<div className="flex-col justify-between hidden md:flex">
+				<div className="flex-col justify-between hidden w-full md:flex max-w-[20rem]">
 					<section>
 						<Heading className="mb-3" level={6}>
 							My anthems this month
