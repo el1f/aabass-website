@@ -10,6 +10,47 @@ export const CHANGELOG: {
 	{
 		features: [
 			{
+				date: "2025-04-25",
+				type: "remove",
+			},
+			{
+				date: "2025-04-25",
+				type: "edit",
+			},
+			{
+				date: "2025-04-25",
+				type: "remove",
+			},
+			{
+				date: "2025-04-25",
+				type: "edit",
+			},
+			{
+				date: "2025-04-25",
+				type: "add",
+			},
+			{
+				date: "2025-04-25",
+				type: "remove",
+			},
+			{
+				date: "2025-04-25",
+				type: "edit",
+			},
+			{
+				date: "2025-04-25",
+				type: "edit",
+			},
+			{
+				date: "2024-04-25",
+				type: "fix",
+			},
+		],
+		version: "1.5.0",
+	},
+	{
+		features: [
+			{
 				date: "2024-08-12",
 				type: "add",
 			},

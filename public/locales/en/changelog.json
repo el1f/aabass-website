@@ -1,4 +1,19 @@
 {
+	"1.5.0": {
+		"summary": "A much needed makeover",
+		"description": "Just a routine cleanup to make sure I cn keep maintaining this website moving forward. Some bug fixes as well.",
+		"features": [
+			"Remove more features such as polls, the empty footer pages etc.",
+			"Cleanup Spotify widget",
+			"Remove thoughts, 'cause I don't really write any",
+			"Update to the hero section content in the homepage",
+			"Cute placeholder for case studies... instead of actually adding case studies.",
+			"Remove useless TW plugins",
+			"Update CV and Print mode cleanup",
+			"Upgrade to NextJS 15 (no app folder still yet)",
+			"Light mode fixes"
+		]
+	},
 	"1.4.1": {
 		"summary": "Stalk my ears",
 		"description": "Added a widget to the navbar linking to my music profiles and showing what I'm currently listening to. I eventually have to use it to add some metrics similar to the spotify wrapped stuff.",
