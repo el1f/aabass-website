@@ -11,7 +11,6 @@ const nextConfig = {
 	},
 	pageExtensions: ["ts", "tsx", "js", "jsx"],
 	reactStrictMode: true,
-	swcMinify: true,
 	webpack(config) {
 		config.module.rules.push({
 			issuer: /\.[jt]sx?$/,

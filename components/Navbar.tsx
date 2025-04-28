@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import classNames from "classnames";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 import { twMerge } from "tailwind-merge";
@@ -97,11 +97,9 @@ export const Navbar: React.FC<NavbarProps> = () => {
 										<span className="absolute w-1.5 h-1.5 rounded-full bottom-1 right-1 animate-pulse bg-primary-400" />
 									)}
 								</div>
-								<AnimatePresence>
-									<PopoverContent asChild>
-										<SpotifyWidget />
-									</PopoverContent>
-								</AnimatePresence>
+								<PopoverContent asChild>
+									<SpotifyWidget />
+								</PopoverContent>
 							</Popover>
 
 							{SOCIALS.map((social) => (

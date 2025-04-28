@@ -1,7 +1,6 @@
 import { Dialog } from "@headlessui/react";
 import Image, { ImageLoader } from "next/legacy/image";
 import React from "react";
-import ReactMarkdown from "react-markdown";
 
 import {
 	FragmentType,
@@ -60,24 +59,6 @@ export const PosterLightbox: React.FC<{
 								{poster.name}
 							</Heading>
 						</Dialog.Title>
-						<Dialog.Description>
-							<ReactMarkdown
-								components={{
-									p({ children }) {
-										return (
-											<Text as="p" className="mb-6">
-												{children}
-											</Text>
-										);
-									},
-									strong({ children }) {
-										return <Strong>{children}</Strong>;
-									},
-								}}
-							>
-								{poster.description ?? ""}
-							</ReactMarkdown>
-						</Dialog.Description>
 					</aside>
 				</Dialog.Panel>
 			</div>

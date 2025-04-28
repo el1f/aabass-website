@@ -1,4 +1,3 @@
-import { MDXProvider } from "@mdx-js/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
@@ -127,54 +126,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     			`}
 			</Script>
 
-			<MDXProvider
-				components={{
-					h1: ({ children }) => (
-						<Heading className="mb-12" id={children as string} level={1}>
-							{children}
-						</Heading>
-					),
-					h2: ({ children }) => (
-						<Heading className="mt-12 mb-4" id={children as string} level={2}>
-							{children}
-						</Heading>
-					),
-					h3: ({ children }) => (
-						<Heading className="mt-12 mb-4" id={children as string} level={3}>
-							{children}
-						</Heading>
-					),
-					h4: ({ children }) => (
-						<Heading className="mt-12 mb-4" id={children as string} level={4}>
-							{children}
-						</Heading>
-					),
-					h5: ({ children }) => (
-						<Heading className="mb-6" id={children as string} level={5}>
-							{children}
-						</Heading>
-					),
-					h6: ({ children }) => (
-						<Heading className="mb-6" id={children as string} level={6}>
-							{children}
-						</Heading>
-					),
-					p: ({ children }) => (
-						<Text as="p" className="mb-6">
-							{children}
-						</Text>
-					),
-					strong: Strong,
-				}}
-			>
-				<ThemeProvider attribute="class">
-					<div
-						className={`${sofiaPro.variable} ${spaceGrotesk.variable} ${jbMono.variable}font-sans`}
-					>
-						<Component {...pageProps} />
-					</div>
-				</ThemeProvider>
-			</MDXProvider>
+			<ThemeProvider attribute="class">
+				<div
+					className={`${sofiaPro.variable} ${spaceGrotesk.variable} ${jbMono.variable}font-sans`}
+				>
+					<Component {...pageProps} />
+				</div>
+			</ThemeProvider>
 
 			{shouldInjectToolbar && <VercelToolbar />}
 

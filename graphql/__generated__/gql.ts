@@ -27,6 +27,20 @@ const documents = {
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ *
+ *
+ * @example
+ * ```ts
+ * const query = gql(`query GetUser($id: ID!) { user(id: $id) { name } }`);
+ * ```
+ *
+ * The query argument is unknown!
+ * Please regenerate the types.
+ */
+export function graphql(source: string): unknown;
+
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n\tquery coffeePage {\n\t\t# Beans\n\t\tfavoriteBeans: beans(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\tlatestBeans: beans(first: 10) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\t# Places\n\t\tfavoritePlaces: coffeePlaces(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t\tlatestPlaces: coffeePlaces(orderBy: visits_DESC) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery coffeePage {\n\t\t# Beans\n\t\tfavoriteBeans: beans(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\tlatestBeans: beans(first: 10) {\n\t\t\tid\n\t\t\t...BeanCard\n\t\t}\n\t\t# Places\n\t\tfavoritePlaces: coffeePlaces(where: { isFavorite: true }) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t\tlatestPlaces: coffeePlaces(orderBy: visits_DESC) {\n\t\t\tid\n\t\t\t...CoffeePlaceCard\n\t\t}\n\t}\n"];
 /**
@@ -65,20 +79,6 @@ export function graphql(source: "\n\tquery postersPage {\n\t\tstandard: posters(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n\tquery poster($slug: String!) {\n\t\tposter(where: { slug: $slug }) {\n\t\t\t...PosterFull\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery poster($slug: String!) {\n\t\tposter(where: { slug: $slug }) {\n\t\t\t...PosterFull\n\t\t}\n\t}\n"];
-
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- *
- *
- * @example
- * ```ts
- * const query = gql(`query GetUser($id: ID!) { user(id: $id) { name } }`);
- * ```
- *
- * The query argument is unknown!
- * Please regenerate the types.
-**/
-export function graphql(source: string): unknown;
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

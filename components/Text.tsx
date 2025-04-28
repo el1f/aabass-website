@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React from "react";
+import React, { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 import {
@@ -24,10 +24,10 @@ export type TextProps<C extends React.ElementType> =
 		}
 	>;
 
-export const Text = React.forwardRef(
-	<C extends React.ElementType = "span">(
+export const Text = forwardRef(
+	<C extends React.ElementType>(
 		{ as, children, className, size = "md", ...rest }: TextProps<C>,
-		ref?: PolymorphicRef<C>,
+		ref: PolymorphicRef<C>,
 	) => {
 		const Component = as || "span";
 
@@ -47,6 +47,8 @@ export const Text = React.forwardRef(
 			</Component>
 		);
 	},
-);
+) as React.ForwardRefExoticComponent<
+	TextProps<any> & React.RefAttributes<any>
+> & { displayName?: string };
 
 Text.displayName = "Text";
