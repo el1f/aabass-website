@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
 	Button,
@@ -23,13 +23,45 @@ const Portrait = () => {
 	const [mouse, ref] = useMouse<HTMLElement>();
 	const { scrollYProgress } = useScroll({
 		offset: ["start 256px", "end start"],
-		target: ref,
 	});
 
-	// TODO: smoothly animate the image when it's loaded
 	const [fgLoaded, setFgLoaded] = useState(false);
 	const [bgLoaded, setBgLoaded] = useState(false);
+	const [isMobile, setIsMobile] = useState(false);
+	const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
+	// Check if device is mobile
+	useEffect(() => {
+		const mediaQuery = window.matchMedia("(max-width: 768px)");
+		setIsMobile(mediaQuery.matches);
+		const handleChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+		mediaQuery.addEventListener("change", handleChange);
+		return () => mediaQuery.removeEventListener("change", handleChange);
+	}, []);
+
+	// Handle device orientation for mobile
+	useEffect(() => {
+		if (!isMobile) return;
+
+		const handleOrientation = (event: DeviceOrientationEvent) => {
+			const gamma = event.gamma || 0; // Left-right tilt (-90 to 90 degrees)
+			const beta = event.beta || 0; // Front-back tilt (-180 to 180 degrees)
+
+			// Smooth the values to reduce jitter
+			setTilt((prev) => ({
+				x: prev.x + (gamma - prev.x) * 0.1,
+				y: prev.y + (beta - prev.y) * 0.1,
+			}));
+		};
+
+		if (window.DeviceOrientationEvent) {
+			window.addEventListener("deviceorientation", handleOrientation);
+			return () =>
+				window.removeEventListener("deviceorientation", handleOrientation);
+		}
+	}, [isMobile]);
+
+	// Transformers for mouse-based parallax
 	const xTransformer = transform(
 		[0, (ref.current?.clientWidth ?? 0) / 2, ref.current?.clientWidth ?? 0],
 		[-16, 0, 16],
@@ -39,8 +71,23 @@ const Portrait = () => {
 		[-8, 0, 8],
 	);
 
-	const offsetX = xTransformer(mouse.elementX);
-	const additionalOffsetY = yTransformer(mouse.elementY);
+	// Transformers for accelerometer-based parallax
+	const tiltXTransformer = transform(
+		[-30, 0, 30], // Map tilt angles (-30 to 30 degrees)
+		[-16, 0, 16], // Same offset range as mouse
+	);
+	const tiltYTransformer = transform(
+		[-30, 0, 30], // Map tilt angles
+		[-8, 0, 8], // Same offset range as mouse
+	);
+
+	// Choose offset based on device type
+	const offsetX = isMobile
+		? tiltXTransformer(tilt.x)
+		: xTransformer(mouse.elementX);
+	const additionalOffsetY = isMobile
+		? tiltYTransformer(tilt.y)
+		: yTransformer(mouse.elementY);
 	const offsetY = useTransform(scrollYProgress, [0, 1], [0, 128]);
 
 	return (
@@ -114,7 +161,7 @@ const About: NextPage = () => {
 
 			<Navbar />
 
-			<section className="container max-w-5xl px-4 mx-auto print:hidden">
+			<section className="container max-w-5xl mx-auto print:hidden">
 				<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
 					<Text size="md">{t("about:lead")}</Text>
 					<Heading className="mb-4" level={1}>
@@ -148,11 +195,11 @@ const About: NextPage = () => {
 					</Heading>
 				</header>
 
-				<div className="container grid max-w-5xl px-6 py-10 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-4 xs:grid-cols-1 sm:grid-cols-cv print:grid-cols-cv print:pt-16 bg-bgRaised">
-					<header className="flex items-start justify-between col-span-2">
+				<div className="container grid max-w-5xl grid-cols-1 px-6 py-10 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-8 sm:grid-cols-cv print:grid-cols-cv print:pt-16 bg-bgRaised">
+					<header className="flex items-start justify-between gap-6 sm:col-span-2">
 						<Logo isDark={resolvedTheme === "dark"} height={80} />
 
-						<div className="grid grid-flow-col grid-cols-2 grid-rows-3 gap-x-6 gap-y-0.5">
+						<div className="grid sm:grid-flow-col grid-cols-1 sm:grid-cols-2 grid-rows-3 gap-x-6 gap-y-0.5">
 							<Button
 								asChild
 								className="justify-start w-full h-6 text-left"

@@ -8,6 +8,19 @@ export const CHANGELOG: {
 	version: string;
 }[] = [
 	{
+		version: "1.5.1",
+		features: [
+			{
+				date: "2025-04-30",
+				type: "add",
+			},
+			{
+				date: "2025-04-30",
+				type: "edit",
+			},
+		],
+	},
+	{
 		features: [
 			{
 				date: "2025-04-25",

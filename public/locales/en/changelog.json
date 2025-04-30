@@ -1,4 +1,12 @@
 {
+	"1.5.1": {
+		"summary": "Tilt it!",
+		"description": "GF made me notice having my portrait move on mobile would be nice. It is nice indeed!",
+		"features": [
+			"Portrait tilting based on device accelerometer",
+			"Tweaks to the about me page paddings etc."
+		]
+	},
 	"1.5.0": {
 		"summary": "A much needed makeover",
 		"description": "Just a routine cleanup to make sure I cn keep maintaining this website moving forward. Some bug fixes as well.",
