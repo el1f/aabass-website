@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro"
-import { getMonthlyBest } from "@/lib/spotify"
+import { getMonthlyBest } from "@/lib/lastfm"
 
 export const prerender = false
 

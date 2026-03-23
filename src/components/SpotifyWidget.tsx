@@ -3,7 +3,8 @@ import { useCallback, useEffect, useState } from "react"
 
 import { cn } from "@/lib/utils"
 import { Icon } from "@/components/Icon"
-import type { NowPlayingResponse, MonthlyBestResponse } from "@/lib/spotify"
+import type { NowPlayingResponse } from "@/lib/spotify"
+import type { MonthlyBestResponse } from "@/lib/lastfm"
 
 const POLL_INTERVAL = 30_000
 
