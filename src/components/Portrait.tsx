@@ -10,19 +10,10 @@ function clamp(value: number, min: number, max: number) {
 
 export function Portrait() {
   const containerRef = useRef<HTMLElement>(null)
-  const fgRef = useRef<HTMLImageElement>(null)
-  const bgRef = useRef<HTMLImageElement>(null)
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
-  const [fgLoaded, setFgLoaded] = useState(false)
-  const [bgLoaded, setBgLoaded] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    if (fgRef.current?.complete) setFgLoaded(true)
-    if (bgRef.current?.complete) setBgLoaded(true)
-  }, [])
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)")
@@ -86,34 +77,27 @@ export function Portrait() {
       style={{ perspective: 1000 }}
     >
       <div
-        className="absolute inset-0 bottom-0 left-0 z-10 scale-125 transition-opacity duration-[4000ms]"
+        className="absolute inset-0 z-10"
         style={{
-          opacity: fgLoaded ? 1 : 0,
           transform: `translateX(${offsetX / 4}px) translateY(${scrollOffset + offsetY / 4}px) rotateY(${offsetX / 4}deg)`,
         }}
       >
         <img
-          ref={fgRef}
           alt="The foreground of the picture"
-          className="block w-full scale-110 object-cover"
+          className="block w-full object-cover"
           src="/me/me_fg.png"
-          onLoad={() => setFgLoaded(true)}
         />
       </div>
 
       <div
-        className="transition-opacity duration-[4000ms]"
         style={{
-          opacity: bgLoaded ? 1 : 0,
-          transform: `translateX(${offsetX}px) translateY(${scrollOffset + offsetY}px)`,
+          transform: `translateX(${offsetX}px) translateY(${scrollOffset + offsetY}px) scale(1.05)`,
         }}
       >
         <img
-          ref={bgRef}
           alt="The background of the picture"
-          className="block w-full scale-125 object-cover"
+          className="block w-full object-cover"
           src="/me/me_bg.png"
-          onLoad={() => setBgLoaded(true)}
         />
       </div>
     </figure>
