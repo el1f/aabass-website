@@ -64,6 +64,149 @@ async function fetchLastFm(method: string, params: Record<string, string> = {}) 
   return res.json()
 }
 
+interface LastFmAlbum {
+  name: string
+  playcount: string
+  url: string
+  artist: { name: string; url: string }
+  image: LastFmImage[]
+}
+
+interface LastFmRecentTrack {
+  date?: { uts: string }
+  "@attr"?: { nowplaying: string }
+}
+
+export interface TopItem {
+  name: string
+  url: string
+  image: string
+  playcount: number
+  subtitle?: string
+}
+
+export interface ListeningStats {
+  totalScrobbles: number
+  estimatedMinutes: number
+  topDayOfWeek: string
+  topHourOfDay: number
+  dayDistribution: Record<string, number>
+  hourDistribution: Record<number, number>
+}
+
+export interface MusicPageData {
+  monthlyArtists: TopItem[]
+  yearlyArtists: TopItem[]
+  monthlyAlbums: TopItem[]
+  yearlyAlbums: TopItem[]
+  monthlyTracks: TopItem[]
+  yearlyTracks: TopItem[]
+  stats: ListeningStats
+}
+
+const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const AVG_TRACK_MINUTES = 3.5
+
+function mapArtists(items: LastFmArtist[]): TopItem[] {
+  return items.map((a) => ({
+    name: a.name,
+    url: a.url,
+    image: getLargestImage(a.image),
+    playcount: parseInt(a.playcount, 10),
+  }))
+}
+
+function mapAlbums(items: LastFmAlbum[]): TopItem[] {
+  return items.map((a) => ({
+    name: a.name,
+    url: a.url,
+    image: getLargestImage(a.image),
+    playcount: parseInt(a.playcount, 10),
+    subtitle: a.artist.name,
+  }))
+}
+
+function mapTracks(items: LastFmTrack[]): TopItem[] {
+  return items.map((t) => ({
+    name: t.name,
+    url: t.url,
+    image: getLargestImage(t.image),
+    playcount: parseInt(t.playcount, 10),
+    subtitle: t.artist.name,
+  }))
+}
+
+export async function getMusicPageData(): Promise<MusicPageData> {
+  const [
+    monthlyArtistsData,
+    yearlyArtistsData,
+    monthlyAlbumsData,
+    yearlyAlbumsData,
+    monthlyTracksData,
+    yearlyTracksData,
+  ] = await Promise.all([
+    fetchLastFm("user.gettopartists", { period: "1month", limit: "5" }),
+    fetchLastFm("user.gettopartists", { period: "12month", limit: "5" }),
+    fetchLastFm("user.gettopalbums", { period: "1month", limit: "5" }),
+    fetchLastFm("user.gettopalbums", { period: "12month", limit: "5" }),
+    fetchLastFm("user.gettoptracks", { period: "1month", limit: "5" }),
+    fetchLastFm("user.gettoptracks", { period: "12month", limit: "5" }),
+  ])
+
+  const yearStart = Math.floor(new Date(new Date().getFullYear(), 0, 1).getTime() / 1000)
+
+  const scrobblePages = await Promise.all(
+    [1, 2, 3, 4, 5].map((page) =>
+      fetchLastFm("user.getrecenttracks", {
+        from: yearStart.toString(),
+        limit: "200",
+        page: page.toString(),
+      })
+    )
+  )
+
+  const totalScrobbles = parseInt(
+    scrobblePages[0]?.recenttracks?.["@attr"]?.total ?? "0",
+    10
+  )
+
+  const dayCount: Record<string, number> = {}
+  const hourCount: Record<number, number> = {}
+  for (const d of DAY_NAMES) dayCount[d] = 0
+  for (let h = 0; h < 24; h++) hourCount[h] = 0
+
+  for (const page of scrobblePages) {
+    const tracks: LastFmRecentTrack[] = page?.recenttracks?.track ?? []
+    for (const t of tracks) {
+      if (t["@attr"]?.nowplaying) continue
+      if (!t.date?.uts) continue
+      const date = new Date(parseInt(t.date.uts, 10) * 1000)
+      dayCount[DAY_NAMES[date.getDay()]]++
+      hourCount[date.getHours()]++
+    }
+  }
+
+  const topDay = Object.entries(dayCount).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "Monday"
+  const topHour = Object.entries(hourCount).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "0"
+
+  return {
+    monthlyArtists: mapArtists(monthlyArtistsData?.topartists?.artist ?? []),
+    yearlyArtists: mapArtists(yearlyArtistsData?.topartists?.artist ?? []),
+    monthlyAlbums: mapAlbums(monthlyAlbumsData?.topalbums?.album ?? []),
+    yearlyAlbums: mapAlbums(yearlyAlbumsData?.topalbums?.album ?? []),
+    monthlyTracks: mapTracks(monthlyTracksData?.toptracks?.track ?? []),
+    yearlyTracks: mapTracks(yearlyTracksData?.toptracks?.track ?? []),
+    stats: {
+      totalScrobbles,
+      estimatedMinutes: Math.round(totalScrobbles * AVG_TRACK_MINUTES),
+      topDayOfWeek: topDay,
+      topHourOfDay: parseInt(topHour, 10),
+      dayDistribution: dayCount,
+      hourDistribution: hourCount,
+    },
+  }
+}
+
 export async function getMonthlyBest(): Promise<MonthlyBestResponse> {
   const [tracksData, artistsData] = await Promise.all([
     fetchLastFm("user.gettoptracks", { period: "1month", limit: "3" }),
