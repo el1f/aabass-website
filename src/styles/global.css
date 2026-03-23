@@ -175,17 +175,15 @@
 .logo #firstname,
 .logo #lastname {
     opacity: 0;
-    transform: translateX(-10%);
-    transform-box: fill-box;
-    transition: opacity 200ms, transform 200ms;
+    translate: -40px 0;
+    transition: opacity 200ms, translate 200ms;
 }
 
 .logo--active #firstname,
 .logo--active #lastname {
     opacity: 1;
-    transform: translateX(0%);
-    transform-box: fill-box;
-    transition: opacity 300ms, transform 300ms;
+    translate: 0 0;
+    transition: opacity 300ms, translate 300ms;
     transition-delay: 100ms;
 }
 
