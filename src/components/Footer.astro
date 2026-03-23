@@ -1,0 +1,61 @@
+---
+const WORK_LINKS = [
+  { href: "/about", label: "About" },
+  { href: "/cases", label: "Case Studies" },
+]
+
+const PERSONAL_LINKS = [
+  { href: "/posters", label: "Posters" },
+  { href: "/coffee", label: "Coffee" },
+  { href: "/ideas", label: "Ideas" },
+]
+
+const currentYear = new Date().getFullYear()
+---
+
+<div class="overflow-hidden print:hidden">
+  <footer class="container relative max-w-5xl px-6 pt-8 pb-32 mx-auto">
+    <div class="flex flex-col justify-between gap-12 md:flex-row">
+      <div class="flex flex-col">
+        <a href="/" class="mb-2">
+          <img
+            src="/brand/logo_extended_dark.svg"
+            alt="Logo"
+            class="h-14 dark:hidden"
+          />
+          <img
+            src="/brand/logo_extended_light.svg"
+            alt="Logo"
+            class="hidden h-14 dark:block"
+          />
+        </a>
+        <span class="text-sm text-muted-foreground">©️ {currentYear}</span>
+      </div>
+
+      <div class="flex gap-12">
+        <div class="flex flex-col items-start gap-2">
+          <h5 class="text-sm font-semibold">Work</h5>
+          {WORK_LINKS.map(({ href, label }) => (
+            <a
+              href={href}
+              class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+        <div class="flex flex-col items-start gap-2">
+          <h5 class="text-sm font-semibold">Personal</h5>
+          {PERSONAL_LINKS.map(({ href, label }) => (
+            <a
+              href={href}
+              class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

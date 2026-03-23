@@ -1,0 +1,67 @@
+---
+const SOCIALS = [
+  { href: "https://www.instagram.com/eliflem_design/", label: "Instagram" },
+  { href: "https://www.linkedin.com/in/el1flem/", label: "LinkedIn" },
+  { href: "https://dribbble.com/el1flem", label: "Dribbble" },
+  { href: "https://github.com/el1f", label: "GitHub" },
+]
+
+const NAV_LINKS = [
+  { href: "/about", label: "About me" },
+  { href: "/cases", label: "Case Studies" },
+  { href: "/personal", label: "Personal" },
+]
+
+const currentPath = Astro.url.pathname
+---
+
+<header class="block w-full h-16 mt-16 print:hidden">
+  <nav class="flex items-center justify-between h-20 w-full max-w-2xl px-4 mx-auto">
+    <a class="block" href="/">
+      <img
+        src="/brand/logo_extended_dark.svg"
+        alt="Logo"
+        class="h-10 dark:hidden"
+      />
+      <img
+        src="/brand/logo_extended_light.svg"
+        alt="Logo"
+        class="hidden h-10 dark:block"
+      />
+    </a>
+
+    <div class="flex items-center gap-1">
+      <div class="hidden md:flex gap-0.5">
+        {NAV_LINKS.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={[
+              "px-3 py-1.5 text-sm rounded-lg transition-colors",
+              currentPath === href
+                ? "bg-muted text-foreground font-medium"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground",
+            ]}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+
+      <span class="hidden text-muted-foreground md:block">•</span>
+
+      <div class="flex items-center">
+        {SOCIALS.map(({ href, label }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block p-2 transition-colors rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground"
+            aria-label={label}
+          >
+            <span class="sr-only">{label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+</header>
