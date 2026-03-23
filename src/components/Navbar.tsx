@@ -38,10 +38,13 @@ interface NavbarProps {
   currentPath: string
 }
 
+const LINKS_DELAY = 250
+
 export function Navbar({ currentPath }: NavbarProps) {
   const [scrollY, setScrollY] = useState(0)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [direction, setDirection] = useState<"UP" | "DOWN">("DOWN")
+  const [showLinks, setShowLinks] = useState(false)
 
   const onScroll = useCallback(() => {
     const y = window.scrollY
@@ -58,14 +61,22 @@ export function Navbar({ currentPath }: NavbarProps) {
   const isStuck = scrollY > SCROLL_THRESHOLD
   const isLogoActive = isStuck && direction === "DOWN"
 
+  useEffect(() => {
+    if (isStuck) {
+      const timer = setTimeout(() => setShowLinks(true), LINKS_DELAY)
+      return () => clearTimeout(timer)
+    }
+    setShowLinks(false)
+  }, [isStuck])
+
   return (
     <header className="sticky top-0 z-50 w-full mt-16 print:hidden">
       <div className={cn(
-        "w-full transition-all duration-300",
+        "w-full transition-all duration-300 ease-out",
         isStuck ? "py-3 px-4" : "",
       )}>
         <nav className={cn(
-          "flex items-center justify-between h-20 w-full pl-[1.125rem] pr-4 mx-auto transition-all duration-300 rounded-3xl",
+          "flex items-center justify-between h-20 w-full pl-[1.125rem] pr-4 mx-auto transition-all duration-300 ease-out rounded-3xl",
           isStuck
             ? "max-w-5xl backdrop-blur-xl bg-background/60 border border-border shadow-lg"
             : "max-w-2xl",
@@ -97,14 +108,14 @@ export function Navbar({ currentPath }: NavbarProps) {
           </a>
 
           <div className="flex items-center gap-1">
-            {isStuck && (
-              <div className="hidden md:flex gap-0.5">
+            {showLinks && (
+              <div className="hidden md:flex gap-0.5 animate-in fade-in duration-200">
                 {NAV_LINKS.map(({ href, label }) => (
                   <a
                     key={href}
                     href={href}
                     className={cn(
-                      "px-3 py-1.5 text-sm rounded-lg transition-colors",
+                      "px-3 py-1.5 text-sm rounded-lg transition-colors whitespace-nowrap",
                       currentPath === href
                         ? "bg-muted text-foreground font-medium"
                         : "text-muted-foreground hover:bg-muted hover:text-foreground",
