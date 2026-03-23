@@ -99,8 +99,8 @@
     --muted-foreground: oklch(0.556 0 0);
 
     /* Interactive */
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.8991 0.1773 125.81);
+    --primary-foreground: oklch(0.205 0 0);
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --destructive: oklch(0.577 0.245 27.325);
@@ -126,7 +126,7 @@
     --muted-foreground: oklch(0.708 0 0);
 
     /* Interactive */
-    --primary: oklch(0.922 0 0);
+    --primary: oklch(0.9382 0.1217 124.32);
     --primary-foreground: oklch(0.205 0 0);
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
@@ -157,14 +157,18 @@
 .logo #lastname {
     opacity: 0;
     translate: -40px 0;
-    transition: opacity 200ms, translate 200ms;
+    transition:
+        opacity 200ms,
+        translate 200ms;
 }
 
 .logo--active #firstname,
 .logo--active #lastname {
     opacity: 1;
     translate: 0 0;
-    transition: opacity 300ms, translate 300ms;
+    transition:
+        opacity 300ms,
+        translate 300ms;
     transition-delay: 100ms;
 }
 

@@ -1,11 +1,14 @@
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token"
 const NOW_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing"
+const TOP_TRACKS_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks"
+const TOP_ARTISTS_ENDPOINT = "https://api.spotify.com/v1/me/top/artists"
 
 export interface SpotifyArtist {
   external_urls: { spotify: string }
   id: string
   name: string
+  images?: SpotifyImage[]
 }
 
 export interface SpotifyImage {
@@ -23,6 +26,7 @@ export interface SpotifyTrack {
   artists: SpotifyArtist[]
   duration_ms: number
   external_urls: { spotify: string }
+  id: string
   name: string
 }
 
@@ -30,13 +34,30 @@ export interface NowPlayingResponse {
   isPlaying: boolean
   track: {
     name: string
-    artist: string
+    artists: { id: string; name: string; url: string }[]
     album: string
+    albumUrl: string
     albumArt: string
     trackUrl: string
     progress: number
     duration: number
   } | null
+}
+
+export interface MonthlyBestResponse {
+  tracks: {
+    id: string
+    name: string
+    url: string
+    albumArt: string
+    artists: { id: string; name: string; url: string }[]
+  }[]
+  artists: {
+    id: string
+    name: string
+    url: string
+    image: string
+  }[]
 }
 
 async function getAccessToken(): Promise<string> {
@@ -83,12 +104,57 @@ export async function getNowPlaying(): Promise<NowPlayingResponse> {
     isPlaying: data.is_playing,
     track: {
       name: data.item.name,
-      artist: data.item.artists.map((a: SpotifyArtist) => a.name).join(", "),
+      artists: data.item.artists.map((a: SpotifyArtist) => ({
+        id: a.id,
+        name: a.name,
+        url: a.external_urls.spotify,
+      })),
       album: data.item.album.name,
+      albumUrl: data.item.album.external_urls.spotify,
       albumArt: data.item.album.images[0]?.url ?? "",
       trackUrl: data.item.external_urls.spotify,
       progress: data.progress_ms,
       duration: data.item.duration_ms,
     },
+  }
+}
+
+export async function getMonthlyBest(): Promise<MonthlyBestResponse> {
+  const accessToken = await getAccessToken()
+
+  const [tracksRes, artistsRes] = await Promise.all([
+    fetch(`${TOP_TRACKS_ENDPOINT}?limit=3&time_range=short_term`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }),
+    fetch(`${TOP_ARTISTS_ENDPOINT}?limit=3&time_range=short_term`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }),
+  ])
+
+  if (!tracksRes.ok || !artistsRes.ok) {
+    return { tracks: [], artists: [] }
+  }
+
+  const tracksData = await tracksRes.json()
+  const artistsData = await artistsRes.json()
+
+  return {
+    tracks: (tracksData.items ?? []).map((t: SpotifyTrack) => ({
+      id: t.id,
+      name: t.name,
+      url: t.external_urls.spotify,
+      albumArt: t.album.images[0]?.url ?? "",
+      artists: t.artists.map((a) => ({
+        id: a.id,
+        name: a.name,
+        url: a.external_urls.spotify,
+      })),
+    })),
+    artists: (artistsData.items ?? []).map((a: SpotifyArtist) => ({
+      id: a.id,
+      name: a.name,
+      url: a.external_urls.spotify,
+      image: a.images?.[0]?.url ?? "",
+    })),
   }
 }
