@@ -1,4 +1,6 @@
 ---
+import { Icon } from "@/components/Icon"
+
 const WORK_LINKS = [
   { href: "/about", label: "About" },
   { href: "/cases", label: "Case Studies" },
@@ -8,6 +10,13 @@ const PERSONAL_LINKS = [
   { href: "/posters", label: "Posters" },
   { href: "/coffee", label: "Coffee" },
   { href: "/ideas", label: "Ideas" },
+]
+
+const SOCIALS: { href: string; label: string; icon: "instagram" | "linkedin" | "dribbble" | "github" }[] = [
+  { href: "https://www.instagram.com/eliflem_design/", label: "Instagram", icon: "instagram" },
+  { href: "https://www.linkedin.com/in/el1flem/", label: "LinkedIn", icon: "linkedin" },
+  { href: "https://dribbble.com/el1flem", label: "Dribbble", icon: "dribbble" },
+  { href: "https://github.com/el1f", label: "GitHub", icon: "github" },
 ]
 
 const currentYear = new Date().getFullYear()
@@ -48,6 +57,20 @@ const currentYear = new Date().getFullYear()
             <path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
           </svg>
         </button>
+
+        <div class="flex items-center gap-1 mt-2">
+          {SOCIALS.map(({ href, label, icon }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block p-2 transition-colors rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground"
+              aria-label={label}
+            >
+              <Icon name={icon} />
+            </a>
+          ))}
+        </div>
       </div>
 
       <div class="flex gap-12">

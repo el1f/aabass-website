@@ -8,9 +8,6 @@ import { SpotifyWidget } from "@/components/SpotifyWidget";
 const SCROLL_THRESHOLD = 16 * 4;
 
 const SOCIALS: { href: string; label: string; icon: IconName }[] = [
-  { href: "https://www.instagram.com/eliflem_design/", label: "Instagram", icon: "instagram" },
-  { href: "https://www.linkedin.com/in/el1flem/", label: "LinkedIn", icon: "linkedin" },
-  { href: "https://dribbble.com/el1flem", label: "Dribbble", icon: "dribbble" },
   { href: "https://github.com/el1f", label: "GitHub", icon: "github" },
 ];
 
@@ -23,13 +20,10 @@ interface NavbarProps {
   currentPath: string;
 }
 
-const LINKS_DELAY = 250;
-
 export function Navbar({ currentPath }: NavbarProps) {
   const [scrollY, setScrollY] = useState(0);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [direction, setDirection] = useState<"UP" | "DOWN">("DOWN");
-  const [showLinks, setShowLinks] = useState(false);
 
   const onScroll = useCallback(() => {
     const y = window.scrollY;
@@ -46,14 +40,6 @@ export function Navbar({ currentPath }: NavbarProps) {
   const isStuck = scrollY > SCROLL_THRESHOLD;
   const isLogoActive = isStuck && direction === "DOWN";
 
-  useEffect(() => {
-    if (isStuck) {
-      const timer = setTimeout(() => setShowLinks(true), LINKS_DELAY);
-      return () => clearTimeout(timer);
-    }
-    setShowLinks(false);
-  }, [isStuck]);
-
   return (
     <header className="sticky top-0 z-50 w-full mt-16 py-4 print:hidden">
       <nav
@@ -69,28 +55,24 @@ export function Navbar({ currentPath }: NavbarProps) {
         </a>
 
         <div className="flex items-center gap-2">
-          {showLinks && (
-            <div className="hidden md:flex items-center gap-0.5 animate-in fade-in duration-200">
-              {NAV_LINKS.map(({ href, label }) => (
-                <a
-                  key={href}
-                  href={href}
-                  className={cn(
-                    "px-3 py-1.5 text-sm rounded-lg transition-colors whitespace-nowrap",
-                    currentPath === href
-                      ? "bg-muted text-foreground font-medium"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                  )}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          )}
+          <div className="hidden md:flex items-center gap-0.5">
+            {NAV_LINKS.map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                className={cn(
+                  "px-3 py-1.5 text-sm rounded-lg transition-colors whitespace-nowrap",
+                  currentPath === href
+                    ? "bg-muted text-foreground font-medium"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                )}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
 
-          {showLinks && (
-            <span className="hidden text-muted-foreground md:block">•</span>
-          )}
+          <span className="hidden text-muted-foreground md:block">•</span>
 
           <div className="flex items-center">
             <SpotifyWidget />
