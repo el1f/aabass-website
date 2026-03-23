@@ -176,14 +176,16 @@
 .logo #lastname {
     opacity: 0;
     transform: translateX(-10%);
-    transition: 200ms;
+    transform-box: fill-box;
+    transition: opacity 200ms, transform 200ms;
 }
 
 .logo--active #firstname,
 .logo--active #lastname {
     opacity: 1;
     transform: translateX(0%);
-    transition: 300ms;
+    transform-box: fill-box;
+    transition: opacity 300ms, transform 300ms;
     transition-delay: 100ms;
 }
 
