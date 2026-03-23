@@ -13,7 +13,7 @@ const SOCIALS: { href: string; label: string; icon: IconName }[] = [
 
 const NAV_LINKS = [
   { href: "/about", label: "About" },
-  { href: "/cases", label: "Work" },
+  { href: "/work", label: "Work" },
 ];
 
 interface NavbarProps {
