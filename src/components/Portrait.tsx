@@ -10,12 +10,19 @@ function clamp(value: number, min: number, max: number) {
 
 export function Portrait() {
   const containerRef = useRef<HTMLElement>(null)
+  const fgRef = useRef<HTMLImageElement>(null)
+  const bgRef = useRef<HTMLImageElement>(null)
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
   const [fgLoaded, setFgLoaded] = useState(false)
   const [bgLoaded, setBgLoaded] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    if (fgRef.current?.complete) setFgLoaded(true)
+    if (bgRef.current?.complete) setBgLoaded(true)
+  }, [])
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)")
@@ -86,6 +93,7 @@ export function Portrait() {
         }}
       >
         <img
+          ref={fgRef}
           alt="The foreground of the picture"
           className="block w-full scale-110 object-cover"
           src="/me/me_fg.png"
@@ -101,6 +109,7 @@ export function Portrait() {
         }}
       >
         <img
+          ref={bgRef}
           alt="The background of the picture"
           className="block w-full scale-125 object-cover"
           src="/me/me_bg.png"
