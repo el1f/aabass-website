@@ -1,0 +1,22 @@
+{
+    "pageTitle": "Ideas",
+    "dialog": {
+        "dependenciesLabel": "DEPENDS ON",
+        "targetPagesLabel": "TARGETED PAGES",
+        "targetComponentsLabel": "TARGETED COMPONENTS",
+        "updatesTitle": "Updates",
+        "updatesPlaceholder": "Nothing to see here yet. Check back later!"
+    },
+    "board": {
+        "columnPlaceholder": "No ideas have reached this stage yet.",
+        "backlogTitle": "Backlog",
+        "plannedTitle": "Planned",
+        "ongoingTitle": "In progress",
+        "testingTitle": "Testing",
+        "doneTitle": "Done"
+    },
+    "header": {
+        "lead": "What's going on in the backstage?",
+        "title": "Ideas for the future"
+    }
+}

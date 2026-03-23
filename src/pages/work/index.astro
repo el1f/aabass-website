@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/main.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import XaiCover from "@/components/covers/XaiCover.astro";
+import NtropyCover from "@/components/covers/NtropyCover.astro";
+import PostersCover from "@/components/covers/PostersCover.astro";
+---
+
+<Layout title="Work">
+    <header class="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-24">
+        <h1
+            class="mb-4 text-4xl font-bold leading-snug md:text-5xl md:leading-snug"
+        >
+            Work
+        </h1>
+        <p
+            class="text-sm md:text-base md:leading-relaxed text-muted-foreground"
+        >
+            A selection of projects I've worked on over the years, spanning
+            product development, design systems, and personal creative work.
+        </p>
+    </header>
+
+    <section
+        class="container max-w-5xl gap-6 px-6 mx-auto mb-24 md:grid-cols-2"
+    >
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <ProjectCard
+                title="Grok"
+                subtitle="xAI · 2024 – present"
+                href="/work/xai"
+            >
+                <XaiCover slot="cover" />
+            </ProjectCard>
+
+            <ProjectCard title="OEM" subtitle="So · 2021" href="/work/oem" />
+        </div>
+    </section>
+
+    <section
+        class="container max-w-5xl gap-6 px-6 mx-auto mb-24 md:grid-cols-2"
+    >
+        <header class="max-w-2xl px-6 mx-auto">
+            <h2 class="text-xl mb-6">Personal projects</h2>
+        </header>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <ProjectCard
+                title="AMP Skate"
+                subtitle="Co-founder · 2021"
+                href="/work/amp"
+            />
+
+            <ProjectCard
+                title="Poster Design"
+                subtitle="Personal Project · Ongoing"
+                href="/posters"
+            >
+                <PostersCover slot="cover" />
+            </ProjectCard>
+
+            <ProjectCard
+                title="Photography"
+                subtitle="Personal Project · Ongoing"
+                href="/photography"
+            >
+                <PostersCover slot="cover" />
+            </ProjectCard>
+        </div>
+    </section>
+</Layout>

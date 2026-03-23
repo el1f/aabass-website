@@ -1,0 +1,121 @@
+{
+    "title": "Curriculum Vitae",
+    "pageTitle": "Ayoub's CV",
+    "document": {
+        "introduction": "Hey there! My name is Ayoub and I am a full-stack software developer and designer. I focus on conceptualizing and creating powerful and intuitive user interfaces to enable organizations and individuals to solve complex problems through digital tools.",
+        "dev": {
+            "title": "Current dev knowledge",
+            "skills": [
+                "HTML",
+                "CSS",
+                "Typescript",
+                "React",
+                "Next.JS",
+                "Vue",
+                "Redux",
+                "REST",
+                "GraphQL",
+                "Relay",
+                "Apollo",
+                "Node.JS",
+                "Java",
+                "Android",
+                "MySQL",
+                "MongoDB",
+                "Firebase",
+                "Google GCP",
+                "Amazon AWS",
+                "Git",
+                "GitHub Actions"
+            ]
+        },
+        "des": {
+            "title": "Current design knowledge",
+            "skills": [
+                "Adobe Photoshop",
+                "Adobe Illustrator",
+                "Adobe InDesign",
+                "Affinity Designer",
+                "Affinity Photo",
+                "Affinity Publisher",
+                "Sketch",
+                "Figma",
+                "Framer"
+            ]
+        },
+        "experience": {
+            "title": "Work experience",
+            "items": [
+                {
+                    "company": "",
+                    "role": "Freelance Full-stack dev & UI/UX Designer",
+                    "period": "2015 - Now",
+                    "location": "Padua, Italy",
+                    "tasks": []
+                },
+                {
+                    "company": "E-Fashion Software",
+                    "role": "Senior Full-stack developer & UI/UX Designer",
+                    "period": "2020 - Now",
+                    "location": "Padua, Italy",
+                    "tasks": []
+                },
+                {
+                    "company": "HackPartners",
+                    "role": "Full-stack Dev & UI/UX Design Consultant",
+                    "period": "2018 - 2019",
+                    "location": "Padua, Italy",
+                    "tasks": []
+                },
+                {
+                    "company": "Aterrae",
+                    "role": "Full-stack Dev, UI/UX Designer & Graphic designer",
+                    "period": "2016 - 2018",
+                    "location": "Padua, Italy",
+                    "tasks": []
+                },
+                {
+                    "company": "H-FARM",
+                    "role": "Full-stack Developer",
+                    "period": "2015",
+                    "location": "Treviso, Italy",
+                    "tasks": []
+                },
+                {
+                    "company": "Treviso",
+                    "role": "Frontend Web Developer",
+                    "period": "2014",
+                    "location": "Padua, Italy",
+                    "tasks": []
+                }
+            ]
+        },
+        "contacts": {
+            "title": "Contacts",
+            "email": {
+                "title": "Email",
+                "value": "ayoub@aabass.net"
+            },
+            "phone": {
+                "title": "Phone",
+                "value": "+39 3479283096"
+            },
+            "web": {
+                "title": "Website",
+                "value": "ayoub.aabass.net"
+            },
+            "github": {
+                "title": "GitHub",
+                "value": "github.com/el1f"
+            },
+            "dribbble": {
+                "title": "Dribbble",
+                "value": "dribbble.com/el1flem"
+            },
+            "instagram": {
+                "title": "Instagram",
+                "value": "instagram.com/eliflem_design"
+            }
+        }
+    }
+}

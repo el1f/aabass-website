@@ -1,0 +1,109 @@
+---
+import { Icon } from "@/components/Icon"
+
+const WORK_LINKS = [
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Case Studies" },
+]
+
+const PERSONAL_LINKS = [
+  { href: "/posters", label: "Posters" },
+  { href: "/coffee", label: "Coffee" },
+  { href: "/ideas", label: "Ideas" },
+]
+
+const SOCIALS: { href: string; label: string; icon: "instagram" | "linkedin" | "dribbble" | "github" }[] = [
+  { href: "https://www.instagram.com/eliflem_design/", label: "Instagram", icon: "instagram" },
+  { href: "https://www.linkedin.com/in/el1flem/", label: "LinkedIn", icon: "linkedin" },
+  { href: "https://dribbble.com/el1flem", label: "Dribbble", icon: "dribbble" },
+  { href: "https://github.com/el1f", label: "GitHub", icon: "github" },
+]
+
+const currentYear = new Date().getFullYear()
+---
+
+<div class="overflow-hidden print:hidden">
+  <footer class="container relative max-w-5xl px-6 pt-8 pb-32 mx-auto">
+    <div class="flex flex-col justify-between gap-12 md:flex-row">
+      <div class="flex flex-col">
+        <a href="/" class="mb-2">
+          <img
+            src="/brand/logo_extended_dark.svg"
+            alt="Logo"
+            class="h-14 dark:hidden"
+          />
+          <img
+            src="/brand/logo_extended_light.svg"
+            alt="Logo"
+            class="hidden h-14 dark:block"
+          />
+        </a>
+        <span class="text-sm text-muted-foreground">©️ {currentYear}</span>
+
+        <button
+          id="footer-theme-toggle"
+          type="button"
+          class="mt-4 p-2 w-fit transition-colors rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground"
+          aria-label="Toggle theme"
+        >
+          <svg class="size-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+          <svg class="hidden size-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" /><path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" /><path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+        </button>
+
+        <div class="flex items-center gap-1 mt-2">
+          {SOCIALS.map(({ href, label, icon }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block p-2 transition-colors rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground"
+              aria-label={label}
+            >
+              <Icon name={icon} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex gap-12">
+        <div class="flex flex-col items-start gap-2">
+          <h5 class="text-sm font-semibold">Work</h5>
+          {WORK_LINKS.map(({ href, label }) => (
+            <a
+              href={href}
+              class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+        <div class="flex flex-col items-start gap-2">
+          <h5 class="text-sm font-semibold">Personal</h5>
+          {PERSONAL_LINKS.map(({ href, label }) => (
+            <a
+              href={href}
+              class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.getElementById("footer-theme-toggle")?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark")
+    localStorage.setItem("theme", isDark ? "dark" : "light")
+  })
+</script>

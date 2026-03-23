@@ -1,0 +1,7 @@
+---
+import { Navbar as NavbarReact } from "@/components/Navbar"
+
+const currentPath = Astro.url.pathname
+---
+
+<NavbarReact client:load currentPath={currentPath} />

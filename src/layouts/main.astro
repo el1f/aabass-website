@@ -1,0 +1,37 @@
+---
+import "@/styles/global.css"
+import Navbar from "@/components/Navbar.astro"
+import Footer from "@/components/Footer.astro"
+
+interface Props {
+  title?: string
+}
+
+const { title = "Aabass Ayoub" } = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/sofia_pro/sofia_pro_regular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/sofia_pro/sofia_pro_bold.woff" as="font" type="font/woff" crossorigin />
+    <title>{title}</title>
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme")
+        const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+        const theme = stored || preferred
+        document.documentElement.classList.toggle("dark", theme === "dark")
+      })()
+    </script>
+  </head>
+  <body class="flex min-h-svh flex-col">
+    <Navbar />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

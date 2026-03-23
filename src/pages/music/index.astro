@@ -1,0 +1,213 @@
+---
+export const prerender = false
+
+import Layout from "@/layouts/main.astro"
+import { getMusicPageData } from "@/lib/lastfm"
+import type { TopItem } from "@/lib/lastfm"
+
+let data
+try {
+  data = await getMusicPageData()
+} catch {
+  data = null
+}
+
+const currentYear = new Date().getFullYear()
+
+function formatHour(hour: number): string {
+  if (hour === 0) return "12 AM"
+  if (hour === 12) return "12 PM"
+  return hour < 12 ? `${hour} AM` : `${hour - 12} PM`
+}
+
+function formatMinutes(minutes: number): string {
+  return `${minutes.toLocaleString()} min`
+}
+---
+
+<Layout title="Ayoub's Music">
+  <header class="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-24">
+    <h1 class="mb-4 text-4xl font-bold leading-snug md:text-5xl md:leading-snug">
+      My music
+    </h1>
+    <p class="text-sm md:text-base md:leading-relaxed text-muted-foreground">
+      Music is a huge part of my life. Whether I'm coding, commuting, or brewing
+      coffee, there's always something playing. This page pulls live data from my
+      Last.fm scrobbles to give you a snapshot of what I've been listening to.
+    </p>
+  </header>
+
+  {data ? (
+    <>
+      <!-- STATS -->
+      <section class="mb-32">
+        <header class="container max-w-2xl px-6 mx-auto mb-8">
+          <h2 class="mb-4 text-2xl font-bold leading-tight md:text-3xl">
+            {currentYear} so far
+          </h2>
+        </header>
+
+        <div class="container grid max-w-2xl grid-cols-2 gap-4 px-6 mx-auto">
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
+            <span class="text-3xl font-bold">{data.stats.totalScrobbles.toLocaleString()}</span>
+            <p class="text-xs text-muted-foreground mt-1">scrobbles</p>
+          </div>
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
+            <span class="text-3xl font-bold">{formatMinutes(data.stats.estimatedMinutes)}</span>
+            <p class="text-xs text-muted-foreground mt-1">estimated listening</p>
+          </div>
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
+            <span class="text-3xl font-bold">{data.stats.topDayOfWeek}</span>
+            <p class="text-xs text-muted-foreground mt-1">top listening day</p>
+          </div>
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
+            <span class="text-3xl font-bold">{formatHour(data.stats.topHourOfDay)}</span>
+            <p class="text-xs text-muted-foreground mt-1">peak hour</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTISTS -->
+      <section class="mb-32">
+        <header class="container max-w-2xl px-6 mx-auto mb-8">
+          <h2 class="mb-4 text-2xl font-bold leading-tight md:text-3xl">
+            Top Artists
+          </h2>
+        </header>
+
+        <div class="container grid max-w-2xl grid-cols-1 gap-12 px-6 mx-auto md:grid-cols-2">
+          <div>
+            <h5 class="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">This month</h5>
+            <div class="flex flex-col gap-3">
+              {data.monthlyArtists.map((item: TopItem, i: number) => (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+                  <span class="text-lg font-bold text-muted-foreground w-6 text-right shrink-0">{i + 1}</span>
+                  <figure class="overflow-hidden rounded-full bg-muted size-12 shrink-0">
+                    {item.image && <img alt={item.name} class="w-full h-full object-cover" src={item.image} />}
+                  </figure>
+                  <div class="min-w-0">
+                    <span class="text-sm font-medium truncate block group-hover:underline underline-offset-2">{item.name}</span>
+                    <span class="text-xs text-muted-foreground">{item.playcount} plays</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h5 class="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">This year</h5>
+            <div class="flex flex-col gap-3">
+              {data.yearlyArtists.map((item: TopItem, i: number) => (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+                  <span class="text-lg font-bold text-muted-foreground w-6 text-right shrink-0">{i + 1}</span>
+                  <figure class="overflow-hidden rounded-full bg-muted size-12 shrink-0">
+                    {item.image && <img alt={item.name} class="w-full h-full object-cover" src={item.image} />}
+                  </figure>
+                  <div class="min-w-0">
+                    <span class="text-sm font-medium truncate block group-hover:underline underline-offset-2">{item.name}</span>
+                    <span class="text-xs text-muted-foreground">{item.playcount} plays</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALBUMS -->
+      <section class="mb-32">
+        <header class="container max-w-2xl px-6 mx-auto mb-8">
+          <h2 class="mb-4 text-2xl font-bold leading-tight md:text-3xl">
+            Top Albums
+          </h2>
+        </header>
+
+        <div class="container grid max-w-2xl grid-cols-1 gap-12 px-6 mx-auto md:grid-cols-2">
+          <div>
+            <h5 class="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">This month</h5>
+            <div class="flex flex-col gap-3">
+              {data.monthlyAlbums.map((item: TopItem, i: number) => (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+                  <span class="text-lg font-bold text-muted-foreground w-6 text-right shrink-0">{i + 1}</span>
+                  <figure class="overflow-hidden rounded-lg bg-muted size-12 shrink-0">
+                    {item.image && <img alt={item.name} class="w-full h-full object-cover" src={item.image} />}
+                  </figure>
+                  <div class="min-w-0">
+                    <span class="text-sm font-medium truncate block group-hover:underline underline-offset-2">{item.name}</span>
+                    <span class="text-xs text-muted-foreground truncate block">{item.subtitle} · {item.playcount} plays</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h5 class="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">This year</h5>
+            <div class="flex flex-col gap-3">
+              {data.yearlyAlbums.map((item: TopItem, i: number) => (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+                  <span class="text-lg font-bold text-muted-foreground w-6 text-right shrink-0">{i + 1}</span>
+                  <figure class="overflow-hidden rounded-lg bg-muted size-12 shrink-0">
+                    {item.image && <img alt={item.name} class="w-full h-full object-cover" src={item.image} />}
+                  </figure>
+                  <div class="min-w-0">
+                    <span class="text-sm font-medium truncate block group-hover:underline underline-offset-2">{item.name}</span>
+                    <span class="text-xs text-muted-foreground truncate block">{item.subtitle} · {item.playcount} plays</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRACKS -->
+      <section class="mb-32">
+        <header class="container max-w-2xl px-6 mx-auto mb-8">
+          <h2 class="mb-4 text-2xl font-bold leading-tight md:text-3xl">
+            Top Tracks
+          </h2>
+        </header>
+
+        <div class="container grid max-w-2xl grid-cols-1 gap-12 px-6 mx-auto md:grid-cols-2">
+          <div>
+            <h5 class="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">This month</h5>
+            <div class="flex flex-col gap-3">
+              {data.monthlyTracks.map((item: TopItem, i: number) => (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+                  <span class="text-lg font-bold text-muted-foreground w-6 text-right shrink-0">{i + 1}</span>
+                  <figure class="overflow-hidden rounded-lg bg-muted size-12 shrink-0">
+                    {item.image && <img alt={item.name} class="w-full h-full object-cover" src={item.image} />}
+                  </figure>
+                  <div class="min-w-0">
+                    <span class="text-sm font-medium truncate block group-hover:underline underline-offset-2">{item.name}</span>
+                    <span class="text-xs text-muted-foreground truncate block">{item.subtitle} · {item.playcount} plays</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h5 class="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">This year</h5>
+            <div class="flex flex-col gap-3">
+              {data.yearlyTracks.map((item: TopItem, i: number) => (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+                  <span class="text-lg font-bold text-muted-foreground w-6 text-right shrink-0">{i + 1}</span>
+                  <figure class="overflow-hidden rounded-lg bg-muted size-12 shrink-0">
+                    {item.image && <img alt={item.name} class="w-full h-full object-cover" src={item.image} />}
+                  </figure>
+                  <div class="min-w-0">
+                    <span class="text-sm font-medium truncate block group-hover:underline underline-offset-2">{item.name}</span>
+                    <span class="text-xs text-muted-foreground truncate block">{item.subtitle} · {item.playcount} plays</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  ) : (
+    <div class="container max-w-2xl px-6 mx-auto mb-32">
+      <p class="text-sm text-muted-foreground italic">Unable to load music data. Check back later.</p>
+    </div>
+  )}
+</Layout>

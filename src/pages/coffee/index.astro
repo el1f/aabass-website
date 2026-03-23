@@ -1,0 +1,115 @@
+---
+import Layout from "@/layouts/main.astro"
+
+const GEAR = [
+  { label: "MACHINE", name: "Sage Barista Express", image: "/coffee/machine.png", colClass: "col-span-6 lg:row-span-6 lg:col-span-6 sm:row-span-2 sm:col-span-2", imgClass: "w-[120%] -bottom-80 -left-40 group-hover:-translate-y-4", headingClass: "text-8xl md:text-8xl", labelSize: "sm" },
+  { label: "GRINDER", name: "Fellow Ode", image: "/coffee/grinder.png", colClass: "col-span-3 sm:row-span-1 sm:col-span-1 lg:row-span-3 lg:col-end-10 lg:col-start-7", imgClass: "h-[120%] w-[120%] -bottom-12 -right-24 group-hover:-translate-x-4", headingClass: "text-3xl md:text-5xl", labelSize: "sm" },
+  { label: "KETTLE", name: "Fellow Stagg", image: "/coffee/kettle.png", colClass: "col-span-3 lg:row-start-4 sm:row-span-1 sm:col-span-1 lg:row-end-7 lg:col-end-10 lg:col-start-7", imgClass: "w-[137.5%] -right-12 -bottom-16 group-hover:-translate-y-4", headingClass: "text-3xl md:text-5xl", labelSize: "sm" },
+  { label: "BREWER", name: "Hario v60", image: "/coffee/v60.webp", colClass: "col-span-2 lg:row-span-2 lg:col-span-2 lg:col-start-10 sm:row-span-1 sm:col-span-1", imgClass: "w-[90%] -right-4 -bottom-9 group-hover:rotate-[10deg] group-hover:-translate-y-2 group-hover:-translate-x-6", headingClass: "", labelSize: "xs" },
+  { label: "BREWER", name: "Aeropress", image: "/coffee/aeropress.png", colClass: "col-span-2 lg:row-span-2 lg:col-span-2 lg:col-start-10 sm:row-span-1 sm:col-span-1", imgClass: "w-full rotate-[30deg] -right-8 -bottom-6 group-hover:rotate-[15deg] group-hover:translate-y-2", headingClass: "", labelSize: "xs" },
+  { label: "SCALE", name: "Rhino Dosing Scale", image: "/coffee/scale.png", colClass: "col-span-2 lg:row-span-2 lg:col-span-2 lg:col-start-10 sm:row-span-1 sm:col-span-1", imgClass: "w-[120%] -right-12 -bottom-16 scale-x-[-1] group-hover:translate-y-2", headingClass: "", labelSize: "xs" },
+]
+
+const PLACES = [
+  { name: "Giraffe", country: "Rotterdam, NL", image: "/coffee/places/giraffe.jpeg", score: 4.5 },
+  { name: "Qima Café", country: "London, UK", image: "/coffee/places/qima.webp", score: 4.8 },
+  { name: "The Coffee Bár", country: "Budapest, HU", image: "/coffee/places/tcb.webp", score: 4.2 },
+]
+---
+
+<Layout title="Ayoub's Coffee life">
+  <header class="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-24">
+    <h1 class="mb-4 text-4xl font-bold leading-snug md:text-5xl md:leading-snug">
+      My coffee corner
+    </h1>
+    <p class="text-sm md:text-base md:leading-relaxed text-muted-foreground">
+      Welcome to my little coffee space. Here I plan to share several aspects of my
+      coffee discovery journey, from gear and bean reviews to personal thoughts about
+      the dive into this beautiful, tasty and crazy rabbit hole. Enjoy your stay,
+      possibly while sipping a nice warm cup of java.
+    </p>
+  </header>
+
+  <!-- GEAR -->
+  <section class="mb-32">
+    <header class="container max-w-2xl px-6 mx-auto mb-8">
+      <h2 class="mb-4 text-2xl font-bold leading-tight md:text-3xl">
+        My coffee gear
+      </h2>
+      <p class="text-sm md:text-base md:leading-relaxed text-muted-foreground">
+        One incredibly fun (or terrible, depending on the perspective) aspect of getting
+        into home brewing is getting to know all of the various tools that are used in
+        the space to get ever so closer to brewing some incredible coffee drinks. These
+        are the ones I'm currently using in my home barista setup.
+      </p>
+    </header>
+
+    <div class="container grid max-w-5xl grid-cols-6 gap-5 px-6 mx-auto sm:grid-cols-3 lg:gap-8 lg:grid-cols-11 lg:grid-rows-6">
+      {GEAR.map(({ label, name, image, colClass, imgClass, headingClass, labelSize }) => (
+        <div class:list={[
+          "relative p-4 overflow-hidden transition-all duration-100 border hover:border-muted-foreground/40 rounded-2xl border-muted-foreground/20 aspect-square group",
+          colClass,
+        ]}>
+          <div class="transition-all duration-100 group-hover:translate-x-1">
+            <span class:list={[
+              "text-muted-foreground",
+              labelSize === "xs" ? "text-xs" : "text-sm",
+            ]}>{label}</span>
+            <h5 class:list={[
+              "font-bold leading-tight transition-all duration-100 opacity-25 group-hover:opacity-100",
+              headingClass || "text-base md:text-lg",
+            ]}>
+              {name}
+            </h5>
+          </div>
+          <div class:list={["absolute transition-all", imgClass]}>
+            <img alt={name} class="h-full object-contain" src={image} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PLACES -->
+  <section class="overflow-hidden mb-32">
+    <header class="container max-w-2xl px-6 mx-auto mb-8">
+      <h2 class="mb-4 text-2xl font-bold leading-tight md:text-3xl">
+        Cafes and Coffee places
+      </h2>
+      <p class="text-sm md:text-base md:leading-relaxed text-muted-foreground">
+        Home brewing is great and all but nothing can replace the sheer joy of heading
+        over to your favorite third place to enjoy a nice cup of your usual cozy brew
+        or to experiment something entirely new while being served by people with a lot
+        to teach you both thanks to their different backgrounds in life, and to their
+        vast experience preparing cups of java.
+      </p>
+    </header>
+
+    <header class="container max-w-2xl px-6 mx-auto mb-4">
+      <h5 class="text-base font-bold leading-tight md:text-lg">
+        My third places
+      </h5>
+    </header>
+    <div class="flex gap-4 overflow-x-scroll flex-nowrap justify-start md:px-[calc(50vw-21rem+24px)] px-4 pb-8 -mb-8">
+      {PLACES.map(({ name, country, image, score }) => (
+        <div class="flex flex-shrink-0 gap-3 p-1 border rounded-xl border-muted-foreground/20 w-80 md:w-96">
+          <figure class="relative overflow-hidden rounded-lg w-28 h-36 bg-muted">
+            <img alt={name} class="object-cover w-full h-full" src={image} />
+          </figure>
+          <div class="flex flex-col py-3">
+            <span class="mb-1 font-mono text-xs font-bold leading-none uppercase text-muted-foreground">
+              {country}
+            </span>
+            <h5 class="text-base font-bold leading-tight md:text-lg">
+              {name}
+            </h5>
+            <div class="flex gap-2 mt-auto">
+              <span class="text-xs text-muted-foreground md:text-sm">⭐️ {score.toFixed(1)}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Layout>

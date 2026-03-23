@@ -1,0 +1,59 @@
+{
+	"footer": {
+		"copyright": "© 2022",
+		"work": {
+			"title": "Work things"
+		},
+		"fun": {
+			"title": "Fun things"
+		},
+		"changeTheme": "Switch theme",
+		"changeLang": "Switch lang",
+		"personal": {
+			"title": "My corner"
+		}
+	},
+	"meta": {
+		"title": "Ayoub Aabass • dev",
+		"og": {
+			"title": "Ayoub Aabass • Full stack dev and designer",
+			"description": "I'm a full-stack web developer that dabbles in a lot of UI and UX design. I've been honing my skills for the better part of the last 8 years and I'm looking for more opportunities to create great products."
+		}
+	},
+	"changelog": {
+		"pageTitle": "What's new",
+		"lead": "What have I been working on",
+		"title": "Changelog"
+	},
+	"about": "About me",
+	"cases": "Case studies",
+	"curriculum": "Curriculum",
+	"posters": "Posters",
+	"shop": "Shop",
+	"coffee": "Coffee",
+	"gaming": "Gaming",
+	"longboard": "Longboard",
+	"ideas": "Ideas",
+	"pages": {
+		"ABOUT": "About",
+		"BLOG": "Blog",
+		"CASE_STUDIES": "Case Studies",
+		"CHANGELOG": "Changelog",
+		"COFFEE": "Coffee",
+		"HOME": "Home Page",
+		"IDEAS": "Ideas",
+		"LONGBOARD": "Longboard",
+		"MUSIC": "Music",
+		"NOT_FOUND": "404",
+		"POSTERS": "Posters",
+		"SHOP": "Shop",
+		"THREE_PLAYGROUND": "ThreeJS Playground",
+		"TRAVEL": "Travel"
+	},
+	"components": {
+		"PAGE_LAYOUT": "Page Layout"
+	},
+	"fullName": "Ayoub Aabass",
+	"professionalRole": "Senior Full-stack developer and designer",
+	"thoughts": "Thoughts"
+}

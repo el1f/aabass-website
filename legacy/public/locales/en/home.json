@@ -1,0 +1,40 @@
+{
+	"hero": {
+		"title": "Hello, I'm <strong>Ayoub</strong>",
+		"p1": "I've been dabbling in software development and design for the past <strong>{{careerYears}} years</strong>, mostly focusing on <strong>digital product development</strong>. I like to obsess over corner radii and making sure those pixels look exceptionally clean.",
+		"p2": "Currently working on <strong>Grok</strong> and more <strong>@xAI</strong>.<br/>My availability right now is <availability>non-existent</availability>. Still, feel free to reach out for a chat!",
+		"cta1": "Reach out",
+		"about": "About me"
+	},
+	"playbook": {
+		"title": "Playbook",
+		"description": "A little collection of some nice things I'm doing right now that I kinda like. These are updated every now and then so come back later, there could be something new that you didn't see last time.",
+		"posters": {
+			"title": "Posters",
+			"showMore": "See all",
+			"description": "I've been playing around with a lot of new design styles as of lately and I've been enjoying printing them way more than I ever expected. Here's a selection of my latest ones."
+		}
+	},
+	"personal": {
+		"title": "Personal corner",
+		"description": "So, you landed on my website right? <strong>My website</strong>.This is where I take control of the narrative and dump a bunch of completely work-unrelated things that I care way too much about and that I for some reason crave to lay down in a strict code and grid-based layout for the sheer love of it. Enjoy the ride!",
+		"coffee": {
+			"title": "Coffee",
+			"showMore": "Learn more",
+			"description": "Ever since being in Rotterdam I've been obsessed about coffee. Like, really obsessed. At this point I think I went over the whole videography of James Hoffman at least thrice and I've collected enough gear to open my own small cafe. Here you can see what I'm currently playing around and some writing on the latest coffee experiences I had, both at home and in cafes",
+			"beansTitle": "My latest drinks",
+			"placesTitle": "Places I've been to lately"
+		},
+		"thoughts": {
+			"description": "I've been thinking about working on my writing skills for ages, especially when it comes to non-native language related writing. I thought a little corner to express what I'm thinking about from time to time, both work-related and regarding other spheres of my life could be an interesting way to explore this interest of mine and to see whether pratice can actually make me better .",
+			"showMore": "Read more",
+			"title": "Thoughts",
+			"latest": "Latest thoughts"
+		}
+	},
+	"footer": {
+		"title": "Well, that's it",
+		"description": "Congrats on getting all the way down here. <br /> I'm thinking about giving people that reach this point a little reward but it's not ready yet. Come back later to check it out!"
+	},
+	"pageTitle": "Hello, I'm Ayoub"
+}

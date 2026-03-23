@@ -1,0 +1,292 @@
+---
+import Layout from "@/layouts/main.astro";
+import { Portrait } from "@/components/Portrait";
+import { Icon } from "@/components/Icon";
+
+const DEV_SKILLS = [
+    "HTML",
+    "CSS",
+    "Typescript",
+    "React",
+    "Next.JS",
+    "Vue",
+    "Redux",
+    "REST",
+    "GraphQL",
+    "Relay",
+    "Apollo",
+    "Node.JS",
+    "Java",
+    "Android",
+    "MySQL",
+    "MongoDB",
+    "Firebase",
+    "Google GCP",
+    "Amazon AWS",
+    "Git",
+    "GitHub Actions",
+];
+
+const DESIGN_SKILLS = [
+    "Adobe Photoshop",
+    "Adobe Illustrator",
+    "Adobe InDesign",
+    "Affinity Designer",
+    "Affinity Photo",
+    "Affinity Publisher",
+    "Sketch",
+    "Figma",
+    "Framer",
+];
+
+const EXPERIENCE = [
+    {
+        company: "xAI",
+        role: "Member of Technical Staff",
+        period: "2024 - ongoing",
+        location: "London, UK",
+    },
+    {
+        company: "Noxus",
+        role: "Senior Front-end Engineer",
+        period: "2024",
+        location: "London, UK",
+    },
+    {
+        company: "Ntropy",
+        role: "Principal Front-end dev & Product Designer",
+        period: "2015 - 2023",
+        location: "London, UK",
+    },
+    {
+        company: "Eliflem Studio",
+        role: "Freelance Full-stack dev & Product Designer",
+        period: "2015 - 2023",
+        location: "Padua, Italy",
+    },
+    {
+        company: "E-Fashion Software",
+        role: "Senior Full-stack developer & Product Designer",
+        period: "2020 - 2023",
+        location: "Padua, Italy",
+    },
+    {
+        company: "HackPartners",
+        role: "Full-stack Dev & UI/UX Design Consultant",
+        period: "2018 - 2019",
+        location: "Padua, Italy",
+    },
+    {
+        company: "Aterrae",
+        role: "Full-stack Dev, UI/UX Designer & Graphic designer",
+        period: "2016 - 2018",
+        location: "Padua, Italy",
+    },
+    {
+        company: "H-FARM",
+        role: "Full-stack Developer",
+        period: "2015",
+        location: "Treviso, Italy",
+    },
+    {
+        company: "Treviso",
+        role: "Frontend Web Developer",
+        period: "2014",
+        location: "Padua, Italy",
+    },
+];
+
+const CONTACT_LINKS: { href: string; label: string; icon: "globe" | "mail" | "github" | "dribbble" | "instagram" | "linkedin" }[] = [
+  { href: "https://ayoub.aabass.net", label: "ayoub.aabass.net", icon: "globe" },
+  { href: "mailto:ayoub@aabass.net", label: "ayoub@aabass.net", icon: "mail" },
+  { href: "https://github.com/el1f", label: "@el1f", icon: "github" },
+  { href: "https://dribbble.com/el1flem", label: "@el1flem", icon: "dribbble" },
+  { href: "https://www.instagram.com/eliflem_design/", label: "@eliflem_design", icon: "instagram" },
+  { href: "https://www.linkedin.com/in/el1flem", label: "@el1flem", icon: "linkedin" },
+];
+---
+
+<Layout title="About Ayoub">
+    <section class="container max-w-5xl mx-auto print:hidden">
+        <header class="container max-w-2xl px-6 pt-24 pb-8 mx-auto">
+            <span
+                class="text-sm md:text-base md:leading-relaxed text-muted-foreground"
+                >Fancy meeting you!</span
+            >
+            <h1 class="mb-4 text-4xl font-bold leading-tight md:text-5xl">
+                A little about me
+            </h1>
+        </header>
+
+        <div class="flex flex-col items-start gap-12">
+            <Portrait client:load />
+
+            <div
+                class="max-w-2xl px-6 mx-auto leading-loose text-sm md:text-base md:leading-relaxed text-muted-foreground"
+            >
+                <p>
+                    So, as you've probably guessed, my name is <strong
+                        class="text-foreground">Ayoub</strong
+                    >. I was born in <strong class="text-foreground"
+                        >Morocco</strong
+                    > but I've lived most of my life in <strong
+                        class="text-foreground">Italy</strong
+                    > after moving there with my family when I was around 3. Still
+                    can't get over that first snowy december day, it was magical!
+                </p>
+                <p>
+                    I'm now 25 years old and I'm currently living in <strong
+                        class="text-foreground">Padua</strong
+                    >
+                    where I'm working as a <strong class="text-foreground"
+                        >Freelance</strong
+                    > developer and designer. I've mostly worked in startups and small
+                    companies, dabbling with the occasional bigger reality when the
+                    opportunity arose but I definitely think I thrive in smaller environments
+                    where I can be more hands-on with all aspects of the products
+                    I'm working on.
+                </p>
+                <p>
+                    I'm a fairly adventurous person, I love <strong
+                        class="text-foreground">traveling</strong
+                    >,
+                    <strong class="text-foreground">extreme sports</strong> and anything
+                    that allows me to live life to the fullest. I'm also a huge <strong
+                        class="text-foreground">foodie</strong
+                    > and I love trying out new restaurants and cuisines.
+                </p>
+                <p>
+                    I've also been getting deeper and deeper into the weird
+                    Coffee rabbit hole and I've spent the past year honing my
+                    home barista game. I've been dedicating a lot of my free
+                    time to Longboard dancing and freeride ever since the start
+                    of the pandemic and I'm involved with several projects in
+                    that field as well.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv">
+        <header
+            class="container max-w-2xl px-6 pt-24 pb-8 mx-auto print:hidden print:pt-0"
+        >
+            <h1 class="mb-4 text-4xl font-bold leading-snug md:text-5xl">
+                Curriculum Vitae
+            </h1>
+        </header>
+
+        <div
+            class="container grid max-w-5xl grid-cols-1 px-6 py-10 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-8 sm:grid-cols-cv print:grid-cols-cv print:pt-16 bg-muted"
+        >
+            <header
+                class="flex items-start justify-between gap-6 sm:col-span-2"
+            >
+                <img
+                    src="/brand/logo_mark.svg"
+                    alt="Logo"
+                    class="h-20 dark:hidden"
+                />
+                <img
+                    src="/brand/logo_light_mark.svg"
+                    alt="Logo"
+                    class="hidden h-20 dark:block"
+                />
+
+                <div
+                    class="grid sm:grid-flow-col grid-cols-1 sm:grid-cols-2 grid-rows-3 gap-x-6 gap-y-0.5"
+                >
+                    {
+                        CONTACT_LINKS.map(({ href, label, icon }) => (
+                            <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                <Icon name={icon} className="size-3.5 shrink-0" />
+                                {label}
+                            </a>
+                        ))
+                    }
+                </div>
+            </header>
+
+            <div class="flex flex-col gap-2 print:pb-12">
+                <h3 class="text-xl font-bold leading-tight md:text-2xl">
+                    Ayoub Aabass
+                </h3>
+                <span
+                    class="text-sm md:text-base md:leading-relaxed text-muted-foreground"
+                >
+                    Senior Full-stack developer and designer
+                </span>
+            </div>
+            <p
+                class="text-sm md:text-base md:leading-relaxed text-muted-foreground"
+            >
+                Hey there! My name is Ayoub and I am a full-stack software
+                developer and designer. I focus on conceptualizing and creating
+                powerful and intuitive user interfaces to enable organizations
+                and individuals to solve complex problems through digital tools.
+            </p>
+
+            <h5
+                class="mt-0 text-base font-bold leading-tight md:text-lg xs:mt-12"
+            >
+                Current dev knowledge
+            </h5>
+            <div
+                class="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3"
+            >
+                {
+                    DEV_SKILLS.map((skill) => (
+                        <span class="text-sm md:text-base md:leading-relaxed text-muted-foreground">
+                            {skill}
+                        </span>
+                    ))
+                }
+            </div>
+
+            <h5
+                class="mt-0 text-base font-bold leading-tight md:text-lg xs:mt-12"
+            >
+                Current design knowledge
+            </h5>
+            <div
+                class="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3"
+            >
+                {
+                    DESIGN_SKILLS.map((skill) => (
+                        <span class="text-sm md:text-base md:leading-relaxed text-muted-foreground">
+                            {skill}
+                        </span>
+                    ))
+                }
+            </div>
+
+            <h5
+                class="mt-0 text-base font-bold leading-tight md:text-lg xs:mt-12"
+            >
+                Work experience
+            </h5>
+            <div class="flex flex-col gap-4">
+                {
+                    EXPERIENCE.map((job) => (
+                        <div class="flex flex-col gap-1">
+                            <span class="text-xs leading-none md:text-sm text-muted-foreground">
+                                <strong class="text-foreground">
+                                    {job.period} / {job.location}
+                                </strong>
+                            </span>
+                            <span class="text-sm md:text-base md:leading-relaxed text-muted-foreground">
+                                {job.role}
+                                {job.company ? ` @${job.company}` : ""}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</Layout>

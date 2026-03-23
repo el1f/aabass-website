@@ -1,0 +1,43 @@
+---
+const posters = [
+    "poster_thumbnail_1.jpg",
+    "poster_thumbnail_2.jpg",
+    "poster_thumbnail_3.jpg",
+    "poster_thumbnail_4.jpg",
+    "poster_thumbnail_5.jpg",
+    "poster_thumbnail_6.jpg",
+    "poster_thumbnail_7.jpg",
+    "poster_thumbnail_8.jpg",
+    "poster_thumbnail_9.jpg",
+    "poster_thumbnail_10.jpg",
+    "poster_thumbnail_11.jpg",
+    "poster_thumbnail_12.jpg",
+];
+---
+
+<div class="relative w-full h-full overflow-hidden bg-background">
+    <div
+        class="absolute -inset-16 -rotate-12 skew-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+    >
+        <div class="flex gap-1.5">
+            {
+                [0, 1, 2].map((col) => (
+                    <div
+                        class:list={[
+                            "flex flex-col gap-2",
+                            col % 2 === 0 ? "translate-y-4" : "-translate-y-4",
+                        ]}
+                    >
+                        {posters.slice(col * 4, col * 4 + 4).map((src) => (
+                            <img
+                                src={`/posters/${src}`}
+                                alt=""
+                                class="w-56 object-cover"
+                            />
+                        ))}
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>

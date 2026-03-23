@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
+
+@font-face {
+    font-family: "Sofia Pro";
+    src: url("/fonts/sofia_pro/sofia_pro_regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Sofia Pro";
+    src: url("/fonts/sofia_pro/sofia_pro_semibold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Sofia Pro";
+    src: url("/fonts/sofia_pro/sofia_pro_semibold_italic.woff") format("woff");
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Sofia Pro";
+    src: url("/fonts/sofia_pro/sofia_pro_bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Sofia Pro";
+    src: url("/fonts/sofia_pro/sofia_pro_bold_italic.woff") format("woff");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    /* Fonts */
+    --font-sans: "Space Grotesk Variable", sans-serif;
+    --font-heading: "Sofia Pro", sans-serif;
+    --font-mono: "JetBrains Mono Variable", monospace;
+
+    /* Layout */
+    --grid-template-columns-cv: minmax(64px, 192px) 2fr;
+
+    /* Base colors */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    /* Surface colors */
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    /* Interactive colors */
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-destructive: var(--destructive);
+
+    /* Border & focus */
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* Radii */
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    /* Base */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+
+    /* Surfaces */
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+
+    /* Interactive */
+    --primary: oklch(0.8991 0.1773 125.81);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+
+    /* Border & focus */
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+
+    /* Misc */
+    --radius: 0.625rem;
+}
+
+.dark {
+    /* Base */
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+
+    /* Surfaces */
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+
+    /* Interactive */
+    --primary: oklch(0.9382 0.1217 124.32);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+
+    /* Border & focus */
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    html {
+        @apply font-sans;
+    }
+    button {
+        cursor: pointer;
+    }
+}
+
+.logo #firstname,
+.logo #lastname {
+    opacity: 0;
+    translate: -40px 0;
+    transition:
+        opacity 200ms,
+        translate 200ms;
+}
+
+.logo--active #firstname,
+.logo--active #lastname {
+    opacity: 1;
+    translate: 0 0;
+    transition:
+        opacity 300ms,
+        translate 300ms;
+    transition-delay: 100ms;
+}
+
+.logo--active #lastname {
+    transition-delay: 200ms;
+}
+
+@media (max-width: 640px) {
+    .logo #firstname,
+    .logo #lastname {
+        display: none;
+    }
+}
