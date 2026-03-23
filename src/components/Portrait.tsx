@@ -75,7 +75,7 @@ export function Portrait() {
     <figure
       ref={containerRef}
       onMouseMove={onMouseMove}
-      className="relative flex-shrink-0 w-full overflow-hidden bg-muted"
+      className="relative flex-shrink-0 w-full overflow-hidden bg-muted aspect-[5512/2843]"
       style={{ perspective: 1000 }}
     >
       <div
