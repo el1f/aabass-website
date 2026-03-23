@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils"
-import { SpotifyWidget } from "@/components/SpotifyWidget"
+import { cn } from "@/lib/utils";
+import { Logo } from "@/components/Logo";
+import { SpotifyWidget } from "@/components/SpotifyWidget";
 
-const SCROLL_THRESHOLD = 0
+const SCROLL_THRESHOLD = 16 * 4;
 
 const SOCIALS = [
   {
@@ -26,128 +27,110 @@ const SOCIALS = [
     label: "GitHub",
     icon: "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12",
   },
-]
+];
 
 const NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/cases", label: "Work" },
-]
+];
 
 interface NavbarProps {
-  currentPath: string
+  currentPath: string;
 }
 
-const LINKS_DELAY = 250
+const LINKS_DELAY = 250;
 
 export function Navbar({ currentPath }: NavbarProps) {
-  const [scrollY, setScrollY] = useState(0)
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const [direction, setDirection] = useState<"UP" | "DOWN">("DOWN")
-  const [showLinks, setShowLinks] = useState(false)
+  const [scrollY, setScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [direction, setDirection] = useState<"UP" | "DOWN">("DOWN");
+  const [showLinks, setShowLinks] = useState(false);
 
   const onScroll = useCallback(() => {
-    const y = window.scrollY
-    setDirection(y < lastScrollY ? "UP" : "DOWN")
-    setLastScrollY(y)
-    setScrollY(y)
-  }, [lastScrollY])
+    const y = window.scrollY;
+    setDirection(y < lastScrollY ? "UP" : "DOWN");
+    setLastScrollY(y);
+    setScrollY(y);
+  }, [lastScrollY]);
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [onScroll])
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [onScroll]);
 
-  const isStuck = scrollY > SCROLL_THRESHOLD
-  const isLogoActive = isStuck && direction === "DOWN"
+  const isStuck = scrollY > SCROLL_THRESHOLD;
+  const isLogoActive = isStuck && direction === "DOWN";
 
   useEffect(() => {
     if (isStuck) {
-      const timer = setTimeout(() => setShowLinks(true), LINKS_DELAY)
-      return () => clearTimeout(timer)
+      const timer = setTimeout(() => setShowLinks(true), LINKS_DELAY);
+      return () => clearTimeout(timer);
     }
-    setShowLinks(false)
-  }, [isStuck])
+    setShowLinks(false);
+  }, [isStuck]);
 
   return (
-    <header className="sticky top-0 z-50 w-full mt-16 print:hidden">
-      <div className={cn(
-        "w-full transition-all duration-300 ease-out",
-        isStuck ? "py-3 px-4" : "",
-      )}>
-        <nav className={cn(
-          "flex items-center justify-between h-20 w-full max-w-2xl pl-[1.125rem] pr-4 mx-auto transition-all duration-300 ease-out rounded-3xl",
+    <header className="sticky top-0 z-50 w-full mt-16 py-4 print:hidden">
+      <nav
+        className={cn(
+          "flex items-center justify-between h-20 w-full max-w-2xl pl-[1.125rem] pr-4 mx-auto transition-all duration-300 ease-out rounded-3xl border border-transparent",
           isStuck
-            ? "backdrop-blur-xl bg-background/60 border border-border shadow-lg"
+            ? "backdrop-blur-xl bg-background/60 border-border shadow-lg"
             : "",
-        )}>
-          <a className="block h-12 overflow-hidden text-foreground aspect-square sm:aspect-auto" href="/">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlSpace="preserve"
-              style={{ fillRule: "evenodd", clipRule: "evenodd", strokeLinejoin: "round", strokeMiterlimit: 2 }}
-              viewBox="0 0 4608 1024"
-              className={cn("block h-12 text-foreground logo", {
-                "logo--active": isLogoActive,
-              })}
-              dangerouslySetInnerHTML={{ __html: `
-                <path d="M1074 0h1024v1024H1074z" style="fill:none" transform="matrix(4.5 0 0 1 -4833 0)" />
-                <circle cx="1852.19" cy="762.881" r="4.221" style="fill:currentColor" transform="matrix(-13.42893 0 0 13.42896 25412.556 -9597.393)" />
-                <path d="M1157.62 991.81h27.334v108.379h-27.334z" style="fill:currentColor" transform="matrix(-7.08622 0 0 7.08624 9099.137 -6900.213)" />
-                <path d="M197.614 1072.2c-20.257 0-28.986-10.81-39.114-28.35-15.27-26.45-35.711-61.85-35.711-61.85h29.783a23.999 23.999 0 0 1 20.785 12l42.292 73.25a21.354 21.354 0 0 1 2.858 10.67v7.01a25.07 25.07 0 0 1-7.343 17.73 25.072 25.072 0 0 1-17.726 7.34h-40.376l-.004.01-.013-.01h.017a21.038 21.038 0 0 1 14.768-10.22 56.706 56.706 0 0 0 39.773-27.58h-9.989Z" style="fill:currentColor" transform="matrix(-5.99998 0 0 6 1439.04 -5763.993)" />
-                <g id="firstname">
-                  <path d="M3832.81 703.999 3810.29 768h-76.82l147.79-393.137.33.031 7.8-20.722h77.89l39.29 103.656h-.64l116.73 310.544h-76.81l-37.51-106.907c-24.12 27.543-60.65 42.533-97.61 42.533l-77.92.001Zm85.94-246.171L3855.15 640h55.58c23.34 0 41.86-10.83 53.16-26.747 10.92-15.399 14.29-36.298 7.52-57.584l-34.16-97.841h-.53l-8.72-24.685-8.68 24.685h-.57Z" style="fill:currentColor" transform="translate(-2709.454 .004)" />
-                  <path d="m367.758 89.646-1.483-3.628h-1.556l2.279 5.319-1.286 3.199h1.495l3.554-8.518h-1.532l-1.471 3.628ZM373.604 91.889c1.63 0 3.052-1.201 3.052-3.015s-1.422-3.003-3.052-3.003c-1.63 0-3.039 1.189-3.039 3.003s1.409 3.015 3.039 3.015Zm0-1.324c-.882 0-1.605-.686-1.605-1.691 0-.981.723-1.679 1.605-1.679s1.618.698 1.618 1.679c0 1.005-.736 1.691-1.618 1.691ZM381.374 89.082c0 1.115-.809 1.483-1.458 1.483-.638 0-1.189-.478-1.189-1.397v-3.15h-1.422v3.211c0 1.667.821 2.66 2.292 2.66.576 0 1.483-.319 1.777-1.042v.895h1.422v-5.724h-1.422v3.064ZM387.208 85.871c-.723 0-1.52.294-1.912.907v-3.48h-1.422v8.444h1.422v-.773c.392.613 1.213.92 1.899.92 1.508 0 2.819-1.189 2.819-3.015 0-1.839-1.299-3.003-2.806-3.003Zm-.233 4.694c-.87 0-1.655-.699-1.655-1.703 0-1.005.834-1.667 1.655-1.667.882 0 1.617.711 1.617 1.667 0 .955-.735 1.703-1.617 1.703Z" style="fill:currentColor;fill-rule:nonzero" transform="translate(-16234.02 -3661.85) scale(48.213)" />
-                </g>
-                <g id="lastname">
-                  <path d="M3832.81 703.999 3810.29 768h-76.82l147.79-393.137.33.031 7.8-20.722h77.89l39.29 103.656h-.64l116.73 310.544h-76.81l-37.51-106.907c-24.12 27.543-60.65 42.533-97.61 42.533l-77.92.001Zm85.94-246.171L3855.15 640h55.58c23.34 0 41.86-10.83 53.16-26.747 10.92-15.399 14.29-36.298 7.52-57.584l-34.16-97.841h-.53l-8.72-24.685-8.68 24.685h-.57Z" style="fill:currentColor" transform="translate(-1073.972 .004)" />
-                  <path d="M404.439 86.815c-.38-.601-1.14-.944-1.924-.944-1.618 0-2.795 1.275-2.795 3.003 0 1.777 1.226 3.015 2.758 3.015.821 0 1.581-.417 1.961-1.042v.895h1.421v-5.724h-1.421v.797Zm-1.667 3.75c-.931 0-1.63-.772-1.63-1.691s.699-1.679 1.618-1.679c.845 0 1.654.698 1.654 1.679 0 .956-.76 1.691-1.642 1.691ZM410.027 85.871c-.723 0-1.519.294-1.912.907v-3.48h-1.421v8.444h1.421v-.773c.393.613 1.214.92 1.9.92 1.507 0 2.819-1.189 2.819-3.015 0-1.839-1.299-3.003-2.807-3.003Zm-.233 4.694c-.87 0-1.654-.699-1.654-1.703 0-1.005.833-1.667 1.654-1.667.883 0 1.618.711 1.618 1.667 0 .955-.735 1.703-1.618 1.703ZM417.944 86.815c-.38-.601-1.14-.944-1.924-.944-1.618 0-2.794 1.275-2.794 3.003 0 1.777 1.225 3.015 2.757 3.015.821 0 1.581-.417 1.961-1.042v.895h1.422v-5.724h-1.422v.797Zm-1.667 3.75c-.931 0-1.63-.772-1.63-1.691s.699-1.679 1.618-1.679c.846 0 1.655.698 1.655 1.679 0 .956-.76 1.691-1.643 1.691ZM422.356 91.889c1.164 0 2.329-.638 2.329-1.802 0-.527-.233-1.336-1.52-1.667l-.919-.245c-.331-.073-.613-.245-.613-.539 0-.355.306-.613.748-.613.404 0 .759.245.759.637h1.361c.012-1.274-1.14-1.789-2.157-1.789-1.25 0-2.133.809-2.133 1.704 0 .723.331 1.409 1.618 1.752l.76.196c.429.098.674.245.674.564 0 .368-.368.65-.931.65-.601 0-.944-.368-.944-.76h-1.336c.025 1.225 1.164 1.912 2.304 1.912ZM427.307 91.889c1.165 0 2.329-.638 2.329-1.802 0-.527-.233-1.336-1.52-1.667l-.919-.245c-.331-.073-.613-.245-.613-.539 0-.355.307-.613.748-.613.404 0 .76.245.76.637h1.36c.012-1.274-1.14-1.789-2.157-1.789-1.25 0-2.132.809-2.132 1.704 0 .723.331 1.409 1.617 1.752l.76.196c.429.098.674.245.674.564 0 .368-.367.65-.931.65-.601 0-.944-.368-.944-.76h-1.336c.025 1.225 1.165 1.912 2.304 1.912Z" style="fill:currentColor;fill-rule:nonzero" transform="translate(-16234.02 -3661.85) scale(48.213)" />
-                </g>
-              ` }}
-            />
-          </a>
+        )}
+      >
+        <a className="block h-12" href="/">
+          <Logo isActive={isLogoActive} />
+        </a>
 
-          <div className="flex items-center gap-2">
-            {showLinks && (
-              <div className="hidden md:flex items-center gap-0.5 animate-in fade-in duration-200">
-                {NAV_LINKS.map(({ href, label }) => (
-                  <a
-                    key={href}
-                    href={href}
-                    className={cn(
-                      "px-3 py-1.5 text-sm rounded-lg transition-colors whitespace-nowrap",
-                      currentPath === href
-                        ? "bg-muted text-foreground font-medium"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    )}
-                  >
-                    {label}
-                  </a>
-                ))}
-              </div>
-            )}
-
-            {showLinks && <span className="hidden text-muted-foreground md:block">•</span>}
-
-            <div className="flex items-center">
-              <SpotifyWidget />
-              {SOCIALS.map(({ href, label, icon }) => (
+        <div className="flex items-center gap-2">
+          {showLinks && (
+            <div className="hidden md:flex items-center gap-0.5 animate-in fade-in duration-200">
+              {NAV_LINKS.map(({ href, label }) => (
                 <a
-                  key={label}
+                  key={href}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block p-2 transition-colors rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground"
-                  aria-label={label}
+                  className={cn(
+                    "px-3 py-1.5 text-sm rounded-lg transition-colors whitespace-nowrap",
+                    currentPath === href
+                      ? "bg-muted text-foreground font-medium"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                  )}
                 >
-                  <svg className="size-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d={icon} />
-                  </svg>
+                  {label}
                 </a>
               ))}
             </div>
+          )}
+
+          {showLinks && (
+            <span className="hidden text-muted-foreground md:block">•</span>
+          )}
+
+          <div className="flex items-center">
+            <SpotifyWidget />
+            {SOCIALS.map(({ href, label, icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-2 transition-colors rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground"
+                aria-label={label}
+              >
+                <svg
+                  className="size-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d={icon} />
+                </svg>
+              </a>
+            ))}
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
-  )
+  );
 }
