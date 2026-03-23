@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import { SpotifyWidget } from "@/components/SpotifyWidget"
 
-const SCROLL_THRESHOLD = 256
+const SCROLL_THRESHOLD = 0
 
 const SOCIALS = [
   {
@@ -56,7 +56,7 @@ export function Navbar({ currentPath }: NavbarProps) {
   }, [onScroll])
 
   const isStuck = scrollY > SCROLL_THRESHOLD
-  const isLogoActive = isStuck && direction === "UP"
+  const isLogoActive = isStuck && direction === "DOWN"
 
   const toggleTheme = useCallback(() => {
     const isDark = document.documentElement.classList.toggle("dark")
