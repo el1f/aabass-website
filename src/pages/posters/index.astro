@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/main.astro"
+import { PosterGrid } from "@/components/PosterGrid"
 
 const STANDARD_POSTERS = [
   { title: "Dafne", thumbnail: "poster_thumbnail_1.jpg", src: "poster_1.jpg" },
@@ -45,33 +46,11 @@ const VINYL_COVERS = [
     <h2 class="text-2xl font-bold leading-tight md:text-3xl">Standard Print</h2>
   </div>
 
-  <section class="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
-    {STANDARD_POSTERS.map(({ title, thumbnail }) => (
-      <div class="relative cursor-pointer aspect-[297/420] bg-muted">
-        <img
-          alt={title}
-          class="block w-full h-full object-cover"
-          src={`/posters/${thumbnail}`}
-          loading="lazy"
-        />
-      </div>
-    ))}
-  </section>
+  <PosterGrid client:load posters={STANDARD_POSTERS} format="poster" />
 
   <div class="container max-w-2xl px-6 mx-auto my-6">
     <h2 class="text-2xl font-bold leading-tight md:text-3xl">Vinyl covers</h2>
   </div>
 
-  <section class="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
-    {VINYL_COVERS.map(({ title, thumbnail }) => (
-      <div class="relative cursor-pointer aspect-square bg-muted">
-        <img
-          alt={title}
-          class="block w-full h-full object-cover"
-          src={`/posters/${thumbnail}`}
-          loading="lazy"
-        />
-      </div>
-    ))}
-  </section>
+  <PosterGrid client:load posters={VINYL_COVERS} format="disc" />
 </Layout>
