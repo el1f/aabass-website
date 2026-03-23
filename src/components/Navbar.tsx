@@ -29,9 +29,8 @@ const SOCIALS = [
 ]
 
 const NAV_LINKS = [
-  { href: "/about", label: "About me" },
-  { href: "/cases", label: "Case Studies" },
-  { href: "/personal", label: "Personal" },
+  { href: "/about", label: "About" },
+  { href: "/cases", label: "Work" },
 ]
 
 interface NavbarProps {
@@ -107,9 +106,9 @@ export function Navbar({ currentPath }: NavbarProps) {
             />
           </a>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             {showLinks && (
-              <div className="hidden md:flex gap-0.5 animate-in fade-in duration-200">
+              <div className="hidden md:flex items-center gap-0.5 animate-in fade-in duration-200">
                 {NAV_LINKS.map(({ href, label }) => (
                   <a
                     key={href}
@@ -124,9 +123,10 @@ export function Navbar({ currentPath }: NavbarProps) {
                     {label}
                   </a>
                 ))}
-                <span className="text-muted-foreground">•</span>
               </div>
             )}
+
+            {showLinks && <span className="hidden text-muted-foreground md:block">•</span>}
 
             <div className="flex items-center">
               <SpotifyWidget />
