@@ -21,11 +21,7 @@ function formatHour(hour: number): string {
 }
 
 function formatMinutes(minutes: number): string {
-  if (minutes >= 60) {
-    const hours = Math.floor(minutes / 60)
-    return `${hours.toLocaleString()}h ${minutes % 60}m`
-  }
-  return `${minutes}m`
+  return `${minutes.toLocaleString()} min`
 }
 ---
 
@@ -51,20 +47,20 @@ function formatMinutes(minutes: number): string {
           </h2>
         </header>
 
-        <div class="container grid max-w-2xl grid-cols-2 gap-4 px-6 mx-auto md:grid-cols-4">
-          <div class="p-4 border rounded-xl border-muted-foreground/20">
+        <div class="container grid max-w-2xl grid-cols-2 gap-4 px-6 mx-auto">
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
             <span class="text-3xl font-bold">{data.stats.totalScrobbles.toLocaleString()}</span>
             <p class="text-xs text-muted-foreground mt-1">scrobbles</p>
           </div>
-          <div class="p-4 border rounded-xl border-muted-foreground/20">
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
             <span class="text-3xl font-bold">{formatMinutes(data.stats.estimatedMinutes)}</span>
             <p class="text-xs text-muted-foreground mt-1">estimated listening</p>
           </div>
-          <div class="p-4 border rounded-xl border-muted-foreground/20">
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
             <span class="text-3xl font-bold">{data.stats.topDayOfWeek}</span>
             <p class="text-xs text-muted-foreground mt-1">top listening day</p>
           </div>
-          <div class="p-4 border rounded-xl border-muted-foreground/20">
+          <div class="px-5 py-4 border rounded-xl border-muted-foreground/20">
             <span class="text-3xl font-bold">{formatHour(data.stats.topHourOfDay)}</span>
             <p class="text-xs text-muted-foreground mt-1">peak hour</p>
           </div>
