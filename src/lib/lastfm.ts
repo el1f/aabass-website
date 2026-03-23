@@ -1,5 +1,4 @@
 const BASE_URL = "https://ws.audioscrobbler.com/2.0/"
-const USERNAME = "yami4529"
 
 interface LastFmImage {
   "#text": string
@@ -38,7 +37,7 @@ export interface MonthlyBestResponse {
 }
 
 function getApiKey(): string {
-  return import.meta.env.LASTFM_API_KEY ?? ""
+  return import.meta.env.LAST_FM_API_KEY ?? ""
 }
 
 function getLargestImage(images: LastFmImage[]): string {
@@ -53,7 +52,7 @@ function getLargestImage(images: LastFmImage[]): string {
 async function fetchLastFm(method: string, params: Record<string, string> = {}) {
   const url = new URL(BASE_URL)
   url.searchParams.set("method", method)
-  url.searchParams.set("user", USERNAME)
+  url.searchParams.set("user", import.meta.env.LAST_FM_USERNAME ?? "yami4529")
   url.searchParams.set("api_key", getApiKey())
   url.searchParams.set("format", "json")
   for (const [key, value] of Object.entries(params)) {
