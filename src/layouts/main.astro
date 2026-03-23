@@ -16,6 +16,14 @@ const { title = "Aabass Ayoub" } = Astro.props
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme")
+        const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+        const theme = stored || preferred
+        document.documentElement.classList.toggle("dark", theme === "dark")
+      })()
+    </script>
   </head>
   <body class="flex min-h-svh flex-col">
     <Navbar />

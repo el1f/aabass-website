@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from "@/components/ThemeToggle.astro"
+
 const SOCIALS = [
   { href: "https://www.instagram.com/eliflem_design/", label: "Instagram" },
   { href: "https://www.linkedin.com/in/el1flem/", label: "LinkedIn" },
@@ -50,6 +52,7 @@ const currentPath = Astro.url.pathname
       <span class="hidden text-muted-foreground md:block">•</span>
 
       <div class="flex items-center">
+        <ThemeToggle />
         {SOCIALS.map(({ href, label }) => (
           <a
             href={href}
