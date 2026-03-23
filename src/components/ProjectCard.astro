@@ -1,36 +1,44 @@
 ---
 interface Props {
-  title: string
-  subtitle: string
-  href: string
-  image?: string
+    title: string;
+    subtitle: string;
+    href: string;
+    image?: string;
 }
 
-const { title, subtitle, href, image } = Astro.props
-const hasCustomCover = Astro.slots.has("cover")
+const { title, subtitle, href, image } = Astro.props;
+const hasCustomCover = Astro.slots.has("cover");
 ---
 
 <a
-  href={href}
-  class="group block overflow-hidden border rounded-2xl border-muted-foreground/20 transition-all hover:border-muted-foreground/40 hover:shadow-lg"
+    href={href}
+    class="group flex flex-col overflow-hidden border rounded-2xl border-muted-foreground/20 transition-all hover:border-muted-foreground/40 hover:shadow-lg"
 >
-  <div class="relative aspect-[4/3] bg-muted overflow-hidden">
-    {hasCustomCover ? (
-      <slot name="cover" />
-    ) : image ? (
-      <img
-        alt={title}
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        src={image}
-      />
-    ) : (
-      <div class="flex items-center justify-center w-full h-full">
-        <span class="text-4xl font-bold text-muted-foreground/25">{title}</span>
-      </div>
-    )}
-  </div>
-  <div class="px-5 py-4">
-    <h3 class="text-base font-bold leading-tight group-hover:underline underline-offset-2">{title}</h3>
-    <span class="text-xs text-muted-foreground">{subtitle}</span>
-  </div>
+    <div class="relative aspect-4/3 w-full shrink-0 bg-muted overflow-hidden">
+        {
+            hasCustomCover ? (
+                <slot name="cover" />
+            ) : image ? (
+                <img
+                    alt={title}
+                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    src={image}
+                />
+            ) : (
+                <div class="flex items-center justify-center w-full h-full">
+                    <span class="text-4xl font-bold text-muted-foreground/25">
+                        {title}
+                    </span>
+                </div>
+            )
+        }
+    </div>
+    <div class="px-5 py-4">
+        <h3
+            class="text-base font-bold leading-tight group-hover:underline underline-offset-2"
+        >
+            {title}
+        </h3>
+        <span class="text-xs text-muted-foreground">{subtitle}</span>
+    </div>
 </a>
