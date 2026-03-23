@@ -75,10 +75,10 @@ export function Navbar({ currentPath }: NavbarProps) {
         isStuck ? "py-3 px-4" : "",
       )}>
         <nav className={cn(
-          "flex items-center justify-between h-20 w-full pl-[1.125rem] pr-4 mx-auto transition-all duration-300 ease-out rounded-3xl",
+          "flex items-center justify-between h-20 w-full max-w-2xl pl-[1.125rem] pr-4 mx-auto transition-all duration-300 ease-out rounded-3xl",
           isStuck
-            ? "max-w-5xl backdrop-blur-xl bg-background/60 border border-border shadow-lg"
-            : "max-w-2xl",
+            ? "backdrop-blur-xl bg-background/60 border border-border shadow-lg"
+            : "",
         )}>
           <a className="block h-12 overflow-hidden text-foreground aspect-square sm:aspect-auto" href="/">
             <svg
