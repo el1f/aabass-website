@@ -22,52 +22,50 @@ import PostersCover from "@/components/covers/PostersCover.astro";
     </header>
 
     <section
-        class="container grid max-w-5xl grid-cols-1 gap-6 px-6 mx-auto mb-48 md:grid-cols-2"
+        class="container max-w-5xl gap-6 px-6 mx-auto mb-24 md:grid-cols-2"
     >
-        <ProjectCard
-            title="Grok"
-            subtitle="xAI · 2024 – present"
-            href="/work/xai"
-        >
-            <XaiCover slot="cover" />
-        </ProjectCard>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <ProjectCard
+                title="Grok"
+                subtitle="xAI · 2024 – present"
+                href="/work/xai"
+            >
+                <XaiCover slot="cover" />
+            </ProjectCard>
 
-        <!-- <ProjectCard
-      title="Ntropy"
-      subtitle="Principal Front-end & Product Designer · 2015 – 2023"
-      href="/work/ntropy"
+            <ProjectCard title="OEM" subtitle="So · 2021" href="/work/oem" />
+        </div>
+    </section>
+
+    <section
+        class="container max-w-5xl gap-6 px-6 mx-auto mb-24 md:grid-cols-2"
     >
-      <NtropyCover slot="cover" />
-    </ProjectCard> -->
+        <header class="max-w-2xl px-6 mx-auto">
+            <h2 class="text-xl mb-6">Personal projects</h2>
+        </header>
 
-        <ProjectCard
-            title="Patron"
-            subtitle="Personal Project · 2015 – present"
-            href="/work/ntropy"
-        />
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <ProjectCard
+                title="AMP Skate"
+                subtitle="Co-founder · 2021"
+                href="/work/amp"
+            />
 
-        <ProjectCard title="OEM" subtitle="So · 2021" href="/work/oem" />
+            <ProjectCard
+                title="Poster Design"
+                subtitle="Personal Project · Ongoing"
+                href="/posters"
+            >
+                <PostersCover slot="cover" />
+            </ProjectCard>
 
-        <ProjectCard
-            title="AMP Skate"
-            subtitle="Co-founder · 2021"
-            href="/work/amp"
-        />
-
-        <ProjectCard
-            title="Poster Design"
-            subtitle="Personal Project · Ongoing"
-            href="/posters"
-        >
-            <PostersCover slot="cover" />
-        </ProjectCard>
-
-        <ProjectCard
-            title="Photography"
-            subtitle="Personal Project · Ongoing"
-            href="/photography"
-        >
-            <PostersCover slot="cover" />
-        </ProjectCard>
+            <ProjectCard
+                title="Photography"
+                subtitle="Personal Project · Ongoing"
+                href="/photography"
+            >
+                <PostersCover slot="cover" />
+            </ProjectCard>
+        </div>
     </section>
 </Layout>
