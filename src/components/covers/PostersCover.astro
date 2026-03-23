@@ -16,14 +16,14 @@ const posters = [
 ---
 
 <div class="relative w-full h-full overflow-hidden bg-muted">
-  <div class="absolute -inset-4 grid grid-cols-6 gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+  <div class="absolute -inset-3 flex gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
     {posters.map((src, i) => (
       <img
         src={`/posters/${src}`}
         alt=""
         class:list={[
-          "w-full rounded object-cover aspect-[297/420]",
-          i % 2 === 0 ? "mt-6" : "-mt-2",
+          "h-[130%] w-auto rounded object-cover shrink-0",
+          i % 2 === 0 ? "self-start" : "self-end",
         ]}
       />
     ))}
