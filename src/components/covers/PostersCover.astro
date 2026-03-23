@@ -1,10 +1,31 @@
 ---
+const posters = [
+  "poster_thumbnail_1.jpg",
+  "poster_thumbnail_2.jpg",
+  "poster_thumbnail_3.jpg",
+  "poster_thumbnail_4.jpg",
+  "poster_thumbnail_5.jpg",
+  "poster_thumbnail_6.jpg",
+  "poster_thumbnail_7.jpg",
+  "poster_thumbnail_8.jpg",
+  "poster_thumbnail_9.jpg",
+  "poster_thumbnail_10.jpg",
+  "poster_thumbnail_11.jpg",
+  "poster_thumbnail_12.jpg",
+]
 ---
 
-<div class="relative flex items-end w-full h-full overflow-hidden bg-muted">
-  <div class="absolute inset-0 flex gap-2 p-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-    <img src="/posters/poster_thumbnail_1.jpg" alt="" class="h-full object-cover rounded-lg flex-1" />
-    <img src="/posters/poster_thumbnail_3.jpg" alt="" class="h-full object-cover rounded-lg flex-1 hidden sm:block" />
-    <img src="/posters/poster_thumbnail_5.jpg" alt="" class="h-full object-cover rounded-lg flex-1 hidden md:block" />
+<div class="relative w-full h-full overflow-hidden bg-muted">
+  <div class="absolute -inset-4 grid grid-cols-6 gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+    {posters.map((src, i) => (
+      <img
+        src={`/posters/${src}`}
+        alt=""
+        class:list={[
+          "w-full rounded object-cover aspect-[297/420]",
+          i % 2 === 0 ? "mt-6" : "-mt-2",
+        ]}
+      />
+    ))}
   </div>
 </div>
