@@ -1,11 +1,41 @@
 ---
 import Layout from "@/layouts/main.astro"
+import { Button } from "@/components/ui/button"
+
+const WORK_START = new Date("2014-05-12T12:00:00.007Z")
+const careerYears = Math.floor(
+  (Date.now() - WORK_START.getTime()) / (365.25 * 24 * 60 * 60 * 1000)
+)
 ---
 
-<Layout title="Aabass Ayoub">
-  <section class="container max-w-2xl px-6 py-32 mx-auto">
-    <h1 class="text-4xl font-semibold mb-6 text-muted-foreground leading-tight">
-      Home — WIP
-    </h1>
+<Layout title="Hello, I'm Ayoub">
+  <section class="container max-w-2xl px-6 py-32 mx-auto md:mb-32">
+    <hgroup class="max-w-xl mb-6">
+      <h1 class="mb-6 text-4xl font-bold leading-none md:text-5xl text-muted-foreground">
+        Hello, I'm <strong class="text-foreground">Ayoub</strong>
+      </h1>
+      <p class="mb-4 text-sm leading-relaxed md:text-base md:leading-relaxed text-muted-foreground">
+        I've been dabbling in software development and design for the past
+        <strong class="text-foreground">{careerYears} years</strong>, mostly
+        focusing on <strong class="text-foreground">digital product development</strong>.
+        I like to obsess over corner radii and making sure those pixels look
+        exceptionally clean.
+      </p>
+      <p class="mb-4 text-sm leading-relaxed md:text-base md:leading-relaxed text-muted-foreground">
+        Currently working on <strong class="text-foreground">Grok</strong> and
+        more <strong class="text-foreground">@xAI</strong>.
+        <br />
+        My availability right now is <span class="text-destructive font-medium">non-existent</span>.
+        Still, feel free to reach out for a chat!
+      </p>
+    </hgroup>
+    <div class="flex gap-4">
+      <a href="mailto:ayoub@aabass.net">
+        <Button client:load size="lg">Reach out</Button>
+      </a>
+      <a href="/about">
+        <Button client:load variant="outline" size="lg">About me</Button>
+      </a>
+    </div>
   </section>
 </Layout>
