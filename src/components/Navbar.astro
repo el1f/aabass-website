@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "@/components/ThemeToggle.astro"
+import { SpotifyWidget } from "@/components/SpotifyWidget"
 
 const SOCIALS = [
   {
@@ -68,6 +69,7 @@ const currentPath = Astro.url.pathname
       <span class="hidden text-muted-foreground md:block">•</span>
 
       <div class="flex items-center">
+        <SpotifyWidget client:load />
         <ThemeToggle />
         {SOCIALS.map(({ href, label, icon }) => (
           <a
