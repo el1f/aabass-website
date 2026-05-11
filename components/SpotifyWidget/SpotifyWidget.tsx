@@ -286,7 +286,7 @@ export const SpotifyWidget: React.FC = () => {
 							className="flex items-center gap-2 max-w-[20rem]"
 							key={artist.id}
 						>
-							<figure className="flex-shrink-0 h-12 overflow-hidden rounded-full bg-textDimmed aspect-square">
+							<figure className="shrink-0 h-12 overflow-hidden rounded-full bg-textDimmed aspect-square">
 								<Image
 									alt=""
 									height={128}

@@ -29,7 +29,7 @@ export const PosterLightbox: React.FC<{
 
 	return (
 		<Dialog as="div" className="relative z-50" onClose={onClose} open={open}>
-			<div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm" />
+			<div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
 
 			<div className="fixed inset-0">
 				<Dialog.Panel className="grid w-full h-full grid-cols-1 grid-rows-3 md:h-full md:grid-rows-1 md:grid-cols-5 lg:grid-cols-7">

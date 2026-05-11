@@ -92,7 +92,7 @@ const Portrait = () => {
 
 	return (
 		<figure
-			className="relative flex-shrink-0 w-full overflow-hidden bg-textDimmed"
+			className="relative shrink-0 w-full overflow-hidden bg-textDimmed"
 			ref={ref}
 			style={{
 				perspective: 1000,
@@ -171,7 +171,7 @@ const About: NextPage = () => {
 
 				<div className="flex flex-col items-start gap-12">
 					<Portrait />
-					{/* <figure className="relative flex-shrink-0 w-full">
+					{/* <figure className="relative shrink-0 w-full">
 						<Image
 							alt="A picture of myself"
 							className="w-full"
