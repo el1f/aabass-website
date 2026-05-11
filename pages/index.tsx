@@ -96,7 +96,7 @@ const Home: NextPage = () => {
 							// 	key={poster.slug}
 							// >
 							<PosterThumbnail
-								className="flex-shrink-0 w-64"
+								className="shrink-0 w-64"
 								key={poster.slug}
 								// onClick={() => {
 								// 	ga.posterPress(poster.slug);

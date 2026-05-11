@@ -24,7 +24,7 @@ const IdeasBoardColumn: React.FC<{
 	const { t } = useTranslation(["common", "ideas"]);
 
 	return (
-		<section className="flex-shrink-0 w-full max-w-xs">
+		<section className="shrink-0 w-full max-w-xs">
 			<div className="p-2 mb-4">
 				<Heading level={3}>{title}</Heading>
 			</div>

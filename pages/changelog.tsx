@@ -83,7 +83,7 @@ const Changelog = () => {
 											key={featureIndex}
 											onClick={() => setActiveEasterEgg(featureIndex)}
 										>
-											<CodeChip className="flex-shrink-0 w-16 text-sm tracking-wide text-center">
+											<CodeChip className="shrink-0 w-16 text-sm tracking-wide text-center">
 												{feature.type.toUpperCase()}
 											</CodeChip>
 											<div className="flex flex-col">
@@ -105,7 +105,7 @@ const Changelog = () => {
 														{date || feature.date
 															? new Date(
 																	date || feature.date || "",
-															  ).toLocaleDateString("en-GB")
+																).toLocaleDateString("en-GB")
 															: "INDEV"}
 													</Text>
 												</div>

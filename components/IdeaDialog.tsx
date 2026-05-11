@@ -29,7 +29,7 @@ export const IdeaDialog: React.FC<{
 					leaveFrom="opacity-100"
 					leaveTo="opacity-0"
 				>
-					<div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm" />
+					<div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
 				</Transition.Child>
 
 				<div className="fixed inset-0 overflow-y-auto">

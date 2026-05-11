@@ -11,6 +11,7 @@ import { appWithTranslation } from "next-i18next";
 import { ThemeProvider } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 
+import { cn } from "../lib/cn";
 import "../styles/globals.css";
 
 import { Button, Heading, Strong, Text } from "../components";
@@ -53,7 +54,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 const jbMono = JetBrains_Mono({
 	subsets: ["latin"],
-	variable: "--font-jb-mobo",
+	variable: "--font-jb-mono",
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -74,6 +75,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 	// Devtool state
 	const [showGrid, setShowGrid] = useState(false);
 
+	const toggleGrid = useCallback(() => {
+		setShowGrid((prev) => !prev);
+	}, []);
+
 	const setHoverGradients = useCallback(() => {
 		for (const card of document.getElementsByClassName("hover-gradient")) {
 			const safeCard = card as HTMLElement;
@@ -90,7 +95,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		setHoverGradients();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
@@ -108,7 +112,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return () => {
 			router.events.off("routeChangeComplete", handleRouteChange);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.events]);
 
 	return (
@@ -128,7 +131,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 			<ThemeProvider attribute="class">
 				<div
-					className={`${sofiaPro.variable} ${spaceGrotesk.variable} ${jbMono.variable}font-sans`}
+					className={cn({
+						[sofiaPro.variable]: true,
+						[spaceGrotesk.variable]: true,
+						[jbMono.variable]: true,
+						"font-sans": true,
+					})}
 				>
 					<Component {...pageProps} />
 				</div>
@@ -141,11 +149,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			{/* Custom Devtools */}
 			{shouldInjectToolbar && (
 				<div className="fixed flex p-1 -translate-x-1/2 rounded-lg bottom-20 left-1/2 bg-bgRaised">
-					<Button
-						onClick={() => setShowGrid(!showGrid)}
-						size="sm"
-						variant="ghost"
-					>
+					<Button onClick={toggleGrid} size="sm" variant="ghost">
 						{showGrid ? "Disable" : "Enable"} grid
 					</Button>
 				</div>

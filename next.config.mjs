@@ -7,7 +7,16 @@ const nextConfig = {
 		locales: ["en", "it"],
 	},
 	images: {
-		domains: ["media.graphassets.com", "i.scdn.co"],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "media.graphassets.com",
+			},
+			{
+				protocol: "https",
+				hostname: "i.scdn.co",
+			},
+		],
 	},
 	pageExtensions: ["ts", "tsx", "js", "jsx"],
 	reactStrictMode: true,
