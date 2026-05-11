@@ -201,61 +201,61 @@ const About: NextPage = () => {
 
 						<div className="grid sm:grid-flow-col grid-cols-1 sm:grid-cols-2 grid-rows-3 gap-x-6 gap-y-0.5">
 							<Button
-								asChild
+								render={
+									<Link href="https://ayoub.aabass.net">ayoub.aabass.net</Link>
+								}
 								className="justify-start w-full h-6 text-left"
 								size="sm"
 								startIcon="globe"
 								variant="ghost"
-							>
-								<Link href="https://ayoub.aabass.net">ayoub.aabass.net</Link>
-							</Button>
+							/>
 							<Button
-								asChild
+								render={
+									<Link href="mailto:ayoub@aabass.net">ayoub@aabass.net</Link>
+								}
 								className="justify-start w-full h-6 text-left"
 								size="sm"
 								startIcon="email"
 								variant="ghost"
-							>
-								<Link href="mailto:ayoub@aabass.net">ayoub@aabass.net</Link>
-							</Button>
+							/>
 							<Button
-								asChild
+								render={<Link href="https://ayoub.aabass.net">@el1f</Link>}
 								className="justify-start w-full h-6 text-left"
 								size="sm"
 								startIcon="github"
 								variant="ghost"
-							>
-								<Link href="https://ayoub.aabass.net">@el1f</Link>
-							</Button>
+							/>
 							<Button
-								asChild
+								render={
+									<Link href="https://dribbble.com/el1flem">@el1flem</Link>
+								}
 								className="justify-start w-full h-6 text-left"
 								size="sm"
 								startIcon="dribbble"
 								variant="ghost"
-							>
-								<Link href="https://dribbble.com/el1flem">@el1flem</Link>
-							</Button>
+							/>
 							<Button
-								asChild
+								render={
+									<Link href="https://www.instagram.com/eliflem_design/">
+										@eliflem_design
+									</Link>
+								}
 								className="justify-start w-full h-6 text-left"
 								size="sm"
 								startIcon="instagram"
 								variant="ghost"
-							>
-								<Link href="https://www.instagram.com/eliflem_design/">
-									@eliflem_design
-								</Link>
-							</Button>
+							/>
 							<Button
-								asChild
+								render={
+									<Link href="https://www.linkedin.com/in/el1flem">
+										@el1flem
+									</Link>
+								}
 								className="justify-start w-full h-6 text-left"
 								size="sm"
 								startIcon="linkedin"
 								variant="ghost"
-							>
-								<Link href="https://www.linkedin.com/in/el1flem">@el1flem</Link>
-							</Button>
+							/>
 						</div>
 					</header>
 					<div className="flex flex-col gap-2 print:pb-12">

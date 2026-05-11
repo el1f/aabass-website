@@ -61,19 +61,27 @@ export const SpotifyWidget: React.FC = () => {
 
 	const musicLinks = (
 		<div className="flex flex-col gap-2">
-			<Button asChild startIcon="spotify" variant="outline">
-				<Link
-					href="https://open.spotify.com/user/11170893355?si=ebb8a9d89ad947bf"
-					target="_blank"
-				>
-					Profile
-				</Link>
-			</Button>
-			<Button asChild startIcon="lastfm" variant="outline">
-				<Link href="https://www.last.fm/user/yami4529" target="_blank">
-					Scrobbles
-				</Link>
-			</Button>
+			<Button
+				render={
+					<Link
+						href="https://open.spotify.com/user/11170893355?si=ebb8a9d89ad947bf"
+						target="_blank"
+					>
+						Profile
+					</Link>
+				}
+				startIcon="spotify"
+				variant="outline"
+			/>
+			<Button
+				render={
+					<Link href="https://www.last.fm/user/yami4529" target="_blank">
+						Scrobbles
+					</Link>
+				}
+				startIcon="lastfm"
+				variant="outline"
+			/>
 		</div>
 	);
 

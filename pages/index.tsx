@@ -55,9 +55,10 @@ const Home: NextPage = () => {
 				</hgroup>
 				<div className="flex gap-4 dark:gap-4">
 					<Link href="mailto:ayoub@aabass.net">
-						<Button asChild size="xl">
-							<motion.button>{t("hero.cta1")}</motion.button>
-						</Button>
+						<Button
+							render={<motion.button>{t("hero.cta1")}</motion.button>}
+							size="xl"
+						/>
 					</Link>
 					<Link href="/about">
 						<Button size="xl" variant="outline">

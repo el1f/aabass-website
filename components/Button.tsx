@@ -1,4 +1,4 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
@@ -37,38 +37,45 @@ export interface ButtonProps
 	extends
 		React.ButtonHTMLAttributes<HTMLButtonElement>,
 		VariantProps<typeof buttonVariants> {
-	asChild?: boolean;
+	/** Use the `render` prop for composition (replaces the old `asChild` pattern). */
+	render?: React.ReactElement<Record<string, unknown>>;
 	endIcon?: IconName;
 	iconClassName?: string;
 	startIcon?: IconName;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-	(
-		{
-			asChild = false,
+	(props, ref) => {
+		const {
+			render,
 			className,
 			endIcon,
 			iconClassName,
 			size,
 			startIcon,
 			variant,
-			...props
-		},
-		ref,
-	) => {
-		const Comp = asChild ? Slot : "button";
-		return (
-			<Comp
-				className={cn(buttonVariants({ className, size, variant }))}
-				ref={ref}
-				{...props}
-			>
-				{startIcon && <Icon className={iconClassName} name={startIcon} />}
-				<Slottable>{props.children}</Slottable>
-				{endIcon && <Icon className={iconClassName} name={endIcon} />}
-			</Comp>
-		);
+			children,
+			...rest
+		} = props;
+
+		const element = useRender({
+			render,
+			defaultTagName: "button",
+			props: {
+				...rest,
+				className: cn(buttonVariants({ className, size, variant })),
+				ref,
+				children: render ? children : (
+					<>
+						{startIcon && <Icon className={iconClassName} name={startIcon} />}
+						{children}
+						{endIcon && <Icon className={iconClassName} name={endIcon} />}
+					</>
+				),
+			},
+		});
+
+		return element;
 	},
 );
 Button.displayName = "Button";

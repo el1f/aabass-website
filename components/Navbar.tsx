@@ -87,19 +87,19 @@ export const Navbar: React.FC<NavbarProps> = () => {
 						<motion.div className="flex items-center justify-center">
 							<Popover>
 								<div className="relative">
-									<PopoverTrigger className="relative" asChild>
-										<SocialLink
-											className="inline-block w-8 h-8"
-											platform="spotify"
-										/>
-									</PopoverTrigger>
+									<PopoverTrigger
+										render={
+											<SocialLink
+												className="inline-block w-8 h-8"
+												platform="spotify"
+											/>
+										}
+									/>
 									{currentlyPlayingSong && (
 										<span className="absolute w-1.5 h-1.5 rounded-full bottom-1 right-1 animate-pulse bg-primary-400" />
 									)}
 								</div>
-								<PopoverContent asChild>
-									<SpotifyWidget />
-								</PopoverContent>
+								<PopoverContent render={<SpotifyWidget />} />
 							</Popover>
 
 							{SOCIALS.map((social) => (
