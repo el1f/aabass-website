@@ -1,4 +1,4 @@
-import { Dialog } from "@headlessui/react";
+import { Dialog } from "@base-ui/react/dialog";
 import Image, { ImageLoader } from "next/legacy/image";
 import React from "react";
 
@@ -28,40 +28,44 @@ export const PosterLightbox: React.FC<{
 	if (!poster) return null;
 
 	return (
-		<Dialog as="div" className="relative z-50" onClose={onClose} open={open}>
-			<div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
+		<Dialog.Root
+			open={open}
+			onOpenChange={(nextOpen) => !nextOpen && onClose()}
+		>
+			<Dialog.Backdrop className="fixed inset-0 bg-black/25 backdrop-blur-sm z-50" />
+			<Dialog.Portal>
+				<Dialog.Popup className="fixed inset-0 z-50">
+					<div className="grid w-full h-full grid-cols-1 grid-rows-3 md:h-full md:grid-rows-1 md:grid-cols-5 lg:grid-cols-7">
+						<figure className="block h-full backdrop-blur-lg md:row-span-1 row-span-2 md:col-span-3 lg:col-span-5 [&>span]:!h-full relative">
+							<div className="absolute top-0 z-50 flex items-center justify-end w-full h-16 px-2 mb-4">
+								<button
+									className="block p-3 transition-all border border-transparent text-textDimmedDark/75 dark:text-textDimmedLight/75 hover:text-textDark hover:dark:text-textLight rounded-2xl dark:hover:bg-bgRaisedDark/50 dark:hover:border-textDimmedDark/25 hover:bg-bgRaisedLight"
+									onClick={onClose}
+								>
+									<Icon name="close" />
+								</button>
+							</div>
 
-			<div className="fixed inset-0">
-				<Dialog.Panel className="grid w-full h-full grid-cols-1 grid-rows-3 md:h-full md:grid-rows-1 md:grid-cols-5 lg:grid-cols-7">
-					<figure className="block h-full backdrop-blur-lg md:row-span-1 row-span-2 md:col-span-3 lg:col-span-5 [&>span]:!h-full relative">
-						<div className="absolute top-0 z-50 flex items-center justify-end w-full h-16 px-2 mb-4">
-							<button
-								className="block p-3 transition-all border border-transparent text-textDimmedDark/75 dark:text-textDimmedLight/75 hover:text-textDark hover:dark:text-textLight rounded-2xl dark:hover:bg-bgRaisedDark/50 dark:hover:border-textDimmedDark/25 hover:bg-bgRaisedLight"
-								onClick={onClose}
-							>
-								<Icon name="close" />
-							</button>
-						</div>
-
-						<Image
-							alt={poster.name}
-							height={poster.poster.height ?? 0}
-							layout="responsive"
-							loader={hygraphImageLoader}
-							objectFit="contain"
-							src={poster.poster.url}
-							width={poster.poster.width ?? 0}
-						/>
-					</figure>
-					<aside className="px-8 py-8 overflow-y-auto border-t md:h-screen md:border-l md:col-span-2 bg-bgBaseDark border-bgRaised">
-						<Dialog.Title>
-							<Heading className="mb-8" level={1}>
-								{poster.name}
-							</Heading>
-						</Dialog.Title>
-					</aside>
-				</Dialog.Panel>
-			</div>
-		</Dialog>
+							<Image
+								alt={poster.name}
+								height={poster.poster.height ?? 0}
+								layout="responsive"
+								loader={hygraphImageLoader}
+								objectFit="contain"
+								src={poster.poster.url}
+								width={poster.poster.width ?? 0}
+							/>
+						</figure>
+						<aside className="px-8 py-8 overflow-y-auto border-t md:h-screen md:border-l md:col-span-2 bg-bgBaseDark border-bgRaised">
+							<Dialog.Title>
+								<Heading className="mb-8" level={1}>
+									{poster.name}
+								</Heading>
+							</Dialog.Title>
+						</aside>
+					</div>
+				</Dialog.Popup>
+			</Dialog.Portal>
+		</Dialog.Root>
 	);
 };
