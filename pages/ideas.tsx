@@ -1,7 +1,5 @@
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { withUrqlClient } from "next-urql";
 import React, { useEffect } from "react";
 import { useQuery } from "urql";
@@ -21,8 +19,6 @@ const IdeasBoardColumn: React.FC<{
 	cards: React.ReactNode[];
 	title: string;
 }> = ({ cards, title }) => {
-	const { t } = useTranslation(["common", "ideas"]);
-
 	return (
 		<section className="flex-shrink-0 w-full max-w-xs">
 			<div className="p-2 mb-4">
@@ -30,7 +26,7 @@ const IdeasBoardColumn: React.FC<{
 			</div>
 			{cards.length === 0 && (
 				<div className="max-w-xs p-8 text-center rounded-lg bg-textDimmedDark/20">
-					<Text size="sm">{t("ideas:board.columnPlaceholder")}</Text>
+					<Text size="sm">No ideas have reached this stage yet.</Text>
 				</div>
 			)}
 			<div className="flex flex-col gap-4">{cards}</div>
@@ -39,7 +35,6 @@ const IdeasBoardColumn: React.FC<{
 };
 
 const Ideas = () => {
-	const { t } = useTranslation(["common", "changelog"]);
 	const router = useRouter();
 
 	// TODO: this seems to cause hydration issues every now and then but
@@ -59,14 +54,14 @@ const Ideas = () => {
 
 	return (
 		<>
-			<Seo title={t("ideas:pageTitle")} />
+			<Seo title="Ideas" />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
-				<Text size="md">{t("ideas:header.lead")}</Text>
+				<Text size="md">What&apos;s going on in the backstage?</Text>
 				<Heading className="mb-4" level={1}>
-					{t("ideas:header.title")}
+					Ideas for the future
 				</Heading>
 			</header>
 
@@ -78,7 +73,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas:board.backlogTitle")}
+					title="Backlog"
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -86,7 +81,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas:board.plannedTitle")}
+					title="Planned"
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -94,7 +89,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas:board.ongoingTitle")}
+					title="In progress"
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -102,7 +97,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas:board.testingTitle")}
+					title="Testing"
 				/>
 				<IdeasBoardColumn
 					cards={
@@ -110,7 +105,7 @@ const Ideas = () => {
 							<IdeaCard idea={ideaRef} key={`backlog-${i}`} />
 						)) ?? []
 					}
-					title={t("ideas:board.doneTitle")}
+					title="Done"
 				/>
 			</main>
 
@@ -126,15 +121,10 @@ const Ideas = () => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async () => {
 	const [client, ssrCache] = initGraphQLClient();
-	const i18nSetup = await serverSideTranslations(locale as string, [
-		"common",
-		"ideas",
-		"changelog",
-	]);
 
-	if (!client) return { props: { ...i18nSetup } };
+	if (!client) return { props: {} };
 
 	await client
 		.query(ideasPage, {
@@ -144,7 +134,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 	return {
 		props: {
-			...i18nSetup,
 			urqlState: ssrCache.extractData(),
 		},
 		revalidate: 4 * 60 * 60,

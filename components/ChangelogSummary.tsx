@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
 import React from "react";
 
 import { CodeChip, Text } from ".";
 
 export interface ChangelogSummaryProps {
 	versions: {
+		summary: string;
 		version: string;
 	}[];
 }
@@ -13,11 +13,9 @@ export interface ChangelogSummaryProps {
 export const ChangelogSummary: React.FC<ChangelogSummaryProps> = ({
 	versions,
 }) => {
-	const { t } = useTranslation("changelog");
-
 	return (
         <div className="absolute flex flex-col items-start h-32 gap-3 -bottom-1 justify-items-start left-full">
-			{versions.map(({ version }, i) => (
+			{versions.map(({ summary, version }, i) => (
 				(<Link
                     className="flex items-center gap-2 p-2 transition-all opacity-50 cursor-pointer group hover:bg-gradient-to-r dark:from-bgBaseDark from-bgBaseLight to-bgBaseLight dark:to-bgBaseDark dark:hover:from-bgRaisedDark hover:from-bgRaisedLight rounded-2xl border-textDark/5 dark:border-textLight/5 hover:opacity-100"
                     href={`/changelog${
@@ -37,7 +35,7 @@ export const ChangelogSummary: React.FC<ChangelogSummaryProps> = ({
                         className="w-full overflow-hidden transition-all translate-x-2 opacity-0 max-w-4xs group-hover:translate-x-0 text-ellipsis whitespace-nowrap group-hover:opacity-100"
                         size="sm"
                     >
-                        {t(`changelog:${version}.summary`)}
+                        {summary}
                     </Text>
 
                 </Link>)

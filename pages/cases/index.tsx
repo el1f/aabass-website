@@ -1,9 +1,7 @@
-import { GetStaticProps, NextPage } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextPage } from "next";
 import { withUrqlClient } from "next-urql";
 
-import { Footer, Heading, Navbar, Seo, Text, Trans } from "../../components";
+import { Footer, Heading, Navbar, Seo, Text } from "../../components";
 import { clientSetup } from "../../graphql";
 
 import { cn } from "../../lib/cn";
@@ -152,20 +150,22 @@ const Folder = () => (
 );
 
 const CaseStudies: NextPage = () => {
-	const { i18n, t } = useTranslation("cases");
-
 	return (
 		<>
-			<Seo title={t("pageTitle")} />
+			<Seo title="Ayoub's previous works" />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
 				<Heading className="mb-4 leading-tight" level={1}>
-					{t("header.title")}
+					Can&apos;t hurt to have a sample first right?
 				</Heading>
 				<Text>
-					<Trans i18nKey="cases:header.description" />
+					These are some of the projects I&apos;ve worked on for the past
+					years. They are but a little sample since most of the things
+					I&apos;ve worked on are either confidential or have been lost to me
+					to the sands of time at this point. I definitely will need to keep
+					this updated moving forward though :)
 				</Text>
 			</header>
 
@@ -174,8 +174,12 @@ const CaseStudies: NextPage = () => {
 					<Folder />
 
 					<div className="flex flex-col max-w-xl gap-2 mx-auto text-center">
-						<Heading level={3}>{t("wip.title")}</Heading>
-						<Text>{t("wip.body")}</Text>
+						<Heading level={3}>This is harder than working D:</Heading>
+						<Text>
+							This page has been sitting empty for years now, every time I try
+							to do some progress but I definitely am the kind that enjoys
+							doing stuff rather than talking about what he&apos;s done...
+						</Text>
 					</div>
 				</div>
 			</section>
@@ -184,15 +188,5 @@ const CaseStudies: NextPage = () => {
 		</>
 	);
 };
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-	props: {
-		...(await serverSideTranslations(locale ?? "en", [
-			"common",
-			"cases",
-			"changelog",
-		])),
-	},
-});
 
 export default withUrqlClient((_ssrExchange) => clientSetup)(CaseStudies);

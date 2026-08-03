@@ -1,10 +1,8 @@
 import { useMouse } from "@uidotdev/usehooks";
 import { motion, transform, useScroll, useTransform } from "framer-motion";
-import { GetStaticProps, NextPage } from "next";
+import { NextPage } from "next";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useState } from "react";
 
 import {
@@ -14,9 +12,15 @@ import {
 	Logo,
 	Navbar,
 	Seo,
+	Strong,
 	Text,
-	Trans,
 } from "../components";
+import {
+	CV_INTRODUCTION,
+	DESIGN_SKILLS,
+	DEV_SKILLS,
+	WORK_EXPERIENCE,
+} from "../data";
 import { useTheme } from "next-themes";
 
 const Portrait = () => {
@@ -152,20 +156,19 @@ const Portrait = () => {
 };
 
 const About: NextPage = () => {
-	const { t } = useTranslation(["common", "about", "cv"]);
 	const { resolvedTheme } = useTheme();
 
 	return (
 		<>
-			<Seo title={t("about:pageTitle")} />
+			<Seo title="About Ayoub" />
 
 			<Navbar />
 
 			<section className="container max-w-5xl mx-auto print:hidden">
 				<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
-					<Text size="md">{t("about:lead")}</Text>
+					<Text size="md">Fancy meeting you!</Text>
 					<Heading className="mb-4" level={1}>
-						{t("about:title")}
+						A little about me
 					</Heading>
 				</header>
 
@@ -183,7 +186,33 @@ const About: NextPage = () => {
 					</figure> */}
 
 					<Text as="div" className="max-w-2xl px-6 mx-auto leading-loose">
-						<Trans i18nKey="about:bio" />
+						So, as you&apos;ve probably guessed, my name is{" "}
+						<Strong>Ayoub</Strong>. I was born in <Strong>Morocco</Strong> but
+						I&apos;ve lived most of my Life in <Strong>Italy</Strong> after
+						moving there with my family when I was around 3. Still can&apos;t
+						get over that first snowy december day, it was magical!
+						<hr className="my-1 opacity-0" />
+						I&apos;m now 25 years old and I&apos;m currently living in{" "}
+						<Strong>Padua</Strong> where I&apos;m working as a{" "}
+						<Strong>Freelance</Strong> developer and designer. I&apos;ve mostly
+						worked in startups and small companies, dabbling with the
+						occasional bigger reality when the opportunity arose but I
+						definitely think I thrive in smaller environments where I can be
+						more hands-on with all aspects of the products I&apos;m working on.
+						<br />
+						<hr className="my-1 opacity-0" />
+						I&apos;m a fairly adventurous person, I love{" "}
+						<Strong>traveling</Strong>, <Strong>extreme sports</Strong> and
+						anything that allows me to live life to the fullest. I&apos;m also
+						a huge <Strong>foodie</Strong> and I love trying out new
+						restaurants and cuisines.
+						<br />
+						<hr className="my-1 opacity-0" />
+						I&apos;ve also been getting deeper and deeper into the weird Coffee
+						rabbit hole and I&apos;ve spent the past year honing my home
+						barista game. I&apos;ve been dedicating a lot of my free time to
+						Longboard dancing and freeride ever since the start of the pandemic
+						and I&apos;m involved with several projects in that field as well.
 					</Text>
 				</div>
 			</section>
@@ -191,7 +220,7 @@ const About: NextPage = () => {
 			<section id="cv">
 				<header className="container max-w-2xl px-6 pt-24 pb-8 mx-auto print:hidden print:pt-0">
 					<Heading className="mb-4 leading-snug" level={1}>
-						{t("cv:title")}
+						Curriculum Vitae
 					</Heading>
 				</header>
 
@@ -259,29 +288,25 @@ const About: NextPage = () => {
 						</div>
 					</header>
 					<div className="flex flex-col gap-2 print:pb-12">
-						<Heading level={3}>{t("common:fullName")}</Heading>
-						<Text>{t("common:professionalRole")}</Text>
+						<Heading level={3}>Ayoub Aabass</Heading>
+						<Text>Senior Full-stack developer and designer</Text>
 					</div>
-					<Text>{t("cv:document.introduction")}</Text>
+					<Text>{CV_INTRODUCTION}</Text>
 
 					<Heading className="mt-0 xs:mt-12" level={5}>
-						{t("cv:document.dev.title")}
+						Current dev knowledge
 					</Heading>
 					<div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3">
-						{(
-							t("cv:document.dev.skills", { returnObjects: true }) as string[]
-						).map((skill) => (
+						{DEV_SKILLS.map((skill) => (
 							<Text key={skill}>{skill}</Text>
 						))}
 					</div>
 
 					<Heading className="mt-0 xs:mt-12" level={5}>
-						{t("cv:document.des.title")}
+						Current design knowledge
 					</Heading>
 					<div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3">
-						{(
-							t("cv:document.des.skills", { returnObjects: true }) as string[]
-						).map((skill) => (
+						{DESIGN_SKILLS.map((skill) => (
 							<Text key={skill}>{skill}</Text>
 						))}
 					</div>
@@ -290,15 +315,7 @@ const About: NextPage = () => {
 						Work experience
 					</Heading>
 					<div className="flex flex-col gap-4">
-						{(
-							t("cv:document.experience.items", { returnObjects: true }) as {
-								company: string;
-								location: string;
-								period: string;
-								role: string;
-								tasks: string[];
-							}[]
-						).map((job) => (
+						{WORK_EXPERIENCE.map((job) => (
 							<div className="flex flex-col gap-1" key={job.company}>
 								<Text className="leading-none" size="sm">
 									<strong className="dark:text-textLight text-textDark">
@@ -318,16 +335,5 @@ const About: NextPage = () => {
 		</>
 	);
 };
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-	props: {
-		...(await serverSideTranslations(locale ?? "en", [
-			"common",
-			"about",
-			"cv",
-			"changelog",
-		])),
-	},
-});
 
 export default About;

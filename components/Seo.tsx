@@ -1,10 +1,13 @@
 import Head from "next/head";
-import { useTranslation } from "next-i18next";
 import React from "react";
 
 const DOMAIN = process.env.NEXT_PUBLIC_HOSTNAME;
 const DEFAULT_OG_IMAGE = `${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`;
 const DEFAULT_OG_SITENAME = "Ayoub Aabass";
+const DEFAULT_TITLE = "Ayoub Aabass • dev";
+const DEFAULT_OG_TITLE = "Ayoub Aabass • Full stack dev and designer";
+const DEFAULT_OG_DESCRIPTION =
+	"I'm a full-stack web developer that dabbles in a lot of UI and UX design. I've been honing my skills for the better part of the last 8 years and I'm looking for more opportunities to create great products.";
 
 export interface SeoProps {
 	description?: string;
@@ -19,12 +22,10 @@ export interface SeoProps {
 }
 
 export const Seo: React.FC<SeoProps> = (props) => {
-	const { t } = useTranslation("common");
-
-	const title = props.title ?? t("meta.title");
+	const title = props.title ?? DEFAULT_TITLE;
 	const ogType = props.ogType ?? "website";
-	const ogTitle = props.ogTitle ?? t("meta.og.title");
-	const ogDescription = props.ogDescription ?? t(`meta.og.description`);
+	const ogTitle = props.ogTitle ?? DEFAULT_OG_TITLE;
+	const ogDescription = props.ogDescription ?? DEFAULT_OG_DESCRIPTION;
 	const url = props.url ?? DOMAIN;
 	const ogImage = props.ogImage ?? DEFAULT_OG_IMAGE;
 	const siteName = props.siteName ?? DEFAULT_OG_SITENAME;
