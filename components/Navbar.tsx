@@ -74,11 +74,6 @@ export const Navbar: React.FC<NavbarProps> = () => {
 										Case Studies
 									</Button>
 								</Link>
-								<Link href="/personal">
-									<Button size="sm" startIcon="personal" variant="ghost">
-										Personal
-									</Button>
-								</Link>
 							</motion.div>
 						)}
 

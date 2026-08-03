@@ -13,7 +13,6 @@ import Instagram from "../public/icons/instagram.svg";
 import LastFm from "../public/icons/lastfm.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import DarkTheme from "../public/icons/moon-stars.svg";
-import Personal from "../public/icons/personal.svg";
 import Projects from "../public/icons/projects.svg";
 import Spotify from "../public/icons/spotify.svg";
 import LightTheme from "../public/icons/sun.svg";
@@ -26,7 +25,6 @@ export type IconName =
 	| "arrowLeft"
 	| "close"
 	| "projects"
-	| "personal"
 	| "about"
 	| "email"
 	| "globe";
@@ -62,8 +60,6 @@ export const Icon: React.FC<IconProps> = ({ className, name }) => {
 			return <Close className={clsx} />;
 		case "projects":
 			return <Projects className={clsx} />;
-		case "personal":
-			return <Personal className={clsx} />;
 		case "about":
 			return <About className={clsx} />;
 		case "globe":
