@@ -12,7 +12,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import "../styles/globals.css";
 
-import { Button, Heading, Strong, Text } from "../components";
+import { Button } from "../components";
 import * as ga from "../lib/ga";
 
 const sofiaPro = localFont({

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import Link from "next/link";
@@ -15,8 +16,6 @@ import {
 	Text,
 } from "../components";
 import { STANDARD_POSTERS } from "../data";
-
-import dayjs from "dayjs";
 
 const WORK_START = new Date("2014-05-12T12:00:00.007Z");
 

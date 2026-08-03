@@ -3,6 +3,7 @@ import { motion, transform, useScroll, useTransform } from "framer-motion";
 import { NextPage } from "next";
 import Image from "next/legacy/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 import {
@@ -21,7 +22,6 @@ import {
 	DEV_SKILLS,
 	WORK_EXPERIENCE,
 } from "../data";
-import { useTheme } from "next-themes";
 
 const Portrait = () => {
 	const [mouse, ref] = useMouse<HTMLElement>();
@@ -226,7 +226,7 @@ const About: NextPage = () => {
 
 				<div className="container grid max-w-5xl grid-cols-1 px-6 py-10 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-8 sm:grid-cols-cv print:grid-cols-cv print:pt-16 bg-bgRaised">
 					<header className="flex items-start justify-between gap-6 sm:col-span-2">
-						<Logo isDark={resolvedTheme === "dark"} height={80} />
+						<Logo height={80} isDark={resolvedTheme === "dark"} />
 
 						<div className="grid sm:grid-flow-col grid-cols-1 sm:grid-cols-2 grid-rows-3 gap-x-6 gap-y-0.5">
 							<Button
