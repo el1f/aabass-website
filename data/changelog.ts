@@ -3,7 +3,6 @@ export const CHANGELOG: {
 	description: string;
 	features: {
 		date?: string;
-		ideaId?: string;
 		title: string;
 		type: "add" | "edit" | "remove" | "fix";
 	}[];
@@ -138,21 +137,18 @@ export const CHANGELOG: {
 			},
 			{
 				date: "2022-12-24",
-				ideaId: "clauytbwf35qz0bla5kgd3blj",
 				title:
 					"A new little page for all of my thoughts have been added! Now I can finally bother all of the internet with what's currently running through my little noggin'!",
 				type: "add",
 			},
 			{
 				date: "2022-12-26",
-				ideaId: "clauyo96i35cp0blanls3nqth",
 				title:
 					"The posters have been moved to the CMS. Now I can update them without having to push a whole new version of the website. How cool is that? Also, there is now a lightBox to check them out in their full-sized glory!",
 				type: "add",
 			},
 			{
 				date: "2022-12-27",
-				ideaId: "clauyx4zo2qsw0amh0cdd47cv",
 				title:
 					"Coffee up! The coffee page is now up and running, ready to welcome a collection of the beans I consume in the coming months and of the places I go to have those cups at!",
 				type: "add",
@@ -179,19 +175,16 @@ export const CHANGELOG: {
 		features: [
 			{
 				date: "2022-11-24",
-				ideaId: "clauyy02s2rom0bl7dltkp3p7",
 				title: "Ideas page powered by Hygraph CMS",
 				type: "add",
 			},
 			{
 				date: "2022-12-04",
-				ideaId: "clav8sh0x4lj40bl7yhxpomfs",
 				title: "Curriculum page. So bland. So boring. So effective.",
 				type: "add",
 			},
 			{
 				date: "2022-12-08",
-				ideaId: "clav8v2ba55rd0cl1s4v5gf0h",
 				title:
 					'Case studies page. Just the page. No content. What, thought you could see some of my work? Haha, nope. Gotta first figure out whether I can show them or not with my business daddies. Swear the next contracts will have a "I can show this to the world at my conditions" clause. Maybe followed by a little "Pretty please daddy?"',
 				type: "add",

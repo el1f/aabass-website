@@ -2,7 +2,6 @@ import Image from "next/legacy/image";
 import React, { useState } from "react";
 
 import {
-	Anchor,
 	CodeChip,
 	Footer,
 	Heading,
@@ -83,16 +82,7 @@ const Changelog = () => {
 												{feature.type.toUpperCase()}
 											</CodeChip>
 											<div className="flex flex-col">
-												<Text size="sm">
-													{feature.title}
-													{feature.ideaId && (
-														<span className="mx-2">
-															<Anchor href={`/ideas#${feature.ideaId}`}>
-																💡
-															</Anchor>
-														</span>
-													)}
-												</Text>
+												<Text size="sm">{feature.title}</Text>
 												<div className="flex gap-4">
 													<Text
 														className="font-mono font-bold opacity-50"

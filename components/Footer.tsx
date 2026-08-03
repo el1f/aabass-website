@@ -48,7 +48,6 @@ export const Footer = () => {
 							<Heading level={5}>My corner</Heading>
 							<Anchor href="/posters">Posters</Anchor>
 							<Anchor href="/coffee">Coffee</Anchor>
-							<Anchor href="/ideas">Ideas</Anchor>
 						</div>
 					</div>
 
