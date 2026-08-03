@@ -1,8 +1,6 @@
 import { NextPage } from "next";
-import { withUrqlClient } from "next-urql";
 
 import { Footer, Heading, Navbar, Seo, Text } from "../../components";
-import { clientSetup } from "../../graphql";
 
 import { cn } from "../../lib/cn";
 import { motion } from "framer-motion";
@@ -189,4 +187,4 @@ const CaseStudies: NextPage = () => {
 	);
 };
 
-export default withUrqlClient((_ssrExchange) => clientSetup)(CaseStudies);
+export default CaseStudies;

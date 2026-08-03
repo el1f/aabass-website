@@ -1,8 +1,6 @@
-import { GetStaticProps, NextPage } from "next";
+import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { withUrqlClient } from "next-urql";
-import { useQuery } from "urql";
 
 import {
 	Footer,
@@ -13,30 +11,14 @@ import {
 	Seo,
 	Text,
 } from "../../components";
-import {
-	clientSetup,
-	initGraphQLClient,
-	poster,
-	postersPage,
-} from "../../graphql";
+import { POSTERS, STANDARD_POSTERS, VINYL_POSTERS } from "../../data";
 import * as ga from "../../lib/ga";
 
 const Posters: NextPage = () => {
 	const router = useRouter();
 
-	// TODO: this seems to cause hydration issues every now and then but
-	// according to this issue it isn't a problem that should happen
-	// in production.
-	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
-	const [{ data }] = useQuery({
-		query: postersPage,
-	});
-	const [{ data: selectedPosterData }] = useQuery({
-		query: poster,
-		variables: {
-			slug: ((router.query.slug ?? []) as string[])[0],
-		},
-	});
+	const activeSlug = ((router.query.slug ?? []) as string[])[0];
+	const selectedPoster = POSTERS.find((poster) => poster.slug === activeSlug);
 
 	return <>
         <Seo title="My poster collection" />
@@ -64,7 +46,7 @@ const Posters: NextPage = () => {
         </div>
 
         <section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
-            {(data?.standard ?? []).map((poster) => (
+            {STANDARD_POSTERS.map((poster) => (
                 (<Link
                     href={`/posters/${poster.slug}`}
                     key={poster.slug}
@@ -74,7 +56,7 @@ const Posters: NextPage = () => {
                     <PosterThumbnail
                         className="flex-shrink-0 w-full"
                         onClick={() => ga.posterPress(poster.slug)}
-                        src={poster.poster.url}
+                        src={poster.src}
                         title={poster.name}
                     />
 
@@ -87,7 +69,7 @@ const Posters: NextPage = () => {
         </div>
 
         <section className="container grid max-w-5xl grid-cols-1 gap-8 px-6 mx-auto mb-48 md:grid-cols-3 md:px-0">
-            {(data?.vinyl ?? []).map((poster) => (
+            {VINYL_POSTERS.map((poster) => (
                 (<Link
                     href={`/posters/${poster.slug}`}
                     key={poster.slug}
@@ -98,7 +80,7 @@ const Posters: NextPage = () => {
                         className="flex-shrink-0 w-full"
                         format="disc"
                         onClick={() => ga.posterPress(poster.slug)}
-                        src={poster.poster.url}
+                        src={poster.src}
                         title={poster.name}
                     />
 
@@ -108,8 +90,8 @@ const Posters: NextPage = () => {
 
         <PosterLightbox
             onClose={() => router.push("/posters", undefined, { scroll: false })}
-            open={Boolean(poster)}
-            poster={selectedPosterData?.poster ?? undefined}
+            open={Boolean(selectedPoster)}
+            poster={selectedPoster}
         />
 
         <Footer />
@@ -117,52 +99,23 @@ const Posters: NextPage = () => {
 };
 
 export const getStaticPaths = async () => {
-	const [client] = initGraphQLClient();
-	if (!client) return { fallback: "blocking", paths: [] };
-
-	const { data } = await client.query(postersPage, {}).toPromise();
-
-	if (!data) return { fallback: "blocking", paths: [] };
-
 	return {
-		fallback: "blocking",
+		fallback: false,
 		paths: [
 			{
 				params: {
 					slug: [""],
 				},
 			},
-			...data.standard.map((data) => {
-				return {
-					params: {
-						slug: [data.slug],
-					},
-				};
-			}),
-			...data.vinyl.map((data) => {
-				return {
-					params: {
-						slug: [data.slug],
-					},
-				};
-			}),
+			...POSTERS.map((poster) => ({
+				params: {
+					slug: [poster.slug],
+				},
+			})),
 		],
 	};
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-	const [client, ssrCache] = initGraphQLClient();
+export const getStaticProps = async () => ({ props: {} });
 
-	if (!client) return { props: {} };
-
-	await client.query(postersPage, {}).toPromise();
-
-	return {
-		props: {
-			urqlState: ssrCache.extractData(),
-		},
-		revalidate: 4 * 60 * 60,
-	};
-};
-
-export default withUrqlClient((_ssrExchange) => clientSetup)(Posters);
+export default Posters;

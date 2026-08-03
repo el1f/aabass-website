@@ -3,7 +3,7 @@ import withVercelToolbar from "@vercel/toolbar/plugins/next";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ["media.graphassets.com", "i.scdn.co"],
+		domains: ["i.scdn.co"],
 	},
 	pageExtensions: ["ts", "tsx", "js", "jsx"],
 	reactStrictMode: true,

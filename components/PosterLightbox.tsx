@@ -1,30 +1,15 @@
 import { Dialog } from "@headlessui/react";
-import Image, { ImageLoader } from "next/legacy/image";
+import Image from "next/legacy/image";
 import React from "react";
 
-import {
-	FragmentType,
-	PosterFull as PosterFullFragment,
-	useFragment,
-} from "../graphql";
-import { Heading, Icon, Strong, Text } from ".";
-
-// TODO: move to lib
-const hygraphImageLoader: ImageLoader = ({ src, width }) => {
-	const relativeSrc = (src: string) => src.split("/").pop();
-
-	return `https://media.graphassets.com/resize=width:${width}/${relativeSrc(
-		src,
-	)}`;
-};
+import { Poster } from "../data";
+import { Heading, Icon } from ".";
 
 export const PosterLightbox: React.FC<{
 	onClose: () => void;
 	open: boolean;
-	poster?: FragmentType<typeof PosterFullFragment>;
-}> = ({ onClose, open, poster: posterRef }) => {
-	const poster = useFragment(PosterFullFragment, posterRef);
-
+	poster?: Poster;
+}> = ({ onClose, open, poster }) => {
 	if (!poster) return null;
 
 	return (
@@ -45,12 +30,11 @@ export const PosterLightbox: React.FC<{
 
 						<Image
 							alt={poster.name}
-							height={poster.poster.height ?? 0}
+							height={poster.height}
 							layout="responsive"
-							loader={hygraphImageLoader}
 							objectFit="contain"
-							src={poster.poster.url}
-							width={poster.poster.width ?? 0}
+							src={poster.src}
+							width={poster.width}
 						/>
 					</figure>
 					<aside className="px-8 py-8 overflow-y-auto border-t md:h-screen md:border-l md:col-span-2 bg-bgBaseDark border-bgRaised">
