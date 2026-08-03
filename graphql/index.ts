@@ -8,7 +8,6 @@ export { graphql as gql } from "./__generated__";
 export * from "./fragments";
 
 export * from "./home";
-export * from "./ideas";
 export * from "./posters";
 export * from "./coffee";
 export * from "./client";

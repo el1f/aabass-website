@@ -11,8 +11,6 @@ export * from "./Strong";
 export * from "./Text";
 export * from "./ChangelogSummary";
 export * from "./CodeChip";
-export * from "./IdeaCard";
-export * from "./IdeaDialog";
 export * from "./DynamicLogo";
 export * from "./Seo";
 export * from "./OutlinedCard";
