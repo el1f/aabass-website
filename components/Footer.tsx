@@ -14,8 +14,11 @@ export const Footer = () => {
 			<footer className="container relative max-w-5xl px-6 pt-8 pb-32 mx-auto">
 				<div className="flex flex-col justify-between gap-12 md:flex-row">
 					<div className="flex flex-col">
-						<div className="mb-2">
-							<Logo height={56} isDark={!isDark} isExtended />
+						<div className="mb-2 dark:hidden">
+							<Logo height={56} isDark={false} isExtended />
+						</div>
+						<div className="hidden mb-2 dark:block">
+							<Logo height={56} isExtended />
 						</div>
 						<Text size="sm">©️ {new Date().getFullYear()}</Text>
 
