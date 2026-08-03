@@ -19,7 +19,7 @@ export const Logo: React.FC<LogoProps> = ({
 			<Image
 				alt="Extended logo"
 				height={height}
-				src="/brand/logo_extended_dark.svg"
+				src="/brand/logo_extended_light.svg"
 				width={height * EXTENDED_RATIO}
 			/>
 		);
@@ -37,7 +37,7 @@ export const Logo: React.FC<LogoProps> = ({
 			<Image
 				alt="Extended logo"
 				height={height}
-				src="/brand/logo_extended_light.svg"
+				src="/brand/logo_extended_dark.svg"
 				width={height * EXTENDED_RATIO}
 			/>
 		);
