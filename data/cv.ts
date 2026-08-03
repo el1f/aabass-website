@@ -108,12 +108,3 @@ export const WORK_EXPERIENCE: {
 		tasks: [],
 	},
 ];
-
-export const CV_CONTACTS = {
-	dribbble: { title: "Dribbble", value: "dribbble.com/el1flem" },
-	email: { title: "Email", value: "ayoub@aabass.net" },
-	github: { title: "GitHub", value: "github.com/el1f" },
-	instagram: { title: "Instagram", value: "instagram.com/eliflem_design" },
-	phone: { title: "Phone", value: "+39 3479283096" },
-	web: { title: "Website", value: "ayoub.aabass.net" },
-};
