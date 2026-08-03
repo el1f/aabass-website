@@ -1,25 +1,23 @@
-import { NextPage } from "next";
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 import {
 	Button,
 	Footer,
 	Heading,
 	Navbar,
-	Seo,
 	Strong,
 	Text,
 } from "../components";
 import * as ga from "../lib/ga";
 
-const NotFound: NextPage = () => {
-	const router = useRouter();
+const NotFound = () => {
+	const pathname = usePathname();
 
 	return (
 		<>
-			<Seo title="Ayoub not found" />
-
 			<Navbar />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
@@ -39,7 +37,7 @@ const NotFound: NextPage = () => {
 					<Link href="mailto:ayoub@aabass.net">
 						<Button
 							onClick={() => {
-								ga.contactPress(router.route);
+								ga.contactPress(pathname ?? "/404");
 							}}
 						>
 							Ask about this page

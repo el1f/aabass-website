@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
-import { NextPage } from "next";
+"use client";
 
-import { Footer, Heading, Navbar, Seo, Text } from "../../components";
+import { motion } from "framer-motion";
+
+import { Footer, Heading, Navbar, Text } from "../../components";
 import { cn } from "../../lib/cn";
 
 const FolderBackSheet = () => (
@@ -146,11 +147,9 @@ const Folder = () => (
 	</motion.figure>
 );
 
-const CaseStudies: NextPage = () => {
+const CaseStudies = () => {
 	return (
 		<>
-			<Seo title="Ayoub's previous works" />
-
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">

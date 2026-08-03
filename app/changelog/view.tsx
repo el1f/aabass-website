@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/legacy/image";
 import React, { useState } from "react";
 
@@ -6,10 +8,9 @@ import {
 	Footer,
 	Heading,
 	Navbar,
-	Seo,
 	Text,
-} from "../components";
-import { CHANGELOG } from "../data";
+} from "../../components";
+import { CHANGELOG } from "../../data";
 
 const CHANGELOG_EASTER_EGGS: Record<
 	string,
@@ -36,8 +37,6 @@ const Changelog = () => {
 
 	return (
 		<>
-			<Seo title="What's new" />
-
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">

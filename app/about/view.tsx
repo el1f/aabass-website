@@ -1,6 +1,7 @@
+"use client";
+
 import { useMouse } from "@uidotdev/usehooks";
 import { motion, transform, useScroll, useTransform } from "framer-motion";
-import { NextPage } from "next";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -12,16 +13,15 @@ import {
 	Heading,
 	Logo,
 	Navbar,
-	Seo,
 	Strong,
 	Text,
-} from "../components";
+} from "../../components";
 import {
 	CV_INTRODUCTION,
 	DESIGN_SKILLS,
 	DEV_SKILLS,
 	WORK_EXPERIENCE,
-} from "../data";
+} from "../../data";
 
 const Portrait = () => {
 	const [mouse, ref] = useMouse<HTMLElement>();
@@ -155,13 +155,11 @@ const Portrait = () => {
 	);
 };
 
-const About: NextPage = () => {
+const About = () => {
 	const { resolvedTheme } = useTheme();
 
 	return (
 		<>
-			<Seo title="About Ayoub" />
-
 			<Navbar />
 
 			<section className="container max-w-5xl mx-auto print:hidden">
