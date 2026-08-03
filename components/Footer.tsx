@@ -41,7 +41,6 @@ export const Footer = () => {
 						<div className="flex flex-col items-start gap-2">
 							<Heading level={5}>Work things</Heading>
 							<Anchor href="/about">About me</Anchor>
-							{/* <Anchor href="/cv">Curriculum</Anchor> */}
 							<Anchor href="/cases">Case studies</Anchor>
 						</div>
 						<div className="flex flex-col items-start gap-2">

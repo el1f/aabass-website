@@ -13,7 +13,5 @@ export * from "./ChangelogSummary";
 export * from "./CodeChip";
 export * from "./DynamicLogo";
 export * from "./Seo";
-export * from "./OutlinedCard";
 export * from "./PosterLightbox";
 export * from "./AvailabilityLabel";
-export * from "./ContactLink";

@@ -1,4 +1,4 @@
-import { ClassValue } from "class-variance-authority/dist/types";
+import { ClassValue } from "class-variance-authority/types";
 import classNames from "classnames";
 import { twMerge } from "tailwind-merge";
 
