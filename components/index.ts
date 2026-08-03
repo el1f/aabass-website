@@ -15,8 +15,5 @@ export * from "./DynamicLogo";
 export * from "./Seo";
 export * from "./OutlinedCard";
 export * from "./PosterLightbox";
-export * from "./CoffeeGearGrid";
-export * from "./CoffeePlaceCard";
-export * from "./CoffeeBeansCard";
 export * from "./AvailabilityLabel";
 export * from "./ContactLink";

@@ -1,14 +1,5 @@
-import Image, { ImageLoader } from "next/legacy/image";
+import Image from "next/legacy/image";
 import React from "react";
-
-// TODO: move to lib
-const hygraphImageLoader: ImageLoader = ({ src, width }) => {
-	const relativeSrc = (src: string) => src.split("/").pop();
-
-	return `https://media.graphassets.com/resize=width:${width}/${relativeSrc(
-		src,
-	)}`;
-};
 
 interface PosterThumbnailProps {
 	className?: string;
@@ -45,7 +36,6 @@ export const PosterThumbnail: React.FC<PosterThumbnailProps> = ({
 				className="block"
 				height={320 * ratioMultipliers[format]}
 				layout="responsive"
-				loader={hygraphImageLoader}
 				src={src}
 				width={320}
 			/>

@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import type { GetStaticProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Link from "next/link";
-import { withUrqlClient } from "next-urql";
-import { useQuery } from "urql";
 
 import {
 	Anchor,
@@ -16,7 +14,7 @@ import {
 	Strong,
 	Text,
 } from "../components";
-import { clientSetup, homePage, initGraphQLClient } from "../graphql";
+import { STANDARD_POSTERS } from "../data";
 
 import dayjs from "dayjs";
 
@@ -24,14 +22,6 @@ const WORK_START = new Date("2014-05-12T12:00:00.007Z");
 
 const Home: NextPage = () => {
 	const careerYears = dayjs(new Date()).diff(WORK_START, "years");
-
-	// TODO: this seems to cause hydration issues every now and then but
-	// according to this issue it isn't a problem that should happen
-	// in production.
-	// https://github.com/urql-graphql/urql/issues/1363#issuecomment-772789918
-	const [{ data }] = useQuery({
-		query: homePage,
-	});
 
 	return (
 		<>
@@ -100,16 +90,14 @@ const Home: NextPage = () => {
 					</Text>
 				</div>
 				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
-					{(data?.posters ?? []).map((poster) => {
-						return (
-							<PosterThumbnail
-								className="flex-shrink-0 w-64"
-								key={poster.slug}
-								src={`/posters/${poster.poster.url}`}
-								title={poster.name}
-							/>
-						);
-					})}
+					{STANDARD_POSTERS.slice(0, 8).map((poster) => (
+						<PosterThumbnail
+							className="flex-shrink-0 w-64"
+							key={poster.slug}
+							src={poster.src}
+							title={poster.name}
+						/>
+					))}
 				</div>
 			</section>
 
@@ -129,19 +117,4 @@ const Home: NextPage = () => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-	const [client, ssrCache] = initGraphQLClient();
-
-	if (!client) return { props: {} };
-
-	await client.query(homePage, {}).toPromise();
-
-	return {
-		props: {
-			urqlState: ssrCache.extractData(),
-		},
-		revalidate: 4 * 60 * 60,
-	};
-};
-
-export default withUrqlClient((_ssrExchange) => clientSetup)(Home);
+export default Home;
