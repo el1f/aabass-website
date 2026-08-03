@@ -7,7 +7,6 @@ import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import { appWithTranslation } from "next-i18next";
 import { ThemeProvider } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 
@@ -168,4 +167,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 	);
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;

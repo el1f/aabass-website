@@ -1,5 +1,4 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { useTranslation } from "next-i18next";
 import React, { Fragment } from "react";
 
 import {
@@ -9,12 +8,32 @@ import {
 } from "../graphql";
 import { Anchor, CodeChip, Heading, Text } from ".";
 
+const PAGE_NAMES: Record<string, string> = {
+	ABOUT: "About",
+	BLOG: "Blog",
+	CASE_STUDIES: "Case Studies",
+	CHANGELOG: "Changelog",
+	COFFEE: "Coffee",
+	HOME: "Home Page",
+	IDEAS: "Ideas",
+	LONGBOARD: "Longboard",
+	MUSIC: "Music",
+	NOT_FOUND: "404",
+	POSTERS: "Posters",
+	SHOP: "Shop",
+	THREE_PLAYGROUND: "ThreeJS Playground",
+	TRAVEL: "Travel",
+};
+
+const COMPONENT_NAMES: Record<string, string> = {
+	PAGE_LAYOUT: "Page Layout",
+};
+
 export const IdeaDialog: React.FC<{
 	idea?: FragmentType<typeof IdeaDialogFragment>;
 	onClose: () => void;
 	open: boolean;
 }> = ({ idea: ideaRef, onClose, open }) => {
-	const { t } = useTranslation(["ideas", "common"]);
 	const idea = useFragment(IdeaDialogFragment, ideaRef);
 
 	return (
@@ -48,7 +67,7 @@ export const IdeaDialog: React.FC<{
 									<div className="flex flex-col items-start px-3 py-2 mb-8 -mx-3 -mt-3 rounded-lg empty:hidden before:text-xs">
 										<div className="flex flex-col items-start w-full max-w-xl mx-auto">
 											<Text size="sm">
-												<strong>{t("dialog.dependenciesLabel")}</strong>
+												<strong>DEPENDS ON</strong>
 											</Text>
 											{idea?.dependencies.map((dependency) => (
 												<Anchor
@@ -77,11 +96,11 @@ export const IdeaDialog: React.FC<{
 										{idea?.targetPages.length !== 0 && (
 											<div className="flex flex-col items-start gap-2">
 												<Text size="sm">
-													<strong>{t("dialog.targetPagesLabel")}</strong>
+													<strong>TARGETED PAGES</strong>
 												</Text>
 												<div className="flex flex-col items-start gap-2">
 													{(idea?.targetPages ?? []).map((page) => (
-														<Text key={page}>{t(`common:pages.${page}`)}</Text>
+														<Text key={page}>{PAGE_NAMES[page] ?? page}</Text>
 													))}
 												</div>
 											</div>
@@ -90,12 +109,12 @@ export const IdeaDialog: React.FC<{
 										{idea?.targetComponents.length !== 0 && (
 											<div className="flex flex-col items-start gap-2">
 												<Text size="sm">
-													<strong>{t("dialog.targetComponentsLabel")}</strong>
+													<strong>TARGETED COMPONENTS</strong>
 												</Text>
 												<div className="flex flex-col items-start gap-2">
 													{(idea?.targetComponents ?? []).map((component) => (
 														<Text key={component}>
-															{t(`common:components.${component}`)}
+															{COMPONENT_NAMES[component] ?? component}
 														</Text>
 													))}
 												</div>
@@ -105,10 +124,10 @@ export const IdeaDialog: React.FC<{
 
 									<section className="mt-16">
 										<Heading className="mb-4" level={4}>
-											{t("dialog.updatesTitle")}
+											Updates
 										</Heading>
 										<div className="p-4 border rounded-lg border-text border-textDimmedDark">
-											<Text>{t("dialog.updatesPlaceholder")}</Text>
+											<Text>Nothing to see here yet. Check back later!</Text>
 										</div>
 									</section>
 								</div>

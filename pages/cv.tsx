@@ -1,49 +1,48 @@
-import { GetStaticProps, NextPage } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextPage } from "next";
 
 import { ContactLink, Footer, Heading, Navbar, Seo, Text } from "../components";
+import {
+	CV_CONTACTS,
+	CV_INTRODUCTION,
+	DESIGN_SKILLS,
+	DEV_SKILLS,
+	WORK_EXPERIENCE,
+} from "../data";
 
 const Curriculum: NextPage = () => {
-	const { t } = useTranslation(["common", "cv"]);
-
 	return (
 		<>
-			<Seo title={t("cv:pageTitle")} />
+			<Seo title="Ayoub's CV" />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto print:hidden">
 				<Heading className="mb-4 leading-snug" level={1}>
-					{t("cv:title")}
+					Curriculum Vitae
 				</Heading>
 			</header>
 
 			<div className="container grid max-w-4xl px-6 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-4 xs:grid-cols-1 sm:grid-cols-cv print:grid-cols-cv print:pt-16">
 				<div className="flex flex-col gap-2 print:pb-12">
-					<Heading level={3}>{t("common:fullName")}</Heading>
-					<Text>{t("common:professionalRole")}</Text>
+					<Heading level={3}>Ayoub Aabass</Heading>
+					<Text>Senior Full-stack developer and designer</Text>
 				</div>
-				<Text>{t("cv:document.introduction")}</Text>
+				<Text>{CV_INTRODUCTION}</Text>
 
 				<Heading className="mt-0 xs:mt-12" level={5}>
-					{t("cv:document.dev.title")}
+					Current dev knowledge
 				</Heading>
 				<div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3">
-					{(
-						t("cv:document.dev.skills", { returnObjects: true }) as string[]
-					).map((skill) => (
+					{DEV_SKILLS.map((skill) => (
 						<Text key={skill}>{skill}</Text>
 					))}
 				</div>
 
 				<Heading className="mt-0 xs:mt-12" level={5}>
-					{t("cv:document.des.title")}
+					Current design knowledge
 				</Heading>
 				<div className="grid grid-cols-2 gap-x-2 gap-y-1 sm:gap-y-2 sm:grid-cols-3 print:grid-cols-3">
-					{(
-						t("cv:document.des.skills", { returnObjects: true }) as string[]
-					).map((skill) => (
+					{DESIGN_SKILLS.map((skill) => (
 						<Text key={skill}>{skill}</Text>
 					))}
 				</div>
@@ -52,15 +51,7 @@ const Curriculum: NextPage = () => {
 					Work experience
 				</Heading>
 				<div className="flex flex-col gap-4">
-					{(
-						t("cv:document.experience.items", { returnObjects: true }) as {
-							company: string;
-							location: string;
-							period: string;
-							role: string;
-							tasks: string[];
-						}[]
-					).map((job) => (
+					{WORK_EXPERIENCE.map((job) => (
 						<div className="flex flex-col gap-1" key={job.company}>
 							<Text className="leading-none" size="sm">
 								<strong className="dark:text-textLight text-textDark">
@@ -75,38 +66,38 @@ const Curriculum: NextPage = () => {
 				</div>
 
 				<Heading className="mt-0 xs:mt-12" level={5}>
-					{t("cv:document.contacts.title")}
+					Contacts
 				</Heading>
 				<div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-x-8 gap-y-4">
 					<ContactLink
 						href="mailto:ayoub@aabass.net"
-						label={t("cv:document.contacts.email.title")}
-						value={t("cv:document.contacts.email.value")}
+						label={CV_CONTACTS.email.title}
+						value={CV_CONTACTS.email.value}
 					/>
 					<ContactLink
-						href={`tel:${t("cv:document.contacts.phone.value")}`}
-						label={t("cv:document.contacts.phone.title")}
-						value={t("cv:document.contacts.phone.value")}
+						href={`tel:${CV_CONTACTS.phone.value}`}
+						label={CV_CONTACTS.phone.title}
+						value={CV_CONTACTS.phone.value}
 					/>
 					<ContactLink
-						href={`https://${t("cv:document.contacts.web.value")}`}
-						label={t("cv:document.contacts.web.title")}
-						value={t("cv:document.contacts.web.value")}
+						href={`https://${CV_CONTACTS.web.value}`}
+						label={CV_CONTACTS.web.title}
+						value={CV_CONTACTS.web.value}
 					/>
 					<ContactLink
-						href={`https://${t("cv:document.contacts.github.value")}`}
-						label={t("cv:document.contacts.github.title")}
-						value={t("cv:document.contacts.github.value")}
+						href={`https://${CV_CONTACTS.github.value}`}
+						label={CV_CONTACTS.github.title}
+						value={CV_CONTACTS.github.value}
 					/>
 					<ContactLink
-						href={`https://${t("cv:document.contacts.dribbble.value")}`}
-						label={t("cv:document.contacts.dribbble.title")}
-						value={t("cv:document.contacts.dribbble.value")}
+						href={`https://${CV_CONTACTS.dribbble.value}`}
+						label={CV_CONTACTS.dribbble.title}
+						value={CV_CONTACTS.dribbble.value}
 					/>
 					<ContactLink
-						href={`https://${t("cv:document.contacts.instagram.value")}`}
-						label={t("cv:document.contacts.instagram.title")}
-						value={t("cv:document.contacts.instagram.value")}
+						href={`https://${CV_CONTACTS.instagram.value}`}
+						label={CV_CONTACTS.instagram.title}
+						value={CV_CONTACTS.instagram.value}
 					/>
 				</div>
 			</div>
@@ -115,15 +106,5 @@ const Curriculum: NextPage = () => {
 		</>
 	);
 };
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-	props: {
-		...(await serverSideTranslations(locale as string, [
-			"common",
-			"cv",
-			"changelog",
-		])),
-	},
-});
 
 export default Curriculum;

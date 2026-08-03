@@ -1,37 +1,35 @@
-import { GetStaticProps, NextPage } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextPage } from "next";
 
-import { Footer, Heading, Navbar, Seo, Text, Trans } from "../../components";
+import { Footer, Heading, Navbar, Seo, Text } from "../../components";
 
 const Coffee: NextPage<{}> = () => {
-	const { t } = useTranslation("personal");
-
 	const placeholderCard = (
 		<div className="container max-w-3xl px-6 mx-auto mb-section-3">
 			<div className="flex flex-col items-center justify-center py-10 border rounded-lg md:py-20 hover-gradient hover-gradient-xl bg-bgRaised border-white/5">
 				<Heading className="mb-2" level={3}>
-					{t("personal:placeholder.title")}
+					Housekeeping in progress
 				</Heading>
-				<Text as="div">
-					<Trans i18nKey="personal:placeholder.title" />
-				</Text>
+				<Text as="div">I&apos;m still working on this section. Check back later!</Text>
 			</div>
 		</div>
 	);
 
 	return (
 		<>
-			<Seo title={t("personal:pageTitle")} />
+			<Seo title="Personal Corner" />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto mb-heading-1">
 				<Heading className="mb-4 leading-snug md:leading-snug" level={1}>
-					{t("personal:title")}
+					Personal Corner
 				</Heading>
 				<Text as="div" className="mb-6">
-					<Trans i18nKey="personal:body" />
+					Well, if you&apos;re here it seems you actually are interested into
+					getting a fuller picture of who I am and what I care about. Hope this
+					page helps you with that! I&apos;ll try and keep it updated with toys
+					and experiments related to the various interests I&apos;ll post about
+					here.
 				</Text>
 			</header>
 
@@ -39,11 +37,16 @@ const Coffee: NextPage<{}> = () => {
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("personal:art.title")}
+						Artsy Stuff
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="personal:art.description" />
+						Ever since elementary school I made sure to upset my teachers by
+						being more interested in doodling on my notebooks than paying
+						attention to the class. I&apos;ve been trying to get back into
+						drawing and painting, and I&apos;ve also started snapping some
+						photos here and there. Have a look at them and lemme know what you
+						think!
 					</Text>
 				</header>
 
@@ -54,11 +57,16 @@ const Coffee: NextPage<{}> = () => {
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("personal:coffee.title")}
+						Coffee
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="personal:coffee.description" />
+						As a dev I&apos;ve taken revenge against all the gripes I have with
+						Java by drinking copious amounts of coffee. I&apos;ve been a coffee
+						enthusiast for a while now and I&apos;ve been trying to learn more
+						about it. I&apos;ve been experimenting with different brewing
+						methods and beans, and I&apos;ll try documenting some of my journey
+						here.
 					</Text>
 				</header>
 
@@ -69,11 +77,16 @@ const Coffee: NextPage<{}> = () => {
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("personal:gaming.title")}
+						Gaming
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="personal:gaming.description" />
+						My uncle once brought us a NES from Paris with super mario on it. I
+						was 3, I didn&apos;t know how to play that stuff. Afterwards my dad
+						brought me a PS2 when I was 6, and I&apos;ve been gaming ever
+						since. Adulting got in the way once I hit 16 but I am trying to get
+						back into it. This corner will be about my experiences gaming and
+						serve as an excuse for me to spend more time doing it.
 					</Text>
 				</header>
 
@@ -84,11 +97,15 @@ const Coffee: NextPage<{}> = () => {
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("personal:longboard.title")}
+						Longboarding
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="personal:longboard.description" />
+						I took up longboarding in 2015 but really dove into it during the
+						pandeminc. You could see me wrecking my shins ever since. I&apos;ve
+						had a bunch of different ideas within the space ever since and
+						I&apos;m trying to document them here. I&apos;ll also be posting
+						about my experiences with longboarding and the community around it.
 					</Text>
 				</header>
 
@@ -99,11 +116,15 @@ const Coffee: NextPage<{}> = () => {
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("personal:music.title")}
+						Music
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="personal:music.description" />
+						I never claimed to be into music since many people stake a lot of
+						emotions on that claim and I definitely don&apos;t wanna upset the
+						music loving crowd. That being said I definitely use it to keep my
+						thoughts at bay quite a lot during my days and I wanna drop some
+						honorable mentions here since it&apos;s a big part of my life.
 					</Text>
 				</header>
 
@@ -114,11 +135,14 @@ const Coffee: NextPage<{}> = () => {
 			<section className="overflow-hidden mb-section-2">
 				<header className="container max-w-2xl px-6 mx-auto mb-heading-2">
 					<Heading className="mb-heading-3" id="beans" level={2}>
-						{t("personal:travel.title")}
+						Travel
 					</Heading>
 
 					<Text as="div" className="mb-6">
-						<Trans i18nKey="personal:travel.description" />
+						I&apos;ve been lucky enough to have traveled quite a bit in my
+						life. Not nearly as much as I&apos;d like to but it serves as an
+						excellent tying thread for my other experiences so let&apos;s drop
+						it here for sure!
 					</Text>
 				</header>
 
@@ -128,21 +152,6 @@ const Coffee: NextPage<{}> = () => {
 			<Footer />
 		</>
 	);
-};
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const i18nSetup = await serverSideTranslations(locale as string, [
-		"common",
-		"personal",
-		"changelog",
-	]);
-
-	return {
-		props: {
-			...i18nSetup,
-		},
-		revalidate: 4 * 60 * 60,
-	};
 };
 
 export default Coffee;

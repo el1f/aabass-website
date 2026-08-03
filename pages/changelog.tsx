@@ -1,7 +1,4 @@
-import { GetStaticProps } from "next";
 import Image from "next/legacy/image";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useState } from "react";
 
 import {
@@ -35,35 +32,34 @@ const CHANGELOG_EASTER_EGGS: Record<
 };
 
 const Changelog = () => {
-	const { t } = useTranslation(["common", "changelog"]);
 	const [activeEasterEgg, setActiveEasterEgg] = useState<string | undefined>();
 	const selectedEasterEgg = CHANGELOG_EASTER_EGGS[activeEasterEgg ?? ""];
 
 	return (
 		<>
-			<Seo title={t("changelog.pageTitle")} />
+			<Seo title="What's new" />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-8 mx-auto">
-				<Text size="md">{t("changelog.lead")}</Text>
+				<Text size="md">What have I been working on</Text>
 				<Heading className="mb-4" level={1}>
-					{t("changelog.title")}
+					Changelog
 				</Heading>
 			</header>
 
 			<section className="container max-w-2xl px-6 mx-auto mb-48">
-				{CHANGELOG.map(({ date, features, version }) => (
+				{CHANGELOG.map(({ date, description, features, summary, version }) => (
 					<article className="my-16" key={version}>
 						<div className="flex items-end mb-2">
 							<Heading id={version.replaceAll(".", "_")} level={2}>
-								{t(`changelog:${version}.summary`)}
+								{summary}
 							</Heading>
 							<CodeChip className="-translate-y-[1px] ml-2 px-2">
 								v{version}
 							</CodeChip>
 						</div>
-						<Text>{t(`changelog:${version}.description`)}</Text>
+						<Text>{description}</Text>
 						<div className="flex flex-col gap-4 py-8">
 							{features.map((feature, i) => {
 								const featureIndex = `${version}_${i}`;
@@ -88,7 +84,7 @@ const Changelog = () => {
 											</CodeChip>
 											<div className="flex flex-col">
 												<Text size="sm">
-													{t(`changelog:${version}.features.${i}`)}
+													{feature.title}
 													{feature.ideaId && (
 														<span className="mx-2">
 															<Anchor href={`/ideas#${feature.ideaId}`}>
@@ -124,14 +120,5 @@ const Changelog = () => {
 		</>
 	);
 };
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-	props: {
-		...(await serverSideTranslations(locale as string, [
-			"common",
-			"changelog",
-		])),
-	},
-});
 
 export default Changelog;

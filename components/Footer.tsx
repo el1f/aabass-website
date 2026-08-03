@@ -1,7 +1,4 @@
 import { Switch } from "@headlessui/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
 import { useTheme } from "next-themes";
 import React from "react";
 
@@ -9,8 +6,6 @@ import { CHANGELOG } from "../data";
 import { Anchor, ChangelogSummary, Heading, Icon, Logo, Text } from ".";
 
 export const Footer = () => {
-	const router = useRouter();
-	const { i18n, t } = useTranslation("common");
 	const { setTheme, resolvedTheme: theme } = useTheme();
 	const isDark = theme !== "light";
 
@@ -36,41 +31,30 @@ export const Footer = () => {
 									</div>
 								</div>
 								<Text className="mt-auto leading-none text-left" size="xs">
-									{t("footer.changeTheme")}
+									Switch theme
 								</Text>
 							</Switch>
-							<Link
-								className={`aspect-sweet rounded-2xl border border-textDimmedDark/40 w-full max-w-4xs p-3 flex-col flex items-start dark:hover:bg-bgRaisedDark hover:bg-bgRaisedLight hover:border-textDimmedDark/20 transition-all flex-shrink-0`}
-								href={router.route}
-								locale={i18n.language === "it" ? "en" : "it"}
-							>
-								<span className="text-2xl leading-none">
-									{i18n.language === "it" ? "🇮🇹" : "🌎"}
-								</span>
-								<Text className="mt-auto leading-none text-left" size="xs">
-									{t("footer.changeLang")}
-								</Text>
-							</Link>
 						</div>
 					</div>
 
 					<div className="flex gap-12">
 						<div className="flex flex-col items-start gap-2">
-							<Heading level={5}>{t("footer.work.title")}</Heading>
-							<Anchor href="/about">{t("about")}</Anchor>
-							{/* <Anchor href="/cv">{t("curriculum")}</Anchor> */}
-							<Anchor href="/cases">{t("cases")}</Anchor>
+							<Heading level={5}>Work things</Heading>
+							<Anchor href="/about">About me</Anchor>
+							{/* <Anchor href="/cv">Curriculum</Anchor> */}
+							<Anchor href="/cases">Case studies</Anchor>
 						</div>
 						<div className="flex flex-col items-start gap-2">
-							<Heading level={5}>{t("footer.personal.title")}</Heading>
-							<Anchor href="/posters">{t("posters")}</Anchor>
-							<Anchor href="/coffee">{t("coffee")}</Anchor>
-							<Anchor href="/ideas">{t("ideas")}</Anchor>
+							<Heading level={5}>My corner</Heading>
+							<Anchor href="/posters">Posters</Anchor>
+							<Anchor href="/coffee">Coffee</Anchor>
+							<Anchor href="/ideas">Ideas</Anchor>
 						</div>
 					</div>
 
 					<ChangelogSummary
-						versions={CHANGELOG.map(({ version }) => ({
+						versions={CHANGELOG.map(({ summary, version }) => ({
+							summary,
 							version,
 						}))}
 					/>

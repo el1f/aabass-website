@@ -1,8 +1,6 @@
-import { GetStaticProps, NextPage } from "next";
+import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import {
 	Button,
@@ -10,28 +8,32 @@ import {
 	Heading,
 	Navbar,
 	Seo,
+	Strong,
 	Text,
-	Trans,
 } from "../components";
 import * as ga from "../lib/ga";
 
 const NotFound: NextPage = () => {
-	const { t } = useTranslation(["common", "404"]);
 	const router = useRouter();
 
 	return (
 		<>
-			<Seo title={t("404:pageTitle")} />
+			<Seo title="Ayoub not found" />
 
 			<Navbar />
 
 			<header className="container max-w-2xl px-4 pt-32 pb-8 mx-auto">
 				<Heading className="mb-4 leading-snug" level={1}>
-					{t("404:title")}
+					Nothing to be found over here chief!
 				</Heading>
 				{/* TODO: figure out why using a p causes a hydration issue */}
 				<Text as="div" className="mb-6">
-					<Trans i18nKey="404:body" />
+					So, either you&apos;re here too early to actually see the contents of
+					this page or you&apos;ve stranded yourself on a good old{" "}
+					<Strong>404 page</Strong>.
+					<hr className="my-1 opacity-0" />
+					Come over later to check whether it&apos;s done or better yet ask me
+					about it!
 				</Text>
 				<div className="flex gap-4 dark:gap-6">
 					<Link href="mailto:ayoub@aabass.net">
@@ -40,11 +42,11 @@ const NotFound: NextPage = () => {
 								ga.contactPress(router.route);
 							}}
 						>
-							{t("404:cta")}
+							Ask about this page
 						</Button>
 					</Link>
 					<Link href="/about">
-						<Button variant="outline">{t("common:about")}</Button>
+						<Button variant="outline">About me</Button>
 					</Link>
 				</div>
 			</header>
@@ -55,15 +57,5 @@ const NotFound: NextPage = () => {
 		</>
 	);
 };
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-	props: {
-		...(await serverSideTranslations(locale ?? "en", [
-			"common",
-			"404",
-			"changelog",
-		])),
-	},
-});
 
 export default NotFound;

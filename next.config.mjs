@@ -2,10 +2,6 @@ import withVercelToolbar from "@vercel/toolbar/plugins/next";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	i18n: {
-		defaultLocale: "en",
-		locales: ["en", "it"],
-	},
 	images: {
 		domains: ["media.graphassets.com", "i.scdn.co"],
 	},
