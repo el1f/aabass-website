@@ -6,7 +6,7 @@ import { CHANGELOG } from "../data";
 import { Anchor, ChangelogSummary, Heading, Icon, Logo, Text } from ".";
 
 export const Footer = () => {
-	const { setTheme, resolvedTheme: theme } = useTheme();
+	const { resolvedTheme: theme, setTheme } = useTheme();
 	const isDark = theme !== "light";
 
 	return (

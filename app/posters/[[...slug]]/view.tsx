@@ -1,6 +1,7 @@
-import { NextPage } from "next";
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 import {
 	Footer,
@@ -8,21 +9,17 @@ import {
 	Navbar,
 	PosterLightbox,
 	PosterThumbnail,
-	Seo,
 	Text,
-} from "../../components";
-import { POSTERS, STANDARD_POSTERS, VINYL_POSTERS } from "../../data";
-import * as ga from "../../lib/ga";
+} from "../../../components";
+import { POSTERS, STANDARD_POSTERS, VINYL_POSTERS } from "../../../data";
+import * as ga from "../../../lib/ga";
 
-const Posters: NextPage = () => {
+const Posters = ({ activeSlug }: { activeSlug?: string }) => {
 	const router = useRouter();
 
-	const activeSlug = ((router.query.slug ?? []) as string[])[0];
 	const selectedPoster = POSTERS.find((poster) => poster.slug === activeSlug);
 
 	return <>
-        <Seo title="My poster collection" />
-
         <Navbar />
 
         <header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">
@@ -89,7 +86,7 @@ const Posters: NextPage = () => {
         </section>
 
         <PosterLightbox
-            onClose={() => router.push("/posters", undefined, { scroll: false })}
+            onClose={() => router.push("/posters", { scroll: false })}
             open={Boolean(selectedPoster)}
             poster={selectedPoster}
         />
@@ -97,25 +94,5 @@ const Posters: NextPage = () => {
         <Footer />
     </>;
 };
-
-export const getStaticPaths = async () => {
-	return {
-		fallback: false,
-		paths: [
-			{
-				params: {
-					slug: [""],
-				},
-			},
-			...POSTERS.map((poster) => ({
-				params: {
-					slug: [poster.slug],
-				},
-			})),
-		],
-	};
-};
-
-export const getStaticProps = async () => ({ props: {} });
 
 export default Posters;

@@ -1,13 +1,13 @@
 import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
-import { SpotifyNowPlayingPayload } from "../../../types/api/spotify";
-import { getSpotifyAccessToken } from "./now-playing";
+import { getSpotifyAccessToken } from "../../../../lib/spotify";
+import { SpotifyNowPlayingPayload } from "../../../../types/api/spotify";
 
 const TOP_TRACKS_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks";
 const TOP_ARTISTS_ENDPOINT = "https://api.spotify.com/v1/me/top/artists";
 
-export default async function handler(_: NextApiRequest, res: NextApiResponse) {
+export const GET = async () => {
 	const { access_token } = await getSpotifyAccessToken(
 		process.env.SPOTIFY_CLIENT_ID ?? "",
 		process.env.SPOTIFY_CLIENT_SECRET ?? "",
@@ -36,25 +36,26 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 	]);
 
 	if (topTracksRes.status > 400) {
-		res.status(topTracksRes.status).json({
-			error: topTracksRes.data,
-			message: "Unable to fetch top tracks.",
-		});
-		return;
+		return NextResponse.json(
+			{
+				error: topTracksRes.data,
+				message: "Unable to fetch top tracks.",
+			},
+			{ status: topTracksRes.status },
+		);
 	}
 	if (topArtistsRes.status > 400) {
-		res.status(topArtistsRes.status).json({
-			error: topArtistsRes.data,
-			message: "Unable to fetch top artists.",
-		});
-		return;
+		return NextResponse.json(
+			{
+				error: topArtistsRes.data,
+				message: "Unable to fetch top artists.",
+			},
+			{ status: topArtistsRes.status },
+		);
 	}
 
-	const topTracks = topTracksRes.data;
-	const topArtists = topArtistsRes.data;
-
-	return res.status(200).json({
-		artists: topArtists.items,
-		tracks: topTracks.items,
+	return NextResponse.json({
+		artists: topArtistsRes.data.items,
+		tracks: topTracksRes.data.items,
 	});
-}
+};

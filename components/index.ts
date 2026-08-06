@@ -12,6 +12,5 @@ export * from "./Text";
 export * from "./ChangelogSummary";
 export * from "./CodeChip";
 export * from "./DynamicLogo";
-export * from "./Seo";
 export * from "./PosterLightbox";
 export * from "./AvailabilityLabel";

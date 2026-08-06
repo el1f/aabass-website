@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSessionStorage } from "@uidotdev/usehooks";
 import axios from "axios";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo } from "react";
-import { useSessionStorage } from "@uidotdev/usehooks";
 
 import { cn } from "../../lib/cn";
 import {
@@ -103,7 +103,7 @@ export const SpotifyWidget: React.FC = () => {
 						}}
 					></motion.figure>
 					<Text className="mb-2">
-						My streaming is idle right now and I'm probably listening to my
+						My streaming is idle right now and I&apos;m probably listening to my
 						thoughts.
 					</Text>
 				</>
@@ -163,7 +163,7 @@ export const SpotifyWidget: React.FC = () => {
 						{currentlyPlayingSong.item.name}
 					</Link>
 				</Text>
-				<Text size="sm" className="break-all line-clamp-1">
+				<Text className="break-all line-clamp-1" size="sm">
 					<Link
 						className="hover:underline underline-offset-2"
 						href={currentlyPlayingSong.item.album.external_urls.spotify}

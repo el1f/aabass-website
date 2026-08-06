@@ -1,15 +1,15 @@
-import { NextPage } from "next";
+"use client";
 
-import { Footer, Heading, Navbar, Seo, Text } from "../../components";
-
-import { cn } from "../../lib/cn";
 import { motion } from "framer-motion";
+
+import { Footer, Heading, Navbar, Text } from "../../components";
+import { cn } from "../../lib/cn";
 
 const FolderBackSheet = () => (
 	<motion.div
 		style={{
-			transformOrigin: "0 100%",
 			rotateX: 10,
+			transformOrigin: "0 100%",
 		}}
 	>
 		<div
@@ -25,13 +25,13 @@ const FolderFrontSheet = () => (
 	<motion.div
 		className="absolute bottom-0 w-full"
 		style={{
-			transformOrigin: "0 100%",
 			rotateX: -30,
+			transformOrigin: "0 100%",
 		}}
 	>
 		<svg
-			viewBox="0 0 24 24"
 			className="absolute z-0 -top-6 fill-alloyZinc-700 right-4 -rotate-[30deg] size-20"
+			viewBox="0 0 24 24"
 		>
 			<path d="M13.886 3.872a1 1 0 0 0-1.428-1.4l-8.412 8.582a7 7 0 0 0 9.889 9.911l.009-.009.006-.006.02-.021 7.745-7.93a1 1 0 1 0-1.43-1.398l-7.76 7.946a5 5 0 0 1-7.06-7.083z" />
 		</svg>
@@ -46,13 +46,13 @@ const FolderFrontSheet = () => (
 		</div>
 
 		<svg
-			viewBox="0 0 24 24"
 			className="absolute z-30 stroke-2 -top-6 right-4 -rotate-[30deg] size-20 stroke-alloyZinc-700 fill-none"
+			viewBox="0 0 24 24"
 		>
 			<path
+				d="m16 6-8.414 8.586a2 2 0 0 0 2.828 2.828l8.414-8.586a4 4 0 0 0-5.656-5.656L12 4.344"
 				strokeLinecap="round"
 				strokeLinejoin="round"
-				d="m16 6-8.414 8.586a2 2 0 0 0 2.828 2.828l8.414-8.586a4 4 0 0 0-5.656-5.656L12 4.344"
 			/>
 		</svg>
 	</motion.div>
@@ -60,13 +60,13 @@ const FolderFrontSheet = () => (
 
 const FolderDocument = () => (
 	<motion.div
+		className="absolute h-[90%] bg-alloyZinc-100 rounded-xs bottom-5 right-0 aspect-poster shadow-xl grid-cols-5 grid-rows-8 grid p-2 gap-1 border border-alloyZinc-200/50"
+		id="document"
 		style={{
-			rotateY: -20,
 			rotateX: 30,
+			rotateY: -20,
 			rotateZ: 20,
 		}}
-		id="document"
-		className="absolute h-[90%] bg-alloyZinc-100 rounded-xs bottom-5 right-0 aspect-poster shadow-xl grid-cols-5 grid-rows-8 grid p-2 gap-1 border border-alloyZinc-200/50"
 	>
 		<div className="w-full h-full col-span-2 row-span-2 rounded bg-alloyZinc-200"></div>
 		<div className="flex flex-col w-full h-full col-span-3 gap-1 rounded">
@@ -88,8 +88,8 @@ const FolderDocument = () => (
 
 const FolderPalette = () => (
 	<motion.div
-		id="palette"
 		className="absolute h-[90%] aspect-[2/7] bg-alloyZinc-50 border-alloyZinc-200 border rounded-sm bottom-14 left-1/2 flex flex-col p-1 gap-1 shadow-xl"
+		id="palette"
 		style={{
 			rotateZ: 5,
 		}}
@@ -103,8 +103,8 @@ const FolderPalette = () => (
 
 const FolderSite = () => (
 	<motion.div
-		id="site"
 		className="absolute flex w-2/3 gap-0.5 bg-alloyZinc-800 border border-alloyZinc-900/25 aspect-sweet rounded-sm bottom-6 -left-3"
+		id="site"
 		style={{
 			rotateX: 0,
 			rotateZ: -10,
@@ -132,8 +132,8 @@ const Folder = () => (
 	<motion.figure
 		className="relative w-full mb-8 select-none max-w-80 sm:w-1/2 md:w-2/5 isolate"
 		style={{
-			perspectiveOrigin: "0% -0%",
 			perspective: 900,
+			perspectiveOrigin: "0% -0%",
 			transformStyle: "preserve-3d",
 		}}
 	>
@@ -147,11 +147,9 @@ const Folder = () => (
 	</motion.figure>
 );
 
-const CaseStudies: NextPage = () => {
+const CaseStudies = () => {
 	return (
 		<>
-			<Seo title="Ayoub's previous works" />
-
 			<Navbar />
 
 			<header className="container max-w-2xl px-6 pt-32 pb-16 mx-auto">

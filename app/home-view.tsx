@@ -1,5 +1,7 @@
+"use client";
+
+import dayjs from "dayjs";
 import { motion } from "framer-motion";
-import type { NextPage } from "next";
 import Link from "next/link";
 
 import {
@@ -10,23 +12,18 @@ import {
 	Heading,
 	Navbar,
 	PosterThumbnail,
-	Seo,
 	Strong,
 	Text,
 } from "../components";
 import { STANDARD_POSTERS } from "../data";
 
-import dayjs from "dayjs";
-
 const WORK_START = new Date("2014-05-12T12:00:00.007Z");
 
-const Home: NextPage = () => {
+const Home = () => {
 	const careerYears = dayjs(new Date()).diff(WORK_START, "years");
 
 	return (
 		<>
-			<Seo title="Hello, I'm Ayoub" />
-
 			<Navbar />
 
 			<section className="container max-w-2xl px-6 py-32 mx-auto md:mb-32">
