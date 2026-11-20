@@ -2,6 +2,7 @@
 	"name": "aabass-website",
 	"version": "1.3.0",
 	"private": true,
+	"packageManager": "pnpm@12.21.0",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
