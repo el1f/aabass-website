@@ -54,7 +54,7 @@ const Changelog = () => {
 							<Heading id={version.replaceAll(".", "_")} level={2}>
 								{summary}
 							</Heading>
-							<CodeChip className="-translate-y-[1px] ml-2 px-2">
+							<CodeChip className="-translate-y-px ml-2 px-2">
 								v{version}
 							</CodeChip>
 						</div>
@@ -78,7 +78,7 @@ const Changelog = () => {
 											key={featureIndex}
 											onClick={() => setActiveEasterEgg(featureIndex)}
 										>
-											<CodeChip className="flex-shrink-0 w-16 text-sm tracking-wide text-center">
+											<CodeChip className="shrink-0 w-16 text-sm tracking-wide text-center">
 												{feature.type.toUpperCase()}
 											</CodeChip>
 											<div className="flex flex-col">

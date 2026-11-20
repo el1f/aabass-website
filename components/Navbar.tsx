@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 				<nav
 					className={twMerge(
 						classNames(
-							"flex items-center justify-between h-20 w-full max-w-2xl pl-[1.125rem] pr-4 mx-auto rounded-3xl",
+							"flex items-center justify-between h-20 w-full max-w-2xl pl-4.5 pr-4 mx-auto rounded-3xl",
 							{
 								"backdrop-blur-md -top-40 relative w-[calc(100%-32px)] md:full border dark:border-textLight/10 border-textDark/10 shadow-xl transition-transform bg-bgRaisedLight/40 dark:bg-bgRaisedDark/50":
 									scroll.y > SCROLL_THRESHOLD / 2,
@@ -82,17 +82,19 @@ export const Navbar: React.FC<NavbarProps> = () => {
 						<motion.div className="flex items-center justify-center">
 							<Popover>
 								<div className="relative">
-									<PopoverTrigger className="relative" asChild>
-										<SocialLink
-											className="inline-block w-8 h-8"
-											platform="spotify"
-										/>
-									</PopoverTrigger>
+									<PopoverTrigger
+										render={
+											<SocialLink
+												className="inline-block w-8 h-8"
+												platform="spotify"
+											/>
+										}
+									/>
 									{currentlyPlayingSong && (
 										<span className="absolute w-1.5 h-1.5 rounded-full bottom-1 right-1 animate-pulse bg-primary-400" />
 									)}
 								</div>
-								<PopoverContent asChild>
+								<PopoverContent className="w-auto bg-transparent p-0 shadow-none">
 									<SpotifyWidget />
 								</PopoverContent>
 							</Popover>

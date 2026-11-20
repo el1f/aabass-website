@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import {
 	Button,
+	FoldedSheet,
 	Footer,
 	Heading,
 	Logo,
@@ -96,7 +97,7 @@ const Portrait = () => {
 
 	return (
 		<figure
-			className="relative flex-shrink-0 w-full overflow-hidden bg-textDimmed"
+			className="relative shrink-0 w-full overflow-hidden bg-textDimmed"
 			ref={ref}
 			style={{
 				perspective: 1000,
@@ -109,7 +110,7 @@ const Portrait = () => {
 						duration: 4,
 					},
 				}}
-				className="absolute bottom-0 left-0 z-10 scale-125 [&>span]:!overflow-visible"
+				className="absolute bottom-0 left-0 z-10 scale-125 [&>span]:overflow-visible!"
 				style={{
 					rotateY: offsetX / 4,
 					translateX: offsetX / 4,
@@ -134,7 +135,7 @@ const Portrait = () => {
 						duration: 4,
 					},
 				}}
-				className="[&>span]:!overflow-visible"
+				className="[&>span]:overflow-visible!"
 				style={{
 					translateX: offsetX,
 					translateY: offsetY,
@@ -174,7 +175,7 @@ const About: NextPage = () => {
 
 				<div className="flex flex-col items-start gap-12">
 					<Portrait />
-					{/* <figure className="relative flex-shrink-0 w-full">
+					{/* <figure className="relative shrink-0 w-full">
 						<Image
 							alt="A picture of myself"
 							className="w-full"
@@ -224,66 +225,78 @@ const About: NextPage = () => {
 					</Heading>
 				</header>
 
-				<div className="container grid max-w-5xl grid-cols-1 px-6 py-10 mx-auto mb-48 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-8 sm:grid-cols-cv print:grid-cols-cv print:pt-16 bg-bgRaised">
+				<FoldedSheet
+					className="container max-w-5xl mx-auto mb-48"
+					cover={
+						<div className="flex flex-col items-start justify-end h-full gap-3 p-8">
+							<div className="opacity-50">
+								<Logo height={20} isDark={resolvedTheme === "dark"} />
+							</div>
+							<Text className="tracking-widest uppercase opacity-60" size="xs">
+								Ayoub Aabass · Curriculum Vitae
+							</Text>
+						</div>
+					}
+					sheetClassName="grid grid-cols-1 px-6 py-10 gap-x-10 md:gap-x-32 sm:gap-y-16 gap-y-8 sm:grid-cols-cv print:grid-cols-cv print:pt-16"
+					unfoldLabel="Unfold curriculum vitae"
+				>
 					<header className="flex items-start justify-between gap-6 sm:col-span-2">
 						<Logo isDark={resolvedTheme === "dark"} height={80} />
 
 						<div className="grid sm:grid-flow-col grid-cols-1 sm:grid-cols-2 grid-rows-3 gap-x-6 gap-y-0.5">
 							<Button
-								asChild
 								className="justify-start w-full h-6 text-left"
+								render={<Link href="https://ayoub.aabass.net" />}
 								size="sm"
 								startIcon="globe"
 								variant="ghost"
 							>
-								<Link href="https://ayoub.aabass.net">ayoub.aabass.net</Link>
+								ayoub.aabass.net
 							</Button>
 							<Button
-								asChild
 								className="justify-start w-full h-6 text-left"
+								render={<Link href="mailto:ayoub@aabass.net" />}
 								size="sm"
 								startIcon="email"
 								variant="ghost"
 							>
-								<Link href="mailto:ayoub@aabass.net">ayoub@aabass.net</Link>
+								ayoub@aabass.net
 							</Button>
 							<Button
-								asChild
 								className="justify-start w-full h-6 text-left"
+								render={<Link href="https://ayoub.aabass.net" />}
 								size="sm"
 								startIcon="github"
 								variant="ghost"
 							>
-								<Link href="https://ayoub.aabass.net">@el1f</Link>
+								@el1f
 							</Button>
 							<Button
-								asChild
 								className="justify-start w-full h-6 text-left"
+								render={<Link href="https://dribbble.com/el1flem" />}
 								size="sm"
 								startIcon="dribbble"
 								variant="ghost"
 							>
-								<Link href="https://dribbble.com/el1flem">@el1flem</Link>
+								@el1flem
 							</Button>
 							<Button
-								asChild
 								className="justify-start w-full h-6 text-left"
+								render={<Link href="https://www.instagram.com/eliflem_design/" />}
 								size="sm"
 								startIcon="instagram"
 								variant="ghost"
 							>
-								<Link href="https://www.instagram.com/eliflem_design/">
-									@eliflem_design
-								</Link>
+								@eliflem_design
 							</Button>
 							<Button
-								asChild
 								className="justify-start w-full h-6 text-left"
+								render={<Link href="https://www.linkedin.com/in/el1flem" />}
 								size="sm"
 								startIcon="linkedin"
 								variant="ghost"
 							>
-								<Link href="https://www.linkedin.com/in/el1flem">@el1flem</Link>
+								@el1flem
 							</Button>
 						</div>
 					</header>
@@ -328,7 +341,7 @@ const About: NextPage = () => {
 							</div>
 						))}
 					</div>
-				</div>
+				</FoldedSheet>
 			</section>
 
 			<Footer />

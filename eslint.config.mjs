@@ -8,6 +8,33 @@ import sortKeysFix from "eslint-plugin-sort-keys-fix";
 import typescriptSortKeys from "eslint-plugin-typescript-sort-keys";
 import unusedImports from "eslint-plugin-unused-imports";
 
+// eslint-plugin-typescript-sort-keys still calls the ESLint 9 context method.
+function withLegacySourceCode(plugin) {
+	return {
+		...plugin,
+		rules: Object.fromEntries(
+			Object.entries(plugin.rules).map(([name, rule]) => [
+				name,
+				{
+					...rule,
+					create(context) {
+						const legacyContext = new Proxy(context, {
+							get(target, prop, receiver) {
+								if (prop === "getSourceCode") {
+									return () => target.sourceCode;
+								}
+								const value = Reflect.get(target, prop, receiver);
+								return typeof value === "function" ? value.bind(target) : value;
+							},
+						});
+						return rule.create(legacyContext);
+					},
+				},
+			]),
+		),
+	};
+}
+
 export default defineConfig([
 	...nextCoreWebVitals,
 	{
@@ -17,7 +44,7 @@ export default defineConfig([
 			"simple-import-sort": simpleImportSort,
 			"sort-destructure-keys": sortDestructureKeys,
 			"sort-keys-fix": sortKeysFix,
-			"typescript-sort-keys": typescriptSortKeys,
+			"typescript-sort-keys": withLegacySourceCode(typescriptSortKeys),
 			"unused-imports": unusedImports,
 		},
 		rules: {

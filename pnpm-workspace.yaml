@@ -2,5 +2,26 @@ overrides:
   '@types/react': 19.3.0
   '@types/react-dom': 19.3.0
 
+peerDependencyRules:
+  allowedVersions:
+    '@typescript-eslint/eslint-plugin>typescript': '7'
+    '@typescript-eslint/experimental-utils>eslint': '10'
+    '@typescript-eslint/parser>typescript': '7'
+    '@typescript-eslint/project-service>typescript': '7'
+    '@typescript-eslint/tsconfig-utils>typescript': '7'
+    '@typescript-eslint/type-utils>typescript': '7'
+    '@typescript-eslint/typescript-estree>typescript': '7'
+    '@typescript-eslint/utils>eslint': '10'
+    '@typescript-eslint/utils>typescript': '7'
+    eslint-plugin-import>eslint: '10'
+    eslint-plugin-jsx-a11y>eslint: '10'
+    eslint-plugin-react>eslint: '10'
+    eslint-plugin-typescript-sort-keys>eslint: '10'
+    eslint-plugin-typescript-sort-keys>typescript: '7'
+    typescript-eslint>typescript: '7'
+
 onlyBuiltDependencies:
   - sharp
+
+minimumReleaseAgeExclude:
+  - tailwind-merge@3.7.1

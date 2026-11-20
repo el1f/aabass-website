@@ -9,6 +9,7 @@ export const AvailabilityLabel: React.FC<PropsWithChildren> = ({
 		"fairly limited": "before:bg-yellow-500",
 		"non-existent": "before:bg-red-500",
 		plentiful: "before:bg-green-500",
+		"quite free": "before:bg-green-500",
 	}[children as string];
 
 	return (

@@ -23,12 +23,13 @@ const nextConfig = {
 							svgoConfig: {
 								plugins: [
 									{
-										active: false,
-										name: "cleanupIDs",
-									},
-									{
-										active: false,
-										name: "collapseGroups",
+										name: "preset-default",
+										params: {
+											overrides: {
+												cleanupIds: false,
+												collapseGroups: false,
+											},
+										},
 									},
 								],
 							},

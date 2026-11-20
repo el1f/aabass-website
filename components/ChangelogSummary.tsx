@@ -17,7 +17,7 @@ export const ChangelogSummary: React.FC<ChangelogSummaryProps> = ({
         <div className="absolute flex flex-col items-start h-32 gap-3 -bottom-1 justify-items-start left-full">
 			{versions.map(({ summary, version }, i) => (
 				(<Link
-                    className="flex items-center gap-2 p-2 transition-all opacity-50 cursor-pointer group hover:bg-gradient-to-r dark:from-bgBaseDark from-bgBaseLight to-bgBaseLight dark:to-bgBaseDark dark:hover:from-bgRaisedDark hover:from-bgRaisedLight rounded-2xl border-textDark/5 dark:border-textLight/5 hover:opacity-100"
+                    className="flex items-center gap-2 p-2 transition-all opacity-50 cursor-pointer group hover:bg-linear-to-r dark:from-bgBaseDark from-bgBaseLight to-bgBaseLight dark:to-bgBaseDark dark:hover:from-bgRaisedDark hover:from-bgRaisedLight rounded-2xl border-textDark/5 dark:border-textLight/5 hover:opacity-100"
                     href={`/changelog${
 						i === 0 ? "" : `#${version.replaceAll(".", "_")}`
 					}`}
@@ -25,7 +25,7 @@ export const ChangelogSummary: React.FC<ChangelogSummaryProps> = ({
                     key={version}>
 
                     <div
-                        className="relative flex-shrink-0 w-6 h-6 border-2 rounded-full border-textDimmedDark  group-first:bg-textDimmedDark dark:border-textDimmedLight after:absolute after:w-[2px] after:h-6 group-last:after:h-32 after:left-1/2 after:translate-x-[-1px] after:top-6 after:bg-textDimmedDark dark:after:bg-textDimmedLight after:rounded-full
+                        className="relative shrink-0 w-6 h-6 border-2 rounded-full border-textDimmedDark  group-first:bg-textDimmedDark dark:border-textDimmedLight after:absolute after:w-[2px] after:h-6 group-last:after:h-32 after:left-1/2 after:-translate-x-px after:top-6 after:bg-textDimmedDark dark:after:bg-textDimmedLight after:rounded-full
                         dark:group-first:bg-textDimmedLight
                     "
                     />

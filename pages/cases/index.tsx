@@ -17,7 +17,7 @@ const FolderBackSheet = () => (
 				"w-2/5 h-8 rounded-t-md bg-primary-500 border border-b-0 -bottom-px dark:border-primary-700 border-primary-600 z-10 relative",
 			)}
 		/>
-		<div className="w-full from-primary-500 via-primary-500 to-primary-600 bg-gradient-to-br rounded-b-lg rounded-tr-lg aspect-[16/10] dark:border-primary-700 border-primary-600 border" />
+		<div className="w-full from-primary-500 via-primary-500 to-primary-600 bg-linear-to-br rounded-b-lg rounded-tr-lg aspect-16/10 dark:border-primary-700 border-primary-600 border" />
 	</motion.div>
 );
 
@@ -31,23 +31,23 @@ const FolderFrontSheet = () => (
 	>
 		<svg
 			viewBox="0 0 24 24"
-			className="absolute z-0 -top-6 fill-alloyZinc-700 right-4 -rotate-[30deg] size-20"
+			className="absolute z-0 -top-6 fill-alloyZinc-700 right-4 rotate-[-30deg] size-20"
 		>
 			<path d="M13.886 3.872a1 1 0 0 0-1.428-1.4l-8.412 8.582a7 7 0 0 0 9.889 9.911l.009-.009.006-.006.02-.021 7.745-7.93a1 1 0 1 0-1.43-1.398l-7.76 7.946a5 5 0 0 1-7.06-7.083z" />
 		</svg>
 
 		<motion.div className="z-20 w-full border-t-2 rounded-t-lg rounded-b-lg shadow-2xl border-white/60 bg-white/50 aspect-video backdrop-blur-md">
-			<div className="absolute h-1 rounded-full shadow bg-white/50 bottom-8 right-3 left-3 shadow-black/5" />
-			<div className="absolute h-1 rounded-full shadow bg-white/50 bottom-5 right-3 left-3 shadow-black/5" />
+			<div className="absolute h-1 rounded-full shadow-sm bg-white/50 bottom-8 right-3 left-3 shadow-black/5" />
+			<div className="absolute h-1 rounded-full shadow-sm bg-white/50 bottom-5 right-3 left-3 shadow-black/5" />
 		</motion.div>
 
-		<div className="absolute top-0 flex items-end justify-start w-1/3 p-3 bg-yellow-400 border-t border-l border-yellow-500 shadow-sm rounded-xs right-4 rotate-6 aspect-square">
+		<div className="absolute top-0 flex items-end justify-start w-1/3 p-3 bg-yellow-400 border-t border-l border-yellow-500 shadow-xs rounded-xs right-4 rotate-6 aspect-square">
 			<Text className="text-black dark:text-black/50">Sort me</Text>
 		</div>
 
 		<svg
 			viewBox="0 0 24 24"
-			className="absolute z-30 stroke-2 -top-6 right-4 -rotate-[30deg] size-20 stroke-alloyZinc-700 fill-none"
+			className="absolute z-30 stroke-2 -top-6 right-4 rotate-[-30deg] size-20 stroke-alloyZinc-700 fill-none"
 		>
 			<path
 				strokeLinecap="round"
@@ -89,7 +89,7 @@ const FolderDocument = () => (
 const FolderPalette = () => (
 	<motion.div
 		id="palette"
-		className="absolute h-[90%] aspect-[2/7] bg-alloyZinc-50 border-alloyZinc-200 border rounded-sm bottom-14 left-1/2 flex flex-col p-1 gap-1 shadow-xl"
+		className="absolute h-[90%] aspect-2/7 bg-alloyZinc-50 border-alloyZinc-200 border rounded-sm bottom-14 left-1/2 flex flex-col p-1 gap-1 shadow-xl"
 		style={{
 			rotateZ: 5,
 		}}

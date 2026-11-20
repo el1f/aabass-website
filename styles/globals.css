@@ -1,17 +1,125 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --animate-spin-slow: spin 4s linear infinite;
+
+  --aspect-poster: 297/420;
+  --aspect-sweet: 4/3;
+
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+  --radius-xl: 1.25rem;
+  --radius-xs: 0.25rem;
+
+  --color-alloyZinc-50: #fafaf9;
+  --color-alloyZinc-100: #f4f4f5;
+  --color-alloyZinc-200: #e7e5e4;
+  --color-alloyZinc-300: #d4d4d8;
+  --color-alloyZinc-400: #a1a1aa;
+  --color-alloyZinc-500: #71717a;
+  --color-alloyZinc-600: #52525b;
+  --color-alloyZinc-700: #3f3f46;
+  --color-alloyZinc-800: #27272a;
+  --color-alloyZinc-900: #18181b;
+  --color-alloyZinc-950: #09090b;
+
+  --color-bg: var(--bg);
+  --color-bgBaseDark: #18181b;
+  --color-bgBaseLight: #e7e5e4;
+  --color-bgRaised: var(--bgRaised);
+  --color-bgRaisedDark: #27272a;
+  --color-bgRaisedLight: #fafaf9;
+
+  --color-primary-50: #a8e635;
+  --color-primary-100: #f6fee7;
+  --color-primary-200: #ebfccb;
+  --color-primary-300: #d9f99d;
+  --color-primary-400: #c1f264;
+  --color-primary-500: #8dcc16;
+  --color-primary-600: #6fa30d;
+  --color-primary-700: #567c0f;
+  --color-primary-800: #466212;
+  --color-primary-900: #3d5314;
+  --color-primary-950: #202e05;
+
+  --color-primaryShade: #d9f99d;
+  --color-text: var(--text);
+  --color-textDark: #18181b;
+  --color-textDimmed: var(--textDimmed);
+  --color-textDimmedDark: #52525b;
+  --color-textDimmedLight: #cbd5e1;
+  --color-textLight: #f8fafc;
+
+  --grid-template-columns-cv: minmax(64px, 192px) 2fr;
+  --grid-template-columns-systemSection: 192px 1fr;
+  --grid-template-columns-thought: minmax(8rem, 20rem) 42rem minmax(8rem, 20rem);
+
+  --margin-heading-1: 6rem;
+  --margin-heading-2: 3rem;
+  --margin-heading-3: 1rem;
+  --margin-section-1: 16rem;
+  --margin-section-2: 8rem;
+  --margin-section-3: 4rem;
+
+  --container-2xs: 16rem;
+  --container-3xs: 12rem;
+  --container-4xs: 8rem;
+  --container-5xs: 4rem;
+
+  --shadow-paper: 0 1px 2px rgb(0 0 0 / 0.06), 0 16px 40px -16px rgb(0 0 0 / 0.22);
+}
+
+@theme inline {
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: var(--font-sofia-pro), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: var(--font-jb-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility pause {
+  animation-play-state: paused;
+}
+
+@utility paper-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0 0 0 -0.17'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
 
 @layer base {
 	:root {
-		--bgBaseDark: theme("colors.alloyZinc.900");
-		--bgBaseLight: theme("colors.alloyZinc.100");
-		--bgRaisedDark: theme("colors.alloyZinc.800");
-		--bgRaisedLight: theme("colors.alloyZinc.50");
-		--textDark: theme("colors.alloyZinc.950");
-		--textLight: theme("colors.alloyZinc.50");
-		--textDimmedDark: theme("colors.alloyZinc.600");
-		--textDimmedLight: theme("colors.alloyZinc.400");
+		--bgBaseDark: var(--color-alloyZinc-900);
+		--bgBaseLight: var(--color-alloyZinc-100);
+		--bgRaisedDark: var(--color-alloyZinc-800);
+		--bgRaisedLight: var(--color-alloyZinc-50);
+		--textDark: var(--color-alloyZinc-950);
+		--textLight: var(--color-alloyZinc-50);
+		--textDimmedDark: var(--color-alloyZinc-600);
+		--textDimmedLight: var(--color-alloyZinc-400);
 	}
 
 	html {
@@ -27,16 +135,6 @@
 		--text: var(--textLight);
 		--textDimmed: var(--textDimmedLight);
 	}
-}
-
-@layer utilities {
-	.pause {
-		animation-play-state: paused;
-	}
-}
-
-[data-radix-popper-content-wrapper] {
-	@apply z-[100];
 }
 
 .logo #firstname,

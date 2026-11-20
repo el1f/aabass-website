@@ -28,7 +28,7 @@ export const PosterThumbnail: React.FC<PosterThumbnailProps> = ({
 
 	return (
 		<div
-			className={`${selectedFormat} relative bg-primaryShade cursor-pointer [&>span]:!block ${className}`}
+			className={`${selectedFormat} relative bg-primaryShade cursor-pointer [&>span]:block! ${className}`}
 			onClick={onClick}
 		>
 			<Image

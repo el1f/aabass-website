@@ -1,12 +1,13 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
-import { type VariantProps, cva } from "class-variance-authority";
+import { mergeProps } from "@base-ui/react/merge-props";
+import { useRender } from "@base-ui/react/use-render";
+import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../lib/cn";
 import { Icon, IconName } from "./Icon";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 gap-2",
+	"inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 gap-2",
 	{
 		defaultVariants: {
 			size: "md",
@@ -34,42 +35,43 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+	extends useRender.ComponentProps<"button">,
 		VariantProps<typeof buttonVariants> {
-	asChild?: boolean;
 	endIcon?: IconName;
 	iconClassName?: string;
 	startIcon?: IconName;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-	(
-		{
-			asChild = false,
-			className,
-			endIcon,
-			iconClassName,
-			size,
-			startIcon,
-			variant,
-			...props
-		},
-		ref,
-	) => {
-		const Comp = asChild ? Slot : "button";
-		return (
-			<Comp
-				className={cn(buttonVariants({ className, size, variant }))}
-				ref={ref}
-				{...props}
-			>
-				{startIcon && <Icon className={iconClassName} name={startIcon} />}
-				<Slottable>{props.children}</Slottable>
-				{endIcon && <Icon className={iconClassName} name={endIcon} />}
-			</Comp>
-		);
-	},
-);
+function Button({
+	children,
+	className,
+	endIcon,
+	iconClassName,
+	render,
+	size,
+	startIcon,
+	variant,
+	...props
+}: ButtonProps) {
+	return useRender({
+		defaultTagName: "button",
+		props: mergeProps<"button">(
+			{
+				children: (
+					<>
+						{startIcon && <Icon className={iconClassName} name={startIcon} />}
+						{children}
+						{endIcon && <Icon className={iconClassName} name={endIcon} />}
+					</>
+				),
+				className: cn(buttonVariants({ className, size, variant })),
+			},
+			props,
+		),
+		render,
+	});
+}
+
 Button.displayName = "Button";
 
 export { Button, buttonVariants };

@@ -61,18 +61,26 @@ export const SpotifyWidget: React.FC = () => {
 
 	const musicLinks = (
 		<div className="flex flex-col gap-2">
-			<Button asChild startIcon="spotify" variant="outline">
-				<Link
-					href="https://open.spotify.com/user/11170893355?si=ebb8a9d89ad947bf"
-					target="_blank"
-				>
-					Profile
-				</Link>
+			<Button
+				render={
+					<Link
+						href="https://open.spotify.com/user/11170893355?si=ebb8a9d89ad947bf"
+						target="_blank"
+					/>
+				}
+				startIcon="spotify"
+				variant="outline"
+			>
+				Profile
 			</Button>
-			<Button asChild startIcon="lastfm" variant="outline">
-				<Link href="https://www.last.fm/user/yami4529" target="_blank">
-					Scrobbles
-				</Link>
+			<Button
+				render={
+					<Link href="https://www.last.fm/user/yami4529" target="_blank" />
+				}
+				startIcon="lastfm"
+				variant="outline"
+			>
+				Scrobbles
 			</Button>
 		</div>
 	);
@@ -113,7 +121,7 @@ export const SpotifyWidget: React.FC = () => {
 
 		const artists = currentlyPlayingSong.item.artists.map((artist) => (
 			<span
-				className="[&:not(:last-child)]:after:content-[','] [&:not(:last-child)]:after:mr-1"
+				className="not-last:after:content-[','] not-last:after:mr-1"
 				key={artist.id}
 			>
 				<Link
@@ -223,7 +231,7 @@ export const SpotifyWidget: React.FC = () => {
 				{topItems.tracks.map((track) => {
 					const trackArtists = track.artists.map((artist) => (
 						<span
-							className="[&:not(:last-child)]:after:content-[','] [&:not(:last-child)]:after:mr-1"
+							className="not-last:after:content-[','] not-last:after:mr-1"
 							key={artist.id}
 						>
 							<Link
@@ -237,8 +245,8 @@ export const SpotifyWidget: React.FC = () => {
 					));
 
 					return (
-						<div className="flex gap-2" key={track.id}>
-							<figure className="h-12 overflow-hidden rounded bg-textDimmed aspect-square">
+						<div className="flex w-full min-w-0 gap-2" key={track.id}>
+							<figure className="h-12 aspect-square shrink-0 overflow-hidden rounded bg-textDimmed">
 								<Image
 									alt=""
 									height={128}
@@ -246,15 +254,15 @@ export const SpotifyWidget: React.FC = () => {
 									width={128}
 								/>
 							</figure>
-							<div className="flex flex-col">
+							<div className="flex min-w-0 flex-1 flex-col">
 								<Link
-									className="hover:underline underline-offset-2"
+									className="block min-w-0 hover:underline underline-offset-2"
 									href={track.external_urls.spotify}
 									target="_blank"
 								>
-									<Text className="line-clamp-1">{track.name}</Text>
+									<Text className="block truncate">{track.name}</Text>
 								</Link>
-								<div className="text-sm line-clamp-1">{trackArtists}</div>
+								<div className="min-w-0 truncate text-sm">{trackArtists}</div>
 							</div>
 						</div>
 					);
@@ -286,7 +294,7 @@ export const SpotifyWidget: React.FC = () => {
 							className="flex items-center gap-2 max-w-[20rem]"
 							key={artist.id}
 						>
-							<figure className="flex-shrink-0 h-12 overflow-hidden rounded-full bg-textDimmed aspect-square">
+							<figure className="shrink-0 h-12 overflow-hidden rounded-full bg-textDimmed aspect-square">
 								<Image
 									alt=""
 									height={128}

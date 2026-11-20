@@ -22,7 +22,7 @@ export const Footer = () => {
 						<div className="flex gap-2 mt-16">
 							<Switch
 								checked={theme === "dark"}
-								className={`group aspect-sweet rounded-2xl border border-textDimmedDark/40 w-full max-w-4xs p-3 flex-col items-start flex hover:bg-bgRaisedLight dark:hover:bg-bgRaisedDark hover:border-textDimmedDark/20 transition-all  flex-shrink-0`}
+								className={`group aspect-sweet rounded-2xl border border-textDimmedDark/40 w-full max-w-4xs p-3 flex-col items-start flex hover:bg-bgRaisedLight dark:hover:bg-bgRaisedDark hover:border-textDimmedDark/20 transition-all  shrink-0`}
 								onChange={() => setTheme(isDark ? "light" : "dark")}
 							>
 								<div className="p-2 -mt-2 -ml-2 w-14 rounded-xl bg-textDimmedDark/40 group-hover:bg-textDimmedDark/20 dark:justify-end">

@@ -1,31 +1,49 @@
 "use client";
 
-import * as PopoverPrimitive from "@radix-ui/react-popover";
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import * as React from "react";
 
 import { cn } from "../lib/cn";
 
-const Popover = PopoverPrimitive.Root;
+function Popover(props: PopoverPrimitive.Root.Props) {
+	return <PopoverPrimitive.Root {...props} />;
+}
 
-const PopoverTrigger = PopoverPrimitive.Trigger;
+function PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {
+	return <PopoverPrimitive.Trigger {...props} />;
+}
 
-const PopoverContent = React.forwardRef<
-	React.ElementRef<typeof PopoverPrimitive.Content>,
-	React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ align = "center", className, sideOffset = 4, ...props }, ref) => (
-	<PopoverPrimitive.Portal>
-		<PopoverPrimitive.Content
-			align={align}
-			className={cn(
-				"z-50 w-72 rounded-md bg-bgRaised p-4 text-textDimmed shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-				className,
-			)}
-			ref={ref}
-			sideOffset={sideOffset}
-			{...props}
-		/>
-	</PopoverPrimitive.Portal>
-));
-PopoverContent.displayName = PopoverPrimitive.Content.displayName;
+type PopoverContentProps = PopoverPrimitive.Popup.Props & {
+	align?: PopoverPrimitive.Positioner.Props["align"];
+	side?: PopoverPrimitive.Positioner.Props["side"];
+	sideOffset?: PopoverPrimitive.Positioner.Props["sideOffset"];
+};
 
-export { Popover, PopoverTrigger, PopoverContent };
+function PopoverContent({
+	align = "center",
+	className,
+	side = "bottom",
+	sideOffset = 4,
+	...props
+}: PopoverContentProps) {
+	return (
+		<PopoverPrimitive.Portal>
+			<PopoverPrimitive.Positioner
+				align={align}
+				className="z-100 origin-(--transform-origin)"
+				side={side}
+				sideOffset={sideOffset}
+			>
+				<PopoverPrimitive.Popup
+					className={cn(
+						"w-72 rounded-md bg-bgRaised p-4 text-textDimmed shadow-md outline-hidden",
+						className,
+					)}
+					{...props}
+				/>
+			</PopoverPrimitive.Positioner>
+		</PopoverPrimitive.Portal>
+	);
+}
+
+export { Popover, PopoverContent, PopoverTrigger };

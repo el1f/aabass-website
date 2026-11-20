@@ -41,18 +41,18 @@ const Home: NextPage = () => {
 						corner radii and making sure those pixels look exceptionally clean.
 					</Text>
 					<Text as="p" className="mb-4">
-						Currently working on <Strong>Grok</Strong> and more{" "}
-						<Strong>@xAI</Strong>.
+						Currently playing videogames and enjoying life. Previously at{" "}
+						<Strong>SpaceXAI</Strong>.
 						<br />
 						My availability right now is{" "}
-						<AvailabilityLabel>non-existent</AvailabilityLabel>. Still, feel
-						free to reach out for a chat!
+						<AvailabilityLabel>quite free</AvailabilityLabel>. Still, feel free
+						to reach out for a chat!
 					</Text>
 				</hgroup>
 				<div className="flex gap-4 dark:gap-4">
 					<Link href="mailto:ayoub@aabass.net">
-						<Button asChild size="xl">
-							<motion.button>Reach out</motion.button>
+						<Button render={<motion.button />} size="xl">
+							Reach out
 						</Button>
 					</Link>
 					<Link href="/about">
@@ -64,7 +64,7 @@ const Home: NextPage = () => {
 			</section>
 
 			<section className="px-6 mb-32 md:mb-64">
-				<div className="container max-w-[39rem] mx-auto">
+				<div className="container max-w-156 mx-auto">
 					<Heading className="mb-4" id="playbook" level={2}>
 						Playbook
 					</Heading>
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
 				<div className="flex gap-8 overflow-x-scroll flex-nowrap md:px-[calc(50vw-21rem)] px-6 -mx-6 pb-8">
 					{STANDARD_POSTERS.slice(0, 8).map((poster) => (
 						<PosterThumbnail
-							className="flex-shrink-0 w-64"
+							className="shrink-0 w-64"
 							key={poster.slug}
 							src={poster.src}
 							title={poster.name}

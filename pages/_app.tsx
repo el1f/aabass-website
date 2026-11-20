@@ -52,7 +52,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 const jbMono = JetBrains_Mono({
 	subsets: ["latin"],
-	variable: "--font-jb-mobo",
+	variable: "--font-jb-mono",
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -127,7 +127,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 			<ThemeProvider attribute="class">
 				<div
-					className={`${sofiaPro.variable} ${spaceGrotesk.variable} ${jbMono.variable}font-sans`}
+					className={`${sofiaPro.variable} ${spaceGrotesk.variable} ${jbMono.variable} isolate font-sans`}
 				>
 					<Component {...pageProps} />
 				</div>

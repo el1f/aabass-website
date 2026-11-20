@@ -1,5 +1,6 @@
 export * from "./Anchor";
 export * from "./Button";
+export * from "./FoldedSheet";
 export * from "./Footer";
 export * from "./Heading";
 export * from "./Icon";
