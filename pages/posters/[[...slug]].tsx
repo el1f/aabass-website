@@ -21,7 +21,23 @@ const Posters: NextPage = () => {
 	const selectedPoster = POSTERS.find((poster) => poster.slug === activeSlug);
 
 	return <>
-        <Seo title="My poster collection" />
+        <Seo
+            ogTitle={
+                selectedPoster
+                    ? `${selectedPoster.name} · Ayoub Aabass`
+                    : "Ayoub Aabass"
+            }
+            title={
+                selectedPoster
+                    ? `${selectedPoster.name} · Ayoub Aabass`
+                    : "Ayoub Aabass"
+            }
+            url={
+                selectedPoster
+                    ? `https://ayoub.aabass.net/posters/${selectedPoster.slug}`
+                    : "https://ayoub.aabass.net/"
+            }
+        />
 
         <Navbar />
 

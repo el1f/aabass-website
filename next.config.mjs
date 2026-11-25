@@ -12,6 +12,16 @@ const nextConfig = {
 	},
 	pageExtensions: ["ts", "tsx", "js", "jsx"],
 	reactStrictMode: true,
+	async redirects() {
+		return [
+			{ destination: "/", source: "/about", statusCode: 301 },
+			{ destination: "/", source: "/cases", statusCode: 301 },
+			{ destination: "/", source: "/changelog", statusCode: 301 },
+			{ destination: "/", source: "/it", statusCode: 301 },
+			{ destination: "/", source: "/it/:path*", statusCode: 301 },
+			{ destination: "/", source: "/posters", statusCode: 301 },
+		];
+	},
 	turbopack: {
 		rules: {
 			"*.svg": {
