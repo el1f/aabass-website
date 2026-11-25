@@ -1,13 +1,13 @@
 import Head from "next/head";
 import React from "react";
 
-const DOMAIN = process.env.NEXT_PUBLIC_HOSTNAME;
-const DEFAULT_OG_IMAGE = `${process.env.NEXT_PUBLIC_HOSTNAME}/og-image.png`;
+const CANONICAL_ORIGIN = "https://ayoub.aabass.net";
+const DEFAULT_OG_IMAGE = `${CANONICAL_ORIGIN}/og-image.png`;
 const DEFAULT_OG_SITENAME = "Ayoub Aabass";
-const DEFAULT_TITLE = "Ayoub Aabass • dev";
-const DEFAULT_OG_TITLE = "Ayoub Aabass • Full stack dev and designer";
+const DEFAULT_TITLE = "Ayoub Aabass";
+const DEFAULT_OG_TITLE = "Ayoub Aabass";
 const DEFAULT_OG_DESCRIPTION =
-	"I'm a full-stack web developer that dabbles in a lot of UI and UX design. I've been honing my skills for the better part of the last 8 years and I'm looking for more opportunities to create great products.";
+	"Product engineer in London, obsessing over corner radii and clean pixels. Previously Member of Technical Staff at SpaceXAI. Currently sidequestmaxxing.";
 
 export interface SeoProps {
 	description?: string;
@@ -26,7 +26,7 @@ export const Seo: React.FC<SeoProps> = (props) => {
 	const ogType = props.ogType ?? "website";
 	const ogTitle = props.ogTitle ?? DEFAULT_OG_TITLE;
 	const ogDescription = props.ogDescription ?? DEFAULT_OG_DESCRIPTION;
-	const url = props.url ?? DOMAIN;
+	const url = props.url ?? CANONICAL_ORIGIN;
 	const ogImage = props.ogImage ?? DEFAULT_OG_IMAGE;
 	const siteName = props.siteName ?? DEFAULT_OG_SITENAME;
 	const twitterHandle = props.twitterHandle ?? "@el1flem";
@@ -42,7 +42,7 @@ export const Seo: React.FC<SeoProps> = (props) => {
 				key="og_description"
 				property="og:description"
 			/>
-			<meta content="en_IE" key="og_locale" property="og:locale" />
+			<meta content="en_GB" key="og_locale" property="og:locale" />
 			<meta content={siteName} key="og_site_name" property="og:site_name" />
 			<meta content={url} key="og_url" property="og:url" />
 			<meta content={ogImage} key="og_image" property="og:image" />
@@ -69,7 +69,7 @@ export const Seo: React.FC<SeoProps> = (props) => {
 				key="twitter:description"
 				property="twitter:description"
 			/>
-			<link href={url} rel="url" />
+			<link href={url} key="canonical" rel="canonical" />
 
 			{/* TODO: add these tags */}
 			{/* https://ogp.me/#type_article */}
