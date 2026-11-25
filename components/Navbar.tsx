@@ -15,9 +15,14 @@ import { SpotifyWidget } from "./SpotifyWidget";
 
 const SCROLL_THRESHOLD = 512;
 
-interface NavbarProps {}
+interface NavbarProps {
+	preview?: {
+		direction: "DOWN" | "UP";
+		y: number;
+	};
+}
 
-export const Navbar: React.FC<NavbarProps> = () => {
+export const Navbar: React.FC<NavbarProps> = ({ preview }) => {
 	const { data: currentlyPlayingSong } = useQuery({
 		queryFn: async () => {
 			const song = await axios.get<SpotifyNowPlayingPayload>(
@@ -30,8 +35,10 @@ export const Navbar: React.FC<NavbarProps> = () => {
 	});
 
 	const [scroll, direction] = useWindowScroll();
-	const isPastSafeThreshold = scroll.y > SCROLL_THRESHOLD / 2;
-	const isScrollingUp = scroll.y > SCROLL_THRESHOLD && direction === "UP";
+	const scrollDirection = preview ? preview.direction : direction;
+	const scrollY = preview ? preview.y : scroll.y;
+	const isPastSafeThreshold = scrollY > SCROLL_THRESHOLD / 2;
+	const isScrollingUp = scrollY > SCROLL_THRESHOLD && scrollDirection === "UP";
 
 	return (
 		<header
@@ -50,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 							"flex items-center justify-between h-20 w-full max-w-2xl pl-4.5 pr-4 mx-auto rounded-3xl",
 							{
 								"backdrop-blur-md -top-40 relative w-[calc(100%-32px)] md:full border dark:border-textLight/10 border-textDark/10 shadow-xl transition-transform bg-bgRaisedLight/40 dark:bg-bgRaisedDark/50":
-									scroll.y > SCROLL_THRESHOLD / 2,
+									scrollY > SCROLL_THRESHOLD / 2,
 								"md:translate-y-[128px] translate-y-[112px] max-w-5xl":
 									isPastSafeThreshold,
 							},
